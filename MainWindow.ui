@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>812</width>
+    <height>618</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>File Manager</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>812</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuArchivo">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="actionNuevo_Archivo"/>
+    <addaction name="actionSalvar_Archivo"/>
+    <addaction name="actionCerrar_Archivo"/>
+    <addaction name="separator"/>
+    <addaction name="actionSalir"/>
+   </widget>
+   <widget class="QMenu" name="menuCampos">
+    <property name="title">
+     <string>Campos</string>
+    </property>
+    <addaction name="actionCrear_Campos"/>
+    <addaction name="actionListar_Campos"/>
+    <addaction name="actionModificar_Campos"/>
+    <addaction name="actionEliminar_Campos"/>
+   </widget>
+   <widget class="QMenu" name="menuRegistros">
+    <property name="title">
+     <string>Registros</string>
+    </property>
+    <addaction name="actionIntroducir_Registros"/>
+    <addaction name="actionModificar_Registros"/>
+    <addaction name="actionBuscar_Registros"/>
+    <addaction name="actionBorrar_Registros"/>
+    <addaction name="actionListar_Registros"/>
+   </widget>
+   <widget class="QMenu" name="menuIndices">
+    <property name="title">
+     <string>Índices</string>
+    </property>
+    <addaction name="actionCrearIndices"/>
+    <addaction name="actionReindexar_Archivos"/>
+   </widget>
+   <widget class="QMenu" name="menuEstandarizacion">
+    <property name="title">
+     <string>Estandarización</string>
+    </property>
+    <addaction name="actionExportar_a_Excel"/>
+    <addaction name="actionExportar_a_XML_con_Schema"/>
+   </widget>
+   <addaction name="menuArchivo"/>
+   <addaction name="menuCampos"/>
+   <addaction name="menuRegistros"/>
+   <addaction name="menuIndices"/>
+   <addaction name="menuEstandarizacion"/>
+  </widget>
+  <action name="actionNuevo_Archivo">
+   <property name="text">
+    <string>Nuevo Archivo</string>
+   </property>
+  </action>
+  <action name="actionSalvar_Archivo">
+   <property name="text">
+    <string>Salvar Archivo</string>
+   </property>
+  </action>
+  <action name="actionCerrar_Archivo">
+   <property name="text">
+    <string>Cerrar Archivo</string>
+   </property>
+  </action>
+  <action name="actionSalir">
+   <property name="text">
+    <string>Salir</string>
+   </property>
+  </action>
+  <action name="actionCrear_Campos">
+   <property name="text">
+    <string>Crear Campos</string>
+   </property>
+  </action>
+  <action name="actionListar_Campos">
+   <property name="text">
+    <string>Listar Campos</string>
+   </property>
+  </action>
+  <action name="actionModificar_Campos">
+   <property name="text">
+    <string>Modificar Campos</string>
+   </property>
+  </action>
+  <action name="actionEliminar_Campos">
+   <property name="text">
+    <string>Borrar Campos</string>
+   </property>
+  </action>
+  <action name="actionIntroducir_Registros">
+   <property name="text">
+    <string>Introducir Registros</string>
+   </property>
+  </action>
+  <action name="actionModificar_Registros">
+   <property name="text">
+    <string>Modificar Registros</string>
+   </property>
+  </action>
+  <action name="actionBuscar_Registros">
+   <property name="text">
+    <string>Buscar Registros</string>
+   </property>
+  </action>
+  <action name="actionBorrar_Registros">
+   <property name="text">
+    <string>Borrar Registros</string>
+   </property>
+  </action>
+  <action name="actionListar_Registros">
+   <property name="text">
+    <string>Listar Registros</string>
+   </property>
+  </action>
+  <action name="actionCrearIndices">
+   <property name="text">
+    <string>Crear índices</string>
+   </property>
+  </action>
+  <action name="actionReindexar_Archivos">
+   <property name="text">
+    <string>Re-indexar Archivos</string>
+   </property>
+  </action>
+  <action name="actionExportar_a_Excel">
+   <property name="text">
+    <string>Exportar a Excel</string>
+   </property>
+  </action>
+  <action name="actionExportar_a_XML_con_Schema">
+   <property name="text">
+    <string>Exportar a XML con Schema</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
