@@ -30,7 +30,7 @@ public:
   }
 
   void setData(T nData){
-    data = nData;
+    data = nData;nData
   }
 
   void setPrevious(ListNode<T>* nPrevious){
@@ -72,6 +72,10 @@ public:
     capacity = nCap;
   }
 
+  void setCapacity(int nCapacity){
+    capacity = nCapacity;
+  }
+
   bool insert(T data){
     if (size >= capacity && capacity != -1) {
       return false;
@@ -96,11 +100,31 @@ public:
       ListNode<T>* currentListNode = head;
 
       for (int i = 2; i <= index; i++) {
-        currentListNode = currentListNode->getNext();
+        if (currentListNode != 0) {
+          currentListNode = currentListNode->getNext();
+        }
       }
 
       return currentListNode->getData();
   }
+
+  bool replace(int index, T nData){
+      ListNode<T>* currentListNode = head;
+
+      for (int i = 2; i <= index; i++) {
+        if (currentListNode != 0) {
+          currentListNode = currentListNode->getNext();
+        }
+      }
+
+      if (currentListNode != 0){
+        currentListNode->setData(nData);
+        return true;
+      }
+
+      return false;
+  }
+
 
   bool remove(int index){
     if (index > size) {
@@ -157,6 +181,14 @@ public:
 
   bool isEmpty(){
     if (size == 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  bool isFull(){
+    if (size >= capacity && capacity != -1) {
       return true;
     }
 
@@ -243,6 +275,20 @@ public:
     }
   }
 
+  void sort(){
+    if (size < 2) {
+      return;
+    }
+
+    for (int i = 1; i <= size; i++) {
+      for (int j = 1; j < size; j++) {
+        if (get(j) > get(j + 1)) {
+          swap(j, j + 1);
+        }
+      }
+    }
+  }
+
   List<T> clone(){
     List<T> nList;
 
@@ -255,6 +301,12 @@ public:
 
   T operator[](int index){
       return get(index);
+  }
+
+  T dequeue(){
+    T temp = head.getData();
+    remove(1);
+    return temp;
   }
 
   ~List<T>(){
