@@ -44,5 +44,4 @@ bool Conveyor::readFields(){
   getline(file, line);
   stringstream ss(line);
 
-
 }
