@@ -1,9 +1,10 @@
 #include "Field.h"
 
-Field::Field(int nType, string nName, int nSize ){
+Field::Field(int nType, string nName, int nSize){
   type = nType;
   name = nName;
   size = nSize;
+  primaryKey = false;
 }
 
 bool Field::isPrimaryKey(){
@@ -11,7 +12,7 @@ bool Field::isPrimaryKey(){
 }
 
 int Field::getType(){
-  return  type;
+  return type;
 }
 
 int Field::getSize(){

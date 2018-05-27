@@ -26,6 +26,7 @@ public:
 
   bool updateMeta();
   bool read();
+  bool readFields();
 };
 
 #endif /* end of include guard: CONVEYOR_H */

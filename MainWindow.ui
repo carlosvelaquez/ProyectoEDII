@@ -6,21 +6,103 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>812</width>
-    <height>618</height>
+    <width>901</width>
+    <height>530</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>File Manager</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>480</y>
+      <width>511</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Archivo actual: -</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>731</width>
+      <height>411</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>281</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>File Manager</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>20</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Avail List</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QListView" name="listView">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>60</y>
+      <width>141</width>
+      <height>411</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>812</width>
-     <height>20</height>
+     <width>901</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -28,19 +110,10 @@
      <string>Archivo</string>
     </property>
     <addaction name="actionNuevo_Archivo"/>
-    <addaction name="actionSalvar_Archivo"/>
-    <addaction name="actionCerrar_Archivo"/>
+    <addaction name="actionCargar_Archivo"/>
+    <addaction name="actionGuardar_Archivo"/>
     <addaction name="separator"/>
     <addaction name="actionSalir"/>
-   </widget>
-   <widget class="QMenu" name="menuCampos">
-    <property name="title">
-     <string>Campos</string>
-    </property>
-    <addaction name="actionCrear_Campos"/>
-    <addaction name="actionListar_Campos"/>
-    <addaction name="actionModificar_Campos"/>
-    <addaction name="actionEliminar_Campos"/>
    </widget>
    <widget class="QMenu" name="menuRegistros">
     <property name="title">
@@ -52,37 +125,46 @@
     <addaction name="actionBorrar_Registros"/>
     <addaction name="actionListar_Registros"/>
    </widget>
-   <widget class="QMenu" name="menuIndices">
+   <widget class="QMenu" name="menuCampos">
+    <property name="title">
+     <string>Campos</string>
+    </property>
+    <addaction name="actionCrear_Campos"/>
+    <addaction name="actionListar_Campos"/>
+    <addaction name="actionModificar_Campos"/>
+    <addaction name="actionEliminar_Campos"/>
+   </widget>
+   <widget class="QMenu" name="menu_ndices">
     <property name="title">
      <string>Índices</string>
     </property>
-    <addaction name="actionCrearIndices"/>
+    <addaction name="actionCrear_Indices"/>
     <addaction name="actionReindexar_Archivos"/>
    </widget>
-   <widget class="QMenu" name="menuEstandarizacion">
+   <widget class="QMenu" name="menuEstadarizaci_n">
     <property name="title">
      <string>Estandarización</string>
     </property>
     <addaction name="actionExportar_a_Excel"/>
-    <addaction name="actionExportar_a_XML_con_Schema"/>
+    <addaction name="actionExportar_a_XML_con_Schem"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuCampos"/>
    <addaction name="menuRegistros"/>
-   <addaction name="menuIndices"/>
-   <addaction name="menuEstandarizacion"/>
+   <addaction name="menu_ndices"/>
+   <addaction name="menuEstadarizaci_n"/>
   </widget>
   <action name="actionNuevo_Archivo">
    <property name="text">
     <string>Nuevo Archivo</string>
    </property>
   </action>
-  <action name="actionSalvar_Archivo">
+  <action name="actionCargar_Archivo">
    <property name="text">
     <string>Salvar Archivo</string>
    </property>
   </action>
-  <action name="actionCerrar_Archivo">
+  <action name="actionGuardar_Archivo">
    <property name="text">
     <string>Cerrar Archivo</string>
    </property>
@@ -90,6 +172,16 @@
   <action name="actionSalir">
    <property name="text">
     <string>Salir</string>
+   </property>
+  </action>
+  <action name="actionA_adir_Persona">
+   <property name="text">
+    <string>Añadir Persona</string>
+   </property>
+  </action>
+  <action name="actionEliminar_Persona">
+   <property name="text">
+    <string>Eliminar Persona</string>
    </property>
   </action>
   <action name="actionCrear_Campos">
@@ -109,7 +201,7 @@
   </action>
   <action name="actionEliminar_Campos">
    <property name="text">
-    <string>Borrar Campos</string>
+    <string>Eliminar Campos</string>
    </property>
   </action>
   <action name="actionIntroducir_Registros">
@@ -117,14 +209,14 @@
     <string>Introducir Registros</string>
    </property>
   </action>
-  <action name="actionModificar_Registros">
-   <property name="text">
-    <string>Modificar Registros</string>
-   </property>
-  </action>
   <action name="actionBuscar_Registros">
    <property name="text">
     <string>Buscar Registros</string>
+   </property>
+  </action>
+  <action name="actionModificar_Registros">
+   <property name="text">
+    <string>Modificar Registros</string>
    </property>
   </action>
   <action name="actionBorrar_Registros">
@@ -137,9 +229,9 @@
     <string>Listar Registros</string>
    </property>
   </action>
-  <action name="actionCrearIndices">
+  <action name="actionCrear_Indices">
    <property name="text">
-    <string>Crear índices</string>
+    <string>Crear Índices</string>
    </property>
   </action>
   <action name="actionReindexar_Archivos">
@@ -152,7 +244,7 @@
     <string>Exportar a Excel</string>
    </property>
   </action>
-  <action name="actionExportar_a_XML_con_Schema">
+  <action name="actionExportar_a_XML_con_Schem">
    <property name="text">
     <string>Exportar a XML con Schema</string>
    </property>

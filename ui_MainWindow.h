@@ -14,9 +14,12 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,43 +28,55 @@ class Ui_MainWindow
 {
 public:
     QAction *actionNuevo_Archivo;
-    QAction *actionSalvar_Archivo;
-    QAction *actionCerrar_Archivo;
+    QAction *actionCargar_Archivo;
+    QAction *actionGuardar_Archivo;
     QAction *actionSalir;
+    QAction *actionA_adir_Persona;
+    QAction *actionEliminar_Persona;
     QAction *actionCrear_Campos;
     QAction *actionListar_Campos;
     QAction *actionModificar_Campos;
     QAction *actionEliminar_Campos;
     QAction *actionIntroducir_Registros;
-    QAction *actionModificar_Registros;
     QAction *actionBuscar_Registros;
+    QAction *actionModificar_Registros;
     QAction *actionBorrar_Registros;
     QAction *actionListar_Registros;
-    QAction *actionCrearIndices;
+    QAction *actionCrear_Indices;
     QAction *actionReindexar_Archivos;
     QAction *actionExportar_a_Excel;
-    QAction *actionExportar_a_XML_con_Schema;
+    QAction *actionExportar_a_XML_con_Schem;
     QWidget *centralwidget;
+    QLabel *label;
+    QTableWidget *tableWidget;
+    QLabel *label_3;
+    QLabel *label_4;
+    QListView *listView;
     QMenuBar *menubar;
     QMenu *menuArchivo;
-    QMenu *menuCampos;
     QMenu *menuRegistros;
-    QMenu *menuIndices;
-    QMenu *menuEstandarizacion;
+    QMenu *menuCampos;
+    QMenu *menu_ndices;
+    QMenu *menuEstadarizaci_n;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(812, 618);
+        MainWindow->resize(901, 530);
+        MainWindow->setStyleSheet(QStringLiteral(""));
         actionNuevo_Archivo = new QAction(MainWindow);
         actionNuevo_Archivo->setObjectName(QStringLiteral("actionNuevo_Archivo"));
-        actionSalvar_Archivo = new QAction(MainWindow);
-        actionSalvar_Archivo->setObjectName(QStringLiteral("actionSalvar_Archivo"));
-        actionCerrar_Archivo = new QAction(MainWindow);
-        actionCerrar_Archivo->setObjectName(QStringLiteral("actionCerrar_Archivo"));
+        actionCargar_Archivo = new QAction(MainWindow);
+        actionCargar_Archivo->setObjectName(QStringLiteral("actionCargar_Archivo"));
+        actionGuardar_Archivo = new QAction(MainWindow);
+        actionGuardar_Archivo->setObjectName(QStringLiteral("actionGuardar_Archivo"));
         actionSalir = new QAction(MainWindow);
         actionSalir->setObjectName(QStringLiteral("actionSalir"));
+        actionA_adir_Persona = new QAction(MainWindow);
+        actionA_adir_Persona->setObjectName(QStringLiteral("actionA_adir_Persona"));
+        actionEliminar_Persona = new QAction(MainWindow);
+        actionEliminar_Persona->setObjectName(QStringLiteral("actionEliminar_Persona"));
         actionCrear_Campos = new QAction(MainWindow);
         actionCrear_Campos->setObjectName(QStringLiteral("actionCrear_Campos"));
         actionListar_Campos = new QAction(MainWindow);
@@ -72,63 +87,91 @@ public:
         actionEliminar_Campos->setObjectName(QStringLiteral("actionEliminar_Campos"));
         actionIntroducir_Registros = new QAction(MainWindow);
         actionIntroducir_Registros->setObjectName(QStringLiteral("actionIntroducir_Registros"));
-        actionModificar_Registros = new QAction(MainWindow);
-        actionModificar_Registros->setObjectName(QStringLiteral("actionModificar_Registros"));
         actionBuscar_Registros = new QAction(MainWindow);
         actionBuscar_Registros->setObjectName(QStringLiteral("actionBuscar_Registros"));
+        actionModificar_Registros = new QAction(MainWindow);
+        actionModificar_Registros->setObjectName(QStringLiteral("actionModificar_Registros"));
         actionBorrar_Registros = new QAction(MainWindow);
         actionBorrar_Registros->setObjectName(QStringLiteral("actionBorrar_Registros"));
         actionListar_Registros = new QAction(MainWindow);
         actionListar_Registros->setObjectName(QStringLiteral("actionListar_Registros"));
-        actionCrearIndices = new QAction(MainWindow);
-        actionCrearIndices->setObjectName(QStringLiteral("actionCrearIndices"));
+        actionCrear_Indices = new QAction(MainWindow);
+        actionCrear_Indices->setObjectName(QStringLiteral("actionCrear_Indices"));
         actionReindexar_Archivos = new QAction(MainWindow);
         actionReindexar_Archivos->setObjectName(QStringLiteral("actionReindexar_Archivos"));
         actionExportar_a_Excel = new QAction(MainWindow);
         actionExportar_a_Excel->setObjectName(QStringLiteral("actionExportar_a_Excel"));
-        actionExportar_a_XML_con_Schema = new QAction(MainWindow);
-        actionExportar_a_XML_con_Schema->setObjectName(QStringLiteral("actionExportar_a_XML_con_Schema"));
+        actionExportar_a_XML_con_Schem = new QAction(MainWindow);
+        actionExportar_a_XML_con_Schem->setObjectName(QStringLiteral("actionExportar_a_XML_con_Schem"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 480, 511, 21));
+        tableWidget = new QTableWidget(centralwidget);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        tableWidget->setGeometry(QRect(10, 60, 731, 411));
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(10, 10, 281, 41));
+        QFont font;
+        font.setFamily(QStringLiteral("Arial"));
+        font.setPointSize(24);
+        font.setBold(true);
+        font.setWeight(75);
+        label_3->setFont(font);
+        label_4 = new QLabel(centralwidget);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(750, 20, 141, 31));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Arial"));
+        font1.setPointSize(18);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_4->setFont(font1);
+        label_4->setAlignment(Qt::AlignCenter);
+        listView = new QListView(centralwidget);
+        listView->setObjectName(QStringLiteral("listView"));
+        listView->setGeometry(QRect(750, 60, 141, 411));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 812, 20));
+        menubar->setGeometry(QRect(0, 0, 901, 21));
         menuArchivo = new QMenu(menubar);
         menuArchivo->setObjectName(QStringLiteral("menuArchivo"));
-        menuCampos = new QMenu(menubar);
-        menuCampos->setObjectName(QStringLiteral("menuCampos"));
         menuRegistros = new QMenu(menubar);
         menuRegistros->setObjectName(QStringLiteral("menuRegistros"));
-        menuIndices = new QMenu(menubar);
-        menuIndices->setObjectName(QStringLiteral("menuIndices"));
-        menuEstandarizacion = new QMenu(menubar);
-        menuEstandarizacion->setObjectName(QStringLiteral("menuEstandarizacion"));
+        menuCampos = new QMenu(menubar);
+        menuCampos->setObjectName(QStringLiteral("menuCampos"));
+        menu_ndices = new QMenu(menubar);
+        menu_ndices->setObjectName(QStringLiteral("menu_ndices"));
+        menuEstadarizaci_n = new QMenu(menubar);
+        menuEstadarizaci_n->setObjectName(QStringLiteral("menuEstadarizaci_n"));
         MainWindow->setMenuBar(menubar);
 
         menubar->addAction(menuArchivo->menuAction());
         menubar->addAction(menuCampos->menuAction());
         menubar->addAction(menuRegistros->menuAction());
-        menubar->addAction(menuIndices->menuAction());
-        menubar->addAction(menuEstandarizacion->menuAction());
+        menubar->addAction(menu_ndices->menuAction());
+        menubar->addAction(menuEstadarizaci_n->menuAction());
         menuArchivo->addAction(actionNuevo_Archivo);
-        menuArchivo->addAction(actionSalvar_Archivo);
-        menuArchivo->addAction(actionCerrar_Archivo);
+        menuArchivo->addAction(actionCargar_Archivo);
+        menuArchivo->addAction(actionGuardar_Archivo);
         menuArchivo->addSeparator();
         menuArchivo->addAction(actionSalir);
-        menuCampos->addAction(actionCrear_Campos);
-        menuCampos->addAction(actionListar_Campos);
-        menuCampos->addAction(actionModificar_Campos);
-        menuCampos->addAction(actionEliminar_Campos);
         menuRegistros->addAction(actionIntroducir_Registros);
         menuRegistros->addAction(actionModificar_Registros);
         menuRegistros->addAction(actionBuscar_Registros);
         menuRegistros->addAction(actionBorrar_Registros);
         menuRegistros->addAction(actionListar_Registros);
-        menuIndices->addAction(actionCrearIndices);
-        menuIndices->addAction(actionReindexar_Archivos);
-        menuEstandarizacion->addAction(actionExportar_a_Excel);
-        menuEstandarizacion->addAction(actionExportar_a_XML_con_Schema);
+        menuCampos->addAction(actionCrear_Campos);
+        menuCampos->addAction(actionListar_Campos);
+        menuCampos->addAction(actionModificar_Campos);
+        menuCampos->addAction(actionEliminar_Campos);
+        menu_ndices->addAction(actionCrear_Indices);
+        menu_ndices->addAction(actionReindexar_Archivos);
+        menuEstadarizaci_n->addAction(actionExportar_a_Excel);
+        menuEstadarizaci_n->addAction(actionExportar_a_XML_con_Schem);
 
         retranslateUi(MainWindow);
 
@@ -139,27 +182,32 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "File Manager", nullptr));
         actionNuevo_Archivo->setText(QApplication::translate("MainWindow", "Nuevo Archivo", nullptr));
-        actionSalvar_Archivo->setText(QApplication::translate("MainWindow", "Salvar Archivo", nullptr));
-        actionCerrar_Archivo->setText(QApplication::translate("MainWindow", "Cerrar Archivo", nullptr));
+        actionCargar_Archivo->setText(QApplication::translate("MainWindow", "Salvar Archivo", nullptr));
+        actionGuardar_Archivo->setText(QApplication::translate("MainWindow", "Cerrar Archivo", nullptr));
         actionSalir->setText(QApplication::translate("MainWindow", "Salir", nullptr));
+        actionA_adir_Persona->setText(QApplication::translate("MainWindow", "A\303\261adir Persona", nullptr));
+        actionEliminar_Persona->setText(QApplication::translate("MainWindow", "Eliminar Persona", nullptr));
         actionCrear_Campos->setText(QApplication::translate("MainWindow", "Crear Campos", nullptr));
         actionListar_Campos->setText(QApplication::translate("MainWindow", "Listar Campos", nullptr));
         actionModificar_Campos->setText(QApplication::translate("MainWindow", "Modificar Campos", nullptr));
-        actionEliminar_Campos->setText(QApplication::translate("MainWindow", "Borrar Campos", nullptr));
+        actionEliminar_Campos->setText(QApplication::translate("MainWindow", "Eliminar Campos", nullptr));
         actionIntroducir_Registros->setText(QApplication::translate("MainWindow", "Introducir Registros", nullptr));
-        actionModificar_Registros->setText(QApplication::translate("MainWindow", "Modificar Registros", nullptr));
         actionBuscar_Registros->setText(QApplication::translate("MainWindow", "Buscar Registros", nullptr));
+        actionModificar_Registros->setText(QApplication::translate("MainWindow", "Modificar Registros", nullptr));
         actionBorrar_Registros->setText(QApplication::translate("MainWindow", "Borrar Registros", nullptr));
         actionListar_Registros->setText(QApplication::translate("MainWindow", "Listar Registros", nullptr));
-        actionCrearIndices->setText(QApplication::translate("MainWindow", "Crear \303\255ndices", nullptr));
+        actionCrear_Indices->setText(QApplication::translate("MainWindow", "Crear \303\215ndices", nullptr));
         actionReindexar_Archivos->setText(QApplication::translate("MainWindow", "Re-indexar Archivos", nullptr));
         actionExportar_a_Excel->setText(QApplication::translate("MainWindow", "Exportar a Excel", nullptr));
-        actionExportar_a_XML_con_Schema->setText(QApplication::translate("MainWindow", "Exportar a XML con Schema", nullptr));
+        actionExportar_a_XML_con_Schem->setText(QApplication::translate("MainWindow", "Exportar a XML con Schema", nullptr));
+        label->setText(QApplication::translate("MainWindow", "Archivo actual: -", nullptr));
+        label_3->setText(QApplication::translate("MainWindow", "File Manager", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "Avail List", nullptr));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", nullptr));
-        menuCampos->setTitle(QApplication::translate("MainWindow", "Campos", nullptr));
         menuRegistros->setTitle(QApplication::translate("MainWindow", "Registros", nullptr));
-        menuIndices->setTitle(QApplication::translate("MainWindow", "\303\215ndices", nullptr));
-        menuEstandarizacion->setTitle(QApplication::translate("MainWindow", "Estandarizaci\303\263n", nullptr));
+        menuCampos->setTitle(QApplication::translate("MainWindow", "Campos", nullptr));
+        menu_ndices->setTitle(QApplication::translate("MainWindow", "\303\215ndices", nullptr));
+        menuEstadarizaci_n->setTitle(QApplication::translate("MainWindow", "Estandarizaci\303\263n", nullptr));
     } // retranslateUi
 
 };

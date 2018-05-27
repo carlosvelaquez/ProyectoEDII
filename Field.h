@@ -6,7 +6,7 @@ using namespace std;
 class Field{
 
 private:
-  bool primaryKey = false;
+  bool primaryKey;
   int type;
   int size;
   string name;
@@ -14,8 +14,8 @@ private:
 public:
   Field();
 
-  //Type, Name, Data, Size
-  Field(int, string, string, int);
+  //Type, Name, Size
+  Field(int, string, int);
 
   // Getters
   bool isPrimaryKey();

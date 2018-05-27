@@ -30,7 +30,7 @@ public:
   }
 
   void setData(T nData){
-    data = nData;nData
+    data = nData;
   }
 
   void setPrevious(ListNode<T>* nPrevious){

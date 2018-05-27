@@ -19,7 +19,8 @@ bool Conveyor::updateMeta(){
     for (int i = temp.length(); i <= 7; i++){
       temp += "*";
     }
-    file.write(temp, temp.length());
+
+    file.write(temp.c_str(), temp.length());
     file.close();
     return true;
   }
@@ -28,14 +29,17 @@ bool Conveyor::updateMeta(){
 }
 
 bool Conveyor::read(){
-  file.open(ruta, ios::in)
-  if(file.is_open()){
+  file.open(ruta, ios::in);
 
+  if(file.is_open()){
     //lectura/construcción
     file.seekp(0, ios::beg);
     file.seekp(7, ios::cur);
 
+    return true;
   }
+
+  return false;
 }
 
 bool Conveyor::readFields(){
@@ -44,4 +48,5 @@ bool Conveyor::readFields(){
   getline(file, line);
   stringstream ss(line);
 
+  return false;
 }
