@@ -17,14 +17,15 @@ private:
 
   fstream file;
   List<Field> fields; //Campos del archivo actual
-  List<Record> loadedRecords;
+  List<Record> loadedRecords; //Registros cargados
   string ruta;
 
 public:
   Conveyor();
   Conveyor(string); // Ruta del archivo
 
-  bool updateMeta();
+  bool writeAvailList();
+  bool writeFields();
   bool read();
   bool readFields();
 };

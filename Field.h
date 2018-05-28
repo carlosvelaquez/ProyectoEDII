@@ -12,10 +12,14 @@ private:
   string name;
 
 public:
-  Field();
+  //Variables constantes de tipo
+  const int INT = 0;
+  const int CHAR = 1;
+  const int STRING = 2;
 
-  //Type, Name, Size
-  Field(int, string, int);
+  // Constructores
+  Field();
+  Field(int, string, int); //Type, Name, Size
 
   // Getters
   bool isPrimaryKey();
