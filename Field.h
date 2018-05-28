@@ -25,14 +25,12 @@ public:
   bool isPrimaryKey();
   int getType();
   int getSize();
-  string getData();
   string getName();
 
   // Setters
   void setPrimaryKey(bool);
   void setType(int);
   void setSize(int);
-  void setData(string);
   void setName(string);
 };
 

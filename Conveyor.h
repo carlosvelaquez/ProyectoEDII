@@ -12,22 +12,33 @@ using namespace std;
 class Conveyor{
 
 private:
-  int lastDeleted;
-  List<int> availList;
-
   fstream file;
+  string ruta;
+  bool locked = false;
+
+  int lastDeleted;
+  int recordSize;
+
+  List<int> availList;
   List<Field> fields; //Campos del archivo actual
   List<Record> loadedRecords; //Registros cargados
-  string ruta;
 
 public:
   Conveyor();
   Conveyor(string); // Ruta del archivo
 
+  void lock();
+
   bool writeAvailList();
   bool writeFields();
-  bool read();
+  bool writeRecords();
+
+  bool readAvailList();
   bool readFields();
+  bool readRecords();
+
+  bool buildAvailList(int);
+
 };
 
 #endif /* end of include guard: CONVEYOR_H */

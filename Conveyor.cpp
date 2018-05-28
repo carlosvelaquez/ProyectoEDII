@@ -42,29 +42,49 @@ bool Conveyor::writeFields(){ //Escribir los campos al meta
 
     for (int i = 1; i <= fields.size; i++) { //Leer la lista de campos
       out += fields[i].getType();
-
+      out += ",";
+      out += fields[i].getName();
+      out += ",";
+      out += fields[i].getSize();
 
       if (i != fields.size) { //No añade un '|' después del último registro
         out += "|";
       }
     }
+
+    //Moverse a la posición 8 (el AvailList abarca 7 bytes) y escribir
+    file.seekp(8);
+    file.write(out.c_str(), out.length());
+
     return true;
   }
 
   return false;
 }
 
-bool Conveyor::read(){
+bool Conveyor::readAvailList(){
   file.open(ruta, ios::in);
 
   if(file.is_open()){
-    //lectura/construcción
-    file.seekp(0, ios::beg);
-    file.seekp(7, ios::cur);
+    string in = "";
+    getline(file, in);
 
+    //Eliminar los asteriscos del string
+    for (size_t i = 0; i < in.length(); i++) {
+      if (in[i] == '*') {
+        in = in.substr(0, i-1);
+        break;
+      }
+    }
+
+    //Construir el AvailList
+    buildAvailList(stoi(in));
+
+    file.close();
     return true;
   }
 
+  file.close();
   return false;
 }
 
@@ -75,4 +95,12 @@ bool Conveyor::readFields(){
   stringstream ss(line);
 
   return false;
+}
+
+bool Conveyor::buildAvailList(int pos){
+  if (pos != -1) {
+
+  }
+
+  return true;
 }
