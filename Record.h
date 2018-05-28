@@ -16,7 +16,13 @@ public:
   Record();
   Record(List<string>);
 
-  int size();
+  List<string> getData(){
+    return data;
+  }
+
+  void insertData(string dat){
+    data.insert(dat);
+  }
 
 };
 

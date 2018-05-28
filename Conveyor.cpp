@@ -28,20 +28,22 @@ int Conveyor::recordQuantity(){
 
 //Escribir la primera posición del AvailList al meta
 bool Conveyor::writeAvailList(){
+  file.close();
   file.open(path, ios::out);
 
-  if (file.is_open()) {
+  if (file) {
     file.seekp(0, ios::beg);
     string temp = to_string(lastDeleted);
 
-    for (int i = temp.length(); i <= 7; i++){
+    for (int i = temp.length(); i <= 6; i++){
       temp += "*";
     }
+
+    temp += "\n";
 
     file.write(temp.c_str(), temp.length());
     file.close();
     return true;
-
   }
 
   file.close();
@@ -49,7 +51,8 @@ bool Conveyor::writeAvailList(){
 }
 
 bool Conveyor::writeFields(){ //Escribir los campos al meta
-  file.open(path, ios::out);
+  file.close();
+  file.open(path, ios::out | ios::app);
 
   if (file) {
     string out = "";
@@ -58,11 +61,11 @@ bool Conveyor::writeFields(){ //Escribir los campos al meta
         type,name,size|type,name,size */
 
     for (int i = 1; i <= fields.size; i++) { //Leer la lista de campos
-      out += fields[i].getType();
+      out += to_string(fields[i].getType());
       out += ",";
       out += fields[i].getName();
       out += ",";
-      out += fields[i].getSize();
+      out += to_string(fields[i].getSize());
 
       if (i != fields.size) { //No añade un '|' después del último registro
         out += "|";
@@ -70,12 +73,14 @@ bool Conveyor::writeFields(){ //Escribir los campos al meta
     }
 
     //Moverse a la posición 8 (el AvailList abarca 7 bytes) y escribir
-    file.seekp(8);
+    file.seekp(9);
     file.write(out.c_str(), out.length());
 
+    file.close();
     return true;
   }
 
+  file.close();
   return false;
 }
 
@@ -166,6 +171,14 @@ bool Conveyor::addField(int type, string name, int size){
   return fields.insert(Field(type, name, size));
 }
 
+bool Conveyor::addRecord(Record nRecord){
+  return loadedRecords.insert(nRecord);
+}
+
+bool Conveyor::deleteField(int index){
+  return fields.remove(index);
+}
+
 bool Conveyor::deleteRecord(int index){
   file.open(path, ios::out);
 
@@ -181,4 +194,8 @@ bool Conveyor::deleteRecord(int index){
 
   file.close();
   return false;
+}
+
+List<Record> Conveyor::getRecords(){
+  return loadedRecords;
 }

@@ -1,6 +1,8 @@
 #ifndef CONVEYOR_H
 #define CONVEYOR_H
 
+#include <QDebug>
+
 #include "Conveyor.h"
 #include "List.h"
 #include "Field.h"
@@ -48,7 +50,11 @@ public:
   bool buildAvailList(int);
 
   bool addField(int, string, int);
+  bool addRecord(Record);
 
+  List<Record> getRecords();
+
+  bool deleteField(int);
   bool deleteRecord(int);
 };
 

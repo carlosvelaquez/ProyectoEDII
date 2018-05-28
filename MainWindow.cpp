@@ -10,7 +10,27 @@ void MainWindow::showDialog(){
   qDebug() << "Show dialog triggered";
 
   conveyor.setPath("lel.txt");
-  conveyor.addField(0, "Lel", 10);
+  /*conveyor.addField(0, "Índice", 5);
+  conveyor.addField(2, "Nombre", 20);
+  conveyor.addField(0, "Edad", 5);
+  conveyor.addField(1, "Sexo", 10);
+  conveyor.addField(2, "Dirección", 50);
+  refreshTable();*/
+
+  //conveyor.deleteField(0);
+  //refreshTable();
+
+  conveyor.readFields();
+
+  List<string> data;
+  data.insert("1");
+  data.insert("2");
+  data.insert("3");
+  data.insert("4");
+  data.insert("5");
+
+  Record r(data);
+  conveyor.addRecord(r);
   refreshTable();
 
   conveyor.writeAvailList();
@@ -22,9 +42,17 @@ void MainWindow::refreshTable(){
   ui.tableWidget->setRowCount(conveyor.recordQuantity());
 
   List<Field> fields = conveyor.getFields();
+  List<Record> records = conveyor.getRecords();
 
   for (int i = 1; i <= fields.size; i++) {
-    //ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(fields[i].getName()));
-    ui.tableWidget->horizontalHeaderItem(i-1)->setText(fields[i].getName().c_str());
+    ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(fields[i].getName().c_str()));
+    qDebug() << fields[i].getName().c_str();
+    //ui.tableWidget->horizontalHeaderItem(i-1) = new QTableWidgetItem(fields[i].getName().c_str());
+  }
+
+  for (int i = 1; i <= records.size; i++) {
+    for (int j = 1; j <= fields.size; j++) {
+      ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i].getData().get(j).c_str()));
+    }
   }
 }
