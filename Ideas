@@ -1,2 +1,8 @@
-2****** // Availist
+3****** // Availist
 campo1,tipo1,size1,isPrimary1|campos2,tipo2,size2,isPrimary2 // Información de campos
+
+/* ---- AQUÍ EMPIEZAN LOS REGISTROS ---- */
+datosCampo1,datosCampo2,datosCampo3
+datosCampo1,datosCampo2,datosCampo3
+*-1*sCampo1,datosCampo2,datosCampo3 //registro borrado
+datosCampo1,datosCampo2,datosCampo3
