@@ -262,9 +262,6 @@ debug/moc_MainWindow.cpp: ui_MainWindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmenu.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QMenuBar \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmenubar.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QPushButton \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QTableWidget \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qtablewidget.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qtableview.h \
@@ -453,9 +450,6 @@ debug/main.o: main.cpp MainWindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmenu.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QMenuBar \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmenubar.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QPushButton \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QTableWidget \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qtablewidget.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qtableview.h \
@@ -609,9 +603,6 @@ debug/MainWindow.o: MainWindow.cpp MainWindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmenu.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QMenuBar \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmenubar.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QPushButton \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QTableWidget \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qtablewidget.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qtableview.h \

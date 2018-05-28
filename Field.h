@@ -3,6 +3,7 @@
 
 #include <string>
 using namespace std;
+
 class Field{
 
 private:
@@ -13,9 +14,9 @@ private:
 
 public:
   //Variables constantes de tipo
-  const int INT = 0;
-  const int CHAR = 1;
-  const int STRING = 2;
+  /*static const short INT = 0;
+  static const short CHAR = 1;
+  static const short STRING = 2;*/
 
   // Constructores
   Field();

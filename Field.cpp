@@ -1,5 +1,12 @@
 #include "Field.h"
 
+Field::Field(){
+  type = 0;
+  name = "Undefined";
+  size = 10;
+  primaryKey = false;
+}
+
 Field::Field(int nType, string nName, int nSize){
   type = nType;
   name = nName;

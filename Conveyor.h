@@ -1,6 +1,7 @@
 #ifndef CONVEYOR_H
 #define CONVEYOR_H
 
+#include "Conveyor.h"
 #include "List.h"
 #include "Field.h"
 #include "Record.h"
@@ -13,11 +14,12 @@ class Conveyor{
 
 private:
   fstream file;
-  string ruta;
-  bool locked = false;
+  string path;
+  bool locked;
 
   int lastDeleted;
   int recordSize;
+  int metaSize;
 
   List<int> availList;
   List<Field> fields; //Campos del archivo actual
@@ -27,7 +29,13 @@ public:
   Conveyor();
   Conveyor(string); // Ruta del archivo
 
-  void lock();
+  void setPath(string);
+
+  List<Field> getFields();
+
+  //void lock()
+  int fieldQuantity();
+  int recordQuantity();
 
   bool writeAvailList();
   bool writeFields();
@@ -39,6 +47,9 @@ public:
 
   bool buildAvailList(int);
 
+  bool addField(int, string, int);
+
+  bool deleteRecord(int);
 };
 
 #endif /* end of include guard: CONVEYOR_H */
