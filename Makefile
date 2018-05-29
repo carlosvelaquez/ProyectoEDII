@@ -342,10 +342,18 @@ moc_MainWindow.cpp: ui_MainWindow.h \
 		MainWindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o moc_MainWindow.cpp
 
-moc_fieldwindow.cpp: fieldwindow.h
+moc_fieldwindow.cpp: Conveyor.h \
+		List.h \
+		Field.h \
+		Record.h \
+		fieldwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include fieldwindow.h -o moc_fieldwindow.cpp
 
-moc_deletewindow.cpp: deletewindow.h
+moc_deletewindow.cpp: Conveyor.h \
+		List.h \
+		Field.h \
+		Record.h \
+		deletewindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include deletewindow.h -o moc_deletewindow.cpp
 
 compiler_moc_source_make_all:
@@ -405,23 +413,23 @@ Record.o: Record.cpp Record.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Record.o Record.cpp
 
 fieldwindow.o: fieldwindow.cpp fieldwindow.h \
-		ui_fieldwindow.h \
-		MainWindow.h \
-		ui_MainWindow.h \
 		Conveyor.h \
 		List.h \
 		Field.h \
-		Record.h
+		Record.h \
+		ui_fieldwindow.h \
+		MainWindow.h \
+		ui_MainWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fieldwindow.o fieldwindow.cpp
 
 deletewindow.o: deletewindow.cpp deletewindow.h \
-		ui_deletewindow.h \
-		MainWindow.h \
-		ui_MainWindow.h \
 		Conveyor.h \
 		List.h \
 		Field.h \
-		Record.h
+		Record.h \
+		ui_deletewindow.h \
+		MainWindow.h \
+		ui_MainWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o deletewindow.o deletewindow.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 

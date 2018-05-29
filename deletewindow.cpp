@@ -19,6 +19,10 @@ void deletewindow::setType(int n){
 }
 
 
+void deletewindow::setConveyor(Conveyor* n){
+    conveyor = n;
+}
+
 /* Metodo que elimina ya sea registro o campo
  * Como basicamente es lo mismo (Escoger un número
  * del registro o campo a eliminar) se usa el mismo
@@ -26,17 +30,16 @@ void deletewindow::setType(int n){
  */
 void deletewindow::on_pushButton_delete_clicked()
 {
-    MainWindow* mw = new MainWindow();
     switch (type) {
     case 0:{ // Es un campo
-        if(mw->getConveyor()->deleteField(ui->spinBox_delete->value()))
+        if(conveyor->deleteField(ui->spinBox_delete->value()))
             qDebug()<<"Campo eliminado";
         else
             qDebug()<<"Campo No eliminado";
     }
     break;
     case 1:{ // Es un registro
-        if(mw->getConveyor()->deleteRecord(ui->spinBox_delete->value()))
+        if(conveyor->deleteRecord(ui->spinBox_delete->value()))
             qDebug()<<"Se elimino";
         else
             qDebug()<<"No se elimino";
@@ -44,6 +47,4 @@ void deletewindow::on_pushButton_delete_clicked()
     break;
     }
     ui->spinBox_delete->setValue(0);
-    mw = 0;
-    delete mw;
 }

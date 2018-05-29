@@ -21,12 +21,14 @@ FieldWindow::~FieldWindow()
  */
 void FieldWindow::on_pushButton_CrearCampo_clicked()
 {
-    MainWindow* mw = new MainWindow();
+    qDebug()<<"Size de campos: "<<conveyor->getFields().size;
     QString cadena;
     cadena = ui->lineEdit_field->text();
-    if(mw->getConveyor()->addField(1, cadena.toStdString(), cadena.size()))
+    if(conveyor->addField(1, cadena.toStdString(),0))
         ui->lineEdit_field->setText("");
 
-    mw = 0;
-    delete mw;
+}
+
+void FieldWindow::setConveyor(Conveyor* con){
+    conveyor = con;
 }

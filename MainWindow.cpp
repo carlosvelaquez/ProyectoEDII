@@ -35,6 +35,7 @@ void MainWindow::addRecord(){
 
 void MainWindow::deleteRecords(){
     deletewindow* dw = new deletewindow();
+    dw->setConveyor(&conveyor);
     dw->setType(1);
     dw->show();
 }
@@ -44,11 +45,13 @@ void MainWindow::deleteRecords(){
 /* ############# Para campos ############# */
 void MainWindow::addFields(){
     FieldWindow* f = new FieldWindow();
+    f->setConveyor(&conveyor);
     f->show();
 }
 
 void MainWindow::deleteFields(){
     deletewindow* dw = new deletewindow();
+    dw->setConveyor(&conveyor);
     dw->setType(0);
     dw->show();
 }
