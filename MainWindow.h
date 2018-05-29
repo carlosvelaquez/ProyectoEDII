@@ -11,7 +11,8 @@ private:
   Conveyor conveyor;
 
 private slots:
-  void showDialog();
+  void LoadFile();
+  void on_pushButton_fields_clicked();
 
 public:
   MainWindow(QWidget* parent = 0);

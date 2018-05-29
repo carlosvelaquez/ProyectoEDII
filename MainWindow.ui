@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>901</width>
-    <height>530</height>
+    <width>707</width>
+    <height>376</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,81 +17,59 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>480</y>
-      <width>511</width>
-      <height>21</height>
+      <x>20</x>
+      <y>10</y>
+      <width>201</width>
+      <height>331</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Archivo actual: -</string>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
     </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton_fields">
+       <property name="text">
+        <string>Campos</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Registros</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="text">
+        <string>Índices</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="text">
+        <string>Estandarización</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>731</width>
-      <height>411</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>281</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>24</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>File Manager</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>20</y>
-      <width>141</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>18</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Avail List</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QListView" name="listView">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>60</y>
-      <width>141</width>
-      <height>411</height>
+      <x>225</x>
+      <y>11</y>
+      <width>471</width>
+      <height>331</height>
      </rect>
     </property>
    </widget>
@@ -101,8 +79,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>901</width>
-     <height>21</height>
+     <width>707</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -110,10 +88,10 @@
      <string>Archivo</string>
     </property>
     <addaction name="actionNuevo_Archivo"/>
-    <addaction name="actionCargar_Archivo"/>
     <addaction name="actionGuardar_Archivo"/>
+    <addaction name="actionCargar_Archivo"/>
+    <addaction name="actionCerrar_Archivo"/>
     <addaction name="separator"/>
-    <addaction name="actionSalir"/>
    </widget>
    <widget class="QMenu" name="menuRegistros">
     <property name="title">
@@ -159,12 +137,12 @@
     <string>Nuevo Archivo</string>
    </property>
   </action>
-  <action name="actionCargar_Archivo">
+  <action name="actionGuardar_Archivo">
    <property name="text">
     <string>Salvar Archivo</string>
    </property>
   </action>
-  <action name="actionGuardar_Archivo">
+  <action name="actionCerrar_Archivo">
    <property name="text">
     <string>Cerrar Archivo</string>
    </property>
@@ -247,6 +225,11 @@
   <action name="actionExportar_a_XML_con_Schem">
    <property name="text">
     <string>Exportar a XML con Schema</string>
+   </property>
+  </action>
+  <action name="actionCargar_Archivo">
+   <property name="text">
+    <string>Cargar Archivo</string>
    </property>
   </action>
  </widget>
