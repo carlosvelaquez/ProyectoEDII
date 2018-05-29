@@ -30,9 +30,9 @@ void deletewindow::on_pushButton_delete_clicked()
     switch (type) {
     case 0:{ // Es un campo
         if(mw->getConveyor()->deleteField(ui->spinBox_delete->value()))
-            qDebug()<<"Se elimino";
+            qDebug()<<"Campo eliminado";
         else
-            qDebug()<<"No se elimino";
+            qDebug()<<"Campo No eliminado";
     }
     break;
     case 1:{ // Es un registro
@@ -43,6 +43,7 @@ void deletewindow::on_pushButton_delete_clicked()
     }
     break;
     }
+    ui->spinBox_delete->setValue(0);
     mw = 0;
     delete mw;
 }

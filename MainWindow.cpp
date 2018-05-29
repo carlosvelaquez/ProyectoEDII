@@ -35,6 +35,7 @@ void MainWindow::addRecord(){
 
 void MainWindow::deleteRecords(){
     deletewindow* dw = new deletewindow();
+    dw->setType(1);
     dw->show();
 }
 /*##########################################*/
@@ -48,6 +49,7 @@ void MainWindow::addFields(){
 
 void MainWindow::deleteFields(){
     deletewindow* dw = new deletewindow();
+    dw->setType(0);
     dw->show();
 }
 /*##########################################*/

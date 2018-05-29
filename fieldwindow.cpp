@@ -24,8 +24,9 @@ void FieldWindow::on_pushButton_CrearCampo_clicked()
     MainWindow* mw = new MainWindow();
     QString cadena;
     cadena = ui->lineEdit_field->text();
-    ui->lineEdit_field->setText("");
-    mw->getConveyor()->addField(0, cadena.toStdString(), cadena.size());
+    if(mw->getConveyor()->addField(1, cadena.toStdString(), cadena.size()))
+        ui->lineEdit_field->setText("");
+
     mw = 0;
     delete mw;
 }
