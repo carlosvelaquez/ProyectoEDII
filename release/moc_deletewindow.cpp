@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'fieldwindow.h'
+** Meta object code from reading C++ file 'deletewindow.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.10.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../fieldwindow.h"
+#include "../deletewindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'fieldwindow.h' doesn't include <QObject>."
+#error "The header file 'deletewindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.10.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -20,28 +20,28 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_FieldWindow_t {
+struct qt_meta_stringdata_deletewindow_t {
     QByteArrayData data[3];
-    char stringdata0[46];
+    char stringdata0[43];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_FieldWindow_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_deletewindow_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_FieldWindow_t qt_meta_stringdata_FieldWindow = {
+static const qt_meta_stringdata_deletewindow_t qt_meta_stringdata_deletewindow = {
     {
-QT_MOC_LITERAL(0, 0, 11), // "FieldWindow"
-QT_MOC_LITERAL(1, 12, 32), // "on_pushButton_CrearCampo_clicked"
-QT_MOC_LITERAL(2, 45, 0) // ""
+QT_MOC_LITERAL(0, 0, 12), // "deletewindow"
+QT_MOC_LITERAL(1, 13, 28), // "on_pushButton_delete_clicked"
+QT_MOC_LITERAL(2, 42, 0) // ""
 
     },
-    "FieldWindow\0on_pushButton_CrearCampo_clicked\0"
+    "deletewindow\0on_pushButton_delete_clicked\0"
     ""
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_FieldWindow[] = {
+static const uint qt_meta_data_deletewindow[] = {
 
  // content:
        7,       // revision
@@ -63,39 +63,39 @@ static const uint qt_meta_data_FieldWindow[] = {
        0        // eod
 };
 
-void FieldWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void deletewindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        FieldWindow *_t = static_cast<FieldWindow *>(_o);
+        deletewindow *_t = static_cast<deletewindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_pushButton_CrearCampo_clicked(); break;
+        case 0: _t->on_pushButton_delete_clicked(); break;
         default: ;
         }
     }
     Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject FieldWindow::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_FieldWindow.data,
-      qt_meta_data_FieldWindow,  qt_static_metacall, nullptr, nullptr}
+QT_INIT_METAOBJECT const QMetaObject deletewindow::staticMetaObject = {
+    { &QWidget::staticMetaObject, qt_meta_stringdata_deletewindow.data,
+      qt_meta_data_deletewindow,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *FieldWindow::metaObject() const
+const QMetaObject *deletewindow::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *FieldWindow::qt_metacast(const char *_clname)
+void *deletewindow::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_FieldWindow.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_deletewindow.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int FieldWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int deletewindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)

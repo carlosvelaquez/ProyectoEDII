@@ -5,8 +5,8 @@ INPUT(
 ./debug\MainWindow.o
 ./debug\Record.o
 ./debug\fieldwindow.o
-./debug\recordwindow.o
+./debug\deletewindow.o
 ./debug\moc_MainWindow.o
 ./debug\moc_fieldwindow.o
-./debug\moc_recordwindow.o
+./debug\moc_deletewindow.o
 );
