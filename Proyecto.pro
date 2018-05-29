@@ -21,6 +21,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += Conveyor.h Field.h List.h MainWindow.h queue.h Record.h
-FORMS += MainWindow.ui
-SOURCES += Conveyor.cpp Field.cpp main.cpp MainWindow.cpp Record.cpp
+HEADERS += Conveyor.h Field.h List.h MainWindow.h queue.h Record.h \
+    fieldwindow.h
+FORMS += MainWindow.ui \
+    fieldwindow.ui
+SOURCES += Conveyor.cpp Field.cpp main.cpp MainWindow.cpp Record.cpp \
+    fieldwindow.cpp

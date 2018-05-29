@@ -113,13 +113,14 @@ public:
         label = new QLabel(centralwidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 10, 161, 31));
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(650, 6, 111, 41));
         QFont font;
         font.setPointSize(15);
         font.setBold(true);
         font.setWeight(75);
+        label->setFont(font);
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(650, 6, 111, 41));
         label_2->setFont(font);
         listWidget = new QListWidget(centralwidget);
         listWidget->setObjectName(QStringLiteral("listWidget"));
@@ -192,7 +193,7 @@ public:
         actionExportar_a_Excel->setText(QApplication::translate("MainWindow", "Exportar a Excel", 0));
         actionExportar_a_XML_con_Schem->setText(QApplication::translate("MainWindow", "Exportar a XML con Schema", 0));
         actionCargar_Archivo->setText(QApplication::translate("MainWindow", "Cargar Archivo", 0));
-        label->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        label->setText(QApplication::translate("MainWindow", "File", 0));
         label_2->setText(QApplication::translate("MainWindow", "Avail List", 0));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", 0));
         menuRegistros->setTitle(QApplication::translate("MainWindow", "Registros", 0));

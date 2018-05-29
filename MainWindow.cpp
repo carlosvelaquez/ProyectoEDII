@@ -1,17 +1,28 @@
 #include "MainWindow.h"
 #include "qfiledialog.h"
+#include "fieldwindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(LoadFile()));
+  connect(ui.actionCrear_Campos, SIGNAL(triggered()), this, SLOT(addFields()));
+}
+
+void MainWindow::addFields(){
+    FieldWindow* f = new FieldWindow();
+    f->show();
+}
+
+Conveyor* MainWindow::getConveyor(){
+    return &conveyor;
 }
 
 void MainWindow::LoadFile(){
     QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Open File"),"/path/to/file/",tr("TXT Files (*.txt)"));
     //conveyor.setPath(fileNames); // Hay que pasar el Bendito QstringList a String x'DD
-    conveyor.setPath("lel.txt");
-    /*conveyor.addField(0, "Índice", 5);
+    /*conveyor.setPath("lel.txt");
+    conveyor.addField(0, "Índice", 5);
     conveyor.addField(2, "Nombre", 20);
     conveyor.addField(0, "Edad", 5);
     conveyor.addField(1, "Sexo", 10);

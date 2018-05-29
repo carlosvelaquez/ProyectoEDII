@@ -11,8 +11,10 @@ private:
 
 private slots:
   void LoadFile();
+  void addFields();
 
 public:
   MainWindow(QWidget* parent = 0);
   void refreshTable();
+  Conveyor* getConveyor();
 };
