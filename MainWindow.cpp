@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
 /* ############# Para registros ############# */
 void MainWindow::addRecord(){
-    if(false){//Validar si el archivo esta abierto y si el Conveyor tiene campos suficientes
+    if(true){//Validar si el archivo esta abierto y si el Conveyor tiene campos suficientes
         Record record;
         for(int i=1; i<=conveyor.getFields().size; i++){
            record.insertData(conveyor.getFields().get(i).getName());// Se agrega el data al registro
