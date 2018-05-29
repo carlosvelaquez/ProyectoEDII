@@ -3,6 +3,8 @@
 #ifndef LIST_H
 #define LIST_H
 
+#include <QDebug>
+
 template <class T>
 class ListNode{
 protected:

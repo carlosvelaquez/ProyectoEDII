@@ -1,10 +1,9 @@
 #include "MainWindow.h"
 #include <QApplication>
 
-int main(int argc, char* argv[]) {
-  QApplication app(argc, argv);
-  MainWindow w;
-  w.show();
-
-  return app.exec();
+int main(){
+  Conveyor c;
+  c.setPath("123.txt");
+  c.addRecord()
+  return 0;
 }

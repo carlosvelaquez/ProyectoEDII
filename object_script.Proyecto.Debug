@@ -1,0 +1,12 @@
+INPUT(
+./debug\Conveyor.o
+./debug\Field.o
+./debug\main.o
+./debug\MainWindow.o
+./debug\Record.o
+./debug\fieldwindow.o
+./debug\recordwindow.o
+./debug\moc_MainWindow.o
+./debug\moc_fieldwindow.o
+./debug\moc_recordwindow.o
+);
