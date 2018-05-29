@@ -22,8 +22,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # Input
 HEADERS += Conveyor.h Field.h List.h MainWindow.h queue.h Record.h \
-    fieldwindow.h
+    fieldwindow.h \
+    deletewindow.h
 FORMS += MainWindow.ui \
-    fieldwindow.ui
+    fieldwindow.ui \
+    deletewindow.ui
 SOURCES += Conveyor.cpp Field.cpp main.cpp MainWindow.cpp Record.cpp \
-    fieldwindow.cpp
+    fieldwindow.cpp \
+    deletewindow.cpp

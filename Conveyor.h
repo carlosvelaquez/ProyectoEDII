@@ -56,6 +56,10 @@ public:
 
   bool deleteField(int);
   bool deleteRecord(int);
+
+  int getRecordSize();
+  int getMetaSize();
+
 };
 
 #endif /* end of include guard: CONVEYOR_H */

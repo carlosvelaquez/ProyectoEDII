@@ -199,3 +199,10 @@ bool Conveyor::deleteRecord(int index){
 List<Record> Conveyor::getRecords(){
   return loadedRecords;
 }
+
+int Conveyor::getRecordSize(){
+    return recordSize;
+}
+int Conveyor::getMetaSize(){
+    return metaSize;
+}

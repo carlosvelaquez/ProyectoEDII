@@ -2,28 +2,56 @@
 #include "qfiledialog.h"
 #include "fieldwindow.h"
 #include "Record.h"
+#include "deletewindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(LoadFile()));
+
+  // Añadir campos
   connect(ui.actionCrear_Campos, SIGNAL(triggered()), this, SLOT(addFields()));
+  // Añadir registros
+  connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
+
+  // Eliminar campos
+  connect(ui.actionEliminar_Campos, SIGNAL(triggered()), this, SLOT(deleteFields()));
+  // Eliminar registros
+  connect(ui.actionBorrar_Registros, SIGNAL(triggered()), this, SLOT(deleteRecords()));
 }
 
+/* ############# Para registros ############# */
 void MainWindow::addRecord(){
-    if(true){//Validar si el archivo esta abierto y si el Conveyor tiene campos suficientes
+    if(false){//Validar si el archivo esta abierto y si el Conveyor tiene campos suficientes
         Record record;
         for(int i=1; i<=conveyor.getFields().size; i++){
-           record.insertData(conveyor.getFields().get(i).getName());
+           record.insertData(conveyor.getFields().get(i).getName());// Se agrega el data al registro
         }
-        conveyor.addRecord(record); // Registro añadido
+        conveyor.addRecord(record); // Registro añadido en memoria
+        //conveyor.writeRecords(); // Se escriben los registros en el archivo (Método aún no implementado)
+        conveyor.writeFields(); // Se escribe  los campos en el metadata
     }
 }
 
+void MainWindow::deleteRecords(){
+    deletewindow* dw = new deletewindow();
+    dw->show();
+}
+/*##########################################*/
+
+
+/* ############# Para campos ############# */
 void MainWindow::addFields(){
     FieldWindow* f = new FieldWindow();
     f->show();
 }
+
+void MainWindow::deleteFields(){
+    deletewindow* dw = new deletewindow();
+    dw->show();
+}
+/*##########################################*/
+
 
 Conveyor* MainWindow::getConveyor(){
     return &conveyor;
