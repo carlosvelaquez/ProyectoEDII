@@ -104,6 +104,7 @@ bool Conveyor::writeRecords(){
       for (int i = 1; i <= recordBuffer.size; i++) {
         if (!availList.isEmpty()) {
           file.seekp((recordSize*availList[availList.size]) + metaSize);
+          availList.remove(availList.size);
         }else{
           file.seekp(0, ios_base::end);
         }
