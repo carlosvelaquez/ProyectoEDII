@@ -1,12 +1,23 @@
 #include "MainWindow.h"
 #include "qfiledialog.h"
 #include "fieldwindow.h"
+#include "Record.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(LoadFile()));
   connect(ui.actionCrear_Campos, SIGNAL(triggered()), this, SLOT(addFields()));
+}
+
+void MainWindow::addRecord(){
+    if(true){//Validar si el archivo esta abierto y si el Conveyor tiene campos suficientes
+        Record record;
+        for(int i=1; i<=conveyor.getFields().size; i++){
+           record.insertData(conveyor.getFields().get(i).getName());
+        }
+        conveyor.addRecord(record); // Registro añadido
+    }
 }
 
 void MainWindow::addFields(){
@@ -19,8 +30,8 @@ Conveyor* MainWindow::getConveyor(){
 }
 
 void MainWindow::LoadFile(){
-    QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Open File"),"/path/to/file/",tr("TXT Files (*.txt)"));
-    //conveyor.setPath(fileNames); // Hay que pasar el Bendito QstringList a String x'DD
+    QString fileNames = QFileDialog::getOpenFileName(this, tr("Open File"),"/path/to/file/",tr("TXT Files (*.txt)"));
+    conveyor.setPath(fileNames.toStdString());
     /*conveyor.setPath("lel.txt");
     conveyor.addField(0, "Índice", 5);
     conveyor.addField(2, "Nombre", 20);

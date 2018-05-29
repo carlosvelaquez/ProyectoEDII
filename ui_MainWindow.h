@@ -193,7 +193,7 @@ public:
         actionExportar_a_Excel->setText(QApplication::translate("MainWindow", "Exportar a Excel", 0));
         actionExportar_a_XML_con_Schem->setText(QApplication::translate("MainWindow", "Exportar a XML con Schema", 0));
         actionCargar_Archivo->setText(QApplication::translate("MainWindow", "Cargar Archivo", 0));
-        label->setText(QApplication::translate("MainWindow", "File", 0));
+        label->setText(QApplication::translate("MainWindow", "File Manager", 0));
         label_2->setText(QApplication::translate("MainWindow", "Avail List", 0));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", 0));
         menuRegistros->setTitle(QApplication::translate("MainWindow", "Registros", 0));

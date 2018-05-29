@@ -44,7 +44,7 @@
      </font>
     </property>
     <property name="text">
-     <string>File</string>
+     <string>File Manager</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
