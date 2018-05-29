@@ -117,8 +117,10 @@ bool Conveyor::readFields(){
   if (file) {
     string line;
     string field;
-    file.seekp(8);
+
+    file.seekp(9);
     getline(file, line);
+
     stringstream pipeStream(line);
 
     while (getline(pipeStream, field, '|')) {
