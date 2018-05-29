@@ -1,12 +1,10 @@
 #include "MainWindow.h"
 #include "qfiledialog.h"
-#include "fieldwindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(LoadFile()));
-  connect(ui.pushButton_fields, SIGNAL(triggered()), this, SLOT(on_pushButton_fields_clicked()));
 }
 
 void MainWindow::LoadFile(){
@@ -58,11 +56,4 @@ void MainWindow::refreshTable(){
       ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i].getData().get(j).c_str()));
     }
   }
-}
-
-
-void MainWindow::on_pushButton_fields_clicked()
-{
-    FieldWindow* fw = new FieldWindow();
-    fw->show();
 }

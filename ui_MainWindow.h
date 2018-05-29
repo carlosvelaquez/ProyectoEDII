@@ -13,14 +13,13 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableWidget>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -49,13 +48,10 @@ public:
     QAction *actionExportar_a_XML_con_Schem;
     QAction *actionCargar_Archivo;
     QWidget *centralwidget;
-    QFrame *frame;
-    QVBoxLayout *verticalLayout;
-    QPushButton *pushButton_fields;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
     QTableWidget *tableWidget;
+    QLabel *label;
+    QLabel *label_2;
+    QListWidget *listWidget;
     QMenuBar *menubar;
     QMenu *menuArchivo;
     QMenu *menuRegistros;
@@ -67,7 +63,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(707, 376);
+        MainWindow->resize(843, 465);
         MainWindow->setStyleSheet(QStringLiteral(""));
         actionNuevo_Archivo = new QAction(MainWindow);
         actionNuevo_Archivo->setObjectName(QStringLiteral("actionNuevo_Archivo"));
@@ -111,40 +107,27 @@ public:
         actionCargar_Archivo->setObjectName(QStringLiteral("actionCargar_Archivo"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
-        frame = new QFrame(centralwidget);
-        frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(20, 10, 201, 331));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
-        verticalLayout = new QVBoxLayout(frame);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        pushButton_fields = new QPushButton(frame);
-        pushButton_fields->setObjectName(QStringLiteral("pushButton_fields"));
-
-        verticalLayout->addWidget(pushButton_fields);
-
-        pushButton_2 = new QPushButton(frame);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-
-        verticalLayout->addWidget(pushButton_2);
-
-        pushButton_3 = new QPushButton(frame);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-
-        verticalLayout->addWidget(pushButton_3);
-
-        pushButton_4 = new QPushButton(frame);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-
-        verticalLayout->addWidget(pushButton_4);
-
         tableWidget = new QTableWidget(centralwidget);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(225, 11, 471, 331));
+        tableWidget->setGeometry(QRect(15, 61, 621, 371));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(20, 10, 161, 31));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(650, 6, 111, 41));
+        QFont font;
+        font.setPointSize(15);
+        font.setBold(true);
+        font.setWeight(75);
+        label_2->setFont(font);
+        listWidget = new QListWidget(centralwidget);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
+        listWidget->setGeometry(QRect(650, 60, 181, 371));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 707, 22));
+        menubar->setGeometry(QRect(0, 0, 843, 22));
         menuArchivo = new QMenu(menubar);
         menuArchivo->setObjectName(QStringLiteral("menuArchivo"));
         menuRegistros = new QMenu(menubar);
@@ -209,10 +192,8 @@ public:
         actionExportar_a_Excel->setText(QApplication::translate("MainWindow", "Exportar a Excel", 0));
         actionExportar_a_XML_con_Schem->setText(QApplication::translate("MainWindow", "Exportar a XML con Schema", 0));
         actionCargar_Archivo->setText(QApplication::translate("MainWindow", "Cargar Archivo", 0));
-        pushButton_fields->setText(QApplication::translate("MainWindow", "Campos", 0));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Registros", 0));
-        pushButton_3->setText(QApplication::translate("MainWindow", "\303\215ndices", 0));
-        pushButton_4->setText(QApplication::translate("MainWindow", "Estandarizaci\303\263n", 0));
+        label->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        label_2->setText(QApplication::translate("MainWindow", "Avail List", 0));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", 0));
         menuRegistros->setTitle(QApplication::translate("MainWindow", "Registros", 0));
         menuCampos->setTitle(QApplication::translate("MainWindow", "Campos", 0));

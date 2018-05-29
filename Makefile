@@ -52,21 +52,13 @@ SOURCES       = Conveyor.cpp \
 		Field.cpp \
 		main.cpp \
 		MainWindow.cpp \
-		Record.cpp \
-		fieldwindow.cpp \
-		recordwindow.cpp moc_MainWindow.cpp \
-		moc_fieldwindow.cpp \
-		moc_recordwindow.cpp
+		Record.cpp moc_MainWindow.cpp
 OBJECTS       = Conveyor.o \
 		Field.o \
 		main.o \
 		MainWindow.o \
 		Record.o \
-		fieldwindow.o \
-		recordwindow.o \
-		moc_MainWindow.o \
-		moc_fieldwindow.o \
-		moc_recordwindow.o
+		moc_MainWindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -129,15 +121,11 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		List.h \
 		MainWindow.h \
 		queue.h \
-		Record.h \
-		fieldwindow.h \
-		recordwindow.h Conveyor.cpp \
+		Record.h Conveyor.cpp \
 		Field.cpp \
 		main.cpp \
 		MainWindow.cpp \
-		Record.cpp \
-		fieldwindow.cpp \
-		recordwindow.cpp
+		Record.cpp
 QMAKE_TARGET  = Proyecto
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Proyecto
@@ -165,7 +153,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_MainWindow.h ui_fieldwindow.h ui_recordwindow.h $(OBJECTS)  
+$(TARGET): ui_MainWindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: Proyecto.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -305,9 +293,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents Conveyor.h Field.h List.h MainWindow.h queue.h Record.h fieldwindow.h recordwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents Conveyor.cpp Field.cpp main.cpp MainWindow.cpp Record.cpp fieldwindow.cpp recordwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents MainWindow.ui fieldwindow.ui recordwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents Conveyor.h Field.h List.h MainWindow.h queue.h Record.h $(DISTDIR)/
+	$(COPY_FILE) --parents Conveyor.cpp Field.cpp main.cpp MainWindow.cpp Record.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents MainWindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -331,9 +319,9 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_MainWindow.cpp moc_fieldwindow.cpp moc_recordwindow.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp moc_fieldwindow.cpp moc_recordwindow.cpp
+	-$(DEL_FILE) moc_MainWindow.cpp
 moc_MainWindow.cpp: ui_MainWindow.h \
 		Conveyor.h \
 		List.h \
@@ -342,29 +330,13 @@ moc_MainWindow.cpp: ui_MainWindow.h \
 		MainWindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o moc_MainWindow.cpp
 
-moc_fieldwindow.cpp: Conveyor.h \
-		List.h \
-		Field.h \
-		Record.h \
-		fieldwindow.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include fieldwindow.h -o moc_fieldwindow.cpp
-
-moc_recordwindow.cpp: recordwindow.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include recordwindow.h -o moc_recordwindow.cpp
-
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_MainWindow.h ui_fieldwindow.h ui_recordwindow.h
+compiler_uic_make_all: ui_MainWindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_MainWindow.h ui_fieldwindow.h ui_recordwindow.h
+	-$(DEL_FILE) ui_MainWindow.h
 ui_MainWindow.h: MainWindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic MainWindow.ui -o ui_MainWindow.h
-
-ui_fieldwindow.h: fieldwindow.ui
-	/usr/lib/x86_64-linux-gnu/qt5/bin/uic fieldwindow.ui -o ui_fieldwindow.h
-
-ui_recordwindow.h: recordwindow.ui
-	/usr/lib/x86_64-linux-gnu/qt5/bin/uic recordwindow.ui -o ui_recordwindow.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -398,8 +370,7 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		Conveyor.h \
 		List.h \
 		Field.h \
-		Record.h \
-		fieldwindow.h
+		Record.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
 
 Record.o: Record.cpp Record.h \
@@ -407,26 +378,8 @@ Record.o: Record.cpp Record.h \
 		Field.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Record.o Record.cpp
 
-fieldwindow.o: fieldwindow.cpp fieldwindow.h \
-		Conveyor.h \
-		List.h \
-		Field.h \
-		Record.h \
-		ui_fieldwindow.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fieldwindow.o fieldwindow.cpp
-
-recordwindow.o: recordwindow.cpp recordwindow.h \
-		ui_recordwindow.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o recordwindow.o recordwindow.cpp
-
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
-
-moc_fieldwindow.o: moc_fieldwindow.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_fieldwindow.o moc_fieldwindow.cpp
-
-moc_recordwindow.o: moc_recordwindow.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_recordwindow.o moc_recordwindow.cpp
 
 ####### Install
 
