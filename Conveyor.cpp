@@ -155,6 +155,7 @@ bool Conveyor::readAvailList(){
 }
 
 bool Conveyor::readFields(){
+  file.close();
   file.open(path, ios::in);
 
   if (file) {
@@ -165,6 +166,7 @@ bool Conveyor::readFields(){
     getline(file, line);
 
     stringstream pipeStream(line);
+    fields.clear();
 
     while (getline(pipeStream, field, '|')) {
       stringstream commaStream(field);
