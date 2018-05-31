@@ -1,0 +1,12 @@
+INPUT(
+./release\Conveyor.o
+./release\Field.o
+./release\main.o
+./release\MainWindow.o
+./release\Record.o
+./release\fieldwindow.o
+./release\deletewindow.o
+./release\moc_MainWindow.o
+./release\moc_fieldwindow.o
+./release\moc_deletewindow.o
+);

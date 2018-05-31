@@ -25,7 +25,7 @@ private:
 
   List<int> availList;
   List<Field> fields; //Campos del archivo actual
-  List<Record> loadedRecords; //Registros cargados
+  List<Record> recordBuffer; //Registros cargados
 
 public:
   Conveyor();
@@ -35,7 +35,7 @@ public:
 
   List<Field> getFields();
 
-  //void lock()
+  void lock()
   int fieldQuantity();
   int recordQuantity();
 
@@ -59,6 +59,8 @@ public:
 
   int getRecordSize();
   int getMetaSize();
+
+  bool isLocked();
 
 };
 

@@ -10,18 +10,28 @@ using namespace std;
 class Record{
 
 private:
-  List<string> data;
+  string* data;
+  List<Field> fields;
 
 public:
   Record();
-  Record(List<string>);
+  Record(List<Field>);
 
-  List<string> getData(){
-    return data;
-  }
+  List<string> getDataList();
+  List<Field> getFields();
 
-  void insertData(string dat){
-    data.insert(dat);
+  bool insertData(int, string);
+  int fieldQuantity();
+
+  string toString();
+  int size();
+
+  string operator[](int index){
+    if (index >= fields.size || index < 0) {
+      return "X";
+    }
+
+    return data[index];
   }
 
 };

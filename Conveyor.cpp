@@ -3,11 +3,13 @@
 Conveyor::Conveyor(){
   path = "";
   lastDeleted = -1;
+  locked = false;
 }
 
 Conveyor::Conveyor(string nRuta){
   path = nRuta;
   lastDeleted = -1;
+  locked = false;
 }
 
 void Conveyor::setPath(string nPath){
@@ -23,7 +25,15 @@ int Conveyor::fieldQuantity(){
 }
 
 int Conveyor::recordQuantity(){
-  return loadedRecords.size;
+  return recordBuffer.size;
+}
+
+void Conveyor::lock(){
+  locked = true;
+  recordSize = Record(fields).size();
+
+  writeAvailList();
+  writeFields();
 }
 
 //Escribir la primera posición del AvailList al meta
@@ -58,7 +68,7 @@ bool Conveyor::writeFields(){ //Escribir los campos al meta
     string out = "";
 
     /* Estructura del string de los campos:
-        type,name,size|type,name,size */
+    type,name,size|type,name,size */
 
     for (int i = 1; i <= fields.size; i++) { //Leer la lista de campos
       out += to_string(fields[i].getType());
@@ -68,19 +78,52 @@ bool Conveyor::writeFields(){ //Escribir los campos al meta
       out += to_string(fields[i].getSize());
 
       if (i != fields.size) { //No añade un '|' después del último registro
-        out += "|";
-      }
+      out += "|";
     }
+  }
 
-    //Moverse a la posición 8 (el AvailList abarca 7 bytes) y escribir
-    file.seekp(9);
-    file.write(out.c_str(), out.length());
+  //Moverse a la posición 8 (el AvailList abarca 7 bytes) y escribir
+  file.seekp(9);
+  file.write(out.c_str(), out.length());
+  metaSize = out.length() + 8;
+
+  file.close();
+  return true;
+}
+
+file.close();
+return false;
+}
+
+bool Conveyor::writeRecords(){
+  if (locked) {
+    file.close();
+    file.open(path, ios::out | ios::app);
+
+    if (file) {
+      for (int i = 1; i <= recordBuffer.size; i++) {
+        if (!availList.isEmpty()) {
+          file.seekp((recordSize*availList[availList.size]) + metaSize);
+          availList.remove(availList.size);
+        }else{
+          file.seekp(0, ios_base::end);
+        }
+
+        for (int j = 1; j <= recordBuffer[i].size(); j++) {
+          string out = recordBuffer[i].toString();
+          file.write(out, out.length());
+        }
+      }
+
+    }else{
+      file.close();
+      return false;
+    }
 
     file.close();
     return true;
   }
 
-  file.close();
   return false;
 }
 
@@ -117,8 +160,10 @@ bool Conveyor::readFields(){
   if (file) {
     string line;
     string field;
-    file.seekp(8);
+
+    file.seekp(9);
     getline(file, line);
+
     stringstream pipeStream(line);
 
     while (getline(pipeStream, field, '|')) {
@@ -172,7 +217,7 @@ bool Conveyor::addField(int type, string name, int size){
 }
 
 bool Conveyor::addRecord(Record nRecord){
-  return loadedRecords.insert(nRecord);
+  return recordBuffer.insert(nRecord);
 }
 
 bool Conveyor::deleteField(int index){
@@ -197,12 +242,17 @@ bool Conveyor::deleteRecord(int index){
 }
 
 List<Record> Conveyor::getRecords(){
-  return loadedRecords;
+  return recordBuffer;
 }
 
 int Conveyor::getRecordSize(){
-    return recordSize;
+  return recordSize;
 }
+
 int Conveyor::getMetaSize(){
-    return metaSize;
+  return metaSize;
+}
+
+int Conveyor::isLocked(){
+  return locked;
 }
