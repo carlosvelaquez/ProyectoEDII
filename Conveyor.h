@@ -35,7 +35,7 @@ public:
 
   List<Field> getFields();
 
-  void lock()
+  void lock();
   int fieldQuantity();
   int recordQuantity();
 

@@ -111,7 +111,7 @@ bool Conveyor::writeRecords(){
 
         for (int j = 1; j <= recordBuffer[i].size(); j++) {
           string out = recordBuffer[i].toString();
-          file.write(out, out.length());
+          file.write(out.c_str(), out.length());
         }
       }
 
@@ -253,6 +253,6 @@ int Conveyor::getMetaSize(){
   return metaSize;
 }
 
-int Conveyor::isLocked(){
+bool Conveyor::isLocked(){
   return locked;
 }

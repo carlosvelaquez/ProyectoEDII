@@ -25,7 +25,7 @@ void MainWindow::addRecord(){
     if(true){//Validar si el archivo esta abierto y si el Conveyor tiene campos suficientes
         Record record;
         for(int i=1; i<=conveyor.getFields().size; i++){
-           record.insertData(conveyor.getFields().get(i).getName());// Se agrega el data al registro
+           //record.insertData(conveyor.getFields().get(i).getName());// Se agrega el data al registro
         }
         conveyor.addRecord(record); // Registro añadido en memoria
         //conveyor.writeRecords(); // Se escriben los registros en el archivo (Método aún no implementado)
@@ -85,7 +85,7 @@ void MainWindow::LoadFile(){
     data.insert("4");
     data.insert("5");
 
-    Record r(data);
+    //Record r(data);
     conveyor.addRecord(r);
     refreshTable();
 
