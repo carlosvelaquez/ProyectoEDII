@@ -9,10 +9,10 @@ class Field{
 private:
   bool primaryKey;
   int type;
-  int size;
   string name;
 
 public:
+  int size;
   //Variables constantes de tipo
   /*static const short INT = 0;
   static const short CHAR = 1;

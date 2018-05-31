@@ -22,38 +22,38 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
 /* ############# Para registros ############# */
 void MainWindow::addRecord(){
-    if(true){//Validar si el archivo esta abierto y si el Conveyor tiene campos suficientes
+    /*if(true){//Validar si el archivo esta abierto y si el Conveyor tiene campos suficientes
         Record record;
         for(int i=1; i<=conveyor.getFields().size; i++){
            //record.insertData(conveyor.getFields().get(i).getName());// Se agrega el data al registro
         }
-        conveyor.addRecord(record); // Registro añadido en memoria
+        //conveyor.addRecord(record); // Registro añadido en memoria
         //conveyor.writeRecords(); // Se escriben los registros en el archivo (Método aún no implementado)
         conveyor.writeFields(); // Se escribe  los campos en el metadata
-    }
+    }*/
 }
 
 void MainWindow::deleteRecords(){
-    deletewindow* dw = new deletewindow();
+   /* deletewindow* dw = new deletewindow();
     dw->setConveyor(&conveyor);
     dw->setType(1);
-    dw->show();
+    dw->show();*/
 }
 /*##########################################*/
 
 
 /* ############# Para campos ############# */
 void MainWindow::addFields(){
-    FieldWindow* f = new FieldWindow();
+    /*FieldWindow* f = new FieldWindow();
     f->setConveyor(&conveyor);
-    f->show();
+    f->show();*/
 }
 
 void MainWindow::deleteFields(){
-    deletewindow* dw = new deletewindow();
+    /*deletewindow* dw = new deletewindow();
     dw->setConveyor(&conveyor);
     dw->setType(0);
-    dw->show();
+    dw->show();*/
 }
 /*##########################################*/
 
@@ -86,15 +86,15 @@ void MainWindow::LoadFile(){
     data.insert("5");
 
     //Record r(data);
-    conveyor.addRecord(r);
-    refreshTable();
+    //conveyor.addRecord(r);
+   /* refreshTable();
 
     conveyor.writeAvailList();
-    conveyor.writeFields();
+    conveyor.writeFields();*/
 }
 
 void MainWindow::refreshTable(){
-  ui.tableWidget->setColumnCount(conveyor.fieldQuantity());
+  /*ui.tableWidget->setColumnCount(conveyor.fieldQuantity());
   ui.tableWidget->setRowCount(conveyor.recordQuantity());
 
   List<Field> fields = conveyor.getFields();
@@ -108,7 +108,7 @@ void MainWindow::refreshTable(){
 
   for (int i = 1; i <= records.size; i++) {
     for (int j = 1; j <= fields.size; j++) {
-      ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i].getData().get(j).c_str()));
+      //ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i].getData().get(j).c_str()));
     }
-  }
+  }*/
 }
