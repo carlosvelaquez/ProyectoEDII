@@ -1,7 +1,8 @@
 #include "Record.h"
 
 Record::Record(){
-  data.clear();
+  fields.clear();
+  data = 0;
 }
 
 Record::Record(List<Field> nFields){
