@@ -66,7 +66,7 @@ void MainWindow::LoadFile(){
     QString fileNames = QFileDialog::getOpenFileName(this, tr("Open File"),"/path/to/file/",tr("TXT Files (*.txt)"));
     conveyor.setPath(fileNames.toStdString());
     /*conveyor.setPath("lel.txt");
-    conveyor.addField(0, "Índice", 5);
+    conveyor.addField(0, "Indice", 5);
     conveyor.addField(2, "Nombre", 20);
     conveyor.addField(0, "Edad", 5);
     conveyor.addField(1, "Sexo", 10);
