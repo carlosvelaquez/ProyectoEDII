@@ -1,5 +1,35 @@
 #include "Conveyor.h"
 
+//Funciones de apoyo
+
+void Conveyor::calculateSizes(){
+  //Calcular el tamaño en bytes de los registros
+  recordSize = 0;
+
+  for (int i = 1; i <= fields.size; i++) {
+    //Suma los tamaños de todos los campos
+    recordSize += fields[i].getSize();
+  }
+
+  /*Suma la cantidad de campos, ya que la cantidad de comas más un salto de línea
+  equivalen a la cantidad de campos que hay.*/
+  recordSize += fields.size;
+
+
+  //Calcular el tamaño en bytes abarcado por el meta
+  file.close();
+  file.open(path, ios::in);
+
+  file.seekg(9); //Busca la primera posición de la línea donde comienza la info de los campos
+  file.ignore(numeric_limits<streamsize>::max(), '\n'); //Sigue leyendo hasta que encuentra un salto de línea
+
+  metaSize = file.tellg(); //El tamaño del meta sería todo lo que ha recorrido hasta que termina la info de campos
+}
+
+int Conveyor::position(int index){
+  return (recordSize*index) + metaSize;
+}
+
 
 //Constructores
 
@@ -12,6 +42,8 @@ Conveyor::Conveyor(){
   currentBlock = -1;
 
   locked = false;
+
+  recordBuffer = List<List<string>>(blockSize);
 }
 
 Conveyor::Conveyor(string nPath){
@@ -23,6 +55,8 @@ Conveyor::Conveyor(string nPath){
   currentBlock = -1;
 
   locked = false;
+
+  recordBuffer = List<List<string>>(blockSize);
 
   readMeta();
 }
@@ -37,6 +71,8 @@ Conveyor::Conveyor(string nPath, int nBlockSize){
 
   locked = false;
 
+  recordBuffer = List<List<string>>(blockSize);
+
   readMeta();
 }
 
@@ -50,32 +86,13 @@ List<Field> Conveyor::getFields(){
 void Conveyor::lock(){
   locked = true;
 
-  //Calcular el tamaño en bytes de los registros
-  recordSize = 0;
-
-  for (int i = 1; i <= fields.size; i++) {
-    recordSize += fields[i].getSize();
-  }
-
-  recordSize += fields.size;
-
-
-  //Calcular el tamaño en bytes abarcado por el meta
-  file.close();
-  file.open(path, ios::in);
-
-  file.seekg(9);
-  file.ignore(numeric_limits<streamsize>::max(), '\n');
-
-  metaSize = file.tellg();
-
-
-  //Escribir meta al archivo
+  //Escribir meta al archivo y calcular los tamaños
   writeMeta();
+  calculateSizes();
 }
 
+
 void Conveyor::setPath(string nPath){
-  //Cambiar la ruta del archivo que utilizará el objeto Conveyor
   path = nPath;
 }
 
@@ -98,8 +115,12 @@ bool Conveyor::writeAvailList(){
     file.seekp(0, ios::beg);
     string temp = to_string(lastDeleted);
 
-    for (int i = temp.length(); i <= 6; i++){
+    while(temp.length() < 6){
       temp += "*";
+    }
+
+    if (temp.length() > 6) {
+      temp = temp.substr(0, 5);
     }
 
     temp += "\n";
@@ -109,7 +130,6 @@ bool Conveyor::writeAvailList(){
     return true;
   }
 
-  file.close();
   return false;
 }
 
@@ -146,38 +166,6 @@ bool Conveyor::writeFields(){ //Escribir los campos al meta
 
 file.close();
 return false;
-}
-
-bool Conveyor::writeRecords(){
-  if (locked) {
-    file.close();
-    file.open(path, ios::out | ios::app);
-
-    if (file) {
-      for (int i = 1; i <= recordBuffer.size; i++) {
-        if (!availList.isEmpty()) {
-          file.seekp((recordSize*availList[availList.size]) + metaSize);
-          availList.remove(availList.size);
-        }else{
-          file.seekp(0, ios_base::end);
-        }
-
-        for (int j = 1; j <= recordBuffer[i].size(); j++) {
-          string out = recordBuffer[i].toString();
-          file.write(out.c_str(), out.length());
-        }
-      }
-
-    }else{
-      file.close();
-      return false;
-    }
-
-    file.close();
-    return true;
-  }
-
-  return false;
 }
 
 
@@ -242,6 +230,7 @@ bool Conveyor::readFields(){
       fields.insert(Field(stoi(type), name, stoi(size)));
     }
 
+    calculateSizes();
     file.close();
     return true;
   }
@@ -293,19 +282,72 @@ bool Conveyor::deleteField(int index){
 }
 
 bool Conveyor::deleteRecord(int index){
-  file.open(path, ios::out);
+  file.open(path, ios::out | ios::app); //Abrir el archivo
 
   if (file) {
-    file.seekp((recordSize*index) + metaSize);
-    string out = "*" + to_string(lastDeleted) + "*";
+    file.seekp(position(index)); //Buscar la posicion en el archivo del registro a borrar
+    string out = "*" + to_string(lastDeleted) + "*"; //Agregar el marcador de borrado (*) y lastDeleted
     file.write(out.c_str(), out.length());
 
     file.close();
-    lastDeleted = index;
+    lastDeleted = index; //Ahora el último borrado es el registro que se acaba de borrar
+    writeAvailList(); //Actualizar el meta del archivo
     return true;
   }
 
-  file.close();
+  return false;
+}
+
+bool Conveyor::flush(){
+  if (locked) {
+    file.close();
+    file.open(path, ios::out | ios::app);
+
+    if (file) {
+      for (int i = 1; i <= recordBuffer.size; i++) {
+
+        //Determinar en qué posición irá el siguiente registro
+        if (!availList.isEmpty()) {
+          file.seekp(position(availList[availList.size])); //Escribir en la siguiente posición del availList
+          availList.remove(availList.size);
+        }else{
+          file.seekp(0, ios_base::end); //Escribir al final del archivo
+        }
+
+        for (int j = 1; j <= fields.size(); j++) {
+          string out = recordBuffer[i][j]; //Recuperar el dato a escribir
+
+          //Añadir espacios vacíos si el string es más corto que el campo
+          while (out.length() < fields[j].getSize()) {
+            out += " ";
+          }
+
+          //Cortar el string si es muy largo para el campo
+          if (out.length() > fields[j].getSize()) {
+            out = out.substr(0, fields[j].getSize() - 1);
+          }
+
+          //Escribir el string procesado al archivo
+          file.write(out.c_str(), out.length());
+
+          //Si no es el último dato del registro, poner una coma
+          if (j < recordBuffer[i].size()) {
+            file.write(",", 1);
+          }
+        }
+
+        //Escribir un salto de línea después de cada registro
+        file.write("\n", 1);
+      }
+
+      file.close(); //Cerrar el archivo
+      return true;
+
+    }else{
+      return false;
+    }
+  }
+
   return false;
 }
 

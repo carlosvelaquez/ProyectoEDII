@@ -37,6 +37,8 @@ private:
 
   //Funciones de apoyo
   bool buildAvailList(int); //Función recursiva que construye la lista de posiciones disponibles
+  void calculateSizes(); //Calcula tamaños importantes como metaSize y recordSize
+  int position(int); //Calcula la posición del registro en el índice proporcionado
 
 
 public:
@@ -70,9 +72,11 @@ public:
   bool deleteField(int); //Borra un campo de la lista de campos (si no está bloqueado el archivo)
   bool deleteRecord(int); //Borra un registro (debe estar escrito en el archivo)
 
+  bool flush(); //Escribe todos los registros del buffer al archivo
+
 
   //Funciones de Información
-  List<Field> getFields(); //Lista de objetos tipo Field
+  List<Field> getFields(); //Retorna fields
 
   int fieldQuantity(); //Cantidad de campos en el archivo
   int recordQuantity(); //Cantidad de registros en el buffer
