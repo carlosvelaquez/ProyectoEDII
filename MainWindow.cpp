@@ -3,6 +3,7 @@
 #include "fieldwindow.h"
 #include "Record.h"
 #include "deletewindow.h"
+#include "addrecordwindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
@@ -22,15 +23,10 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
 /* ############# Para registros ############# */
 void MainWindow::addRecord(){
-    /*if(true){//Validar si el archivo esta abierto y si el Conveyor tiene campos suficientes
-        Record record;
-        for(int i=1; i<=conveyor.getFields().size; i++){
-           //record.insertData(conveyor.getFields().get(i).getName());// Se agrega el data al registro
-        }
-        //conveyor.addRecord(record); // Registro añadido en memoria
-        //conveyor.writeRecords(); // Se escriben los registros en el archivo (Método aún no implementado)
-        conveyor.writeFields(); // Se escribe  los campos en el metadata
-    }*/
+    addRecordWindow* adw = new addRecordWindow();
+    adw->setConveyor(&conveyor);
+    adw->fillTable();
+    adw->show();
 }
 
 void MainWindow::deleteRecords(){
@@ -94,7 +90,7 @@ void MainWindow::LoadFile(){
 }
 
 void MainWindow::refreshTable(){
-  /*ui.tableWidget->setColumnCount(conveyor.fieldQuantity());
+  /*.tableWidget->setColumnCount(conveyor.fieldQuantity());
   ui.tableWidget->setRowCount(conveyor.recordQuantity());
 
   List<Field> fields = conveyor.getFields();

@@ -1,12 +1,12 @@
 #include "Record.h"
 
 Record::Record(){
-  fields.clear();
-  data = 0;
+  /*fields.clear();
+  data = 0;*/
 }
 
 Record::Record(List<Field> nFields){
-  fields = nFields;
+  /*fields = nFields;
   data = new string[fields.size];
 
   for (int i = 0; i < fields.size; i++) {
@@ -17,11 +17,11 @@ Record::Record(List<Field> nFields){
     }
 
     data[i] = out;
-  }
+  }*/
 }
 
 bool Record::insertData(int index, string dat){
-  if (index >= fields.size || index < 0) {
+  /*if (index >= fields.size || index < 0) {
     return false;
   }else{
     while (dat.length() < fields[index].getSize()) {
@@ -34,25 +34,26 @@ bool Record::insertData(int index, string dat){
 
     data[index] = dat;
     return true;
-  }
+  }*/
+    return false;
 }
 
 List<string> Record::getDataList(){
-  List<string> retList;
+  /*List<string> retList;
 
   for (int i = 0; i < fields.size; i++) {
     retList.insert(data[i]);
   }
-
-  return ret;
+*/
+  return 0;
 }
 
 int Record::fieldQuantity(){
-  return fields.size();
+  return 0;
 }
 
 string Record::toString(){
-  string out = "";
+  /*string out = "";
 
   for (int i = 0; i < fields.size; i++) {
     out += data[i];
@@ -62,10 +63,11 @@ string Record::toString(){
     }
   }
 
-  out += "\n";
-  return out;
+  out += "\n";*/
+  return "out";
 }
 
 int Record::size(){
-  return toString.length();
+  return 0;
 }
+
