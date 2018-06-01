@@ -1,67 +1,86 @@
 #ifndef CONVEYOR_H
 #define CONVEYOR_H
 
-#include <QDebug>
+//#include <QDebug>
 
-#include "Conveyor.h"
 #include "List.h"
 #include "Field.h"
-#include "Record.h"
 #include <fstream>
 #include <sstream>
+#include <limits>
 
 using namespace std;
 
 class Conveyor{
 
 private:
-  fstream file;
-  string path;
-  bool locked;
+  //Propiedades del archivo
+  fstream file; //Filestream del archivo
+  string path; //Ruta del archivo que utilzará el Conveyor
 
-  int lastDeleted;
-  int recordSize;
-  int metaSize;
+  bool locked; //Si está bloqueado el archivo no se pueden añadir/modificar/eliminar campos
 
-  List<int> availList;
+  int lastDeleted; //Índice del último registro borrado
+  int recordSize; //Tamaño en bytes abarcado por un registro
+  int metaSize; //Tamaño en bytes abarcado por el meta
+
+  List<int> availList; //Espacios disponibles en el archivo
   List<Field> fields; //Campos del archivo actual
-  List<Record> recordBuffer; //Registros cargados
+
+
+  //Propiedades de buffer
+  int blockSize; //Tamaño del buffer (o bloque)
+  int currentBlock; //Bloque actual que el buffer está leyendo/escribiendo
+
+  List<List<string>> recordBuffer; //Registros cargados en memoria
+
+
+  //Funciones de apoyo
+  bool buildAvailList(int); //Función recursiva que construye la lista de posiciones disponibles
+
 
 public:
-  Conveyor();
-  Conveyor(string); // Ruta del archivo
+  //Constructores
+  Conveyor(); //Inicializar sin ruta del archivo y valores por defecto
+  Conveyor(string); //Inicializar con ruta del archivo y tamaño del bloque por defecto
+  Conveyor(string, int); //Inicializar con ruta + tamaño del bloque proporcionado
 
-  void setPath(string);
 
-  List<Field> getFields();
+  //Funciones de Archivo
+  void lock(); //Bloquear el archivo para inhibir cambios en los campos
+  void setPath(string); //Proporcionar una nueva ruta de archivo
 
-  void lock();
-  int fieldQuantity();
-  int recordQuantity();
 
-  bool writeAvailList();
-  bool writeFields();
-  bool writeRecords();
+  //Escritura de Metadatos
+  bool writeMeta(); //Llama a ambos métodos de escritura de metadatos
+  bool writeAvailList(); //Escribir la última posición borrada (lastDeleted) al meta
+  bool writeFields(); //Escribir la información de los campos de usuario al meta
 
-  bool readAvailList();
-  bool readFields();
-  bool readRecords();
 
-  bool buildAvailList(int);
+  //Lectura de Metadatos
+  bool readMeta(); //Llama a ambos métodos de escritura de metadatos
+  bool readAvailList(); //Leer la última posición borrada (lastDeleted) del meta
+  bool readFields(); //Leer la información de los campos de usuario del meta
 
-  bool addField(int, string, int);
-  bool addRecord(Record);
 
-  List<Record> getRecords();
+  //Funciones de Buffer
+  bool addField(int, string, int); //Añadir un nuevo campo [tipo, nombre, tamaño]
+  bool addRecord(List<string>); //Añade un registro al buffer, toma una lista de strings como datos
 
-  bool deleteField(int);
-  bool deleteRecord(int);
+  bool deleteField(int); //Borra un campo de la lista de campos (si no está bloqueado el archivo)
+  bool deleteRecord(int); //Borra un registro (debe estar escrito en el archivo)
 
-  int getRecordSize();
-  int getMetaSize();
 
-  bool isLocked();
+  //Funciones de Información
+  List<Field> getFields(); //Lista de objetos tipo Field
+
+  int fieldQuantity(); //Cantidad de campos en el archivo
+  int recordQuantity(); //Cantidad de registros en el buffer
+  int getRecordSize(); //Retorna recordSize
+  int getMetaSize(); //Retorna metaSize
+
+  bool isLocked(); //Retorna locked
 
 };
 
-#endif /* end of include guard: CONVEYOR_H */
+#endif

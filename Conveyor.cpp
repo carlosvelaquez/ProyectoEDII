@@ -1,45 +1,98 @@
 #include "Conveyor.h"
 
+
+//Constructores
+
 Conveyor::Conveyor(){
   path = "";
   lastDeleted = -1;
+  recordSize = -1;
+  metaSize = -1;
+  blockSize = 10;
+  currentBlock = -1;
+
   locked = false;
 }
 
-Conveyor::Conveyor(string nRuta){
-  path = nRuta;
-  lastDeleted = -1;
-  locked = false;
-}
-
-void Conveyor::setPath(string nPath){
+Conveyor::Conveyor(string nPath){
   path = nPath;
+  lastDeleted = -1;
+  recordSize = -1;
+  metaSize = -1;
+  blockSize = 10;
+  currentBlock = -1;
+
+  locked = false;
+
+  readMeta();
+}
+
+Conveyor::Conveyor(string nPath, int nBlockSize){
+  path = nPath;
+  lastDeleted = -1;
+  recordSize = -1;
+  metaSize = -1;
+  blockSize = nBlockSize;
+  currentBlock = -1;
+
+  locked = false;
+
+  readMeta();
 }
 
 List<Field> Conveyor::getFields(){
   return fields;
 }
 
-int Conveyor::fieldQuantity(){
-  return fields.size;
-}
 
-int Conveyor::recordQuantity(){
-  return recordBuffer.size;
-}
+//Funciones de Archivo
 
 void Conveyor::lock(){
   locked = true;
-  recordSize = Record(fields).size();
 
-  writeAvailList();
-  writeFields();
+  //Calcular el tamaño en bytes de los registros
+  recordSize = 0;
+
+  for (int i = 1; i <= fields.size; i++) {
+    recordSize += fields[i].getSize();
+  }
+
+  recordSize += fields.size;
+
+
+  //Calcular el tamaño en bytes abarcado por el meta
+  file.close();
+  file.open(path, ios::in);
+
+  file.seekg(9);
+  file.ignore(numeric_limits<streamsize>::max(), '\n');
+
+  metaSize = file.tellg();
+
+
+  //Escribir meta al archivo
+  writeMeta();
 }
 
-//Escribir la primera posición del AvailList al meta
+void Conveyor::setPath(string nPath){
+  //Cambiar la ruta del archivo que utilizará el objeto Conveyor
+  path = nPath;
+}
+
+
+//Escritura de Metadatos
+
+bool Conveyor::writeMeta(){
+  if (writeAvailList() && writeFields()) {
+    return true;
+  }
+
+  return false;
+}
+
 bool Conveyor::writeAvailList(){
   file.close();
-  file.open(path, ios::out);
+  file.open(path, ios::out | ios::app);
 
   if (file) {
     file.seekp(0, ios::beg);
@@ -127,10 +180,20 @@ bool Conveyor::writeRecords(){
   return false;
 }
 
+
+//Lectura de Metadatos
+bool readMeta(){
+  if (readAvailList() && readFields()) {
+    return true;
+  }
+
+  return false;
+}
+
 bool Conveyor::readAvailList(){
   file.open(path, ios::in);
 
-  if(file.is_open()){
+  if(file){
     string in = "";
     getline(file, in);
 
@@ -214,11 +277,14 @@ bool Conveyor::buildAvailList(int pos){
   return false;
 }
 
+
+//Funciones de Buffer
+
 bool Conveyor::addField(int type, string name, int size){
   return fields.insert(Field(type, name, size));
 }
 
-bool Conveyor::addRecord(Record nRecord){
+bool Conveyor::addRecord(List<string> nRecord){
   return recordBuffer.insert(nRecord);
 }
 
@@ -243,8 +309,15 @@ bool Conveyor::deleteRecord(int index){
   return false;
 }
 
-List<Record> Conveyor::getRecords(){
-  return recordBuffer;
+
+//Funciones de Información
+
+int Conveyor::fieldQuantity(){
+  return fields.size;
+}
+
+int Conveyor::recordQuantity(){
+  return recordBuffer.size;
 }
 
 int Conveyor::getRecordSize(){
