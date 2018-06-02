@@ -39,6 +39,7 @@ private:
   bool buildAvailList(int); //Función recursiva que construye la lista de posiciones disponibles
   void calculateSizes(); //Calcula tamaños importantes como metaSize y recordSize
   int position(int); //Calcula la posición del registro en el índice proporcionado
+  long filesize(); //Calcula el tamaño del archivo
 
 
 public:
@@ -74,12 +75,25 @@ public:
 
   bool flush(); //Escribe todos los registros del buffer al archivo
 
+  bool seek(int); //Busca el n-ésimo bloque (n es el parámetro)
+  bool next(); //Pasa al siguiente bloque
+  bool previous(); //Retorna al bloque anterior
+  bool seekFirst(); //Busca el primer bloque
+  bool seekLast(); //Busca el último bloque
+  bool tell(); //Retorna la posición del bloque actual
+
+  List<List<string>> data(); //Retorna el bloque actual
+
+  List<string> getRecord(int); //Retorna el n-ésimo registro
+  bool replaceRecord(int, List<string>) //Reemplaza el n-ésimo registro
+
 
   //Funciones de Información
   List<Field> getFields(); //Retorna fields
 
   int fieldQuantity(); //Cantidad de campos en el archivo
   int recordQuantity(); //Cantidad de registros en el buffer
+  int blockQuantity(); //Cantidad de bloques en el archivo
   int getRecordSize(); //Retorna recordSize
   int getMetaSize(); //Retorna metaSize
 

@@ -30,6 +30,21 @@ int Conveyor::position(int index){
   return (recordSize*index) + metaSize;
 }
 
+long Conveyor::filesize(){
+  file.close();
+  file.open(path, ios::in);
+
+  if (file) {
+    file.seekg(0, ios_base::end);
+    long ret = file.tellp();
+
+    file.close();
+    return ret;
+  }
+
+  return -1;
+}
+
 
 //Constructores
 
@@ -245,7 +260,7 @@ bool Conveyor::buildAvailList(int pos){
 
   if (pos != -1) {
     if (file) {
-      file.seekp((recordSize*pos) + metaSize);
+      file.seekp(position(pos));
       string in = "";
 
       getline(file, in);
@@ -259,11 +274,11 @@ bool Conveyor::buildAvailList(int pos){
       return buildAvailList(stoi(in));
 
     }else{
-      return true;
+      return false;
     }
   }
 
-  return false;
+  return true;
 }
 
 
@@ -351,6 +366,145 @@ bool Conveyor::flush(){
   return false;
 }
 
+bool seek(int block){
+  file.close();
+  file.open(path, ios::in);
+
+  if (file) {
+    long seekPos = metaSize + (block-1)*blockSize*recordSize;
+
+    if (seekPos >= filesize())) {
+      return false;
+    }
+
+    file.seekg(seekPos);
+    recordBuffer.clear();
+
+    int cont = 0;
+    string in;
+
+    while (getline(file, in) && cont < blockSize) {
+      in = in.substr(0, in.length() - 2);
+      stringstream inStream(in);
+      List<string> nRecord;
+
+      for (size_t i = 0; i < fields.size; i++) {
+        string data;
+        getline(inStream, data, ',');
+
+        nRecord.insert(data);
+      }
+
+      recordBuffer.insert(nRecord);
+    }
+
+    file.close();
+    return true;
+  }
+
+  return false;
+}
+
+bool Conveyor::next(){
+  if (currentBlock <= -1) {
+    currentBlock = 1;
+  }else{
+    currentBlock ++;
+  }
+
+  return seek(currentBlock);
+}
+
+bool Conveyor::previous(){
+  currentBlock --;
+  return seek(currentBlock);
+}
+
+bool Conveyor::seekFirst(){
+  currentBlock = 1;
+  return seek(currentBlock);
+}
+
+bool Conveyor::seekLast(){
+  return seek(blockQuantity());
+}
+
+bool Conveyor::tell(){
+  return currentBlock;
+}
+
+List<List<string>> Conveyor::data(){
+  return recordBuffer;
+}
+
+List<string> Conveyor::getRecord(int posicion){
+  file.close();
+  file.open(path, ios::in);
+
+  if (file) {
+    string in;
+    file.seekg(position(posicion));
+    getline(file, in);
+
+    stringstream inStream(in);
+    List<string> nRecord;
+
+    for (size_t i = 0; i < fields.size; i++) {
+      string data;
+      getline(inStream, data, ',');
+
+      nRecord.insert(data);
+    }
+
+    return nRecord;
+  }
+
+  return List<string>(0);
+}
+
+bool Conveyor::replaceRecord(int posicion, List<string> nRecord){
+  file.close();
+  file.open(path, ios::in | ios::out | ios::app);
+
+  if (file) {
+    file.seekg(position(posicion));
+
+    //Si el registro está marcado como eliminado, no seguir para evitar quiebres en el availList
+    if (file.get() == '*') {
+      return false;
+    }
+
+    file.seekp(position(posicion));
+
+    for (int i = 1; i <= fields.size(); i++) {
+      string out = nRecord[i]; //Recuperar el dato a escribir
+
+      //Añadir espacios vacíos si el string es más corto que el campo
+      while (out.length() < fields[i].getSize()) {
+        out += " ";
+      }
+
+      //Cortar el string si es muy largo para el campo
+      if (out.length() > fields[i].getSize()) {
+        out = out.substr(0, fields[i].getSize() - 1);
+      }
+
+      //Escribir el string procesado al archivo
+      file.write(out.c_str(), out.length());
+
+      //Si no es el último dato del registro, poner una coma
+      if (i < fields.size()) {
+        file.write(",", 1);
+      }
+    }
+
+    file.close();
+    return true;
+  }
+
+  return false;
+}
+
 
 //Funciones de Información
 
@@ -360,6 +514,10 @@ int Conveyor::fieldQuantity(){
 
 int Conveyor::recordQuantity(){
   return recordBuffer.size;
+}
+
+int Conveyor::blockQuantity(){
+  return ((filesize() - metaSize)/blockSize)/recordSize;
 }
 
 int Conveyor::getRecordSize(){
