@@ -1,17 +1,16 @@
 #define __DBL_MIN_EXP__ (-1021)
 #define __cpp_attributes 200809
+#define __pentiumpro__ 1
 #define __UINT_LEAST16_MAX__ 0xffff
 #define __ATOMIC_ACQUIRE 2
 #define __FLT_MIN__ 1.17549435082228750797e-38F
 #define __GCC_IEC_559_COMPLEX 2
-#define __cpp_aggregate_nsdmi 201304
 #define __UINT_LEAST8_TYPE__ unsigned char
 #define __SIZEOF_FLOAT80__ 12
 #define _WIN32 1
 #define __INTMAX_C(c) c ## LL
 #define __CHAR_BIT__ 8
 #define __UINT8_MAX__ 0xff
-#define __i586 1
 #define __WINT_MAX__ 0xffff
 #define __cpp_static_assert 200410
 #define __ORDER_LITTLE_ENDIAN__ 1234
@@ -32,11 +31,9 @@
 #define __SIG_ATOMIC_TYPE__ int
 #define __DBL_MIN_10_EXP__ (-307)
 #define __FINITE_MATH_ONLY__ 0
-#define __cpp_variable_templates 201304
 #define __GNUC_PATCHLEVEL__ 0
 #define __UINT_FAST8_MAX__ 0xff
 #define __has_include(STR) __has_include__(STR)
-#define _stdcall __attribute__((__stdcall__))
 #define __DEC64_MAX_EXP__ 385
 #define __INT8_C(c) c
 #define __UINT_LEAST64_MAX__ 0xffffffffffffffffULL
@@ -74,16 +71,16 @@
 #define __DECIMAL_DIG__ 21
 #define __has_include_next(STR) __has_include_next__(STR)
 #define __LDBL_HAS_QUIET_NAN__ 1
-#define __GNUC__ 6
-#define _cdecl __attribute__((__cdecl__))
+#define _REENTRANT 1
+#define __GNUC__ 5
 #define __GXX_RTTI 1
 #define __cpp_delegating_constructors 200604
 #define __FLT_HAS_DENORM__ 1
 #define __SIZEOF_LONG_DOUBLE__ 12
 #define __BIGGEST_ALIGNMENT__ 16
 #define __STDC_UTF_16__ 1
+#define __i686 1
 #define __DBL_MAX__ double(1.79769313486231570815e+308L)
-#define _thiscall __attribute__((__thiscall__))
 #define __cpp_raw_strings 200710
 #define __INT_FAST32_MAX__ 0x7fffffff
 #define __WINNT 1
@@ -92,33 +89,31 @@
 #define __WINNT__ 1
 #define __DEC32_MIN_EXP__ (-94)
 #define __INT_FAST16_TYPE__ short int
-#define _fastcall __attribute__((__fastcall__))
+#define __STRICT_ANSI__ 1
 #define __LDBL_HAS_DENORM__ 1
-#define __cplusplus 201402L
+#define __cplusplus 201103L
 #define __cpp_ref_qualifiers 200710
 #define __DEC128_MAX__ 9.999999999999999999999999999999999E6144DL
 #define __INT_LEAST32_MAX__ 0x7fffffff
 #define __DEC32_MIN__ 1E-95DF
-#define __pentium 1
 #define __DEPRECATED 1
-#define __cpp_rvalue_references 200610
 #define __DBL_MAX_EXP__ 1024
 #define __DEC128_EPSILON__ 1E-33DL
 #define __ATOMIC_HLE_RELEASE 131072
 #define __WIN32__ 1
 #define __PTRDIFF_MAX__ 0x7fffffff
 #define __ATOMIC_HLE_ACQUIRE 65536
-#define __GNUG__ 6
+#define __GNUG__ 5
 #define __LONG_LONG_MAX__ 0x7fffffffffffffffLL
 #define __SIZEOF_SIZE_T__ 4
 #define __cpp_rvalue_reference 200610
 #define __cpp_nsdmi 200809
 #define __SIZEOF_WINT_T__ 2
 #define __cpp_initializer_lists 200806
-#define __cpp_hex_float 201603
 #define __GCC_HAVE_DWARF2_CFI_ASM 1
-#define __GXX_ABI_VERSION 1010
+#define __GXX_ABI_VERSION 1009
 #define __FLT_MIN_EXP__ (-125)
+#define __i686__ 1
 #define __cpp_lambdas 200907
 #define __INT_FAST64_TYPE__ long long int
 #define __DBL_MIN__ double(2.22507385850720138309e-308L)
@@ -133,11 +128,9 @@
 #define __UINT8_TYPE__ unsigned char
 #define __i386 1
 #define __FLT_MANT_DIG__ 24
-#define __i586__ 1
-#define __VERSION__ "6.3.0"
+#define __VERSION__ "5.3.0"
 #define __UINT64_C(c) c ## ULL
 #define __cpp_unicode_characters 200704
-#define __cpp_decltype_auto 201304
 #define __GCC_ATOMIC_INT_LOCK_FREE 2
 #define _X86_ 1
 #define __FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__
@@ -154,18 +147,15 @@
 #define __SIZE_TYPE__ unsigned int
 #define __UINT64_MAX__ 0xffffffffffffffffULL
 #define __INT8_TYPE__ signed char
-#define __cpp_digit_separators 201309
-#define __GCC_ASM_FLAG_OUTPUTS__ 1
 #define __FLT_RADIX__ 2
 #define __INT_LEAST16_TYPE__ short int
 #define __LDBL_EPSILON__ 1.08420217248550443401e-19L
 #define __UINTMAX_C(c) c ## ULL
 #define __SIG_ATOMIC_MAX__ 0x7fffffff
 #define __GCC_ATOMIC_WCHAR_T_LOCK_FREE 2
-#define __cpp_sized_deallocation 201309
 #define __SIZEOF_PTRDIFF_T__ 4
-#define __pentium__ 1
 #define __DEC32_SUBNORMAL_MIN__ 0.000001E-95DF
+#define __pentiumpro 1
 #define __MSVCRT__ 1
 #define __INT_FAST16_MAX__ 0x7fff
 #define __UINT_FAST32_MAX__ 0xffffffffU
@@ -180,11 +170,9 @@
 #define __DEC64_MAX__ 9.999999999999999E384DD
 #define __CHAR16_TYPE__ short unsigned int
 #define __PRAGMA_REDEFINE_EXTNAME 1
-#define __SEG_FS 1
 #define __INT_LEAST16_MAX__ 0x7fff
 #define __DEC64_MANT_DIG__ 16
 #define __UINT_LEAST32_MAX__ 0xffffffffU
-#define __SEG_GS 1
 #define __GCC_ATOMIC_LONG_LOCK_FREE 2
 #define __INT_LEAST64_TYPE__ long long int
 #define __INT16_TYPE__ short int
@@ -199,7 +187,6 @@
 #define __LDBL_MANT_DIG__ 64
 #define __DBL_HAS_QUIET_NAN__ 1
 #define __SIG_ATOMIC_MIN__ (-__SIG_ATOMIC_MAX__ - 1)
-#define __cpp_return_type_deduction 201304
 #define __INTPTR_TYPE__ int
 #define __UINT16_TYPE__ short unsigned int
 #define __WCHAR_TYPE__ short unsigned int
@@ -212,7 +199,6 @@
 #define __FLT_DIG__ 6
 #define __UINT_FAST64_TYPE__ long long unsigned int
 #define __INT_MAX__ 0x7fffffff
-#define WIN32 1
 #define __INT64_TYPE__ long long int
 #define __FLT_MAX_EXP__ 128
 #define __DBL_MANT_DIG__ 53
@@ -246,18 +232,16 @@
 #define __INTMAX_MAX__ 0x7fffffffffffffffLL
 #define __cpp_alias_templates 200704
 #define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
-#define WINNT 1
 #define __FLT_DENORM_MIN__ 1.40129846432481707092e-45F
 #define __INT8_MAX__ 0x7f
 #define __UINT_FAST32_TYPE__ unsigned int
 #define __CHAR32_TYPE__ unsigned int
 #define __FLT_MAX__ 3.40282346638528859812e+38F
-#define __cpp_constexpr 201304
+#define __cpp_constexpr 200704
 #define __INT32_TYPE__ int
 #define __SIZEOF_DOUBLE__ 8
 #define __cpp_exceptions 199711
 #define __INTMAX_TYPE__ long long int
-#define i386 1
 #define _INTEGRAL_MAX_BITS 64
 #define __DEC128_MAX_EXP__ 6145
 #define __ATOMIC_CONSUME 1
@@ -267,7 +251,6 @@
 #define __DBL_MAX_10_EXP__ 308
 #define __LDBL_DENORM_MIN__ 3.64519953188247460253e-4951L
 #define __INT16_C(c) c
-#define __cpp_generic_lambdas 201304
 #define __STDC__ 1
 #define __PTRDIFF_TYPE__ int
 #define __ATOMIC_SEQ_CST 5
@@ -284,7 +267,6 @@
 #define __UINT_FAST16_MAX__ 0xffff
 #define __GCC_ATOMIC_SHORT_LOCK_FREE 2
 #define __UINT_FAST8_TYPE__ unsigned char
-#define __cpp_init_captures 201304
 #define __ATOMIC_ACQ_REL 4
 #define __ATOMIC_RELEASE 3
 #define __declspec(x) __attribute__((x))

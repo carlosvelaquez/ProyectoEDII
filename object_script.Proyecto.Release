@@ -3,10 +3,11 @@ INPUT(
 ./release\Field.o
 ./release\main.o
 ./release\MainWindow.o
-./release\Record.o
 ./release\fieldwindow.o
 ./release\deletewindow.o
+./release\addrecordwindow.o
 ./release\moc_MainWindow.o
 ./release\moc_fieldwindow.o
 ./release\moc_deletewindow.o
+./release\moc_addrecordwindow.o
 );

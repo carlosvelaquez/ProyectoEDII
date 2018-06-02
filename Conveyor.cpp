@@ -185,7 +185,7 @@ return false;
 
 
 //Lectura de Metadatos
-bool readMeta(){
+bool Conveyor::readMeta(){
   if (readAvailList() && readFields()) {
     return true;
   }
@@ -329,7 +329,7 @@ bool Conveyor::flush(){
           file.seekp(0, ios_base::end); //Escribir al final del archivo
         }
 
-        for (int j = 1; j <= fields.size(); j++) {
+        for (int j = 1; j <= fields.size; j++) {
           string out = recordBuffer[i][j]; //Recuperar el dato a escribir
 
           //Añadir espacios vacíos si el string es más corto que el campo
@@ -346,7 +346,7 @@ bool Conveyor::flush(){
           file.write(out.c_str(), out.length());
 
           //Si no es el último dato del registro, poner una coma
-          if (j < recordBuffer[i].size()) {
+          if (j < recordBuffer[i].size) {
             file.write(",", 1);
           }
         }
@@ -366,14 +366,14 @@ bool Conveyor::flush(){
   return false;
 }
 
-bool seek(int block){
+bool Conveyor::seek(int block){
   file.close();
   file.open(path, ios::in);
 
   if (file) {
     long seekPos = metaSize + (block-1)*blockSize*recordSize;
 
-    if (seekPos >= filesize())) {
+    if (seekPos >= filesize()) {
       return false;
     }
 
@@ -476,7 +476,7 @@ bool Conveyor::replaceRecord(int posicion, List<string> nRecord){
 
     file.seekp(position(posicion));
 
-    for (int i = 1; i <= fields.size(); i++) {
+    for (int i = 1; i <= fields.size; i++) {
       string out = nRecord[i]; //Recuperar el dato a escribir
 
       //Añadir espacios vacíos si el string es más corto que el campo
@@ -493,7 +493,7 @@ bool Conveyor::replaceRecord(int posicion, List<string> nRecord){
       file.write(out.c_str(), out.length());
 
       //Si no es el último dato del registro, poner una coma
-      if (i < fields.size()) {
+      if (i < fields.size) {
         file.write(",", 1);
       }
     }

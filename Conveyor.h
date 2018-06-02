@@ -85,7 +85,7 @@ public:
   List<List<string>> data(); //Retorna el bloque actual
 
   List<string> getRecord(int); //Retorna el n-ésimo registro
-  bool replaceRecord(int, List<string>) //Reemplaza el n-ésimo registro
+  bool replaceRecord(int, List<string>); //Reemplaza el n-ésimo registro
 
 
   //Funciones de Información

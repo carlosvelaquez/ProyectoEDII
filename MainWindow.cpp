@@ -1,7 +1,6 @@
 #include "MainWindow.h"
 #include "qfiledialog.h"
 #include "fieldwindow.h"
-#include "Record.h"
 #include "deletewindow.h"
 #include "addrecordwindow.h"
 
