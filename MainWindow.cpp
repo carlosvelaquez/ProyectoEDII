@@ -58,42 +58,53 @@ Conveyor* MainWindow::getConveyor(){
 }
 
 void MainWindow::LoadFile(){
-    QString fileNames = QFileDialog::getOpenFileName(this, tr("Open File"),"/path/to/file/",tr("TXT Files (*.txt)"));
-    conveyor.setPath(fileNames.toStdString());
-    /*conveyor.setPath("lel.txt");
+    QString path = QFileDialog::getOpenFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
+    conveyor.setPath(path.toStdString());
+
+    //conveyor.setPath("lel.txt");
+
     conveyor.addField(0, "Indice", 5);
     conveyor.addField(2, "Nombre", 20);
     conveyor.addField(0, "Edad", 5);
     conveyor.addField(1, "Sexo", 10);
     conveyor.addField(2, "Dirección", 50);
-    refreshTable();*/
-
-    //conveyor.deleteField(0);
-    //refreshTable();
-
-    conveyor.readFields();
+    conveyor.lock();
+    qDebug() << "Conveyor locked";
 
     List<string> data;
-    data.insert("1");
-    data.insert("2");
-    data.insert("3");
-    data.insert("4");
-    data.insert("5");
+    for (size_t j = 1; j <= 100; j++) {
+      for (int i = 1; i <= conveyor.fieldQuantity(); i++) {
+        string ins = "";
+        ins += "Data [";
+        ins += to_string(j);
+        ins += "][";
+        ins += to_string(i);
+        ins += "]";
+        data.insert(ins);
+      }
 
-    //Record r(data);
-    //conveyor.addRecord(r);
-   /* refreshTable();
+      conveyor.addRecord(data);
 
-    conveyor.writeAvailList();
-    conveyor.writeFields();*/
+      if (j%10 == 0) {
+        conveyor.flush();
+        qDebug() << "j = " << j << ", flushing...";
+      }
+
+      qDebug() << "Adding record " << j << "...";
+    }
+
+    conveyor.seek(1);
+
+    qDebug() << "Refreshing table...";
+    refreshTable();
 }
 
 void MainWindow::refreshTable(){
-  /*.tableWidget->setColumnCount(conveyor.fieldQuantity());
+  ui.tableWidget->setColumnCount(conveyor.fieldQuantity());
   ui.tableWidget->setRowCount(conveyor.recordQuantity());
 
   List<Field> fields = conveyor.getFields();
-  List<Record> records = conveyor.getRecords();
+  List<List<string>> records = conveyor.data();
 
   for (int i = 1; i <= fields.size; i++) {
     ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(fields[i].getName().c_str()));
@@ -103,7 +114,7 @@ void MainWindow::refreshTable(){
 
   for (int i = 1; i <= records.size; i++) {
     for (int j = 1; j <= fields.size; j++) {
-      //ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i].getData().get(j).c_str()));
+      ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i][j].c_str()));
     }
-  }*/
+  }
 }

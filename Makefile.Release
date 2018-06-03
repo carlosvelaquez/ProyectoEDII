@@ -394,8 +394,8 @@ release/moc_fieldwindow.cpp: C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QWidget \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtouchdevice.h \
 		Conveyor.h \
-		List.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QDebug \
+		List.h \
 		Field.h \
 		fieldwindow.h \
 		release/moc_predefs.h \
@@ -506,8 +506,8 @@ release/moc_deletewindow.cpp: C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QWidget 
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtouchdevice.h \
 		Conveyor.h \
-		List.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QDebug \
+		List.h \
 		Field.h \
 		deletewindow.h \
 		release/moc_predefs.h \
@@ -618,8 +618,8 @@ release/moc_addrecordwindow.cpp: C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QWidg
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtouchdevice.h \
 		Conveyor.h \
-		List.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QDebug \
+		List.h \
 		Field.h \
 		addrecordwindow.h \
 		release/moc_predefs.h \
@@ -662,7 +662,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 release/Conveyor.o: Conveyor.cpp Conveyor.h \
-		List.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QDebug \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/qdebug.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/qalgorithms.h \
@@ -727,6 +726,7 @@ release/Conveyor.o: Conveyor.cpp Conveyor.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/qsharedpointer.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		List.h \
 		Field.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\Conveyor.o Conveyor.cpp
 
@@ -1159,8 +1159,8 @@ release/fieldwindow.o: fieldwindow.cpp fieldwindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtouchdevice.h \
 		Conveyor.h \
-		List.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QDebug \
+		List.h \
 		Field.h \
 		ui_fieldwindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QVariant \
@@ -1329,8 +1329,8 @@ release/deletewindow.o: deletewindow.cpp deletewindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtouchdevice.h \
 		Conveyor.h \
-		List.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QDebug \
+		List.h \
 		Field.h \
 		ui_deletewindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QVariant \
@@ -1498,8 +1498,8 @@ release/addrecordwindow.o: addrecordwindow.cpp addrecordwindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qtouchdevice.h \
 		Conveyor.h \
-		List.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QDebug \
+		List.h \
 		Field.h \
 		ui_addrecordwindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QVariant \
