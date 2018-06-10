@@ -18,9 +18,7 @@ void Conveyor::calculateSizes(){
 
 
   //Calcular el tamaño en bytes abarcado por el meta
-  file.close();
-  file.open(path, ios::in);
-
+  file.clear();
   file.seekg(8); //Busca la primera posición de la línea donde comienza la info de los campos
   file.ignore(numeric_limits<streamsize>::max(), '\n');
 
@@ -35,11 +33,6 @@ int Conveyor::position(int index){
 
 long Conveyor::filesize(){
   file.clear();
-
-  if (!file) {
-    file.close();
-    file.open(path, ios::in);
-  }
 
   if (file) {
     file.seekg(0, ios_base::end);
@@ -113,9 +106,31 @@ void Conveyor::lock(){
   calculateSizes();
 }
 
-
 void Conveyor::setPath(string nPath){
   path = nPath;
+}
+
+bool Conveyor::open(){
+  ofstream outfile(path);
+  outfile.close();
+  
+  file.close();
+  file.open(path, fstream::out | fstream::in);
+
+  if (file) {
+    return true;
+  }
+
+  return false;
+}
+
+bool Conveyor::open(string nPath){
+  path = nPath;
+  return open();
+}
+
+void Conveyor::close(){
+  file.close();
 }
 
 
@@ -130,8 +145,7 @@ bool Conveyor::writeMeta(){
 }
 
 bool Conveyor::writeAvailList(){
-  file.close();
-  file.open(path, ios::out);
+  file.clear();
 
   if (file) {
     file.seekp(0, ios::beg);
@@ -148,7 +162,7 @@ bool Conveyor::writeAvailList(){
     temp += "\n";
 
     file.write(temp.c_str(), temp.length());
-    file.close();
+    file.flush();
     return true;
   }
 
@@ -156,8 +170,7 @@ bool Conveyor::writeAvailList(){
 }
 
 bool Conveyor::writeFields(){ //Escribir los campos al meta
-  file.close();
-  file.open(path, ios::out | ios::app);
+  file.clear();
 
   if (file) {
     string out = "";
@@ -183,12 +196,11 @@ bool Conveyor::writeFields(){ //Escribir los campos al meta
   //Moverse a la posición 8 (el AvailList abarca 7 bytes) y escribir
   file.seekp(9);
   file.write(out.c_str(), out.length());
+  file.flush();
 
-  file.close();
   return true;
 }
 
-file.close();
 return false;
 }
 
@@ -203,7 +215,7 @@ bool Conveyor::readMeta(){
 }
 
 bool Conveyor::readAvailList(){
-  file.open(path, ios::in);
+  file.clear();
 
   if(file){
     string in = "";
@@ -221,17 +233,14 @@ bool Conveyor::readAvailList(){
     availList.clear();
     buildAvailList(stoi(in));
 
-    file.close();
     return true;
   }
 
-  file.close();
   return false;
 }
 
 bool Conveyor::readFields(){
-  file.close();
-  file.open(path, ios::in);
+  file.clear();
 
   if (file) {
     string line;
@@ -255,7 +264,6 @@ bool Conveyor::readFields(){
     }
 
     calculateSizes();
-    file.close();
     return true;
   }
 
@@ -314,14 +322,13 @@ bool Conveyor::deleteField(int index){
 }
 
 bool Conveyor::deleteRecord(int index){
-  file.open(path, ios::out | ios::app); //Abrir el archivo
+  file.clear(); //Abrir el archivo
 
   if (file) {
     file.seekp(position(index)); //Buscar la posicion en el archivo del registro a borrar
     string out = "*" + to_string(lastDeleted) + "*"; //Agregar el marcador de borrado (*) y lastDeleted
     file.write(out.c_str(), out.length());
 
-    file.close();
     lastDeleted = index; //Ahora el último borrado es el registro que se acaba de borrar
     writeAvailList(); //Actualizar el meta del archivo
     return true;
@@ -339,8 +346,7 @@ bool Conveyor::replaceField(int index, int type, string name, int size){
 }
 
 bool Conveyor::replaceRecord(int posicion, List<string> nRecord){
-  file.close();
-  file.open(path, ios::in | ios::out | ios::app);
+  file.clear();
 
   if (file) {
     file.seekg(position(posicion));
@@ -374,7 +380,6 @@ bool Conveyor::replaceRecord(int posicion, List<string> nRecord){
       }
     }
 
-    file.close();
     return true;
   }
 
@@ -383,8 +388,7 @@ bool Conveyor::replaceRecord(int posicion, List<string> nRecord){
 
 bool Conveyor::flush(){
   if (locked) {
-    file.close();
-    file.open(path, ios::out);
+    file.clear();
 
     if (file) {
       for (int i = 1; i <= recordBuffer.size; i++) {
@@ -399,6 +403,7 @@ bool Conveyor::flush(){
 
         for (int j = 1; j <= fields.size; j++) {
           string out = recordBuffer[i][j]; //Recuperar el dato a escribir
+          qDebug() << "Raw out: " << out.c_str();
 
           //Añadir espacios vacíos si el string es más corto que el campo
           while (out.length() < fields[j].getSize()) {
@@ -414,7 +419,7 @@ bool Conveyor::flush(){
           file.write(out.c_str(), out.length());
 
           //Si no es el último dato del registro, poner una coma
-          if (j < recordBuffer[i].size) {
+          if (j < fields.size) {
             file.write(",", 1);
           }
         }
@@ -423,9 +428,9 @@ bool Conveyor::flush(){
         file.write("\n", 1);
       }
 
-      file.close(); //Cerrar el archivo
+      file.flush();
+      recordBuffer.clear();
       return true;
-
     }else{
       return false;
     }
@@ -436,8 +441,7 @@ bool Conveyor::flush(){
 
 bool Conveyor::seek(int block){
   qDebug() << "Seeking block " << block;
-  file.close();
-  file.open(path, ios::in);
+  file.clear();
 
   if (!locked) {
     qDebug() << "File is NOT locked. Aborting.";
@@ -467,7 +471,7 @@ bool Conveyor::seek(int block){
       stringstream inStream(in);
       List<string> nRecord;
 
-      for (size_t i = 0; i < fields.size; i++) {
+      for (int i = 0; i < fields.size; i++) {
         string data;
         getline(inStream, data, ',');
 
@@ -478,7 +482,6 @@ bool Conveyor::seek(int block){
       cont ++;
     }
 
-    file.close();
     qDebug() << "Block read successfully";
     return true;
   }
@@ -520,8 +523,7 @@ List<List<string>> Conveyor::data(){
 }
 
 List<string> Conveyor::getRecord(int posicion){
-  file.close();
-  file.open(path, ios::in);
+  file.clear();
 
   if (file) {
     string in;
@@ -531,7 +533,7 @@ List<string> Conveyor::getRecord(int posicion){
     stringstream inStream(in);
     List<string> nRecord;
 
-    for (size_t i = 0; i < fields.size; i++) {
+    for (int i = 0; i < fields.size; i++) {
       string data;
       getline(inStream, data, ',');
 
@@ -577,4 +579,9 @@ int Conveyor::getMetaSize(){
 
 bool Conveyor::isLocked(){
   return locked;
+}
+
+
+Conveyor::~Conveyor(){
+  file.close();
 }

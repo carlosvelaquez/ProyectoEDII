@@ -52,6 +52,9 @@ public:
   //--- FUNCIONES DE ARCHIVO ---
   void lock(); //Bloquear el archivo para prohibir cambios en los campos
   void setPath(string); //Proporcionar una nueva ruta de archivo
+  bool open(); //Abir el archivo de path
+  bool open(string); //Abrir el archivo en la ruta proporcionada
+  void close(); //Cerrar el archivo actual
 
 
   //--- ESCRITURA DE METADATOS ---
@@ -99,6 +102,9 @@ public:
   int getMetaSize(); //Retorna metaSize
 
   bool isLocked(); //Retorna locked
+
+  //--- DESTRUCTOR ---
+  ~Conveyor();
 
 };
 

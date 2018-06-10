@@ -58,8 +58,8 @@ Conveyor* MainWindow::getConveyor(){
 }
 
 void MainWindow::LoadFile(){
-    QString path = QFileDialog::getOpenFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
-    conveyor.setPath(path.toStdString());
+    QString path = QFileDialog::getSaveFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
+    conveyor.open(path.toStdString());
 
     //conveyor.setPath("lel.txt");
 
@@ -72,7 +72,8 @@ void MainWindow::LoadFile(){
     qDebug() << "Conveyor locked";
 
     List<string> data;
-    for (size_t j = 1; j <= 100; j++) {
+
+    for (int j = 1; j <= 100; j++) {
       for (int i = 1; i <= conveyor.fieldQuantity(); i++) {
         string ins = "";
         ins += "Data [";
@@ -83,7 +84,8 @@ void MainWindow::LoadFile(){
         data.insert(ins);
       }
 
-      conveyor.addRecord(data);
+      qDebug() << conveyor.addRecord(data);
+
 
       if (j%10 == 0) {
         conveyor.flush();
