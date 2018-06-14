@@ -19,8 +19,8 @@ addRecordWindow::~addRecordWindow()
 
 void addRecordWindow::setFile(File* con){
     file = con;
-
 }
+
 void addRecordWindow::fillTable(){
     /*static const short INT = 0;
     static const short CHAR = 1;

@@ -355,7 +355,10 @@ moc_addrecordwindow.cpp: File.h \
 		addrecordwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include addrecordwindow.h -o moc_addrecordwindow.cpp
 
-moc_addfieldwindow.cpp: addfieldwindow.h
+moc_addfieldwindow.cpp: File.h \
+		List.h \
+		Field.h \
+		addfieldwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include addfieldwindow.h -o moc_addfieldwindow.cpp
 
 compiler_moc_source_make_all:
@@ -427,6 +430,9 @@ addrecordwindow.o: addrecordwindow.cpp addrecordwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addrecordwindow.o addrecordwindow.cpp
 
 addfieldwindow.o: addfieldwindow.cpp addfieldwindow.h \
+		File.h \
+		List.h \
+		Field.h \
 		ui_addfieldwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addfieldwindow.o addfieldwindow.cpp
 
