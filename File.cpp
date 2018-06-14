@@ -301,9 +301,22 @@ bool File::buildAvailList(int pos){
 
 //Funciones de Buffer
 
-bool File::addField(int type, string name, int size){
+bool File::addField(int type, string name, int size, bool isPrimaryKey){
   if (!locked) {
-    return fields.insert(Field(type, name, size));
+    if (isPrimaryKey) {
+      Field nField(type, name, size);
+
+      for (int i = 1; i <= fields.size; i++) {
+        if (fields[i].isPrimaryKey()) {
+          return false;
+        }
+      }
+
+      nField.setPrimaryKey(true);
+      return fields.insert(nField);
+    }else{
+      return fields.insert(Field(type, name, size));
+    }
   }
 
   return false;

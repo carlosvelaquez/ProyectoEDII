@@ -1051,7 +1051,8 @@ debug/MainWindow.o: MainWindow.cpp MainWindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qdialog.h \
 		fieldwindow.h \
 		deletewindow.h \
-		addrecordwindow.h
+		addrecordwindow.h \
+		addfieldwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\MainWindow.o MainWindow.cpp
 
 debug/fieldwindow.o: fieldwindow.cpp fieldwindow.h \
