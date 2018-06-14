@@ -1,8 +1,8 @@
-#include "Conveyor.h"
+#include "File.h"
 
 //Funciones de apoyo
 
-void Conveyor::calculateSizes(){
+void File::calculateSizes(){
   //Calcular el tamaño en bytes de los registros
   recordSize = 0;
 
@@ -27,11 +27,11 @@ void Conveyor::calculateSizes(){
   qDebug() << "Meta size: " << metaSize;
 }
 
-int Conveyor::position(int index){
+int File::position(int index){
   return (recordSize*index) + metaSize;
 }
 
-long Conveyor::filesize(){
+long File::filesize(){
   file.clear();
 
   if (file) {
@@ -48,7 +48,7 @@ long Conveyor::filesize(){
 
 //Constructores
 
-Conveyor::Conveyor(){
+File::File(){
   path = "";
   lastDeleted = -1;
   recordSize = -1;
@@ -61,7 +61,7 @@ Conveyor::Conveyor(){
   recordBuffer = List<List<string>>(blockSize);
 }
 
-Conveyor::Conveyor(string nPath){
+File::File(string nPath){
   path = nPath;
   lastDeleted = -1;
   recordSize = -1;
@@ -76,7 +76,7 @@ Conveyor::Conveyor(string nPath){
   readMeta();
 }
 
-Conveyor::Conveyor(string nPath, int nBlockSize){
+File::File(string nPath, int nBlockSize){
   path = nPath;
   lastDeleted = -1;
   recordSize = -1;
@@ -91,14 +91,14 @@ Conveyor::Conveyor(string nPath, int nBlockSize){
   readMeta();
 }
 
-List<Field> Conveyor::getFields(){
+List<Field> File::getFields(){
   return fields;
 }
 
 
 //Funciones de Archivo
 
-void Conveyor::lock(){
+void File::lock(){
   locked = true;
 
   //Escribir meta al archivo y calcular los tamaños
@@ -106,14 +106,14 @@ void Conveyor::lock(){
   calculateSizes();
 }
 
-void Conveyor::setPath(string nPath){
+void File::setPath(string nPath){
   path = nPath;
 }
 
-bool Conveyor::open(){
+bool File::open(){
   ofstream outfile(path);
   outfile.close();
-  
+
   file.close();
   file.open(path, fstream::out | fstream::in);
 
@@ -124,19 +124,19 @@ bool Conveyor::open(){
   return false;
 }
 
-bool Conveyor::open(string nPath){
+bool File::open(string nPath){
   path = nPath;
   return open();
 }
 
-void Conveyor::close(){
+void File::close(){
   file.close();
 }
 
 
 //Escritura de Metadatos
 
-bool Conveyor::writeMeta(){
+bool File::writeMeta(){
   if (writeAvailList() && writeFields()) {
     return true;
   }
@@ -144,7 +144,7 @@ bool Conveyor::writeMeta(){
   return false;
 }
 
-bool Conveyor::writeAvailList(){
+bool File::writeAvailList(){
   file.clear();
 
   if (file) {
@@ -169,7 +169,7 @@ bool Conveyor::writeAvailList(){
   return false;
 }
 
-bool Conveyor::writeFields(){ //Escribir los campos al meta
+bool File::writeFields(){ //Escribir los campos al meta
   file.clear();
 
   if (file) {
@@ -206,7 +206,7 @@ return false;
 
 
 //Lectura de Metadatos
-bool Conveyor::readMeta(){
+bool File::readMeta(){
   if (readAvailList() && readFields()) {
     return true;
   }
@@ -214,7 +214,7 @@ bool Conveyor::readMeta(){
   return false;
 }
 
-bool Conveyor::readAvailList(){
+bool File::readAvailList(){
   file.clear();
 
   if(file){
@@ -239,7 +239,7 @@ bool Conveyor::readAvailList(){
   return false;
 }
 
-bool Conveyor::readFields(){
+bool File::readFields(){
   file.clear();
 
   if (file) {
@@ -270,7 +270,7 @@ bool Conveyor::readFields(){
   return false;
 }
 
-bool Conveyor::buildAvailList(int pos){
+bool File::buildAvailList(int pos){
   if (recordSize == -1) {
     return false;
   }
@@ -301,7 +301,7 @@ bool Conveyor::buildAvailList(int pos){
 
 //Funciones de Buffer
 
-bool Conveyor::addField(int type, string name, int size){
+bool File::addField(int type, string name, int size){
   if (!locked) {
     return fields.insert(Field(type, name, size));
   }
@@ -309,11 +309,11 @@ bool Conveyor::addField(int type, string name, int size){
   return false;
 }
 
-bool Conveyor::addRecord(List<string> nRecord){
+bool File::addRecord(List<string> nRecord){
   return recordBuffer.insert(nRecord);
 }
 
-bool Conveyor::deleteField(int index){
+bool File::deleteField(int index){
   if (!locked) {
     return fields.remove(index);
   }
@@ -321,7 +321,7 @@ bool Conveyor::deleteField(int index){
   return false;
 }
 
-bool Conveyor::deleteRecord(int index){
+bool File::deleteRecord(int index){
   file.clear(); //Abrir el archivo
 
   if (file) {
@@ -337,7 +337,7 @@ bool Conveyor::deleteRecord(int index){
   return false;
 }
 
-bool Conveyor::replaceField(int index, int type, string name, int size){
+bool File::replaceField(int index, int type, string name, int size){
   if (!locked) {
     return fields.replace(index, Field(type, name, size));
   }
@@ -345,7 +345,7 @@ bool Conveyor::replaceField(int index, int type, string name, int size){
   return false;
 }
 
-bool Conveyor::replaceRecord(int posicion, List<string> nRecord){
+bool File::replaceRecord(int posicion, List<string> nRecord){
   file.clear();
 
   if (file) {
@@ -386,7 +386,7 @@ bool Conveyor::replaceRecord(int posicion, List<string> nRecord){
   return false;
 }
 
-bool Conveyor::flush(){
+bool File::flush(){
   if (locked) {
     file.clear();
 
@@ -439,7 +439,7 @@ bool Conveyor::flush(){
   return false;
 }
 
-bool Conveyor::seek(int block){
+bool File::seek(int block){
   qDebug() << "Seeking block " << block;
   file.clear();
 
@@ -490,7 +490,7 @@ bool Conveyor::seek(int block){
   return false;
 }
 
-bool Conveyor::next(){
+bool File::next(){
   if (currentBlock <= -1) {
     currentBlock = 1;
   }else{
@@ -500,29 +500,29 @@ bool Conveyor::next(){
   return seek(currentBlock);
 }
 
-bool Conveyor::previous(){
+bool File::previous(){
   currentBlock --;
   return seek(currentBlock);
 }
 
-bool Conveyor::seekFirst(){
+bool File::seekFirst(){
   currentBlock = 1;
   return seek(currentBlock);
 }
 
-bool Conveyor::seekLast(){
+bool File::seekLast(){
   return seek(blockQuantity());
 }
 
-bool Conveyor::tell(){
+bool File::tell(){
   return currentBlock;
 }
 
-List<List<string>> Conveyor::data(){
+List<List<string>> File::data(){
   return recordBuffer;
 }
 
-List<string> Conveyor::getRecord(int posicion){
+List<string> File::getRecord(int posicion){
   file.clear();
 
   if (file) {
@@ -549,11 +549,11 @@ List<string> Conveyor::getRecord(int posicion){
 
 //Funciones de Información
 
-int Conveyor::fieldQuantity(){
+int File::fieldQuantity(){
   return fields.size;
 }
 
-int Conveyor::recordQuantity(){
+int File::recordQuantity(){
   if (locked) {
     return (filesize() - metaSize)/recordSize;
   }
@@ -561,7 +561,7 @@ int Conveyor::recordQuantity(){
   return -1;
 }
 
-int Conveyor::blockQuantity(){
+int File::blockQuantity(){
   if (locked) {
     return ((filesize() - metaSize)/blockSize)/recordSize;
   }
@@ -569,19 +569,19 @@ int Conveyor::blockQuantity(){
   return -1;
 }
 
-int Conveyor::getRecordSize(){
+int File::getRecordSize(){
   return recordSize;
 }
 
-int Conveyor::getMetaSize(){
+int File::getMetaSize(){
   return metaSize;
 }
 
-bool Conveyor::isLocked(){
+bool File::isLocked(){
   return locked;
 }
 
 
-Conveyor::~Conveyor(){
+File::~File(){
   file.close();
 }
