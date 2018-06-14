@@ -1,5 +1,5 @@
 INPUT(
-./debug\Conveyor.o
+./debug\File.o
 ./debug\Field.o
 ./debug\main.o
 ./debug\MainWindow.o

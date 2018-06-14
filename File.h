@@ -1,5 +1,5 @@
-#ifndef CONVEYOR_H
-#define CONVEYOR_H
+#ifndef FILE_H
+#define FILE_H
 
 #include <QDebug>
 
@@ -11,12 +11,12 @@
 
 using namespace std;
 
-class Conveyor{
+class File{
 
 private:
   //--- PROPIEDADES DEL ARCHIVO ---
   fstream file; //Filestream del archivo
-  string path; //Ruta del archivo que utilzará el Conveyor
+  string path; //Ruta del archivo que utilzará el File
 
   bool locked; //Si está bloqueado el archivo no se pueden añadir/modificar/eliminar campos
 
@@ -44,9 +44,9 @@ private:
 
 public:
   //--- CONSTRUCTORES ---
-  Conveyor(); //Inicializar sin ruta del archivo y valores por defecto
-  Conveyor(string); //Inicializar con ruta del archivo y tamaño del bloque por defecto
-  Conveyor(string, int); //Inicializar con ruta + tamaño del bloque proporcionado
+  File(); //Inicializar sin ruta del archivo y valores por defecto
+  File(string); //Inicializar con ruta del archivo y tamaño del bloque por defecto
+  File(string, int); //Inicializar con ruta + tamaño del bloque proporcionado
 
 
   //--- FUNCIONES DE ARCHIVO ---
@@ -104,7 +104,7 @@ public:
   bool isLocked(); //Retorna locked
 
   //--- DESTRUCTOR ---
-  ~Conveyor();
+  ~File();
 
 };
 

@@ -16,19 +16,19 @@ FieldWindow::~FieldWindow()
 
 
 /* Esto creí mejor poner un frame para añadir un campo
- * los campos se agregan a la variable "conveyor" principal
+ * los campos se agregan a la variable "file" principal
  * de la clase MainWindow
  */
 void FieldWindow::on_pushButton_CrearCampo_clicked()
 {
-    qDebug()<<"Size de campos: "<<conveyor->getFields().size;
+    qDebug()<<"Size de campos: "<<file->getFields().size;
     QString cadena;
     cadena = ui->lineEdit_field->text();
-    if(conveyor->addField(1, cadena.toStdString(),0))
+    if(file->addField(1, cadena.toStdString(),0))
         ui->lineEdit_field->setText("");
 
 }
 
-void FieldWindow::setConveyor(Conveyor* con){
-    conveyor = con;
+void FieldWindow::setFile(File* con){
+    file = con;
 }

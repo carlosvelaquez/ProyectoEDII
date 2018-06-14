@@ -1,13 +1,13 @@
 #include "ui_MainWindow.h"
 #include <QDebug>
-#include "Conveyor.h"
+#include "File.h"
 
 class MainWindow : public QMainWindow{
   Q_OBJECT
 
 private:
   Ui::MainWindow ui;
-  Conveyor conveyor;
+  File file;
 
 private slots:
   void LoadFile();
@@ -21,5 +21,5 @@ private slots:
 public:
   MainWindow(QWidget* parent = 0);
   void refreshTable();
-  Conveyor* getConveyor();
+  File* getFile();
 };
