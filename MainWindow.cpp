@@ -1,6 +1,5 @@
 #include "MainWindow.h"
 #include "qfiledialog.h"
-#include "fieldwindow.h"
 #include "deletewindow.h"
 #include "addrecordwindow.h"
 #include "addfieldwindow.h"
@@ -41,7 +40,7 @@ void MainWindow::deleteRecords(){
 /* ############# Para campos ############# */
 void MainWindow::addFields(){
     addfieldwindow* adf = new addfieldwindow();
-
+    adf->show();
     /*FieldWindow* f = new FieldWindow();
     f->setFile(&file);
     f->show();*/

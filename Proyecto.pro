@@ -22,14 +22,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # Input
 HEADERS += File.h Field.h List.h MainWindow.h queue.h \
-    fieldwindow.h \
     deletewindow.h \
-    addrecordwindow.h
+    addrecordwindow.h \
+    addfieldwindow.h
 FORMS += MainWindow.ui \
-    fieldwindow.ui \
     deletewindow.ui \
-    addrecordwindow.ui
+    addrecordwindow.ui \
+    addfieldwindow.ui
 SOURCES += File.cpp Field.cpp main.cpp MainWindow.cpp \
-    fieldwindow.cpp \
     deletewindow.cpp \
-    addrecordwindow.cpp
+    addrecordwindow.cpp \
+    addfieldwindow.cpp
