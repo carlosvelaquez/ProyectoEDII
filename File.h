@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class File{
+class File {
 
 private:
   //--- PROPIEDADES DEL ARCHIVO ---
