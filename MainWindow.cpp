@@ -23,14 +23,14 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 /* ############# Para registros ############# */
 void MainWindow::addRecord(){
     addRecordWindow* adw = new addRecordWindow();
-    adw->setConveyor(&conveyor);
+    adw->setFile(&file);
     adw->fillTable();
     adw->show();
 }
 
 void MainWindow::deleteRecords(){
    /* deletewindow* dw = new deletewindow();
-    dw->setConveyor(&conveyor);
+    dw->setFile(&file);
     dw->setType(1);
     dw->show();*/
 }
@@ -40,41 +40,41 @@ void MainWindow::deleteRecords(){
 /* ############# Para campos ############# */
 void MainWindow::addFields(){
     /*FieldWindow* f = new FieldWindow();
-    f->setConveyor(&conveyor);
+    f->setFile(&file);
     f->show();*/
 }
 
 void MainWindow::deleteFields(){
     /*deletewindow* dw = new deletewindow();
-    dw->setConveyor(&conveyor);
+    dw->setFile(&file);
     dw->setType(0);
     dw->show();*/
 }
 /*##########################################*/
 
 
-Conveyor* MainWindow::getConveyor(){
-    return &conveyor;
+File* MainWindow::getFile(){
+    return &file;
 }
 
 void MainWindow::LoadFile(){
     QString path = QFileDialog::getSaveFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
-    conveyor.open(path.toStdString());
+    file.open(path.toStdString());
 
-    //conveyor.setPath("lel.txt");
+    //file.setPath("lel.txt");
 
-    conveyor.addField(0, "Indice", 5);
-    conveyor.addField(2, "Nombre", 20);
-    conveyor.addField(0, "Edad", 5);
-    conveyor.addField(1, "Sexo", 10);
-    conveyor.addField(2, "Dirección", 50);
-    conveyor.lock();
-    qDebug() << "Conveyor locked";
+    file.addField(0, "Indice", 5);
+    file.addField(2, "Nombre", 20);
+    file.addField(0, "Edad", 5);
+    file.addField(1, "Sexo", 10);
+    file.addField(2, "Dirección", 50);
+    file.lock();
+    qDebug() << "File locked";
 
     List<string> data;
 
     for (int j = 1; j <= 100; j++) {
-      for (int i = 1; i <= conveyor.fieldQuantity(); i++) {
+      for (int i = 1; i <= file.fieldQuantity(); i++) {
         string ins = "";
         ins += "Data [";
         ins += to_string(j);
@@ -84,29 +84,29 @@ void MainWindow::LoadFile(){
         data.insert(ins);
       }
 
-      qDebug() << conveyor.addRecord(data);
+      qDebug() << file.addRecord(data);
 
 
       if (j%10 == 0) {
-        conveyor.flush();
+        file.flush();
         qDebug() << "j = " << j << ", flushing...";
       }
 
       qDebug() << "Adding record " << j << "...";
     }
 
-    conveyor.seek(1);
+    file.seek(1);
 
     qDebug() << "Refreshing table...";
     refreshTable();
 }
 
 void MainWindow::refreshTable(){
-  ui.tableWidget->setColumnCount(conveyor.fieldQuantity());
-  ui.tableWidget->setRowCount(conveyor.recordQuantity());
+  ui.tableWidget->setColumnCount(file.fieldQuantity());
+  ui.tableWidget->setRowCount(file.recordQuantity());
 
-  List<Field> fields = conveyor.getFields();
-  List<List<string>> records = conveyor.data();
+  List<Field> fields = file.getFields();
+  List<List<string>> records = file.data();
 
   for (int i = 1; i <= fields.size; i++) {
     ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(fields[i].getName().c_str()));

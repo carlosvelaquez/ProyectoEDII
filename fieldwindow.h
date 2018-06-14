@@ -2,7 +2,7 @@
 #define FIELDWINDOW_H
 
 #include <QWidget>
-#include "Conveyor.h"
+#include "File.h"
 
 namespace Ui {
 class FieldWindow;
@@ -15,14 +15,14 @@ class FieldWindow : public QWidget
 public:
     explicit FieldWindow(QWidget *parent = 0);
     ~FieldWindow();
-    void setConveyor(Conveyor*);
+    void setFile(File*);
 
 private slots:
     void on_pushButton_CrearCampo_clicked();
 
 private:
     Ui::FieldWindow *ui;
-    Conveyor* conveyor;
+    File* file;
 
 };
 

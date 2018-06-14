@@ -17,8 +17,8 @@ addRecordWindow::~addRecordWindow()
     delete ui;
 }
 
-void addRecordWindow::setConveyor(Conveyor* con){
-    conveyor = con;
+void addRecordWindow::setFile(File* con){
+    file = con;
 
 }
 void addRecordWindow::fillTable(){
@@ -65,12 +65,12 @@ void addRecordWindow::fillTable(){
     headers <<"Type"<<"Name"<<"Is PK"<<"Value";
     ui->tableWidget->setHorizontalHeaderLabels(headers);
     ui->tableWidget->setRowCount(fields.size);
-    for(int i=1; i<=fields.size; i++){//int i=1; i<=conveyor->getFields().size; i++
-        if(fields.get(i).getType()==0) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("Integer"));//conveyor->getFields().get(i).getType()
+    for(int i=1; i<=fields.size; i++){//int i=1; i<=file->getFields().size; i++
+        if(fields.get(i).getType()==0) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("Integer"));//file->getFields().get(i).getType()
         else if(fields.get(i).getType()==1) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("Character"));
         else if(fields.get(i).getType()==2) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("String"));
-        ui->tableWidget->setItem(i-1,1,new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));//conveyor->getFields().get(i).getName()
-        if(fields.get(i).isPrimaryKey()) ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("Yes"));//conveyor->getFields().get(i).isPrimaryKey()
+        ui->tableWidget->setItem(i-1,1,new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));//file->getFields().get(i).getName()
+        if(fields.get(i).isPrimaryKey()) ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("Yes"));//file->getFields().get(i).isPrimaryKey()
         else ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("No"));
     }
 }
@@ -80,7 +80,7 @@ void addRecordWindow::on_pushButton_send_clicked()
     List<string> values;
     QString value;
     QTableWidgetItem* item;
-    for(int i=1; i<=5; i++){//int i=1; i<=conveyor->getFields().size; i++
+    for(int i=1; i<=5; i++){//int i=1; i<=file->getFields().size; i++
         item = ui->tableWidget->takeItem(i-1,3);
         value = item->text();
         qDebug()<<"Value: "<<i<<": "<<value;

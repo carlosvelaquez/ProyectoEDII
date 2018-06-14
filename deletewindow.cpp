@@ -19,8 +19,8 @@ void deletewindow::setType(int n){
 }
 
 
-void deletewindow::setConveyor(Conveyor* n){
-    conveyor = n;
+void deletewindow::setFile(File* n){
+    file = n;
 }
 
 /* Metodo que elimina ya sea registro o campo
@@ -32,14 +32,14 @@ void deletewindow::on_pushButton_delete_clicked()
 {
     switch (type) {
     case 0:{ // Es un campo
-        if(conveyor->deleteField(ui->spinBox_delete->value()))
+        if(file->deleteField(ui->spinBox_delete->value()))
             qDebug()<<"Campo eliminado";
         else
             qDebug()<<"Campo No eliminado";
     }
     break;
     case 1:{ // Es un registro
-        if(conveyor->deleteRecord(ui->spinBox_delete->value()))
+        if(file->deleteRecord(ui->spinBox_delete->value()))
             qDebug()<<"Se elimino";
         else
             qDebug()<<"No se elimino";

@@ -2,7 +2,7 @@
 #define ADDRECORDWINDOW_H
 
 #include <QWidget>
-#include "Conveyor.h"
+#include "File.h"
 
 namespace Ui {
 class addRecordWindow;
@@ -15,7 +15,7 @@ class addRecordWindow : public QWidget
 public:
     explicit addRecordWindow(QWidget *parent = 0);
     ~addRecordWindow();
-    void setConveyor(Conveyor*);
+    void setFile(File*);
     void fillTable();
 
 private slots:
@@ -23,7 +23,7 @@ private slots:
 
 private:
     Ui::addRecordWindow *ui;
-    Conveyor* conveyor;
+    File* file;
 };
 
 #endif // ADDRECORDWINDOW_H
