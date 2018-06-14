@@ -10,7 +10,7 @@ private:
   File file;
 
 private slots:
-  void LoadFile();
+  void loadFile();
 
   void addFields();
   void addRecord();

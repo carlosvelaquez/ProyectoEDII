@@ -7,7 +7,7 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
-  connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(LoadFile()));
+  connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(loadFile()));
 
   // Añadir campos
   connect(ui.actionCrear_Campos, SIGNAL(triggered()), this, SLOT(addFields()));
@@ -57,7 +57,7 @@ File* MainWindow::getFile(){
     return &file;
 }
 
-void MainWindow::LoadFile(){
+void MainWindow::loadFile(){
     QString path = QFileDialog::getSaveFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
     file.open(path.toStdString());
 
