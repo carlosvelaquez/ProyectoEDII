@@ -66,11 +66,11 @@ void MainWindow::loadFile(){
 
     //file.setPath("lel.txt");
 
-    file.addField(0, "Indice", 5);
-    file.addField(2, "Nombre", 20);
-    file.addField(0, "Edad", 5);
-    file.addField(1, "Sexo", 10);
-    file.addField(2, "Dirección", 50);
+    file.addField(0, "Indice", 5, false);
+    file.addField(2, "Nombre", 20, false);
+    file.addField(0, "Edad", 5, false);
+    file.addField(1, "Sexo", 10, false);
+    file.addField(2, "Dirección", 50, false);
     file.lock();
     qDebug() << "File locked";
 
