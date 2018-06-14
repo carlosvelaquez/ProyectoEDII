@@ -41,6 +41,7 @@ void MainWindow::deleteRecords(){
 /* ############# Para campos ############# */
 void MainWindow::addFields(){
     addfieldwindow* adf = new addfieldwindow();
+    adf->setC
 }
 
 void MainWindow::deleteFields(){
