@@ -40,13 +40,11 @@ void MainWindow::deleteRecords(){
 
 /* ############# Para campos ############# */
 void MainWindow::addFields(){
-<<<<<<< HEAD
     addfieldwindow* adf = new addfieldwindow();
-=======
+
     /*FieldWindow* f = new FieldWindow();
     f->setFile(&file);
     f->show();*/
->>>>>>> 9dc23f3f9e2528c52d3131c45fb6f258b67cca66
 }
 
 void MainWindow::deleteFields(){
