@@ -49,6 +49,7 @@ public:
         if (addfieldwindow->objectName().isEmpty())
             addfieldwindow->setObjectName(QStringLiteral("addfieldwindow"));
         addfieldwindow->resize(236, 276);
+        addfieldwindow->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         verticalLayout = new QVBoxLayout(addfieldwindow);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         frame = new QFrame(addfieldwindow);

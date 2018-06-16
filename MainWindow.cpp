@@ -1,8 +1,10 @@
 #include "MainWindow.h"
 #include "qfiledialog.h"
-#include "deletewindow.h"
+
+//
 #include "addrecordwindow.h"
 #include "addfieldwindow.h"
+#include "listfieldswindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
@@ -14,10 +16,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   // Añadir registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
 
-  // Eliminar campos
-  connect(ui.actionEliminar_Campos, SIGNAL(triggered()), this, SLOT(deleteFields()));
-  // Eliminar registros
-  connect(ui.actionBorrar_Registros, SIGNAL(triggered()), this, SLOT(deleteRecords()));
+  // Listar campos
+  connect(ui.actionListar_Campos, SIGNAL(triggered()), this, SLOT(listfields()));
+
 }
 
 /* ############# Para registros ############# */
@@ -29,12 +30,9 @@ void MainWindow::addRecord(){
 }
 
 void MainWindow::deleteRecords(){
-   /* deletewindow* dw = new deletewindow();
-    dw->setFile(&file);
-    dw->setType(1);
-    dw->show();*/
 }
 /*##########################################*/
+
 
 
 /* ############# Para campos ############# */
@@ -42,16 +40,15 @@ void MainWindow::addFields(){
     addfieldwindow* adf = new addfieldwindow();
     adf->setFile(&file);
     adf->show();
-    /*FieldWindow* f = new FieldWindow();
-    f->setFile(&file);
-    f->show();*/
 }
 
 void MainWindow::deleteFields(){
-    /*deletewindow* dw = new deletewindow();
-    dw->setFile(&file);
-    dw->setType(0);
-    dw->show();*/
+}
+
+void MainWindow::listfields(){
+    listfieldswindow* lf = new listfieldswindow();
+    lf->filltable(&file);
+    lf->show();
 }
 /*##########################################*/
 

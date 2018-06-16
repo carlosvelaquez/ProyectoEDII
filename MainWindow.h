@@ -18,6 +18,8 @@ private slots:
   void deleteRecords();
   void deleteFields();
 
+  void listfields();
+
 public:
   MainWindow(QWidget* parent = 0);
   void refreshTable();

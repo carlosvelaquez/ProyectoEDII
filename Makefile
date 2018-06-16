@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Proyecto1.0.0
-DISTDIR = /home/carlos/Escritorio/Proyecto\ Estructura\ de\ Datos\ II/Talves\ este\ si\ ._./ProyectoEDII/.tmp/Proyecto1.0.0
+DISTDIR = /home/carlos/Escritorio/Proyecto\ Estructura\ de\ Datos\ II/Proyecto/ProyectoEDII/.tmp/Proyecto1.0.0
 LINK          = g++
 LFLAGS        = -m64 -Wl,-O1
 LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -52,23 +52,23 @@ SOURCES       = File.cpp \
 		Field.cpp \
 		main.cpp \
 		MainWindow.cpp \
-		deletewindow.cpp \
 		addrecordwindow.cpp \
-		addfieldwindow.cpp moc_MainWindow.cpp \
-		moc_deletewindow.cpp \
+		addfieldwindow.cpp \
+		listfieldswindow.cpp moc_MainWindow.cpp \
 		moc_addrecordwindow.cpp \
-		moc_addfieldwindow.cpp
+		moc_addfieldwindow.cpp \
+		moc_listfieldswindow.cpp
 OBJECTS       = File.o \
 		Field.o \
 		main.o \
 		MainWindow.o \
-		deletewindow.o \
 		addrecordwindow.o \
 		addfieldwindow.o \
+		listfieldswindow.o \
 		moc_MainWindow.o \
-		moc_deletewindow.o \
 		moc_addrecordwindow.o \
-		moc_addfieldwindow.o
+		moc_addfieldwindow.o \
+		moc_listfieldswindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -131,15 +131,15 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		List.h \
 		MainWindow.h \
 		queue.h \
-		deletewindow.h \
 		addrecordwindow.h \
-		addfieldwindow.h File.cpp \
+		addfieldwindow.h \
+		listfieldswindow.h File.cpp \
 		Field.cpp \
 		main.cpp \
 		MainWindow.cpp \
-		deletewindow.cpp \
 		addrecordwindow.cpp \
-		addfieldwindow.cpp
+		addfieldwindow.cpp \
+		listfieldswindow.cpp
 QMAKE_TARGET  = Proyecto
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Proyecto
@@ -167,7 +167,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_MainWindow.h ui_deletewindow.h ui_addrecordwindow.h ui_addfieldwindow.h $(OBJECTS)  
+$(TARGET): ui_MainWindow.h ui_addrecordwindow.h ui_addfieldwindow.h ui_listfieldswindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: Proyecto.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -307,9 +307,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents File.h Field.h List.h MainWindow.h queue.h deletewindow.h addrecordwindow.h addfieldwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents File.cpp Field.cpp main.cpp MainWindow.cpp deletewindow.cpp addrecordwindow.cpp addfieldwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents MainWindow.ui deletewindow.ui addrecordwindow.ui addfieldwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents File.h Field.h List.h MainWindow.h queue.h addrecordwindow.h addfieldwindow.h listfieldswindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents File.cpp Field.cpp main.cpp MainWindow.cpp addrecordwindow.cpp addfieldwindow.cpp listfieldswindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents MainWindow.ui addrecordwindow.ui addfieldwindow.ui listfieldswindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -333,50 +333,50 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_MainWindow.cpp moc_deletewindow.cpp moc_addrecordwindow.cpp moc_addfieldwindow.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_addrecordwindow.cpp moc_addfieldwindow.cpp moc_listfieldswindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp moc_deletewindow.cpp moc_addrecordwindow.cpp moc_addfieldwindow.cpp
+	-$(DEL_FILE) moc_MainWindow.cpp moc_addrecordwindow.cpp moc_addfieldwindow.cpp moc_listfieldswindow.cpp
 moc_MainWindow.cpp: ui_MainWindow.h \
 		File.h \
 		List.h \
 		Field.h \
 		MainWindow.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o moc_MainWindow.cpp
-
-moc_deletewindow.cpp: File.h \
-		List.h \
-		Field.h \
-		deletewindow.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include deletewindow.h -o moc_deletewindow.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o moc_MainWindow.cpp
 
 moc_addrecordwindow.cpp: File.h \
 		List.h \
 		Field.h \
 		addrecordwindow.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include addrecordwindow.h -o moc_addrecordwindow.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include addrecordwindow.h -o moc_addrecordwindow.cpp
 
 moc_addfieldwindow.cpp: File.h \
 		List.h \
 		Field.h \
 		addfieldwindow.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Talves este si ._./ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include addfieldwindow.h -o moc_addfieldwindow.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include addfieldwindow.h -o moc_addfieldwindow.cpp
+
+moc_listfieldswindow.cpp: File.h \
+		List.h \
+		Field.h \
+		listfieldswindow.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include listfieldswindow.h -o moc_listfieldswindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_MainWindow.h ui_deletewindow.h ui_addrecordwindow.h ui_addfieldwindow.h
+compiler_uic_make_all: ui_MainWindow.h ui_addrecordwindow.h ui_addfieldwindow.h ui_listfieldswindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_MainWindow.h ui_deletewindow.h ui_addrecordwindow.h ui_addfieldwindow.h
+	-$(DEL_FILE) ui_MainWindow.h ui_addrecordwindow.h ui_addfieldwindow.h ui_listfieldswindow.h
 ui_MainWindow.h: MainWindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic MainWindow.ui -o ui_MainWindow.h
-
-ui_deletewindow.h: deletewindow.ui
-	/usr/lib/x86_64-linux-gnu/qt5/bin/uic deletewindow.ui -o ui_deletewindow.h
 
 ui_addrecordwindow.h: addrecordwindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic addrecordwindow.ui -o ui_addrecordwindow.h
 
 ui_addfieldwindow.h: addfieldwindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic addfieldwindow.ui -o ui_addfieldwindow.h
+
+ui_listfieldswindow.h: listfieldswindow.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic listfieldswindow.ui -o ui_listfieldswindow.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -408,19 +408,10 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		File.h \
 		List.h \
 		Field.h \
-		deletewindow.h \
 		addrecordwindow.h \
-		addfieldwindow.h
+		addfieldwindow.h \
+		listfieldswindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
-
-deletewindow.o: deletewindow.cpp deletewindow.h \
-		File.h \
-		List.h \
-		Field.h \
-		ui_deletewindow.h \
-		MainWindow.h \
-		ui_MainWindow.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o deletewindow.o deletewindow.cpp
 
 addrecordwindow.o: addrecordwindow.cpp addrecordwindow.h \
 		File.h \
@@ -436,17 +427,24 @@ addfieldwindow.o: addfieldwindow.cpp addfieldwindow.h \
 		ui_addfieldwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addfieldwindow.o addfieldwindow.cpp
 
+listfieldswindow.o: listfieldswindow.cpp listfieldswindow.h \
+		File.h \
+		List.h \
+		Field.h \
+		ui_listfieldswindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listfieldswindow.o listfieldswindow.cpp
+
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
-
-moc_deletewindow.o: moc_deletewindow.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_deletewindow.o moc_deletewindow.cpp
 
 moc_addrecordwindow.o: moc_addrecordwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_addrecordwindow.o moc_addrecordwindow.cpp
 
 moc_addfieldwindow.o: moc_addfieldwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_addfieldwindow.o moc_addfieldwindow.cpp
+
+moc_listfieldswindow.o: moc_listfieldswindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_listfieldswindow.o moc_listfieldswindow.cpp
 
 ####### Install
 
