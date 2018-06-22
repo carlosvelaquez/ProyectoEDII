@@ -13,12 +13,16 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
@@ -52,6 +56,15 @@ public:
     QLabel *label;
     QLabel *label_2;
     QListWidget *listWidget;
+    QFrame *frame;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *pushButton_atras;
+    QLabel *label_3;
+    QPushButton *pushButton_adelante;
+    QFrame *frame_2;
+    QHBoxLayout *horizontalLayout_2;
+    QPushButton *pushButton_adelante_2;
+    QSpinBox *spinBox;
     QMenuBar *menubar;
     QMenu *menuArchivo;
     QMenu *menuRegistros;
@@ -63,7 +76,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(843, 465);
+        MainWindow->resize(839, 510);
         MainWindow->setStyleSheet(QStringLiteral(""));
         actionNuevo_Archivo = new QAction(MainWindow);
         actionNuevo_Archivo->setObjectName(QStringLiteral("actionNuevo_Archivo"));
@@ -114,21 +127,64 @@ public:
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 10, 161, 31));
         QFont font;
-        font.setPointSize(15);
+        font.setPointSize(19);
         font.setBold(true);
         font.setWeight(75);
         label->setFont(font);
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(650, 6, 111, 41));
-        label_2->setFont(font);
+        QFont font1;
+        font1.setPointSize(15);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_2->setFont(font1);
         listWidget = new QListWidget(centralwidget);
         listWidget->setObjectName(QStringLiteral("listWidget"));
         listWidget->setGeometry(QRect(650, 60, 181, 371));
+        frame = new QFrame(centralwidget);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setGeometry(QRect(560, 440, 141, 41));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        horizontalLayout = new QHBoxLayout(frame);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        pushButton_atras = new QPushButton(frame);
+        pushButton_atras->setObjectName(QStringLiteral("pushButton_atras"));
+
+        horizontalLayout->addWidget(pushButton_atras);
+
+        label_3 = new QLabel(frame);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        horizontalLayout->addWidget(label_3);
+
+        pushButton_adelante = new QPushButton(frame);
+        pushButton_adelante->setObjectName(QStringLiteral("pushButton_adelante"));
+
+        horizontalLayout->addWidget(pushButton_adelante);
+
+        frame_2 = new QFrame(centralwidget);
+        frame_2->setObjectName(QStringLiteral("frame_2"));
+        frame_2->setGeometry(QRect(710, 440, 121, 41));
+        frame_2->setFrameShape(QFrame::StyledPanel);
+        frame_2->setFrameShadow(QFrame::Raised);
+        horizontalLayout_2 = new QHBoxLayout(frame_2);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        pushButton_adelante_2 = new QPushButton(frame_2);
+        pushButton_adelante_2->setObjectName(QStringLiteral("pushButton_adelante_2"));
+
+        horizontalLayout_2->addWidget(pushButton_adelante_2);
+
+        spinBox = new QSpinBox(frame_2);
+        spinBox->setObjectName(QStringLiteral("spinBox"));
+
+        horizontalLayout_2->addWidget(spinBox);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 843, 22));
+        menubar->setGeometry(QRect(0, 0, 839, 22));
         menuArchivo = new QMenu(menubar);
         menuArchivo->setObjectName(QStringLiteral("menuArchivo"));
         menuRegistros = new QMenu(menubar);
@@ -195,6 +251,10 @@ public:
         actionCargar_Archivo->setText(QApplication::translate("MainWindow", "Cargar Archivo", 0));
         label->setText(QApplication::translate("MainWindow", "File Manager", 0));
         label_2->setText(QApplication::translate("MainWindow", "Avail List", 0));
+        pushButton_atras->setText(QString());
+        label_3->setText(QString());
+        pushButton_adelante->setText(QString());
+        pushButton_adelante_2->setText(QApplication::translate("MainWindow", "Ir a Pag.", 0));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", 0));
         menuRegistros->setTitle(QApplication::translate("MainWindow", "Registros", 0));
         menuCampos->setTitle(QApplication::translate("MainWindow", "Campos", 0));

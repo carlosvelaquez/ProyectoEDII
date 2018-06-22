@@ -11,6 +11,12 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
+  /*==================*/
+  /*QPushbutton *button = new QPushbutton;
+  button->setIcon(QIcon("<imagePath>"));
+  button->setIconSize(QSize(65,65));*/
+  /*==================*/
+
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(loadFile()));
 
   // Añadir campos
@@ -22,7 +28,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   // Añadir registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
-
 
 
 
@@ -53,6 +58,7 @@ void MainWindow::deleteFields(){
     deletefieldwindow* df = new deletefieldwindow();
     df->setFile(&file);
     df->fillComboBox();
+    /*Por alguna razon el action del boton eliminar no da >:v*/
     df->show();
 }
 
@@ -112,13 +118,14 @@ void MainWindow::loadFile(){
     file.seek(1);
 
     qDebug() << "Refreshing table...";
+
     refreshTable();
 }
 
 void MainWindow::refreshTable(){
-  ui.tableWidget->setColumnCount(file.fieldQuantity());
-  ui.tableWidget->setRowCount(file.recordQuantity());
-
+  file.seek(1);
+  ui.tableWidget->setColumnCount(file.fieldQuantity()); //Añade la cantidad de columnas de acuerdo a la cantidad de campos
+  ui.tableWidget->setRowCount(10);// Cantidad de records de cada bloque
   List<Field> fields = file.getFields();
   List<List<string>> records = file.data();
 
@@ -133,4 +140,22 @@ void MainWindow::refreshTable(){
       ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i][j].c_str()));
     }
   }
+}
+
+void MainWindow::nextPage(){
+    if(file.next()){
+        refreshTable();
+    }
+}
+
+void MainWindow::previousPage(){
+    if(file.previous()){
+        refreshTable();
+    }
+}
+
+void MainWindow::gotoPage(long page){
+    if(page>0&&page<=file.blockQuantity()){
+        file.seek(page);
+    }
 }

@@ -6,7 +6,6 @@ deletefieldwindow::deletefieldwindow(QWidget *parent) :
     ui(new Ui::deletefieldwindow)
 {
     ui->setupUi(this);
-     connect(ui->pushButton_deletefield, SIGNAL(triggered()), this, SLOT(deletefield()));
 }
 
 deletefieldwindow::~deletefieldwindow()
@@ -24,11 +23,4 @@ void deletefieldwindow::fillComboBox(){
         items<<QString::fromStdString(file->getFields().get(i).getName());
     }
     ui->comboBox_deletefield->addItems(items);
-}
-
-void deletefieldwindow::deletefield()
-{
-    QString name;
-    name = ui->comboBox_deletefield->currentText();
-    qDebug()<<name;
 }

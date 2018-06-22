@@ -16,7 +16,6 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -27,7 +26,6 @@ public:
     QComboBox *comboBox_deletefield;
     QLabel *label;
     QLabel *label_2;
-    QPushButton *pushButton_deletefield;
 
     void setupUi(QWidget *deletefieldwindow)
     {
@@ -49,9 +47,6 @@ public:
         label_2 = new QLabel(deletefieldwindow);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(20, 70, 341, 21));
-        pushButton_deletefield = new QPushButton(deletefieldwindow);
-        pushButton_deletefield->setObjectName(QStringLiteral("pushButton_deletefield"));
-        pushButton_deletefield->setGeometry(QRect(139, 150, 111, 25));
 
         retranslateUi(deletefieldwindow);
 
@@ -63,7 +58,6 @@ public:
         deletefieldwindow->setWindowTitle(QApplication::translate("deletefieldwindow", "Form", 0));
         label->setText(QApplication::translate("deletefieldwindow", "Delete Record", 0));
         label_2->setText(QApplication::translate("deletefieldwindow", "Choose the field.", 0));
-        pushButton_deletefield->setText(QApplication::translate("deletefieldwindow", "Delete", 0));
     } // retranslateUi
 
 };

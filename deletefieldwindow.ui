@@ -59,19 +59,6 @@
     <string>Choose the field.</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_deletefield">
-   <property name="geometry">
-    <rect>
-     <x>139</x>
-     <y>150</y>
-     <width>111</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Delete</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>
