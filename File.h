@@ -62,7 +62,6 @@ public:
   bool writeAvailList(); //Escribir la última posición borrada (lastDeleted) al meta
   bool writeFields(); //Escribir la información de los campos de usuario al meta
 
-
   //--- LECTURA DE METADATOS ---
   bool readMeta(); //Llama a ambos métodos de escritura de metadatos
   bool readAvailList(); //Leer la última posición borrada (lastDeleted) del meta
