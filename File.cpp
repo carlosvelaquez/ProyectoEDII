@@ -306,6 +306,10 @@ bool File::addField(int type, string name, int size, bool isPrimaryKey){
     if (isPrimaryKey) {
       Field nField(type, name, size);
 
+      if (hasPrimaryKey()) {
+        return false;
+      }
+      
       nField.setPrimaryKey(true);
       return fields.insert(nField);
     }else{
