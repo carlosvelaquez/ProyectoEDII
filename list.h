@@ -47,6 +47,8 @@ public:
     if (next != 0) {
       delete next;
     }
+
+    previous = 0;
   }
 };
 
@@ -312,9 +314,9 @@ public:
   }
 
   ~List<T>(){
-    if (head != 0) {
-      //delete head;
-    }
+    /*if (head != 0) {
+      delete head;
+    }*/
   }
 };
 

@@ -3,11 +3,11 @@ INPUT(
 ./debug\Field.o
 ./debug\main.o
 ./debug\MainWindow.o
-./debug\deletewindow.o
 ./debug\addrecordwindow.o
 ./debug\addfieldwindow.o
+./debug\listfieldswindow.o
 ./debug\moc_MainWindow.o
-./debug\moc_deletewindow.o
 ./debug\moc_addrecordwindow.o
 ./debug\moc_addfieldwindow.o
+./debug\moc_listfieldswindow.o
 );

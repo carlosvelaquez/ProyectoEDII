@@ -88,6 +88,8 @@ void MainWindow::loadFile(){
     List<string> data;
 
     for (int j = 1; j <= 100; j++) {
+      qDebug() << "Adding record " << j << "...";
+
       for (int i = 1; i <= file.fieldQuantity(); i++) {
         string ins = "";
         ins += "Data [";
@@ -98,15 +100,13 @@ void MainWindow::loadFile(){
         data.insert(ins);
       }
 
-      qDebug() << file.addRecord(data);
-
+      qDebug() << "File addRecord: " << file.addRecord(data.clone());
+      data.clear();
 
       if (j%10 == 0) {
-        file.flush();
         qDebug() << "j = " << j << ", flushing...";
+        file.flush();
       }
-
-      qDebug() << "Adding record " << j << "...";
     }
 
     file.seek(1);
