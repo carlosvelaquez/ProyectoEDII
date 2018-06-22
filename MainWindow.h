@@ -12,13 +12,12 @@ private:
 private slots:
   void loadFile();
 
-  void addFields();
   void addRecord();
-
   void deleteRecords();
-  void deleteFields();
 
   void listfields();
+  void deleteFields();
+  void addFields();
 
 public:
   MainWindow(QWidget* parent = 0);

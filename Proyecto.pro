@@ -24,12 +24,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 HEADERS += File.h Field.h List.h MainWindow.h queue.h \
     addrecordwindow.h \
     addfieldwindow.h \
-    listfieldswindow.h
+    listfieldswindow.h \
+    deletefieldwindow.h
 FORMS += MainWindow.ui \
     addrecordwindow.ui \
     addfieldwindow.ui \
-    listfieldswindow.ui
+    listfieldswindow.ui \
+    deletefieldwindow.ui
 SOURCES += File.cpp Field.cpp main.cpp MainWindow.cpp \
     addrecordwindow.cpp \
     addfieldwindow.cpp \
-    listfieldswindow.cpp
+    listfieldswindow.cpp \
+    deletefieldwindow.cpp

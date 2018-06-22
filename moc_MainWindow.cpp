@@ -32,15 +32,16 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 8), // "loadFile"
 QT_MOC_LITERAL(2, 20, 0), // ""
-QT_MOC_LITERAL(3, 21, 9), // "addFields"
-QT_MOC_LITERAL(4, 31, 9), // "addRecord"
-QT_MOC_LITERAL(5, 41, 13), // "deleteRecords"
-QT_MOC_LITERAL(6, 55, 12), // "deleteFields"
-QT_MOC_LITERAL(7, 68, 10) // "listfields"
+QT_MOC_LITERAL(3, 21, 9), // "addRecord"
+QT_MOC_LITERAL(4, 31, 13), // "deleteRecords"
+QT_MOC_LITERAL(5, 45, 10), // "listfields"
+QT_MOC_LITERAL(6, 56, 12), // "deleteFields"
+QT_MOC_LITERAL(7, 69, 9) // "addFields"
 
     },
-    "MainWindow\0loadFile\0\0addFields\0addRecord\0"
-    "deleteRecords\0deleteFields\0listfields"
+    "MainWindow\0loadFile\0\0addRecord\0"
+    "deleteRecords\0listfields\0deleteFields\0"
+    "addFields"
 };
 #undef QT_MOC_LITERAL
 
@@ -83,11 +84,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->loadFile(); break;
-        case 1: _t->addFields(); break;
-        case 2: _t->addRecord(); break;
-        case 3: _t->deleteRecords(); break;
+        case 1: _t->addRecord(); break;
+        case 2: _t->deleteRecords(); break;
+        case 3: _t->listfields(); break;
         case 4: _t->deleteFields(); break;
-        case 5: _t->listfields(); break;
+        case 5: _t->addFields(); break;
         default: ;
         }
     }

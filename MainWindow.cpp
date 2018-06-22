@@ -5,6 +5,8 @@
 #include "addrecordwindow.h"
 #include "addfieldwindow.h"
 #include "listfieldswindow.h"
+#include "deletefieldwindow.h"
+
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
@@ -13,11 +15,16 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   // Añadir campos
   connect(ui.actionCrear_Campos, SIGNAL(triggered()), this, SLOT(addFields()));
+  // Listar campos
+  connect(ui.actionListar_Campos, SIGNAL(triggered()), this, SLOT(listfields()));
+  // Eliminar campos
+  connect(ui.actionEliminar_Campos, SIGNAL(triggered()), this, SLOT(deleteFields()));
+
   // Añadir registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
 
-  // Listar campos
-  connect(ui.actionListar_Campos, SIGNAL(triggered()), this, SLOT(listfields()));
+
+
 
 }
 
@@ -43,6 +50,10 @@ void MainWindow::addFields(){
 }
 
 void MainWindow::deleteFields(){
+    deletefieldwindow* df = new deletefieldwindow();
+    df->setFile(&file);
+    df->fillComboBox();
+    df->show();
 }
 
 void MainWindow::listfields(){
@@ -50,6 +61,9 @@ void MainWindow::listfields(){
     lf->filltable(&file);
     lf->show();
 }
+
+
+
 /*##########################################*/
 
 
