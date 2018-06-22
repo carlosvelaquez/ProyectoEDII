@@ -8,7 +8,7 @@ void File::calculateSizes(){
 
   for (int i = 1; i <= fields.size; i++) {
     //Suma los tamaños de todos los campos
-    recordSize += fields[i].getSize();
+    recordSize += size_t(fields[i].getSize());
   }
 
   /*Suma la cantidad de campos, ya que la cantidad de comas más un salto de línea
@@ -183,7 +183,7 @@ bool File::writeFields(){ //Escribir los campos al meta
       out += ",";
       out += fields[i].getName();
       out += ",";
-      out += to_string(fields[i].getSize());
+      out += to_string(size_t(fields[i].getSize()));
 
       if (i != fields.size) { //No añade un '|' después del último registro
       out += "|";
@@ -194,7 +194,7 @@ bool File::writeFields(){ //Escribir los campos al meta
   out += "\n"; //Agregar un salto de línea
 
   //Moverse a la posición 8 (el AvailList abarca 7 bytes) y escribir
-  file.seekp(9);
+  file.seekp(8);
   file.write(out.c_str(), out.length());
   file.flush();
 
@@ -309,7 +309,7 @@ bool File::addField(int type, string name, int size, bool isPrimaryKey){
       if (hasPrimaryKey()) {
         return false;
       }
-      
+
       nField.setPrimaryKey(true);
       return fields.insert(nField);
     }else{
@@ -325,7 +325,7 @@ bool File::addField(int type, string name, int size){
 }
 
 bool File::addRecord(List<string> nRecord){
-  return recordBuffer.insert(nRecord);
+  return recordBuffer.insert(nRecord.clone());
 }
 
 bool File::hasPrimaryKey(){
@@ -387,13 +387,13 @@ bool File::replaceRecord(int posicion, List<string> nRecord){
       string out = nRecord[i]; //Recuperar el dato a escribir
 
       //Añadir espacios vacíos si el string es más corto que el campo
-      while (out.length() < fields[i].getSize()) {
+      while (out.length() < size_t(fields[i].getSize())) {
         out += " ";
       }
 
       //Cortar el string si es muy largo para el campo
-      if (out.length() > fields[i].getSize()) {
-        out = out.substr(0, fields[i].getSize() - 1);
+      if (out.length() > size_t(fields[i].getSize())) {
+        out = out.substr(0, size_t(fields[i].getSize()) - 1);
       }
 
       //Escribir el string procesado al archivo
@@ -416,7 +416,22 @@ bool File::flush(){
     file.clear();
 
     if (file) {
+      qDebug() << "Printing recordBuffer...";
       for (int i = 1; i <= recordBuffer.size; i++) {
+        string imp = "|";
+
+        for (int j = 1; j <= recordBuffer[1].size; j++) {
+          imp += recordBuffer[i][j];
+          imp += " |";
+        }
+
+        qDebug() << imp.c_str();
+      }
+
+      qDebug() << "Fields: " << fields.size;
+      qDebug() << "RecordBuffer Size: " << recordBuffer[1].size;
+      for (int i = 1; i <= recordBuffer.size; i++) {
+        qDebug() << "Flushing... | i = " << i;
 
         //Determinar en qué posición irá el siguiente registro
         if (!availList.isEmpty()) {
@@ -427,17 +442,19 @@ bool File::flush(){
         }
 
         for (int j = 1; j <= fields.size; j++) {
+          qDebug() << "Flushing... | j = " << j;
+
           string out = recordBuffer[i][j]; //Recuperar el dato a escribir
           qDebug() << "Raw out: " << out.c_str();
 
           //Añadir espacios vacíos si el string es más corto que el campo
-          while (out.length() < fields[j].getSize()) {
+          while (out.length() < size_t(fields[j].getSize())) {
             out += " ";
           }
 
           //Cortar el string si es muy largo para el campo
-          if (out.length() > fields[j].getSize()) {
-            out = out.substr(0, fields[j].getSize() - 1);
+          if (out.length() > size_t(fields[j].getSize())) {
+            out = out.substr(0, size_t(fields[j].getSize()) - 1);
           }
 
           //Escribir el string procesado al archivo
