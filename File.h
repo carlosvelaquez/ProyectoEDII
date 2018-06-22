@@ -71,7 +71,9 @@ public:
 
   //--- FUNCIONES DE BUFFER ---
   bool addField(int, string, int, bool); //Añadir un nuevo campo [tipo, nombre, tamaño, isPrimaryKey]
+  bool addField(int, string, int); //Añadir un nuevo campo [tipo, nombre, tamaño]
   bool addRecord(List<string>); //Añade un registro al buffer, toma una lista de strings como datos
+  bool hasPrimaryKey(); //Retorna verdadero si existe un campo llave primaria en el archivo
 
   bool deleteField(int); //Borra un campo de la lista de campos (si no está bloqueado el archivo)
   bool deleteRecord(int); //Borra un registro (debe estar escrito en el archivo)

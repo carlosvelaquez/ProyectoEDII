@@ -306,12 +306,6 @@ bool File::addField(int type, string name, int size, bool isPrimaryKey){
     if (isPrimaryKey) {
       Field nField(type, name, size);
 
-      for (int i = 1; i <= fields.size; i++) {
-        if (fields[i].isPrimaryKey()) {
-          return false;
-        }
-      }
-
       nField.setPrimaryKey(true);
       return fields.insert(nField);
     }else{
@@ -322,8 +316,22 @@ bool File::addField(int type, string name, int size, bool isPrimaryKey){
   return false;
 }
 
+bool File::addField(int type, string name, int size){
+  return addField(type, name, size);
+}
+
 bool File::addRecord(List<string> nRecord){
   return recordBuffer.insert(nRecord);
+}
+
+bool File::hasPrimaryKey(){
+  for (int i = 1; i <= fields.size; i++) {
+    if (fields[i].isPrimaryKey()) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 bool File::deleteField(int index){
