@@ -123,7 +123,6 @@ void MainWindow::loadFile(){
 }
 
 void MainWindow::refreshTable(){
-  file.seek(1);
   ui.tableWidget->setColumnCount(file.fieldQuantity()); //Añade la cantidad de columnas de acuerdo a la cantidad de campos
   ui.tableWidget->setRowCount(10);// Cantidad de records de cada bloque
   List<Field> fields = file.getFields();
@@ -157,5 +156,6 @@ void MainWindow::previousPage(){
 void MainWindow::gotoPage(long page){
     if(page>0&&page<=file.blockQuantity()){
         file.seek(page);
+        refreshTable();
     }
 }
