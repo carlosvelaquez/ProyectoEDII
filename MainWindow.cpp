@@ -113,6 +113,7 @@ void MainWindow::loadFile(){
       }
 
       qDebug() << "File addRecord: " << file.addRecord(data.clone());
+      qDebug() << "Record Buffer size: "<<file.data().size;
       data.clear();
 
       if (j%10 == 0) {
@@ -122,7 +123,7 @@ void MainWindow::loadFile(){
     }
 
     file.seek(1);
-
+    qDebug()<<"Total Buffer Record Size: "<<file.data().size;
     qDebug() << "Refreshing table...";
 
     refreshTable();
@@ -141,13 +142,9 @@ void MainWindow::refreshTable(){
   for (int i = 1; i <= fields.size; i++) {
     ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));
   }
-  for (int i = 1; i <= records.size; i++) { // Hay un problema aca
+  for (int i = 1; i <= records.size; i++) {
     for (int j = 1; j <= fields.size; j++) {
-        if(i>=10){
-        ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("diooo :3"));
-        }else{
-            ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("nell"));
-        }
+        ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("xD"));
     }
   }
 }

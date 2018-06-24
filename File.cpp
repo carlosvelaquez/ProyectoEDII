@@ -582,7 +582,6 @@ int File::recordQuantity(){
   if (locked) {
     return (filesize() - metaSize)/recordSize;
   }
-
   return -1;
 }
 
