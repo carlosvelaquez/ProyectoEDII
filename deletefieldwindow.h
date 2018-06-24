@@ -18,6 +18,9 @@ public:
     void setFile(File*);
     void fillComboBox();
 
+private slots:
+    void on_pushButton_delete_clicked();
+
 private:
     Ui::deletefieldwindow *ui;
     File *file;

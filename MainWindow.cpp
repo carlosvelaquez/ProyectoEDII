@@ -17,7 +17,11 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   button->setIconSize(QSize(65,65));*/
   /*==================*/
 
+  // Cargar archivo
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(loadFile()));
+  // Cerrar archivo
+  connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(closeFile()));
+
 
   // Añadir campos
   connect(ui.actionCrear_Campos, SIGNAL(triggered()), this, SLOT(addFields()));
@@ -58,7 +62,6 @@ void MainWindow::deleteFields(){
     deletefieldwindow* df = new deletefieldwindow();
     df->setFile(&file);
     df->fillComboBox();
-    /*Por alguna razon el action del boton eliminar no da >:v*/
     df->show();
 }
 
@@ -75,6 +78,12 @@ void MainWindow::listfields(){
 
 File* MainWindow::getFile(){
     return &file;
+}
+
+
+/*##########################################*/
+void MainWindow::closeFile(){
+
 }
 
 void MainWindow::loadFile(){
@@ -121,6 +130,10 @@ void MainWindow::loadFile(){
 
     refreshTable();
 }
+/*##########################################*/
+
+
+
 
 void MainWindow::refreshTable(){
   ui.tableWidget->setColumnCount(file.fieldQuantity()); //Añade la cantidad de columnas de acuerdo a la cantidad de campos
@@ -141,6 +154,9 @@ void MainWindow::refreshTable(){
   }
 }
 
+
+
+/*##########################################*/
 void MainWindow::nextPage(){
     if(file.next()){
         refreshTable();
@@ -159,3 +175,4 @@ void MainWindow::gotoPage(long page){
         refreshTable();
     }
 }
+/*##########################################*/

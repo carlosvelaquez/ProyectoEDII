@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -30,7 +31,7 @@ QT_BEGIN_NAMESPACE
 class Ui_addfieldwindow
 {
 public:
-    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
     QFrame *frame;
     QVBoxLayout *verticalLayout_2;
     QLabel *label;
@@ -50,8 +51,8 @@ public:
             addfieldwindow->setObjectName(QStringLiteral("addfieldwindow"));
         addfieldwindow->resize(236, 276);
         addfieldwindow->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        verticalLayout = new QVBoxLayout(addfieldwindow);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout = new QHBoxLayout(addfieldwindow);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         frame = new QFrame(addfieldwindow);
         frame->setObjectName(QStringLiteral("frame"));
         frame->setFrameShape(QFrame::StyledPanel);
@@ -107,7 +108,7 @@ public:
         verticalLayout_2->addWidget(pushButton_addfield);
 
 
-        verticalLayout->addWidget(frame);
+        horizontalLayout->addWidget(frame);
 
 
         retranslateUi(addfieldwindow);

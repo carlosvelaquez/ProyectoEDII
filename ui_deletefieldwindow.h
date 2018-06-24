@@ -14,8 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,30 +26,56 @@ QT_BEGIN_NAMESPACE
 class Ui_deletefieldwindow
 {
 public:
-    QComboBox *comboBox_deletefield;
+    QVBoxLayout *verticalLayout_2;
     QLabel *label;
+    QFrame *frame;
+    QVBoxLayout *verticalLayout;
     QLabel *label_2;
+    QComboBox *comboBox_deletefield;
+    QPushButton *pushButton_delete;
 
     void setupUi(QWidget *deletefieldwindow)
     {
         if (deletefieldwindow->objectName().isEmpty())
             deletefieldwindow->setObjectName(QStringLiteral("deletefieldwindow"));
-        deletefieldwindow->resize(392, 200);
+        deletefieldwindow->resize(366, 184);
         deletefieldwindow->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        comboBox_deletefield = new QComboBox(deletefieldwindow);
-        comboBox_deletefield->setObjectName(QStringLiteral("comboBox_deletefield"));
-        comboBox_deletefield->setGeometry(QRect(60, 110, 261, 25));
+        verticalLayout_2 = new QVBoxLayout(deletefieldwindow);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         label = new QLabel(deletefieldwindow);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(13, 16, 151, 31));
         QFont font;
         font.setPointSize(12);
         font.setBold(true);
         font.setWeight(75);
         label->setFont(font);
-        label_2 = new QLabel(deletefieldwindow);
+
+        verticalLayout_2->addWidget(label);
+
+        frame = new QFrame(deletefieldwindow);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        verticalLayout = new QVBoxLayout(frame);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        label_2 = new QLabel(frame);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(20, 70, 341, 21));
+
+        verticalLayout->addWidget(label_2);
+
+        comboBox_deletefield = new QComboBox(frame);
+        comboBox_deletefield->setObjectName(QStringLiteral("comboBox_deletefield"));
+
+        verticalLayout->addWidget(comboBox_deletefield);
+
+        pushButton_delete = new QPushButton(frame);
+        pushButton_delete->setObjectName(QStringLiteral("pushButton_delete"));
+
+        verticalLayout->addWidget(pushButton_delete);
+
+
+        verticalLayout_2->addWidget(frame);
+
 
         retranslateUi(deletefieldwindow);
 
@@ -56,8 +85,9 @@ public:
     void retranslateUi(QWidget *deletefieldwindow)
     {
         deletefieldwindow->setWindowTitle(QApplication::translate("deletefieldwindow", "Form", 0));
-        label->setText(QApplication::translate("deletefieldwindow", "Delete Record", 0));
-        label_2->setText(QApplication::translate("deletefieldwindow", "Choose the field.", 0));
+        label->setText(QApplication::translate("deletefieldwindow", "Eliminar Campo", 0));
+        label_2->setText(QApplication::translate("deletefieldwindow", "Elija el campo", 0));
+        pushButton_delete->setText(QApplication::translate("deletefieldwindow", "Eliminar", 0));
     } // retranslateUi
 
 };
