@@ -11,12 +11,9 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
-  /*==================*/
-  /*QPushbutton *button = new QPushbutton;
-  button->setIcon(QIcon("<imagePath>"));
-  button->setIconSize(QSize(65,65));*/
-  /*==================*/
-
+  QHeaderView* header = ui.tableWidget->horizontalHeader();
+  header->setSectionResizeMode(QHeaderView::Stretch);
+  ui.tableWidget->setEnabled(false);
   // Cargar archivo
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(loadFile()));
   // Cerrar archivo
@@ -142,14 +139,15 @@ void MainWindow::refreshTable(){
   List<List<string>> records = file.data();
 
   for (int i = 1; i <= fields.size; i++) {
-    ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(fields[i].getName().c_str()));
-    qDebug() << fields[i].getName().c_str();
-    //ui.tableWidget->horizontalHeaderItem(i-1) = new QTableWidgetItem(fields[i].getName().c_str());
+    ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));
   }
-
-  for (int i = 1; i <= records.size; i++) {
+  for (int i = 1; i <= records.size; i++) { // Hay un problema aca
     for (int j = 1; j <= fields.size; j++) {
-      ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i][j].c_str()));
+        if(i>=10){
+        ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("diooo :3"));
+        }else{
+            ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("nell"));
+        }
     }
   }
 }

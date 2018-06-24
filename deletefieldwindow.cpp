@@ -29,7 +29,9 @@ void deletefieldwindow::fillComboBox(){
 
 void deletefieldwindow::on_pushButton_delete_clicked()
 {
-    if(file->deleteField(ui->comboBox_deletefield->currentIndex()+1)){
-        fillComboBox();
+    if(!file->isLocked()){
+        if(file->deleteField(ui->comboBox_deletefield->currentIndex()+1)){
+            fillComboBox();
+        }
     }
 }

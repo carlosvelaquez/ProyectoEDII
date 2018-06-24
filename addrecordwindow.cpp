@@ -10,6 +10,8 @@ addRecordWindow::addRecordWindow(QWidget *parent) :
     ui(new Ui::addRecordWindow)
 {
     ui->setupUi(this);
+    QHeaderView* header = ui->tableWidget->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 addRecordWindow::~addRecordWindow()
@@ -59,12 +61,11 @@ void addRecordWindow::fillTable(){
     fields.insert(field4);
     fields.insert(field5);*/
     /******************/
-
-
+    QStringList headers;
+    headers <<"Type"<<"Name"<<"Is PK"<<"Value";
+    ui->tableWidget->setHorizontalHeaderLabels(headers);
     if(file->getFields().size>0){ // Validar que hayan campos para ingresar
-        QStringList headers;
-        headers <<"Type"<<"Name"<<"Is PK"<<"Value";
-        ui->tableWidget->setHorizontalHeaderLabels(headers);
+
         ui->tableWidget->setRowCount(file->getFields().size);
         for(int i=1; i<=file->getFields().size; i++){//int i=1; i<=file->getFields().size; i++
             if(file->getFields().get(i).getType()==0) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("Integer"));//file->getFields().get(i).getType()
