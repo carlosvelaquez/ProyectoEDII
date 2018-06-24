@@ -13,6 +13,7 @@ private:
 private slots:
   void loadFile();
   void closeFile();
+  void saveFile();
 
   void addRecord();
   void deleteRecords();

@@ -211,7 +211,6 @@ public:
         menuRegistros->addAction(actionModificar_Registros);
         menuRegistros->addAction(actionBuscar_Registros);
         menuRegistros->addAction(actionBorrar_Registros);
-        menuRegistros->addAction(actionListar_Registros);
         menuCampos->addAction(actionCrear_Campos);
         menuCampos->addAction(actionListar_Campos);
         menuCampos->addAction(actionModificar_Campos);

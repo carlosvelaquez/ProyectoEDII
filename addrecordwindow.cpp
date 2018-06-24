@@ -12,6 +12,7 @@ addRecordWindow::addRecordWindow(QWidget *parent) :
     ui->setupUi(this);
     QHeaderView* header = ui->tableWidget->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
+
 }
 
 addRecordWindow::~addRecordWindow()
@@ -92,4 +93,5 @@ void addRecordWindow::on_pushButton_send_clicked()
             values.insert(value.toStdString());
         }
     }
+    //
 }

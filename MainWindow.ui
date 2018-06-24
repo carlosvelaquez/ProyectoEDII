@@ -172,7 +172,6 @@
     <addaction name="actionModificar_Registros"/>
     <addaction name="actionBuscar_Registros"/>
     <addaction name="actionBorrar_Registros"/>
-    <addaction name="actionListar_Registros"/>
    </widget>
    <widget class="QMenu" name="menuCampos">
     <property name="title">
