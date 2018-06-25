@@ -1374,7 +1374,10 @@ release/addfieldwindow.o: addfieldwindow.cpp addfieldwindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtCore/QStringList
+		C:/Qt/5.10.1/mingw53_32/include/QtCore/QStringList \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QMessageBox \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\addfieldwindow.o addfieldwindow.cpp
 
 release/listfieldswindow.o: listfieldswindow.cpp listfieldswindow.h \

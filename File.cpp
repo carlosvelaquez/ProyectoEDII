@@ -8,12 +8,13 @@ void File::calculateSizes(){
 
   for (int i = 1; i <= fields.size; i++) {
     //Suma los tamaños de todos los campos
-    recordSize += size_t(fields[i].getSize());
+    recordSize += fields[i].getSize();
   }
 
   /*Suma la cantidad de campos, ya que la cantidad de comas más un salto de línea
   equivalen a la cantidad de campos que hay.*/
   recordSize += fields.size;
+  recordSize ++;
   qDebug() << "Record size: " << recordSize;
 
 
@@ -28,6 +29,7 @@ void File::calculateSizes(){
 }
 
 int File::position(int index){
+  index --;
   return (recordSize*index) + metaSize;
 }
 
@@ -416,18 +418,6 @@ bool File::flush(){
     file.clear();
 
     if (file) {
-      qDebug() << "Printing recordBuffer...";
-      for (int i = 1; i <= recordBuffer.size; i++) {
-        string imp = "|";
-
-        for (int j = 1; j <= recordBuffer[1].size; j++) {
-          imp += recordBuffer[i][j];
-          imp += " |";
-        }
-
-        qDebug() << imp.c_str();
-      }
-
       qDebug() << "Fields: " << fields.size;
       qDebug() << "RecordBuffer Size: " << recordBuffer[1].size;
       for (int i = 1; i <= recordBuffer.size; i++) {
@@ -448,13 +438,13 @@ bool File::flush(){
           qDebug() << "Raw out: " << out.c_str();
 
           //Añadir espacios vacíos si el string es más corto que el campo
-          while (out.length() < size_t(fields[j].getSize())) {
+          while (int(out.length()) < fields[j].getSize()) {
             out += " ";
           }
 
           //Cortar el string si es muy largo para el campo
-          if (out.length() > size_t(fields[j].getSize())) {
-            out = out.substr(0, size_t(fields[j].getSize()) - 1);
+          if (int(out.length()) > fields[j].getSize()) {
+            out = out.substr(0, fields[j].getSize());
           }
 
           //Escribir el string procesado al archivo

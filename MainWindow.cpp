@@ -99,6 +99,10 @@ void MainWindow::loadFile(){
 
     qDebug() << "Refreshing table...";
     refreshTable();
+
+    file.deleteRecord(5);
+    qDebug() << "Refreshing table...";
+    refreshTable();
 }
 
 void MainWindow::refreshTable(){
@@ -116,7 +120,11 @@ void MainWindow::refreshTable(){
 
   for (int i = 1; i <= records.size; i++) {
     for (int j = 1; j <= fields.size; j++) {
-      ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i][j].c_str()));
+      if (records[i][1][0] == '*') {
+        ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("-----"));
+      }else{
+        ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i][j].c_str()));
+      }
     }
   }
 }
