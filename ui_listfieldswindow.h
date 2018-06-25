@@ -13,9 +13,11 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QTableWidget>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,31 +25,49 @@ QT_BEGIN_NAMESPACE
 class Ui_listfieldswindow
 {
 public:
-    QTableWidget *tableWidget;
+    QVBoxLayout *verticalLayout_2;
+    QFrame *frame;
+    QVBoxLayout *verticalLayout;
     QLabel *label;
+    QTableWidget *tableWidget;
 
     void setupUi(QWidget *listfieldswindow)
     {
         if (listfieldswindow->objectName().isEmpty())
             listfieldswindow->setObjectName(QStringLiteral("listfieldswindow"));
-        listfieldswindow->resize(716, 411);
+        listfieldswindow->resize(729, 466);
         listfieldswindow->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        tableWidget = new QTableWidget(listfieldswindow);
-        if (tableWidget->columnCount() < 4)
-            tableWidget->setColumnCount(4);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(15, 71, 691, 331));
-        tableWidget->setDragDropOverwriteMode(false);
-        tableWidget->setColumnCount(4);
-        tableWidget->horizontalHeader()->setDefaultSectionSize(170);
-        label = new QLabel(listfieldswindow);
+        verticalLayout_2 = new QVBoxLayout(listfieldswindow);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        frame = new QFrame(listfieldswindow);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        verticalLayout = new QVBoxLayout(frame);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        label = new QLabel(frame);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(23, 26, 241, 41));
         QFont font;
         font.setPointSize(20);
         font.setBold(true);
         font.setWeight(75);
         label->setFont(font);
+
+        verticalLayout->addWidget(label);
+
+        tableWidget = new QTableWidget(frame);
+        if (tableWidget->columnCount() < 4)
+            tableWidget->setColumnCount(4);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        tableWidget->setDragDropOverwriteMode(false);
+        tableWidget->setColumnCount(4);
+        tableWidget->horizontalHeader()->setDefaultSectionSize(170);
+
+        verticalLayout->addWidget(tableWidget);
+
+
+        verticalLayout_2->addWidget(frame);
+
 
         retranslateUi(listfieldswindow);
 

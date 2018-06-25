@@ -185,7 +185,7 @@ bool File::writeFields(){ //Escribir los campos al meta
       out += ",";
       out += fields[i].getName();
       out += ",";
-      out += to_string(size_t(fields[i].getSize()));
+      out += to_string(fields[i].getSize());
 
       if (i != fields.size) { //No añade un '|' después del último registro
       out += "|";
@@ -196,7 +196,7 @@ bool File::writeFields(){ //Escribir los campos al meta
   out += "\n"; //Agregar un salto de línea
 
   //Moverse a la posición 8 (el AvailList abarca 7 bytes) y escribir
-  file.seekp(8);
+  file.seekp(9);
   file.write(out.c_str(), out.length());
   file.flush();
 
@@ -327,7 +327,7 @@ bool File::addField(int type, string name, int size){
 }
 
 bool File::addRecord(List<string> nRecord){
-  return recordBuffer.insert(nRecord.clone());
+  return recordBuffer.insert(nRecord);
 }
 
 bool File::hasPrimaryKey(){
@@ -389,13 +389,13 @@ bool File::replaceRecord(int posicion, List<string> nRecord){
       string out = nRecord[i]; //Recuperar el dato a escribir
 
       //Añadir espacios vacíos si el string es más corto que el campo
-      while (out.length() < size_t(fields[i].getSize())) {
+      while (out.length() < fields[i].getSize()) {
         out += " ";
       }
 
       //Cortar el string si es muy largo para el campo
-      if (out.length() > size_t(fields[i].getSize())) {
-        out = out.substr(0, size_t(fields[i].getSize()) - 1);
+      if (out.length() > fields[i].getSize()) {
+        out = out.substr(0, fields[i].getSize() - 1);
       }
 
       //Escribir el string procesado al archivo
@@ -432,8 +432,6 @@ bool File::flush(){
         }
 
         for (int j = 1; j <= fields.size; j++) {
-          qDebug() << "Flushing... | j = " << j;
-
           string out = recordBuffer[i][j]; //Recuperar el dato a escribir
           qDebug() << "Raw out: " << out.c_str();
 
@@ -589,7 +587,6 @@ int File::recordQuantity(){
   if (locked) {
     return (filesize() - metaSize)/recordSize;
   }
-
   return -1;
 }
 

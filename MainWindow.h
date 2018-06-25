@@ -8,17 +8,23 @@ class MainWindow : public QMainWindow{
 private:
   Ui::MainWindow ui;
   File file;
+  int long page = 0;
 
 private slots:
   void loadFile();
+  void closeFile();
+  void saveFile();
 
-  void addFields();
   void addRecord();
-
   void deleteRecords();
-  void deleteFields();
 
   void listfields();
+  void deleteFields();
+  void addFields();
+
+  void nextPage();
+  void previousPage();
+  void gotoPage(long);
 
 public:
   MainWindow(QWidget* parent = 0);

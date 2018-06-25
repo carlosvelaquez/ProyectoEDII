@@ -38,6 +38,8 @@ void addfieldwindow::on_pushButton_addfield_clicked()
         }else{
             QMessageBox msgBox;
             msgBox.setText("Ya existe una llave primaria");
+            msgBox.setStandardButtons(QMessageBox::Cancel);
+            msgBox.setDefaultButton(QMessageBox::Cancel);
             msgBox.exec();
         }
     }

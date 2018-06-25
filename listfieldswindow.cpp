@@ -1,12 +1,14 @@
 #include "listfieldswindow.h"
 #include "ui_listfieldswindow.h"
-
+#include <QHeaderView>
 
 listfieldswindow::listfieldswindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::listfieldswindow)
 {
     ui->setupUi(this);
+    QHeaderView* header = ui->tableWidget->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 listfieldswindow::~listfieldswindow()

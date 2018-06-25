@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[8];
-    char stringdata0[79];
+    QByteArrayData data[13];
+    char stringdata0[129];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,15 +32,22 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 8), // "loadFile"
 QT_MOC_LITERAL(2, 20, 0), // ""
-QT_MOC_LITERAL(3, 21, 9), // "addFields"
-QT_MOC_LITERAL(4, 31, 9), // "addRecord"
-QT_MOC_LITERAL(5, 41, 13), // "deleteRecords"
-QT_MOC_LITERAL(6, 55, 12), // "deleteFields"
-QT_MOC_LITERAL(7, 68, 10) // "listfields"
+QT_MOC_LITERAL(3, 21, 9), // "closeFile"
+QT_MOC_LITERAL(4, 31, 8), // "saveFile"
+QT_MOC_LITERAL(5, 40, 9), // "addRecord"
+QT_MOC_LITERAL(6, 50, 13), // "deleteRecords"
+QT_MOC_LITERAL(7, 64, 10), // "listfields"
+QT_MOC_LITERAL(8, 75, 12), // "deleteFields"
+QT_MOC_LITERAL(9, 88, 9), // "addFields"
+QT_MOC_LITERAL(10, 98, 8), // "nextPage"
+QT_MOC_LITERAL(11, 107, 12), // "previousPage"
+QT_MOC_LITERAL(12, 120, 8) // "gotoPage"
 
     },
-    "MainWindow\0loadFile\0\0addFields\0addRecord\0"
-    "deleteRecords\0deleteFields\0listfields"
+    "MainWindow\0loadFile\0\0closeFile\0saveFile\0"
+    "addRecord\0deleteRecords\0listfields\0"
+    "deleteFields\0addFields\0nextPage\0"
+    "previousPage\0gotoPage"
 };
 #undef QT_MOC_LITERAL
 
@@ -50,7 +57,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -58,12 +65,17 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   44,    2, 0x08 /* Private */,
-       3,    0,   45,    2, 0x08 /* Private */,
-       4,    0,   46,    2, 0x08 /* Private */,
-       5,    0,   47,    2, 0x08 /* Private */,
-       6,    0,   48,    2, 0x08 /* Private */,
-       7,    0,   49,    2, 0x08 /* Private */,
+       1,    0,   69,    2, 0x08 /* Private */,
+       3,    0,   70,    2, 0x08 /* Private */,
+       4,    0,   71,    2, 0x08 /* Private */,
+       5,    0,   72,    2, 0x08 /* Private */,
+       6,    0,   73,    2, 0x08 /* Private */,
+       7,    0,   74,    2, 0x08 /* Private */,
+       8,    0,   75,    2, 0x08 /* Private */,
+       9,    0,   76,    2, 0x08 /* Private */,
+      10,    0,   77,    2, 0x08 /* Private */,
+      11,    0,   78,    2, 0x08 /* Private */,
+      12,    1,   79,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -72,6 +84,11 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Long,    2,
 
        0        // eod
 };
@@ -83,15 +100,19 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->loadFile(); break;
-        case 1: _t->addFields(); break;
-        case 2: _t->addRecord(); break;
-        case 3: _t->deleteRecords(); break;
-        case 4: _t->deleteFields(); break;
+        case 1: _t->closeFile(); break;
+        case 2: _t->saveFile(); break;
+        case 3: _t->addRecord(); break;
+        case 4: _t->deleteRecords(); break;
         case 5: _t->listfields(); break;
+        case 6: _t->deleteFields(); break;
+        case 7: _t->addFields(); break;
+        case 8: _t->nextPage(); break;
+        case 9: _t->previousPage(); break;
+        case 10: _t->gotoPage((*reinterpret_cast< long(*)>(_a[1]))); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -119,13 +140,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 11;
     }
     return _id;
 }

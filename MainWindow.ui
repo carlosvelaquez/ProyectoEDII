@@ -6,52 +6,99 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>843</width>
-    <height>465</height>
+    <width>837</width>
+    <height>513</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>File Manager</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>61</y>
-      <width>621</width>
+      <x>560</x>
+      <y>440</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton_atras">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_adelante">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>440</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="pushButton_adelante_2">
+       <property name="text">
+        <string>Ir a Pag.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinBox"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>60</y>
+      <width>181</width>
       <height>371</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>161</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>File Manager</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
       <x>650</x>
-      <y>6</y>
+      <y>10</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -67,12 +114,32 @@
      <string>Avail List</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>30</x>
+      <y>10</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>19</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>File Manager</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
       <y>60</y>
-      <width>181</width>
+      <width>621</width>
       <height>371</height>
      </rect>
     </property>
@@ -83,7 +150,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>843</width>
+     <width>837</width>
      <height>22</height>
     </rect>
    </property>
@@ -105,7 +172,6 @@
     <addaction name="actionModificar_Registros"/>
     <addaction name="actionBuscar_Registros"/>
     <addaction name="actionBorrar_Registros"/>
-    <addaction name="actionListar_Registros"/>
    </widget>
    <widget class="QMenu" name="menuCampos">
     <property name="title">
