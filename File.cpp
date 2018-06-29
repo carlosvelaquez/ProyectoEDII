@@ -14,6 +14,7 @@ void File::calculateSizes(){
   /*Suma la cantidad de campos, ya que la cantidad de comas más un salto de línea
   equivalen a la cantidad de campos que hay.*/
   recordSize += fields.size;
+  recordSize ++;
   qDebug() << "Record size: " << recordSize;
 
 
@@ -28,6 +29,7 @@ void File::calculateSizes(){
 }
 
 int File::position(int index){
+  index --;
   return (recordSize*index) + metaSize;
 }
 
@@ -387,12 +389,12 @@ bool File::replaceRecord(int posicion, List<string> nRecord){
       string out = nRecord[i]; //Recuperar el dato a escribir
 
       //Añadir espacios vacíos si el string es más corto que el campo
-      while (out.length() < fields[i].getSize()) {
+      while (int(out.length()) < fields[i].getSize()) {
         out += " ";
       }
 
       //Cortar el string si es muy largo para el campo
-      if (out.length() > fields[i].getSize()) {
+      if (int(out.length()) > fields[i].getSize()) {
         out = out.substr(0, fields[i].getSize() - 1);
       }
 
@@ -416,7 +418,10 @@ bool File::flush(){
     file.clear();
 
     if (file) {
+      qDebug() << "Fields: " << fields.size;
+      qDebug() << "RecordBuffer Size: " << recordBuffer[1].size;
       for (int i = 1; i <= recordBuffer.size; i++) {
+        qDebug() << "Flushing... | i = " << i;
 
         //Determinar en qué posición irá el siguiente registro
         if (!availList.isEmpty()) {
@@ -431,13 +436,13 @@ bool File::flush(){
           qDebug() << "Raw out: " << out.c_str();
 
           //Añadir espacios vacíos si el string es más corto que el campo
-          while (out.length() < fields[j].getSize()) {
+          while (int(out.length()) < fields[j].getSize()) {
             out += " ";
           }
 
           //Cortar el string si es muy largo para el campo
-          if (out.length() > fields[j].getSize()) {
-            out = out.substr(0, fields[j].getSize() - 1);
+          if (int(out.length()) > fields[j].getSize()) {
+            out = out.substr(0, fields[j].getSize());
           }
 
           //Escribir el string procesado al archivo

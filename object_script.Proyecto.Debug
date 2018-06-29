@@ -6,8 +6,10 @@ INPUT(
 ./debug\addrecordwindow.o
 ./debug\addfieldwindow.o
 ./debug\listfieldswindow.o
+./debug\deletefieldwindow.o
 ./debug\moc_MainWindow.o
 ./debug\moc_addrecordwindow.o
 ./debug\moc_addfieldwindow.o
 ./debug\moc_listfieldswindow.o
+./debug\moc_deletefieldwindow.o
 );
