@@ -113,13 +113,15 @@ void File::setPath(string nPath){
 }
 
 bool File::open(){
+  bool exists;
   ifstream infile(path);
 
   if (!infile.good()) {
     ofstream outfile(path);
     outfile.close();
+    exists = false;
   }else{
-    readMeta();
+    exists = true;
   }
 
   infile.close();
@@ -128,6 +130,10 @@ bool File::open(){
   file.open(path, fstream::out | fstream::in);
 
   if (file) {
+    if (exists) {
+      readMeta();
+    }
+
     return true;
   }
 
@@ -217,7 +223,7 @@ return false;
 
 //Lectura de Metadatos
 bool File::readMeta(){
-  if (readAvailList() && readFields()) {
+  if (readFields() && readAvailList()) {
     return true;
   }
 
@@ -228,13 +234,22 @@ bool File::readAvailList(){
   file.clear();
 
   if(file){
+    file.seekg(0, ios::beg);
+    file.ignore(3);
+
     string in = "";
-    getline(file, in);
+    for (size_t i = 0; i < 7; i++) {
+      in += char(file.get());
+    }
+
+    qDebug() << "Raw AvailList: " << in.c_str();
+
 
     //Eliminar los asteriscos del string
-    for (int i = 0; i < in.length(); i++) {
+    for (size_t i = 0; i < in.length(); i++) {
+      qDebug() << in[i];
       if (in[i] == '*') {
-        in = in.substr(0, i-1);
+        in = in.substr(0, i);
         break;
       }
     }
