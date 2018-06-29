@@ -75,7 +75,7 @@ static const uint qt_meta_data_MainWindow[] = {
        9,    0,   76,    2, 0x08 /* Private */,
       10,    0,   77,    2, 0x08 /* Private */,
       11,    0,   78,    2, 0x08 /* Private */,
-      12,    1,   79,    2, 0x08 /* Private */,
+      12,    0,   79,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -88,7 +88,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Long,    2,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -109,10 +109,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 7: _t->addFields(); break;
         case 8: _t->nextPage(); break;
         case 9: _t->previousPage(); break;
-        case 10: _t->gotoPage((*reinterpret_cast< long(*)>(_a[1]))); break;
+        case 10: _t->gotoPage(); break;
         default: ;
         }
     }
+    Q_UNUSED(_a);
 }
 
 const QMetaObject MainWindow::staticMetaObject = {
