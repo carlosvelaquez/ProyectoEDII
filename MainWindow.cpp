@@ -14,8 +14,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.tableWidget->setEnabled(false);
   // Cargar archivo
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(loadFile()));
+
   // Cerrar archivo
-  connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(closeFile()));
+  //connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(closeFile()));
 
 
   // Añadir campos
@@ -27,6 +28,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   // Añadir registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
+  connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(refresh()));
 
   //Mover entre páginas
   connect(ui.pushButton_adelante, SIGNAL(clicked()), this, SLOT(nextPage()));
@@ -85,9 +87,9 @@ void MainWindow::closeFile(){
 }
 
 void MainWindow::saveFile(){
-  QString path = QFileDialog::getSaveFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
-  file.open(path.toStdString());
-  ui.label_ruta->setText(path);
+  //QString path = QFileDialog::getSaveFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
+  //file.open(path.toStdString());
+  //ui.label_ruta->setText(path);
 
   file.flush();
 }
@@ -154,39 +156,52 @@ refreshTable();
 
 
 void MainWindow::refreshTable(){
+  qDebug() << "Refreshing table...";
+
   ui.tableWidget->setColumnCount(file.fieldQuantity()); //Añade la cantidad de columnas de acuerdo a la cantidad de campos
   ui.tableWidget->setRowCount(10);// Cantidad de records de cada bloque
 
+  qDebug() << "Fields in File:";
   List<Field> fields = file.getFields();
-  List<List<string>> records = file.data();
 
-  qDebug() << "First: " << records[1][1].c_str();
-  qDebug() << "Last: " << records[1][5].c_str();
+  for (int i = 1; i <= fields.size; i++) {
+    qDebug() << fields[i].getName().c_str();;
+  }
 
   for (int i = 1; i <= fields.size; i++) {
     ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));
   }
 
-  qDebug()<< "Records en File: " << file.recordQuantity();
+  List<List<string>> records = file.data();
+
+  if (records.size > 0) {
+    qDebug() << "First: " << records[1][1].c_str();
+    qDebug() << "Last: " << records[1][5].c_str();
+
+    qDebug() << "Records en File: " << file.recordQuantity();
 
 
-  for (int i = 1; i <= records.size; i++) { // Se supone que hay 100 records... Usar file.recordQuantity();
-    for (int j = 1; j <= fields.size; j++) {
-      if (records[i][1][0] == '*') {
-        ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("-----"));
-      }else{
-        ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i][j].c_str()));
+    for (int i = 1; i <= records.size; i++) { // Se supone que hay 100 records... Usar file.recordQuantity();
+      for (int j = 1; j <= fields.size; j++) {
+        if (records[i][1][0] == '*') {
+          ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("-----"));
+        }else{
+          ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i][j].c_str()));
+        }
       }
     }
+
+    QString pag = "";
+    pag += to_string(file.getCurrentBlock()).c_str();
+    pag += " de ";
+    pag += to_string(file.blockQuantity()).c_str();
+    ui.label_pagina->setText(pag);
+
+    ui.spinBox->setValue(file.getCurrentBlock());
+  }else{
+    qDebug() << "No records in data()";
+    ui.tableWidget->setItem(0, 0, new QTableWidgetItem("No hay datos"));
   }
-
-  QString pag = "";
-  pag += to_string(file.getCurrentBlock()).c_str();
-  pag += " de ";
-  pag += to_string(file.blockQuantity()).c_str();
-  ui.label_pagina->setText(pag);
-
-  ui.spinBox->setValue(file.getCurrentBlock());
 }
 
 
@@ -210,5 +225,9 @@ void MainWindow::gotoPage(){
   if (file.seek(ui.spinBox->value())) {
     refreshTable();
   }
+}
+
+void MainWindow::refresh(){
+  refreshTable();
 }
 /*##########################################*/

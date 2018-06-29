@@ -463,7 +463,9 @@ addrecordwindow.o: addrecordwindow.cpp addrecordwindow.h \
 		File.h \
 		List.h \
 		Field.h \
-		ui_addrecordwindow.h
+		ui_addrecordwindow.h \
+		MainWindow.h \
+		ui_MainWindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addrecordwindow.o addrecordwindow.cpp
 
 addfieldwindow.o: addfieldwindow.cpp addfieldwindow.h \

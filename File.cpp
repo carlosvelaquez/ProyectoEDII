@@ -101,11 +101,14 @@ List<Field> File::getFields(){
 //Funciones de Archivo
 
 void File::lock(){
+  qDebug() << "Attempting to lock file";
   locked = true;
 
   //Escribir meta al archivo y calcular los tamaños
   writeMeta();
   calculateSizes();
+
+  qDebug() << "File locked successfully";
 }
 
 void File::setPath(string nPath){
@@ -134,9 +137,11 @@ bool File::open(){
       readMeta();
     }
 
+    qDebug() << "File opened successfully";
     return true;
   }
 
+  qDebug() << "Error opening file";
   return false;
 }
 
@@ -154,9 +159,11 @@ void File::close(){
 
 bool File::writeMeta(){
   if (writeAvailList() && writeFields()) {
+    qDebug() << "Meta written successfully";
     return true;
   }
 
+  qDebug() << "Error at writing meta";
   return false;
 }
 
@@ -189,6 +196,7 @@ bool File::writeFields(){ //Escribir los campos al meta
   file.clear();
 
   if (file) {
+    qDebug() << "Writing fields...";
     string out = "";
 
     /* Estructura del string de los campos:
@@ -210,13 +218,15 @@ bool File::writeFields(){ //Escribir los campos al meta
   out += "\n"; //Agregar un salto de línea
 
   //Moverse a la posición 8 (el AvailList abarca 7 bytes) y escribir
-  file.seekp(9);
+  file.seekp(8);
   file.write(out.c_str(), out.length());
   file.flush();
 
+  qDebug() << "Fields written successfully";
   return true;
 }
 
+qDebug() << "Error at writing fields";
 return false;
 }
 
@@ -224,9 +234,11 @@ return false;
 //Lectura de Metadatos
 bool File::readMeta(){
   if (readFields() && readAvailList()) {
+    qDebug() << "Meta read successfully";
     return true;
   }
 
+  qDebug() << "Error reading meta";
   return false;
 }
 
@@ -235,7 +247,7 @@ bool File::readAvailList(){
 
   if(file){
     file.seekg(0, ios::beg);
-    file.ignore(3);
+    //file.ignore(3);
 
     string in = "";
     for (size_t i = 0; i < 7; i++) {
@@ -276,7 +288,7 @@ bool File::readFields(){
 
     file.seekg(8);
     getline(file, line);
-    qDebug() << "Field line: " << line.c_str();
+    qDebug() << "Fields line: " << line.c_str();
 
     stringstream pipeStream(line);
     fields.clear();
