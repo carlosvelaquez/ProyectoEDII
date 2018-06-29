@@ -12,7 +12,6 @@ addRecordWindow::addRecordWindow(QWidget *parent) :
     ui->setupUi(this);
     QHeaderView* header = ui->tableWidget->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
-
 }
 
 addRecordWindow::~addRecordWindow()

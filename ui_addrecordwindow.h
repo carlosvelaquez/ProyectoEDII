@@ -32,7 +32,7 @@ public:
     {
         if (addRecordWindow->objectName().isEmpty())
             addRecordWindow->setObjectName(QStringLiteral("addRecordWindow"));
-        addRecordWindow->resize(630, 405);
+        addRecordWindow->resize(730, 430);
         verticalLayout = new QVBoxLayout(addRecordWindow);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         tableWidget = new QTableWidget(addRecordWindow);

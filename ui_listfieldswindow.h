@@ -35,7 +35,7 @@ public:
     {
         if (listfieldswindow->objectName().isEmpty())
             listfieldswindow->setObjectName(QStringLiteral("listfieldswindow"));
-        listfieldswindow->resize(729, 466);
+        listfieldswindow->resize(730, 430);
         listfieldswindow->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         verticalLayout_2 = new QVBoxLayout(listfieldswindow);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
