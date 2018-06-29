@@ -1,5 +1,6 @@
 #include "addrecordwindow.h"
 #include "ui_addrecordwindow.h"
+#include "MainWindow.h"
 
 #include "List.h"
 #include "Field.h"
@@ -92,6 +93,9 @@ void addRecordWindow::on_pushButton_send_clicked()
             qDebug()<<"Value: "<<i<<": "<<value;
             values.insert(value.toStdString());
         }
+
+        file->addRecord(values);
+        //dynamic_cast<MainWindow*>(parent)->refreshTable();
     }
     //
 }

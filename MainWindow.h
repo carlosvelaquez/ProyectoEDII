@@ -26,6 +26,8 @@ private slots:
   void previousPage();
   void gotoPage();
 
+  void refresh();
+
 public:
   MainWindow(QWidget* parent = 0);
   void refreshTable();
