@@ -24,7 +24,7 @@ private slots:
 
   void nextPage();
   void previousPage();
-  void gotoPage(long);
+  void gotoPage();
 
 public:
   MainWindow(QWidget* parent = 0);

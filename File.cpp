@@ -113,8 +113,16 @@ void File::setPath(string nPath){
 }
 
 bool File::open(){
-  ofstream outfile(path);
-  outfile.close();
+  ifstream infile(path);
+
+  if (!infile.good()) {
+    ofstream outfile(path);
+    outfile.close();
+  }else{
+    readMeta();
+  }
+
+  infile.close();
 
   file.close();
   file.open(path, fstream::out | fstream::in);
@@ -224,7 +232,7 @@ bool File::readAvailList(){
     getline(file, in);
 
     //Eliminar los asteriscos del string
-    for (size_t i = 0; i < in.length(); i++) {
+    for (int i = 0; i < in.length(); i++) {
       if (in[i] == '*') {
         in = in.substr(0, i-1);
         break;
@@ -233,6 +241,9 @@ bool File::readAvailList(){
 
     //Construir el AvailList
     availList.clear();
+
+    qDebug() << "Starting build with: " << in.c_str();
+
     buildAvailList(stoi(in));
 
     return true;
@@ -261,6 +272,7 @@ bool File::readFields(){
       getline(commaStream, type, ',');
       getline(commaStream, name, ',');
       getline(commaStream, size, ',');
+      qDebug() << "Adding field: " << type.c_str() << ", " << name.c_str() << ", " << size.c_str();
 
       fields.insert(Field(stoi(type), name, stoi(size)));
     }
@@ -289,6 +301,8 @@ bool File::buildAvailList(int pos){
           break;
         }
       }
+
+      qDebug() << in.c_str();
 
       return buildAvailList(stoi(in));
 
@@ -480,6 +494,17 @@ bool File::seek(int block){
 
   if (file) {
     qDebug() << "File opened succesfully.";
+
+    if (block > blockQuantity()) {
+      qDebug() << "Seeking block beyond blockQuantity. Aborting...";
+      return false;
+    }
+
+    if (block < 1) {
+      qDebug() << "Seeking block <= 0. Aborting...";
+      return false;
+    }
+
     long seekPos = metaSize + (block-1)*blockSize*recordSize;
     qDebug() << "Seek position: " << seekPos;
 
@@ -513,6 +538,7 @@ bool File::seek(int block){
     }
 
     qDebug() << "Block read successfully";
+    currentBlock = block;
     return true;
   }
 
@@ -527,12 +553,23 @@ bool File::next(){
     currentBlock ++;
   }
 
-  return seek(currentBlock);
+  if (seek(currentBlock)) {
+    return true;
+  }else{
+    currentBlock--;
+    return false;
+  }
 }
 
 bool File::previous(){
   currentBlock --;
-  return seek(currentBlock);
+
+  if (seek(currentBlock)){
+    return true;
+  }else{
+    currentBlock++;
+    return false;
+  }
 }
 
 bool File::seekFirst(){
@@ -604,6 +641,10 @@ int File::getRecordSize(){
 
 int File::getMetaSize(){
   return metaSize;
+}
+
+int File::getCurrentBlock(){
+  return currentBlock;
 }
 
 bool File::isLocked(){

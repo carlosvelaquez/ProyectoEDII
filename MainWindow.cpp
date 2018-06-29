@@ -1,7 +1,5 @@
 #include "MainWindow.h"
 #include "qfiledialog.h"
-
-
 #include "addrecordwindow.h"
 #include "addfieldwindow.h"
 #include "listfieldswindow.h"
@@ -30,7 +28,10 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   // Añadir registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
 
-
+  //Mover entre páginas
+  connect(ui.pushButton_adelante, SIGNAL(clicked()), this, SLOT(nextPage()));
+  connect(ui.pushButton_atras, SIGNAL(clicked()), this, SLOT(previousPage()));
+  connect(ui.pushButton_adelante_2, SIGNAL(clicked()), this, SLOT(gotoPage()));
 
 }
 
@@ -80,63 +81,74 @@ File* MainWindow::getFile(){
 
 /*##########################################*/
 void MainWindow::closeFile(){
-
+  close();
 }
 
 void MainWindow::saveFile(){
+  QString path = QFileDialog::getSaveFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
+  file.open(path.toStdString());
+  ui.label_ruta->setText(path);
 
+  file.flush();
 }
 
 void MainWindow::loadFile(){
-    QString path = QFileDialog::getSaveFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
+    QString path = QFileDialog::getOpenFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
     file.open(path.toStdString());
-
-    //file.setPath("lel.txt");
-
-    file.addField(0, "Indice", 5, false);
-    file.addField(2, "Nombre", 20, false);
-    file.addField(0, "Edad", 5, false);
-    file.addField(1, "Sexo", 10, false);
-    file.addField(2, "Dirección", 50, false);
     file.lock();
-    qDebug() << "File locked";
+    ui.label_ruta->setText(path);
 
-    List<string> data;
-
-    for (int j = 1; j <= 100; j++) {
-      qDebug() << "Adding record " << j << "...";
-
-      for (int i = 1; i <= file.fieldQuantity(); i++) {
-        string ins = "";
-        ins += "Data [";
-        ins += to_string(j);
-        ins += "][";
-        ins += to_string(i);
-        ins += "]";
-        data.insert(ins);
-      }
-
-      qDebug() << "File addRecord: " << file.addRecord(data.clone());
-      qDebug() << "Record Buffer size: "<<file.data().size;
-      data.clear();
-
-      if (j%10 == 0) {
-        qDebug() << "j = " << j << ", flushing...";
-        file.flush();
-      }
-    }
-
-    file.seek(1);
-    qDebug()<<"Total Buffer Record Size: "<<file.data().size;
-    qDebug() << "Refreshing table...";
-
-    refreshTable();
-
-    file.deleteRecord(5);
-    qDebug() << "Refreshing table...";
     refreshTable();
 }
 /*##########################################*/
+
+/*Test:
+
+//file.setPath("lel.txt");
+
+file.addField(0, "Indice", 5, false);
+file.addField(2, "Nombre", 20, false);
+file.addField(0, "Edad", 5, false);
+file.addField(1, "Sexo", 10, false);
+file.addField(2, "Dirección", 50, false);
+file.lock();
+qDebug() << "File locked";
+
+List<string> data;
+
+for (int j = 1; j <= 100; j++) {
+  qDebug() << "Adding record " << j << "...";
+
+  for (int i = 1; i <= file.fieldQuantity(); i++) {
+    string ins = "";
+    ins += "Data [";
+    ins += to_string(j);
+    ins += "][";
+    ins += to_string(i);
+    ins += "]";
+    data.insert(ins);
+  }
+
+  qDebug() << "File addRecord: " << file.addRecord(data.clone());
+  qDebug() << "Record Buffer size: "<<file.data().size;
+  data.clear();
+
+  if (j%10 == 0) {
+    qDebug() << "j = " << j << ", flushing...";
+    file.flush();
+  }
+}
+
+file.seek(1);
+qDebug()<<"Total Buffer Record Size: "<<file.data().size;
+qDebug() << "Refreshing table...";
+
+refreshTable();
+
+file.deleteRecord(5);
+qDebug() << "Refreshing table...";
+refreshTable();
+*/
 
 
 
@@ -155,7 +167,7 @@ void MainWindow::refreshTable(){
     ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));
   }
 
-  qDebug()<< "Puto el que lo lea: " << file.recordQuantity();
+  qDebug()<< "Records en File: " << file.recordQuantity();
 
 
   for (int i = 1; i <= records.size; i++) { // Se supone que hay 100 records... Usar file.recordQuantity();
@@ -167,27 +179,36 @@ void MainWindow::refreshTable(){
       }
     }
   }
+
+  QString pag = "";
+  pag += to_string(file.getCurrentBlock()).c_str();
+  pag += " de ";
+  pag += to_string(file.blockQuantity()).c_str();
+  ui.label_pagina->setText(pag);
+
+  ui.spinBox->setValue(file.getCurrentBlock());
 }
 
 
 
 /*##########################################*/
 void MainWindow::nextPage(){
+  qDebug() << "Pressed Next";
     if(file.next()){
         refreshTable();
     }
 }
 
 void MainWindow::previousPage(){
+  qDebug() << "Pressed Previous";
     if(file.previous()){
         refreshTable();
     }
 }
 
-void MainWindow::gotoPage(long page){
-    if(page > 0 && page <= file.blockQuantity()){
-        file.seek(page);
-        refreshTable();
-    }
+void MainWindow::gotoPage(){
+  if (file.seek(ui.spinBox->value())) {
+    refreshTable();
+  }
 }
 /*##########################################*/

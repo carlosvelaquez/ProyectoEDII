@@ -101,6 +101,7 @@ public:
   int blockQuantity(); //Cantidad de bloques en el archivo
   int getRecordSize(); //Retorna recordSize
   int getMetaSize(); //Retorna metaSize
+  int getCurrentBlock(); //Retorna el bloque actual
 
   bool isLocked(); //Retorna locked
 

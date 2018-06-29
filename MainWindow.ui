@@ -6,25 +6,44 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>837</width>
-    <height>513</height>
+    <width>641</width>
+    <height>512</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>File Manager</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true">QWidget{
+	background-color: #F5F5F5;
+}
+
+
+QPushButton{
+	background-color: #3F51B5;
+	color: white;
+	border-radius: 5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #3F51B5;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>290</x>
       <y>440</y>
-      <width>141</width>
+      <width>171</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+	border: 1px solid #E0E0E0;
+	border-radius: 5px;
+	background-color: white;
+}</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -36,21 +55,29 @@
      <item>
       <widget class="QPushButton" name="pushButton_atras">
        <property name="text">
-        <string/>
+        <string>&lt;&lt;</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="label_pagina">
+       <property name="styleSheet">
+        <string notr="true">QFrame{
+	border: 0px;
+}</string>
+       </property>
        <property name="text">
-        <string/>
+        <string>x de x</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_adelante">
        <property name="text">
-        <string/>
+        <string>&gt;&gt;</string>
        </property>
       </widget>
      </item>
@@ -59,11 +86,18 @@
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>470</x>
       <y>440</y>
-      <width>121</width>
+      <width>161</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+	border: 1px solid #E0E0E0;
+	border-radius: 5px;
+	background-color: white;
+}</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -75,7 +109,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_adelante_2">
        <property name="text">
-        <string>Ir a Pag.</string>
+        <string>Ir a Página</string>
        </property>
       </widget>
      </item>
@@ -84,65 +118,118 @@
      </item>
     </layout>
    </widget>
-   <widget class="QListWidget" name="listWidget">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>60</y>
-      <width>181</width>
-      <height>371</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>10</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Avail List</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>161</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>19</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>File Manager</string>
-    </property>
-   </widget>
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
+      <y>80</y>
       <width>621</width>
-      <height>371</height>
+      <height>351</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+	border: 1px solid #E0E0E0;
+	border-radius: 5px;
+	background-color: white;
+}
+
+color: black;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>641</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:#3F51B5;
+color: white;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>331</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Montserrat</family>
+       <pointsize>24</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>File Manager</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>440</y>
+      <width>261</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+	border: 1px solid #E0E0E0;
+	border-radius: 5px;
+	background-color: white;
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_ruta">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>5</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame{
+	border: 0px;
+}</string>
+     </property>
+     <property name="text">
+      <string>No se ha cargado un archivo.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -150,9 +237,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>837</width>
-     <height>22</height>
+     <width>641</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #283593;
+color: white;</string>
    </property>
    <widget class="QMenu" name="menuArchivo">
     <property name="title">

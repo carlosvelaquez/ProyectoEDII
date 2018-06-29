@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -17,7 +17,6 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -55,16 +54,17 @@ public:
     QFrame *frame;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_atras;
-    QLabel *label_3;
+    QLabel *label_pagina;
     QPushButton *pushButton_adelante;
     QFrame *frame_2;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton_adelante_2;
     QSpinBox *spinBox;
-    QListWidget *listWidget;
-    QLabel *label_2;
-    QLabel *label;
     QTableWidget *tableWidget;
+    QFrame *frame_3;
+    QLabel *label;
+    QFrame *frame_4;
+    QLabel *label_ruta;
     QMenuBar *menubar;
     QMenu *menuArchivo;
     QMenu *menuRegistros;
@@ -76,8 +76,20 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(837, 513);
-        MainWindow->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        MainWindow->resize(641, 512);
+        MainWindow->setStyleSheet(QLatin1String("QWidget{\n"
+"	background-color: #F5F5F5;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"	background-color: #3F51B5;\n"
+"	color: white;\n"
+"	border-radius: 5px;\n"
+"	border-width: 5px;\n"
+"	border-style: solid;\n"
+"	border-color: #3F51B5;\n"
+"}"));
         actionNuevo_Archivo = new QAction(MainWindow);
         actionNuevo_Archivo->setObjectName(QStringLiteral("actionNuevo_Archivo"));
         actionGuardar_Archivo = new QAction(MainWindow);
@@ -122,7 +134,12 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         frame = new QFrame(centralwidget);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(560, 440, 141, 41));
+        frame->setGeometry(QRect(290, 440, 171, 41));
+        frame->setStyleSheet(QLatin1String("QFrame{\n"
+"	border: 1px solid #E0E0E0;\n"
+"	border-radius: 5px;\n"
+"	background-color: white;\n"
+"}"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         horizontalLayout = new QHBoxLayout(frame);
@@ -132,10 +149,14 @@ public:
 
         horizontalLayout->addWidget(pushButton_atras);
 
-        label_3 = new QLabel(frame);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        label_pagina = new QLabel(frame);
+        label_pagina->setObjectName(QStringLiteral("label_pagina"));
+        label_pagina->setStyleSheet(QLatin1String("QFrame{\n"
+"	border: 0px;\n"
+"}"));
+        label_pagina->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout->addWidget(label_3);
+        horizontalLayout->addWidget(label_pagina);
 
         pushButton_adelante = new QPushButton(frame);
         pushButton_adelante->setObjectName(QStringLiteral("pushButton_adelante"));
@@ -144,7 +165,12 @@ public:
 
         frame_2 = new QFrame(centralwidget);
         frame_2->setObjectName(QStringLiteral("frame_2"));
-        frame_2->setGeometry(QRect(710, 440, 121, 41));
+        frame_2->setGeometry(QRect(470, 440, 161, 41));
+        frame_2->setStyleSheet(QLatin1String("QFrame{\n"
+"	border: 1px solid #E0E0E0;\n"
+"	border-radius: 5px;\n"
+"	background-color: white;\n"
+"}"));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
         horizontalLayout_2 = new QHBoxLayout(frame_2);
@@ -159,32 +185,58 @@ public:
 
         horizontalLayout_2->addWidget(spinBox);
 
-        listWidget = new QListWidget(centralwidget);
-        listWidget->setObjectName(QStringLiteral("listWidget"));
-        listWidget->setGeometry(QRect(640, 60, 181, 371));
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(650, 10, 111, 41));
-        QFont font;
-        font.setPointSize(15);
-        font.setBold(true);
-        font.setWeight(75);
-        label_2->setFont(font);
-        label = new QLabel(centralwidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(30, 10, 161, 31));
-        QFont font1;
-        font1.setPointSize(19);
-        font1.setBold(true);
-        font1.setWeight(75);
-        label->setFont(font1);
         tableWidget = new QTableWidget(centralwidget);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 60, 621, 371));
+        tableWidget->setGeometry(QRect(10, 80, 621, 351));
+        tableWidget->setStyleSheet(QLatin1String("QFrame{\n"
+"	border: 1px solid #E0E0E0;\n"
+"	border-radius: 5px;\n"
+"	background-color: white;\n"
+"}\n"
+"\n"
+"color: black;"));
+        tableWidget->setFrameShape(QFrame::NoFrame);
+        tableWidget->setFrameShadow(QFrame::Plain);
+        tableWidget->setLineWidth(1);
+        frame_3 = new QFrame(centralwidget);
+        frame_3->setObjectName(QStringLiteral("frame_3"));
+        frame_3->setGeometry(QRect(0, 0, 641, 61));
+        frame_3->setStyleSheet(QLatin1String("background-color:#3F51B5;\n"
+"color: white;"));
+        frame_3->setFrameShape(QFrame::StyledPanel);
+        frame_3->setFrameShadow(QFrame::Raised);
+        label = new QLabel(frame_3);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 0, 331, 51));
+        QFont font;
+        font.setFamily(QStringLiteral("Montserrat"));
+        font.setPointSize(24);
+        font.setBold(true);
+        font.setWeight(75);
+        label->setFont(font);
+        frame_4 = new QFrame(centralwidget);
+        frame_4->setObjectName(QStringLiteral("frame_4"));
+        frame_4->setGeometry(QRect(10, 440, 261, 41));
+        frame_4->setStyleSheet(QLatin1String("QFrame{\n"
+"	border: 1px solid #E0E0E0;\n"
+"	border-radius: 5px;\n"
+"	background-color: white;\n"
+"}"));
+        frame_4->setFrameShape(QFrame::StyledPanel);
+        frame_4->setFrameShadow(QFrame::Raised);
+        label_ruta = new QLabel(frame_4);
+        label_ruta->setObjectName(QStringLiteral("label_ruta"));
+        label_ruta->setGeometry(QRect(10, 5, 241, 31));
+        label_ruta->setStyleSheet(QLatin1String("QFrame{\n"
+"	border: 0px;\n"
+"}"));
+        label_ruta->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 837, 22));
+        menubar->setGeometry(QRect(0, 0, 641, 21));
+        menubar->setStyleSheet(QLatin1String("background-color: #283593;\n"
+"color: white;"));
         menuArchivo = new QMenu(menubar);
         menuArchivo->setObjectName(QStringLiteral("menuArchivo"));
         menuRegistros = new QMenu(menubar);
@@ -227,38 +279,38 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "File Manager", 0));
-        actionNuevo_Archivo->setText(QApplication::translate("MainWindow", "Nuevo Archivo", 0));
-        actionGuardar_Archivo->setText(QApplication::translate("MainWindow", "Salvar Archivo", 0));
-        actionCerrar_Archivo->setText(QApplication::translate("MainWindow", "Cerrar Archivo", 0));
-        actionSalir->setText(QApplication::translate("MainWindow", "Salir", 0));
-        actionA_adir_Persona->setText(QApplication::translate("MainWindow", "A\303\261adir Persona", 0));
-        actionEliminar_Persona->setText(QApplication::translate("MainWindow", "Eliminar Persona", 0));
-        actionCrear_Campos->setText(QApplication::translate("MainWindow", "Crear Campos", 0));
-        actionListar_Campos->setText(QApplication::translate("MainWindow", "Listar Campos", 0));
-        actionModificar_Campos->setText(QApplication::translate("MainWindow", "Modificar Campos", 0));
-        actionEliminar_Campos->setText(QApplication::translate("MainWindow", "Eliminar Campos", 0));
-        actionIntroducir_Registros->setText(QApplication::translate("MainWindow", "Introducir Registros", 0));
-        actionBuscar_Registros->setText(QApplication::translate("MainWindow", "Buscar Registros", 0));
-        actionModificar_Registros->setText(QApplication::translate("MainWindow", "Modificar Registros", 0));
-        actionBorrar_Registros->setText(QApplication::translate("MainWindow", "Borrar Registros", 0));
-        actionListar_Registros->setText(QApplication::translate("MainWindow", "Listar Registros", 0));
-        actionCrear_Indices->setText(QApplication::translate("MainWindow", "Crear \303\215ndices", 0));
-        actionReindexar_Archivos->setText(QApplication::translate("MainWindow", "Re-indexar Archivos", 0));
-        actionExportar_a_Excel->setText(QApplication::translate("MainWindow", "Exportar a Excel", 0));
-        actionExportar_a_XML_con_Schem->setText(QApplication::translate("MainWindow", "Exportar a XML con Schema", 0));
-        actionCargar_Archivo->setText(QApplication::translate("MainWindow", "Cargar Archivo", 0));
-        pushButton_atras->setText(QString());
-        label_3->setText(QString());
-        pushButton_adelante->setText(QString());
-        pushButton_adelante_2->setText(QApplication::translate("MainWindow", "Ir a Pag.", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Avail List", 0));
-        label->setText(QApplication::translate("MainWindow", "File Manager", 0));
-        menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", 0));
-        menuRegistros->setTitle(QApplication::translate("MainWindow", "Registros", 0));
-        menuCampos->setTitle(QApplication::translate("MainWindow", "Campos", 0));
-        menu_ndices->setTitle(QApplication::translate("MainWindow", "\303\215ndices", 0));
-        menuEstadarizaci_n->setTitle(QApplication::translate("MainWindow", "Estandarizaci\303\263n", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "File Manager", nullptr));
+        actionNuevo_Archivo->setText(QApplication::translate("MainWindow", "Nuevo Archivo", nullptr));
+        actionGuardar_Archivo->setText(QApplication::translate("MainWindow", "Salvar Archivo", nullptr));
+        actionCerrar_Archivo->setText(QApplication::translate("MainWindow", "Cerrar Archivo", nullptr));
+        actionSalir->setText(QApplication::translate("MainWindow", "Salir", nullptr));
+        actionA_adir_Persona->setText(QApplication::translate("MainWindow", "A\303\261adir Persona", nullptr));
+        actionEliminar_Persona->setText(QApplication::translate("MainWindow", "Eliminar Persona", nullptr));
+        actionCrear_Campos->setText(QApplication::translate("MainWindow", "Crear Campos", nullptr));
+        actionListar_Campos->setText(QApplication::translate("MainWindow", "Listar Campos", nullptr));
+        actionModificar_Campos->setText(QApplication::translate("MainWindow", "Modificar Campos", nullptr));
+        actionEliminar_Campos->setText(QApplication::translate("MainWindow", "Eliminar Campos", nullptr));
+        actionIntroducir_Registros->setText(QApplication::translate("MainWindow", "Introducir Registros", nullptr));
+        actionBuscar_Registros->setText(QApplication::translate("MainWindow", "Buscar Registros", nullptr));
+        actionModificar_Registros->setText(QApplication::translate("MainWindow", "Modificar Registros", nullptr));
+        actionBorrar_Registros->setText(QApplication::translate("MainWindow", "Borrar Registros", nullptr));
+        actionListar_Registros->setText(QApplication::translate("MainWindow", "Listar Registros", nullptr));
+        actionCrear_Indices->setText(QApplication::translate("MainWindow", "Crear \303\215ndices", nullptr));
+        actionReindexar_Archivos->setText(QApplication::translate("MainWindow", "Re-indexar Archivos", nullptr));
+        actionExportar_a_Excel->setText(QApplication::translate("MainWindow", "Exportar a Excel", nullptr));
+        actionExportar_a_XML_con_Schem->setText(QApplication::translate("MainWindow", "Exportar a XML con Schema", nullptr));
+        actionCargar_Archivo->setText(QApplication::translate("MainWindow", "Cargar Archivo", nullptr));
+        pushButton_atras->setText(QApplication::translate("MainWindow", "<<", nullptr));
+        label_pagina->setText(QApplication::translate("MainWindow", "x de x", nullptr));
+        pushButton_adelante->setText(QApplication::translate("MainWindow", ">>", nullptr));
+        pushButton_adelante_2->setText(QApplication::translate("MainWindow", "Ir a P\303\241gina", nullptr));
+        label->setText(QApplication::translate("MainWindow", "File Manager", nullptr));
+        label_ruta->setText(QApplication::translate("MainWindow", "No se ha cargado un archivo.", nullptr));
+        menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", nullptr));
+        menuRegistros->setTitle(QApplication::translate("MainWindow", "Registros", nullptr));
+        menuCampos->setTitle(QApplication::translate("MainWindow", "Campos", nullptr));
+        menu_ndices->setTitle(QApplication::translate("MainWindow", "\303\215ndices", nullptr));
+        menuEstadarizaci_n->setTitle(QApplication::translate("MainWindow", "Estandarizaci\303\263n", nullptr));
     } // retranslateUi
 
 };
