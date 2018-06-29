@@ -274,8 +274,9 @@ bool File::readFields(){
     string line;
     string field;
 
-    file.seekp(9);
+    file.seekg(8);
     getline(file, line);
+    qDebug() << "Field line: " << line.c_str();
 
     stringstream pipeStream(line);
     fields.clear();
