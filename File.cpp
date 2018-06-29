@@ -389,12 +389,12 @@ bool File::replaceRecord(int posicion, List<string> nRecord){
       string out = nRecord[i]; //Recuperar el dato a escribir
 
       //Añadir espacios vacíos si el string es más corto que el campo
-      while (out.length() < fields[i].getSize()) {
+      while (int(out.length()) < fields[i].getSize()) {
         out += " ";
       }
 
       //Cortar el string si es muy largo para el campo
-      if (out.length() > fields[i].getSize()) {
+      if (int(out.length()) > fields[i].getSize()) {
         out = out.substr(0, fields[i].getSize() - 1);
       }
 

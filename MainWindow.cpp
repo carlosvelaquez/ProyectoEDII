@@ -1,7 +1,7 @@
 #include "MainWindow.h"
 #include "qfiledialog.h"
 
-//
+
 #include "addrecordwindow.h"
 #include "addfieldwindow.h"
 #include "listfieldswindow.h"
@@ -144,15 +144,21 @@ void MainWindow::loadFile(){
 void MainWindow::refreshTable(){
   ui.tableWidget->setColumnCount(file.fieldQuantity()); //Añade la cantidad de columnas de acuerdo a la cantidad de campos
   ui.tableWidget->setRowCount(10);// Cantidad de records de cada bloque
+
   List<Field> fields = file.getFields();
+  List<List<string>> records = file.data();
+
+  qDebug() << "First: " << records[1][1].c_str();
+  qDebug() << "Last: " << records[1][5].c_str();
 
   for (int i = 1; i <= fields.size; i++) {
     ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));
   }
-  qDebug()<<"Puto el que lo lea: "<<file.recordQuantity();
+
+  qDebug()<< "Puto el que lo lea: " << file.recordQuantity();
 
 
-  for (int i = 1; i <= 100; i++) { // Se supone que hay 100 records... Usar file.recordQuantity();
+  for (int i = 1; i <= records.size; i++) { // Se supone que hay 100 records... Usar file.recordQuantity();
     for (int j = 1; j <= fields.size; j++) {
       if (records[i][1][0] == '*') {
         ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("-----"));
