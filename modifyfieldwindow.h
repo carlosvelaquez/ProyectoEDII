@@ -17,7 +17,7 @@ public:
     explicit modifyfieldwindow(QWidget *parent = 0);
     ~modifyfieldwindow();
     void setFile(File*);
-    void filltable();
+    void fillComboBox();
 
 private:
     Ui::modifyfieldwindow *ui;
