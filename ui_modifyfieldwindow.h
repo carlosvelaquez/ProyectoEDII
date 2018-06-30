@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'modifyfieldwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -35,7 +35,7 @@ public:
 
     void retranslateUi(QWidget *modifyfieldwindow)
     {
-        modifyfieldwindow->setWindowTitle(QApplication::translate("modifyfieldwindow", "Form", 0));
+        modifyfieldwindow->setWindowTitle(QApplication::translate("modifyfieldwindow", "Form", nullptr));
     } // retranslateUi
 
 };

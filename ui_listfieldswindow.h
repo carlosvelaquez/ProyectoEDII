@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'listfieldswindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -76,8 +76,8 @@ public:
 
     void retranslateUi(QWidget *listfieldswindow)
     {
-        listfieldswindow->setWindowTitle(QApplication::translate("listfieldswindow", "Form", 0));
-        label->setText(QApplication::translate("listfieldswindow", "Fields", 0));
+        listfieldswindow->setWindowTitle(QApplication::translate("listfieldswindow", "Form", nullptr));
+        label->setText(QApplication::translate("listfieldswindow", "Fields", nullptr));
     } // retranslateUi
 
 };

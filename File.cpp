@@ -20,11 +20,20 @@ void File::calculateSizes(){
 
   //Calcular el tamaño en bytes abarcado por el meta
   file.clear();
-  file.seekg(8); //Busca la primera posición de la línea donde comienza la info de los campos
-  file.ignore(numeric_limits<streamsize>::max(), '\n');
+  file.seekg(0, ios::beg); //Busca la primera posición de la línea donde comienza la info de los campos
+
+  string in = "";
+  metaSize = 0;
+
+  //file.ignore(numeric_limits<streamsize>::max(), '\n');
+  getline(file, in, '\n');
+  metaSize += in.length();
+  getline(file, in, '\n');
+  metaSize += in.length();
 
   //El tamaño del meta sería todo lo que ha recorrido hasta que termina la info de campos más un salto de línea
-  metaSize = file.tellg();
+  //metaSize = file.tellg();
+  metaSize += 4;
   qDebug() << "Meta size: " << metaSize;
 }
 
@@ -102,6 +111,17 @@ List<Field> File::getFields(){
 
 void File::lock(){
   qDebug() << "Attempting to lock file";
+
+  if (locked) {
+    qDebug() << "File already locked. Aborting";
+    return;
+  }
+
+  if (fields.size <= 0) {
+    qDebug() << "File has no fields. Aborting lock.";
+    return;
+  }
+
   locked = true;
 
   //Escribir meta al archivo y calcular los tamaños
@@ -109,6 +129,7 @@ void File::lock(){
   calculateSizes();
 
   qDebug() << "File locked successfully";
+  seekFirst();
 }
 
 void File::setPath(string nPath){
@@ -131,6 +152,17 @@ bool File::open(){
 
   file.close();
   file.open(path, fstream::out | fstream::in);
+
+  if (exists) {
+    file.seekg(0, ios::beg);
+
+    char first = file.get();
+
+    if (!isdigit(first) && first != '-') {
+      qDebug() << "File starts with unexpected character. Aborting.";
+      return false;
+    }
+  }
 
   if (file) {
     if (exists) {
@@ -365,7 +397,7 @@ bool File::addField(int type, string name, int size, bool isPrimaryKey){
 }
 
 bool File::addField(int type, string name, int size){
-  return addField(type, name, size);
+  return addField(type, name, size, false);
 }
 
 bool File::addRecord(List<string> nRecord){
@@ -461,10 +493,14 @@ bool File::flush(){
 
     if (file) {
       qDebug() << "Fields: " << fields.size;
-      qDebug() << "RecordBuffer Size: " << recordBuffer[1].size;
-      for (int i = 1; i <= recordBuffer.size; i++) {
-        qDebug() << "Flushing... | i = " << i;
 
+      if (recordBuffer.size > 0) {
+        qDebug() << "RecordBuffer Size: " << recordBuffer[1].size;
+      }else{
+        qDebug() << "RecordBuffer is empty. Skipping record flush.";
+      }
+
+      for (int i = 1; i <= recordBuffer.size; i++) {
         //Determinar en qué posición irá el siguiente registro
         if (!availList.isEmpty()) {
           file.seekp(position(availList[availList.size])); //Escribir en la siguiente posición del availList
@@ -475,7 +511,7 @@ bool File::flush(){
 
         for (int j = 1; j <= fields.size; j++) {
           string out = recordBuffer[i][j]; //Recuperar el dato a escribir
-          qDebug() << "Raw out: " << out.c_str();
+          //qDebug() << "Raw out: " << out.c_str();
 
           //Añadir espacios vacíos si el string es más corto que el campo
           while (int(out.length()) < fields[j].getSize()) {
@@ -657,7 +693,13 @@ int File::recordQuantity(){
 
 int File::blockQuantity(){
   if (locked) {
-    return ((filesize() - metaSize)/blockSize)/recordSize;
+    int calc = ((filesize() - metaSize)/blockSize)/recordSize;
+
+    if (calc < 1) {
+      return 1;
+    }else{
+      return calc;
+    }
   }
 
   return -1;
@@ -673,6 +715,10 @@ int File::getMetaSize(){
 
 int File::getCurrentBlock(){
   return currentBlock;
+}
+
+int File::getBlockSize(){
+  return blockSize;
 }
 
 bool File::isLocked(){

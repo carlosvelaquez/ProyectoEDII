@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'deletefieldwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -84,10 +84,10 @@ public:
 
     void retranslateUi(QWidget *deletefieldwindow)
     {
-        deletefieldwindow->setWindowTitle(QApplication::translate("deletefieldwindow", "Form", 0));
-        label->setText(QApplication::translate("deletefieldwindow", "Eliminar Campo", 0));
-        label_2->setText(QApplication::translate("deletefieldwindow", "Elija el campo", 0));
-        pushButton_delete->setText(QApplication::translate("deletefieldwindow", "Eliminar", 0));
+        deletefieldwindow->setWindowTitle(QApplication::translate("deletefieldwindow", "Form", nullptr));
+        label->setText(QApplication::translate("deletefieldwindow", "Eliminar Campo", nullptr));
+        label_2->setText(QApplication::translate("deletefieldwindow", "Elija el campo", nullptr));
+        pushButton_delete->setText(QApplication::translate("deletefieldwindow", "Eliminar", nullptr));
     } // retranslateUi
 
 };

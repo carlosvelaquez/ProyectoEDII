@@ -1,2 +1,0 @@
--1****
-0,Indice,5|2,Nombre,20|0,Edad,5|1,Sexo,10|2,Dirección,50

@@ -34,6 +34,7 @@
 #define __GNUC_PATCHLEVEL__ 0
 #define __UINT_FAST8_MAX__ 0xff
 #define __has_include(STR) __has_include__(STR)
+#define _stdcall __attribute__((__stdcall__))
 #define __DEC64_MAX_EXP__ 385
 #define __INT8_C(c) c
 #define __UINT_LEAST64_MAX__ 0xffffffffffffffffULL
@@ -73,6 +74,7 @@
 #define __LDBL_HAS_QUIET_NAN__ 1
 #define _REENTRANT 1
 #define __GNUC__ 5
+#define _cdecl __attribute__((__cdecl__))
 #define __GXX_RTTI 1
 #define __cpp_delegating_constructors 200604
 #define __FLT_HAS_DENORM__ 1
@@ -81,6 +83,7 @@
 #define __STDC_UTF_16__ 1
 #define __i686 1
 #define __DBL_MAX__ double(1.79769313486231570815e+308L)
+#define _thiscall __attribute__((__thiscall__))
 #define __cpp_raw_strings 200710
 #define __INT_FAST32_MAX__ 0x7fffffff
 #define __WINNT 1
@@ -89,7 +92,7 @@
 #define __WINNT__ 1
 #define __DEC32_MIN_EXP__ (-94)
 #define __INT_FAST16_TYPE__ short int
-#define __STRICT_ANSI__ 1
+#define _fastcall __attribute__((__fastcall__))
 #define __LDBL_HAS_DENORM__ 1
 #define __cplusplus 201103L
 #define __cpp_ref_qualifiers 200710
@@ -199,6 +202,7 @@
 #define __FLT_DIG__ 6
 #define __UINT_FAST64_TYPE__ long long unsigned int
 #define __INT_MAX__ 0x7fffffff
+#define WIN32 1
 #define __INT64_TYPE__ long long int
 #define __FLT_MAX_EXP__ 128
 #define __DBL_MANT_DIG__ 53
@@ -232,6 +236,7 @@
 #define __INTMAX_MAX__ 0x7fffffffffffffffLL
 #define __cpp_alias_templates 200704
 #define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define WINNT 1
 #define __FLT_DENORM_MIN__ 1.40129846432481707092e-45F
 #define __INT8_MAX__ 0x7f
 #define __UINT_FAST32_TYPE__ unsigned int
@@ -242,6 +247,7 @@
 #define __SIZEOF_DOUBLE__ 8
 #define __cpp_exceptions 199711
 #define __INTMAX_TYPE__ long long int
+#define i386 1
 #define _INTEGRAL_MAX_BITS 64
 #define __DEC128_MAX_EXP__ 6145
 #define __ATOMIC_CONSUME 1
