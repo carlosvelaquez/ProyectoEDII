@@ -12,16 +12,29 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   QHeaderView* header = ui.tableWidget->horizontalHeader();
   header->setSectionResizeMode(QHeaderView::Stretch);
   ui.tableWidget->setEnabled(false);
+
+  //setWindowFlags(Qt::FramelessWindowHint);
+
+  // Nuevo archivo
+  connect(ui.actionNuevo_Archivo, SIGNAL(triggered()), this, SLOT(openFile()));
+  connect(ui.pushButton_bNuevo, SIGNAL(clicked()), this, SLOT(openFile()));
+
   // Cargar archivo
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(loadFile()));
-  // Cerrar archivo
-  //connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(closeFile()));
+  connect(ui.pushButton_bCargar, SIGNAL(clicked()), this, SLOT(loadFile()));
 
+  // Salvar archivo
+  connect(ui.actionGuardar_Archivo, SIGNAL(triggered()), this, SLOT(saveFile()));
+
+  // Cerrar archivo
+  connect(ui.actionCerrar_Archivo, SIGNAL(triggered()), this, SLOT(closeFile()));
 
   // Añadir campos
   connect(ui.actionCrear_Campos, SIGNAL(triggered()), this, SLOT(addFields()));
+
   // Listar campos
   connect(ui.actionListar_Campos, SIGNAL(triggered()), this, SLOT(listfields()));
+
   // Eliminar campos
   connect(ui.actionEliminar_Campos, SIGNAL(triggered()), this, SLOT(deleteFields()));
   // Modificar campos
@@ -29,13 +42,17 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   // Añadir registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
-  connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(refresh()));
 
   //Mover entre páginas
   connect(ui.pushButton_adelante, SIGNAL(clicked()), this, SLOT(nextPage()));
   connect(ui.pushButton_atras, SIGNAL(clicked()), this, SLOT(previousPage()));
   connect(ui.pushButton_adelante_2, SIGNAL(clicked()), this, SLOT(gotoPage()));
 
+  //Generar registros de prueba
+  connect(ui.actionGenerar_Registros_de_Prueba, SIGNAL(triggered()), this, SLOT(generateTest()));
+
+  //Refrescar tabla
+  connect(ui.pushButton_refresh, SIGNAL(clicked()), this, SLOT(refresh()));
 }
 
 /* ############# Para registros ############# */
@@ -88,25 +105,58 @@ File* MainWindow::getFile(){
 
 
 /*##########################################*/
+void MainWindow::openFile(){
+    QString path = QFileDialog::getSaveFileName(this, "Nuevo Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
+
+    if (!path.isEmpty() && !path.isNull()) {
+      remove(path.toStdString().c_str());
+      file.open(path.toStdString());
+      ui.label_ruta->setText(path);
+
+      refreshTable();
+    }else{
+      qDebug() << "File path is empty or null. Aborting.";
+    }
+}
+
 void MainWindow::closeFile(){
-  close();
+  if (file) {
+    file.close(); //Cerrar el archivo
+
+    //Borrar todos los datos en la pantalla
+    ui.label_ruta->setText("Archivo cerrado.");
+    ui.label_pagina->setText(" - ");
+    ui.spinBox->setValue(0);
+
+    ui.tableWidget->setColumnCount(1);
+    ui.tableWidget->setRowCount(0);
+    ui.tableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Puede abrir o crear otro archivo en el menú Archivo."));
+
+    ui.frame_Bienvenida->show();
+  }
 }
 
 void MainWindow::saveFile(){
-  //QString path = QFileDialog::getSaveFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
-  //file.open(path.toStdString());
-  //ui.label_ruta->setText(path);
-
-  file.flush();
+  if (file) {
+    qDebug() << "Salvando archivo...";
+    file.lock();
+    file.flush();
+  }
 }
 
 void MainWindow::loadFile(){
-    QString path = QFileDialog::getOpenFileName(this, "Abrir Archivo","/path/to/file/",tr("TXT Files (*.txt)"));
-    file.open(path.toStdString());
-    file.lock();
-    ui.label_ruta->setText(path);
+    QString path = QFileDialog::getOpenFileName(this, "Abrir Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
 
-    refreshTable();
+    if (!path.isEmpty() && !path.isNull()) {
+      if (file.open(path.toStdString())){
+        file.lock();
+        ui.label_ruta->setText(path);
+
+        refreshTable();
+      }
+    }else{
+      qDebug() << "File path is empty or null. Aborting.";
+    }
 }
 /*##########################################*/
 
@@ -162,66 +212,73 @@ refreshTable();
 
 
 void MainWindow::refreshTable(){
-  qDebug() << "Refreshing table...";
+  if (file) {
+    qDebug() << "Refreshing table...";
+    ui.frame_Bienvenida->hide();
 
-  ui.tableWidget->setColumnCount(file.fieldQuantity()); //Añade la cantidad de columnas de acuerdo a la cantidad de campos
-  ui.tableWidget->setRowCount(10);// Cantidad de records de cada bloque
-
-  qDebug() << "Fields in File:";
-  List<Field> fields = file.getFields();
-
-  for (int i = 1; i <= fields.size; i++) {
-    qDebug() << fields[i].getName().c_str();;
-  }
-
-  for (int i = 1; i <= fields.size; i++) {
-    ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));
-  }
-
-  List<List<string>> records = file.data();
-
-  if (records.size > 0) {
-    qDebug() << "First: " << records[1][1].c_str();
-    qDebug() << "Last: " << records[1][5].c_str();
-
-    qDebug() << "Records en File: " << file.recordQuantity();
+    //Dimensionar la tabla de acuerdo a los campos y registros de file
+    ui.tableWidget->setColumnCount(file.fieldQuantity()); //Añade la cantidad de columnas de acuerdo a la cantidad de campos
+    ui.tableWidget->setRowCount(file.getBlockSize());// Cantidad de records de cada bloque
 
 
-    for (int i = 1; i <= records.size; i++) { // Se supone que hay 100 records... Usar file.recordQuantity();
-      for (int j = 1; j <= fields.size; j++) {
-        if (records[i][1][0] == '*') {
-          ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("-----"));
-        }else{
-          ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i][j].c_str()));
-        }
+    //Poner los nombres de cada campo como cabeceras de columna
+    List<Field> fields = file.getFields();
+
+    if (fields.size > 0) {
+      for (int i = 1; i <= fields.size; i++) {
+        ui.tableWidget->setHorizontalHeaderItem(i-1, new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));
       }
+
+      if (file.isLocked()) {
+        //Extraer los registros del bloque actual de file
+        List<List<string>> records = file.data();
+
+        if (records.size > 0) { //Solo entra si existen registros
+          for (int i = 1; i <= records.size; i++) {
+            for (int j = 1; j <= fields.size; j++) {
+              if (records[i][1][0] == '*') {
+                ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem("-----"));
+              }else{
+                ui.tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i][j].c_str()));
+              }
+            }
+          }
+
+          //Actualizar la label y el spinBox de página
+          QString pag = "";
+          pag += to_string(file.getCurrentBlock()).c_str();
+          pag += " de ";
+          pag += to_string(file.blockQuantity()).c_str();
+          ui.label_pagina->setText(pag);
+          ui.spinBox->setValue(file.getCurrentBlock());
+          ui.spinBox->setMaximum(file.blockQuantity());
+
+        }else{ //Si no hay registros, que lo indique en el GUI
+          qDebug() << "No records in data()";
+          ui.tableWidget->setItem(0, 0, new QTableWidgetItem("No hay registros. Puede añadir registros en Registros > Introducir Registros"));
+        }
+      }else{
+        qDebug() << "File not locked.";
+        ui.tableWidget->setItem(0, 0, new QTableWidgetItem("Salve el archivo en Archivo > Salvar Archivo para poder añadir registros."));
+      }
+    }else{
+      ui.tableWidget->setColumnCount(1);
+      ui.tableWidget->setRowCount(0);
+      ui.tableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Puede empezar añadiendo campos en Campos > Crear Campos"));
     }
-
-    QString pag = "";
-    pag += to_string(file.getCurrentBlock()).c_str();
-    pag += " de ";
-    pag += to_string(file.blockQuantity()).c_str();
-    ui.label_pagina->setText(pag);
-
-    ui.spinBox->setValue(file.getCurrentBlock());
   }else{
-    qDebug() << "No records in data()";
-    ui.tableWidget->setItem(0, 0, new QTableWidgetItem("No hay datos"));
+    qDebug() << "Refresh failed. File not loaded.";
   }
 }
 
 
-
-/*##########################################*/
 void MainWindow::nextPage(){
-  qDebug() << "Pressed Next";
     if(file.next()){
         refreshTable();
     }
 }
 
 void MainWindow::previousPage(){
-  qDebug() << "Pressed Previous";
     if(file.previous()){
         refreshTable();
     }
@@ -233,7 +290,56 @@ void MainWindow::gotoPage(){
   }
 }
 
+void MainWindow::generateTest(){
+  QString path = QFileDialog::getSaveFileName(this, "Generar Registros de Prueba", QDir::currentPath(), tr("TXT Files (*.txt)"));
+
+  if (!path.isEmpty() && !path.isNull()) {
+    remove(path.toStdString().c_str());
+    file.open(path.toStdString());
+    ui.label_ruta->setText(path);
+
+    qDebug() << "Adding test fields";
+    /*for (int i = 1; i <= 5; i++) {
+      string f = string("Field " + to_string(i));
+      file.addField(2, f, 25);
+      qDebug() << f.c_str() << " - Done";
+    }*/
+
+    file.addField(2, "Field1", 25);
+    file.addField(2, "Field2", 25);
+    file.addField(2, "Field3", 25);
+    file.addField(2, "Field4", 25);
+    file.addField(2, "Field5", 25);
+
+    qDebug() << "Test fields added.";
+
+
+    file.lock();
+
+    for (int i = 1; i <= 10000; i++) {
+      List<string> nRecord;
+
+      for (int j = 1; j <= file.fieldQuantity(); j++) {
+        string r = string("Record[" + to_string(i) + "][" + to_string(j) + "]");
+        qDebug() << "Adding: " << r.c_str();
+
+        nRecord.insert(r);
+      }
+
+      file.addRecord(nRecord);
+
+      if (i%file.getBlockSize() == 0) {
+        qDebug() << "i = " << i << ", flushing...";
+        file.flush();
+      }
+    }
+
+    refreshTable();
+  }else{
+    qDebug() << "File path is empty or null. Aborting.";
+  }
+}
+
 void MainWindow::refresh(){
   refreshTable();
 }
-/*##########################################*/

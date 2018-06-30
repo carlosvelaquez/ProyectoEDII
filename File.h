@@ -102,8 +102,17 @@ public:
   int getRecordSize(); //Retorna recordSize
   int getMetaSize(); //Retorna metaSize
   int getCurrentBlock(); //Retorna el bloque actual
+  int getBlockSize(); //Retorna el tamaño de bloque
 
   bool isLocked(); //Retorna locked
+
+  operator bool(){
+    if (path == "") {
+      return false;
+    }
+    
+    return true;
+  }
 
   //--- DESTRUCTOR ---
   ~File();

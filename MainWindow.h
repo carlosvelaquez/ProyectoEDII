@@ -11,6 +11,7 @@ private:
   int long page = 0;
 
 private slots:
+  void openFile();
   void loadFile();
   void closeFile();
   void saveFile();
@@ -26,6 +27,8 @@ private slots:
   void nextPage();
   void previousPage();
   void gotoPage();
+
+  void generateTest();
 
   void refresh();
 

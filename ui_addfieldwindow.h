@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addfieldwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -118,12 +118,12 @@ public:
 
     void retranslateUi(QWidget *addfieldwindow)
     {
-        addfieldwindow->setWindowTitle(QApplication::translate("addfieldwindow", "Form", 0));
-        label->setText(QApplication::translate("addfieldwindow", "Name:", 0));
-        label_2->setText(QApplication::translate("addfieldwindow", "Size:", 0));
-        label_3->setText(QApplication::translate("addfieldwindow", "Type:", 0));
-        radioButton_ispk->setText(QApplication::translate("addfieldwindow", "Is primary key", 0));
-        pushButton_addfield->setText(QApplication::translate("addfieldwindow", "Add field", 0));
+        addfieldwindow->setWindowTitle(QApplication::translate("addfieldwindow", "Form", nullptr));
+        label->setText(QApplication::translate("addfieldwindow", "Name:", nullptr));
+        label_2->setText(QApplication::translate("addfieldwindow", "Size:", nullptr));
+        label_3->setText(QApplication::translate("addfieldwindow", "Type:", nullptr));
+        radioButton_ispk->setText(QApplication::translate("addfieldwindow", "Is primary key", nullptr));
+        pushButton_addfield->setText(QApplication::translate("addfieldwindow", "Add field", nullptr));
     } // retranslateUi
 
 };

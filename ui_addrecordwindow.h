@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addrecordwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -59,8 +59,8 @@ public:
 
     void retranslateUi(QWidget *addRecordWindow)
     {
-        addRecordWindow->setWindowTitle(QApplication::translate("addRecordWindow", "Form", 0));
-        pushButton_send->setText(QApplication::translate("addRecordWindow", "Enviar", 0));
+        addRecordWindow->setWindowTitle(QApplication::translate("addRecordWindow", "Form", nullptr));
+        pushButton_send->setText(QApplication::translate("addRecordWindow", "Enviar", nullptr));
     } // retranslateUi
 
 };

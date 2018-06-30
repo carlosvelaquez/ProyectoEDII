@@ -12,6 +12,10 @@ Field::Field(int nType, string nName, int nSize){
   name = nName;
   size = nSize;
   primaryKey = false;
+
+  if (type == 1) {
+    size = 1;
+  }
 }
 
 bool Field::isPrimaryKey(){
@@ -36,6 +40,10 @@ void Field::setPrimaryKey(bool nPrimaryKey){
 
 void Field::setType(int nType){
   type = nType;
+
+  if (type == 1) {
+    size = 1;
+  }
 }
 
 void Field::setSize(int nSize){
