@@ -4,7 +4,7 @@
 #include "addfieldwindow.h"
 #include "listfieldswindow.h"
 #include "deletefieldwindow.h"
-
+#include "modifyfieldwindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
@@ -37,6 +37,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   // Eliminar campos
   connect(ui.actionEliminar_Campos, SIGNAL(triggered()), this, SLOT(deleteFields()));
+  // Modificar campos
+  connect(ui.actionModificar_Campos, SIGNAL(triggered()), this, SLOT(modifyFields()));
 
   // Añadir registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
@@ -87,7 +89,12 @@ void MainWindow::listfields(){
     lf->show();
 }
 
-
+void MainWindow::modifyFields(){
+    modifyfieldwindow* md = new modifyfieldwindow();
+    md->setFile(&file);
+    md->filltable();
+    md->show();
+}
 
 /*##########################################*/
 
