@@ -4,7 +4,7 @@
 #include "addfieldwindow.h"
 #include "listfieldswindow.h"
 #include "deletefieldwindow.h"
-#include "modifyfieldwindow.h"
+/*#include "modifyfieldwindow.h"*/
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
@@ -90,10 +90,10 @@ void MainWindow::listfields(){
 }
 
 void MainWindow::modifyFields(){
-    modifyfieldwindow* md = new modifyfieldwindow();
-    /*md->setFile(&file);
-    md->fillComboBox();*/
-    md->show();
+    /*modifyfieldwindow* md = new modifyfieldwindow();
+    md->setFile(&file);
+    md->fillComboBox();
+    md->show();*/
 }
 
 /*##########################################*/
