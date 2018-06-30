@@ -4,7 +4,6 @@
 #include <QWidget>
 #include "File.h"
 
-
 namespace Ui {
 class modifyfieldwindow;
 }
@@ -18,6 +17,9 @@ public:
     ~modifyfieldwindow();
     void setFile(File*);
     void fillComboBox();
+
+private slots:
+    void on_comboBox_campo_currentIndexChanged(int index);
 
 private:
     Ui::modifyfieldwindow *ui;

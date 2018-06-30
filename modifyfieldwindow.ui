@@ -54,7 +54,23 @@
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox_2"/>
+    <widget class="QComboBox" name="comboBox_2">
+     <item>
+      <property name="text">
+       <string>Entero</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Caracter</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Cadena de caracteres</string>
+      </property>
+     </item>
+    </widget>
    </item>
    <item>
     <widget class="QRadioButton" name="radioButton">
