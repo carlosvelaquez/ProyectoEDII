@@ -22,6 +22,7 @@ void modifyfieldwindow::setFile(File* fi){
 void modifyfieldwindow::filltable(){
     QStringList headers;
     headers <<"Name"<<"Type"<<"Is PK"<<"Size";
+    ui->tableWidget->setColumnCount(4);
     ui->tableWidget->setHorizontalHeaderLabels(headers);
     ui->tableWidget->setRowCount(file->getFields().size);
     for(int i=1; i<=file->getFields().size; i++){

@@ -456,7 +456,8 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		addrecordwindow.h \
 		addfieldwindow.h \
 		listfieldswindow.h \
-		deletefieldwindow.h
+		deletefieldwindow.h \
+		modifyfieldwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
 
 addrecordwindow.o: addrecordwindow.cpp addrecordwindow.h \

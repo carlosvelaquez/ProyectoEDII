@@ -4,7 +4,7 @@
 #include "addfieldwindow.h"
 #include "listfieldswindow.h"
 #include "deletefieldwindow.h"
-
+#include "modifyfieldwindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
@@ -14,7 +14,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.tableWidget->setEnabled(false);
   // Cargar archivo
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(loadFile()));
-
   // Cerrar archivo
   //connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(closeFile()));
 
@@ -25,6 +24,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   connect(ui.actionListar_Campos, SIGNAL(triggered()), this, SLOT(listfields()));
   // Eliminar campos
   connect(ui.actionEliminar_Campos, SIGNAL(triggered()), this, SLOT(deleteFields()));
+  // Modificar campos
+  connect(ui.actionModificar_Campos, SIGNAL(triggered()), this, SLOT(modifyFields()));
 
   // Añadir registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
@@ -71,7 +72,12 @@ void MainWindow::listfields(){
     lf->show();
 }
 
-
+void MainWindow::modifyFields(){
+    modifyfieldwindow* md = new modifyfieldwindow();
+    md->setFile(&file);
+    md->filltable();
+    md->show();
+}
 
 /*##########################################*/
 

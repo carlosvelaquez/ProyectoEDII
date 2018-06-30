@@ -21,6 +21,7 @@ private slots:
   void listfields();
   void deleteFields();
   void addFields();
+  void modifyFields();
 
   void nextPage();
   void previousPage();
