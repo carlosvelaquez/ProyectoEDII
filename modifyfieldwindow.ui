@@ -57,6 +57,9 @@
     </widget>
    </item>
    <item>
+    <widget class="QSpinBox" name="spinBox"/>
+   </item>
+   <item>
     <widget class="QLabel" name="label_5">
      <property name="text">
       <string>Tipo:</string>
@@ -64,10 +67,23 @@
     </widget>
    </item>
    <item>
-    <widget class="QSpinBox" name="spinBox"/>
-   </item>
-   <item>
-    <widget class="QComboBox" name="comboBox_2"/>
+    <widget class="QComboBox" name="comboBox_2">
+     <item>
+      <property name="text">
+       <string>Entero</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Caracter</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Cadena de caracteres</string>
+      </property>
+     </item>
+    </widget>
    </item>
    <item>
     <widget class="QRadioButton" name="radioButton">

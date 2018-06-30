@@ -35,8 +35,8 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit;
     QLabel *label_4;
-    QLabel *label_5;
     QSpinBox *spinBox;
+    QLabel *label_5;
     QComboBox *comboBox_2;
     QRadioButton *radioButton;
     QPushButton *pushButton;
@@ -82,15 +82,15 @@ public:
 
         verticalLayout->addWidget(label_4);
 
-        label_5 = new QLabel(modifyfieldwindow);
-        label_5->setObjectName(QStringLiteral("label_5"));
-
-        verticalLayout->addWidget(label_5);
-
         spinBox = new QSpinBox(modifyfieldwindow);
         spinBox->setObjectName(QStringLiteral("spinBox"));
 
         verticalLayout->addWidget(spinBox);
+
+        label_5 = new QLabel(modifyfieldwindow);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        verticalLayout->addWidget(label_5);
 
         comboBox_2 = new QComboBox(modifyfieldwindow);
         comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
@@ -121,6 +121,12 @@ public:
         label_3->setText(QApplication::translate("modifyfieldwindow", "Nombre:", 0));
         label_4->setText(QApplication::translate("modifyfieldwindow", "Tama\303\261o:", 0));
         label_5->setText(QApplication::translate("modifyfieldwindow", "Tipo:", 0));
+        comboBox_2->clear();
+        comboBox_2->insertItems(0, QStringList()
+         << QApplication::translate("modifyfieldwindow", "Entero", 0)
+         << QApplication::translate("modifyfieldwindow", "Caracter", 0)
+         << QApplication::translate("modifyfieldwindow", "Cadena de caracteres", 0)
+        );
         radioButton->setText(QApplication::translate("modifyfieldwindow", "Es llave primaria", 0));
         pushButton->setText(QApplication::translate("modifyfieldwindow", "Aplicar cambios", 0));
     } // retranslateUi
