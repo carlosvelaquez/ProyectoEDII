@@ -1,12 +1,11 @@
 #include "modifyfieldwindow.h"
 #include "ui_modifyfieldwindow.h"
-#include <QComboBox>
 
 modifyfieldwindow::modifyfieldwindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::modifyfieldwindow)
 {
-
+    ui->setupUi(this);
 }
 
 modifyfieldwindow::~modifyfieldwindow()
@@ -14,20 +13,26 @@ modifyfieldwindow::~modifyfieldwindow()
     delete ui;
 }
 
-void modifyfieldwindow::setFile(File* fi){
-    file = fi;
+void modifyfieldwindow::setFile(File* n_file){
+    file = n_file;
 }
 
-void modifyfieldwindow::fillComboBox(){
-   /* ui->comboBox_campo->clear();
+void modifyfieldwindow::fillWidgets(){
+    ui->comboBox_campos->clear();
     QStringList items;
     for(int i=1; i<=file->getFields().size; i++){
         items<<QString::fromStdString(file->getFields().get(i).getName());
     }
-    ui->comboBox_campo->addItems(items);*/
+    ui->comboBox_campos->addItems(items);
 }
 
-void modifyfieldwindow::on_comboBox_campo_currentIndexChanged(int index)
+
+/*void modifyfieldwindow::on_comboBox_campo_currentIndexChanged(int index)
+{
+
+}*/
+
+void modifyfieldwindow::on_comboBox_campos_currentIndexChanged(int index)
 {
     if(index>=0){
          ui->lineEdit->setText(QString::fromStdString(file->getFields().get(index+1).getName()));

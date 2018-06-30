@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>363</width>
-    <height>430</height>
+    <width>345</width>
+    <height>404</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: white;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -29,17 +32,17 @@
    <item>
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Seleccionar campo: </string>
+      <string>Elegir campo:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox_campo"/>
+    <widget class="QComboBox" name="comboBox_campos"/>
    </item>
    <item>
     <widget class="QLabel" name="label_3">
      <property name="text">
-      <string>Modificar Nombre:</string>
+      <string>Nombre:</string>
      </property>
     </widget>
    </item>
@@ -49,28 +52,22 @@
    <item>
     <widget class="QLabel" name="label_4">
      <property name="text">
+      <string>Tamaño:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_5">
+     <property name="text">
       <string>Tipo:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox_2">
-     <item>
-      <property name="text">
-       <string>Entero</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Caracter</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Cadena de caracteres</string>
-      </property>
-     </item>
-    </widget>
+    <widget class="QSpinBox" name="spinBox"/>
+   </item>
+   <item>
+    <widget class="QComboBox" name="comboBox_2"/>
    </item>
    <item>
     <widget class="QRadioButton" name="radioButton">
@@ -80,19 +77,9 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>Tamaño:</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QSpinBox" name="spinBox"/>
-   </item>
-   <item>
     <widget class="QPushButton" name="pushButton">
      <property name="text">
-      <string>Modificar</string>
+      <string>Aplicar cambios</string>
      </property>
     </widget>
    </item>
