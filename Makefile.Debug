@@ -1616,7 +1616,10 @@ debug/addrecordwindow.o: addrecordwindow.cpp addrecordwindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QSpacerItem \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QSpinBox \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qspinbox.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QTableWidgetItem
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QTableWidgetItem \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QMessageBox \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\addrecordwindow.o addrecordwindow.cpp
 
 debug/addfieldwindow.o: addfieldwindow.cpp addfieldwindow.h \
@@ -1758,11 +1761,6 @@ debug/addfieldwindow.o: addfieldwindow.cpp addfieldwindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qframe.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QFrame \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QHBoxLayout \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QHeaderView \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qheaderview.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qabstractitemview.h \
@@ -1782,9 +1780,13 @@ debug/addfieldwindow.o: addfieldwindow.cpp addfieldwindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QRadioButton \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qradiobutton.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QSpacerItem \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QSpinBox \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qspinbox.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/QStringList \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QMessageBox \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmessagebox.h \
@@ -1914,12 +1916,11 @@ debug/listfieldswindow.o: listfieldswindow.cpp listfieldswindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtGui/qinputmethod.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QButtonGroup \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QFrame \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qframe.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QHeaderView \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qheaderview.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qabstractitemview.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qframe.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
@@ -2098,7 +2099,10 @@ debug/deletefieldwindow.o: deletefieldwindow.cpp deletefieldwindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QMessageBox \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\deletefieldwindow.o deletefieldwindow.cpp
 
 debug/modifyrecordwindow.o: modifyrecordwindow.cpp modifyrecordwindow.h \
@@ -2416,7 +2420,10 @@ debug/modifyfieldwindow.o: modifyfieldwindow.cpp modifyfieldwindow.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
 		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/QMessageBox \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qmessagebox.h \
+		C:/Qt/5.10.1/mingw53_32/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\modifyfieldwindow.o modifyfieldwindow.cpp
 
 debug/moc_MainWindow.o: debug/moc_MainWindow.cpp 

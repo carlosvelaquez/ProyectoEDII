@@ -93,7 +93,17 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(730, 512);
+        MainWindow->resize(741, 512);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
+        MainWindow->setMinimumSize(QSize(741, 512));
+        MainWindow->setMaximumSize(QSize(741, 512));
+        QIcon icon;
+        icon.addFile(QStringLiteral("icon.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        MainWindow->setWindowIcon(icon);
         MainWindow->setStyleSheet(QLatin1String("QWidget{\n"
 "	background-color: #F5F5F5;\n"
 "}\n"
@@ -229,7 +239,7 @@ public:
         tableWidget->verticalHeader()->setStretchLastSection(false);
         frame_3 = new QFrame(centralwidget);
         frame_3->setObjectName(QStringLiteral("frame_3"));
-        frame_3->setGeometry(QRect(0, 0, 731, 61));
+        frame_3->setGeometry(QRect(0, 0, 741, 61));
         frame_3->setStyleSheet(QLatin1String("background-color:#3F51B5;\n"
 "color: white;"));
         frame_3->setFrameShape(QFrame::StyledPanel);
@@ -262,7 +272,7 @@ public:
         label_ruta->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         frame_5 = new QFrame(centralwidget);
         frame_5->setObjectName(QStringLiteral("frame_5"));
-        frame_5->setGeometry(QRect(560, 440, 161, 41));
+        frame_5->setGeometry(QRect(570, 440, 161, 41));
         frame_5->setStyleSheet(QLatin1String("QFrame{\n"
 "	border: 1px solid #E0E0E0;\n"
 "	border-radius: 5px;\n"
@@ -280,7 +290,7 @@ public:
 
         frame_Bienvenida = new QFrame(centralwidget);
         frame_Bienvenida->setObjectName(QStringLiteral("frame_Bienvenida"));
-        frame_Bienvenida->setGeometry(QRect(10, 70, 711, 361));
+        frame_Bienvenida->setGeometry(QRect(10, 70, 721, 361));
         frame_Bienvenida->setStyleSheet(QLatin1String("QFrame{\n"
 "	border: 1px solid #E0E0E0;\n"
 "	border-radius: 5px;\n"
@@ -294,7 +304,7 @@ public:
         frame_Bienvenida->setFrameShadow(QFrame::Raised);
         label_2 = new QLabel(frame_Bienvenida);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(10, 80, 691, 51));
+        label_2->setGeometry(QRect(10, 80, 701, 51));
         QFont font1;
         font1.setFamily(QStringLiteral("Open Sans"));
         font1.setPointSize(26);
@@ -305,7 +315,7 @@ public:
         label_2->setAlignment(Qt::AlignCenter);
         label_3 = new QLabel(frame_Bienvenida);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(10, 130, 691, 41));
+        label_3->setGeometry(QRect(10, 130, 701, 41));
         QFont font2;
         font2.setFamily(QStringLiteral("Open Sans"));
         font2.setPointSize(20);
@@ -315,7 +325,7 @@ public:
         label_3->setAlignment(Qt::AlignCenter);
         frame_6 = new QFrame(frame_Bienvenida);
         frame_6->setObjectName(QStringLiteral("frame_6"));
-        frame_6->setGeometry(QRect(10, 190, 691, 61));
+        frame_6->setGeometry(QRect(10, 190, 701, 61));
         frame_6->setStyleSheet(QLatin1String("QFrame{\n"
 "	border: 0px;\n"
 "}"));
@@ -329,11 +339,11 @@ public:
 
         pushButton_bNuevo = new QPushButton(frame_6);
         pushButton_bNuevo->setObjectName(QStringLiteral("pushButton_bNuevo"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(pushButton_bNuevo->sizePolicy().hasHeightForWidth());
-        pushButton_bNuevo->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(pushButton_bNuevo->sizePolicy().hasHeightForWidth());
+        pushButton_bNuevo->setSizePolicy(sizePolicy1);
         QFont font3;
         font3.setFamily(QStringLiteral("Segoe UI"));
         font3.setPointSize(14);
@@ -347,8 +357,8 @@ public:
 
         pushButton_bCargar = new QPushButton(frame_6);
         pushButton_bCargar->setObjectName(QStringLiteral("pushButton_bCargar"));
-        sizePolicy.setHeightForWidth(pushButton_bCargar->sizePolicy().hasHeightForWidth());
-        pushButton_bCargar->setSizePolicy(sizePolicy);
+        sizePolicy1.setHeightForWidth(pushButton_bCargar->sizePolicy().hasHeightForWidth());
+        pushButton_bCargar->setSizePolicy(sizePolicy1);
         pushButton_bCargar->setFont(font3);
 
         horizontalLayout_3->addWidget(pushButton_bCargar);
@@ -365,7 +375,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 730, 21));
+        menubar->setGeometry(QRect(0, 0, 741, 21));
         menubar->setStyleSheet(QLatin1String("background-color: #283593;\n"
 "color: white;"));
         menuArchivo = new QMenu(menubar);
