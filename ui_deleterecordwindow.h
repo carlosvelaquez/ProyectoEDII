@@ -13,8 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
@@ -25,30 +23,25 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_deleteRecordWIndow
+class Ui_deleteRecordWindow
 {
 public:
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QTableWidget *tableWidget;
-    QFrame *frame;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label_3;
-    QSpinBox *spinBox;
-    QPushButton *pushButton_2;
     QLabel *label_2;
-    QPushButton *pushButton_3;
+    QSpinBox *spinBox;
     QPushButton *pushButton;
 
-    void setupUi(QWidget *deleteRecordWIndow)
+    void setupUi(QWidget *deleteRecordWindow)
     {
-        if (deleteRecordWIndow->objectName().isEmpty())
-            deleteRecordWIndow->setObjectName(QStringLiteral("deleteRecordWIndow"));
-        deleteRecordWIndow->resize(665, 469);
-        deleteRecordWIndow->setStyleSheet(QStringLiteral("background-color: white;"));
-        verticalLayout = new QVBoxLayout(deleteRecordWIndow);
+        if (deleteRecordWindow->objectName().isEmpty())
+            deleteRecordWindow->setObjectName(QStringLiteral("deleteRecordWindow"));
+        deleteRecordWindow->resize(629, 404);
+        deleteRecordWindow->setStyleSheet(QStringLiteral("background-color: white;"));
+        verticalLayout = new QVBoxLayout(deleteRecordWindow);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        label = new QLabel(deleteRecordWIndow);
+        label = new QLabel(deleteRecordWindow);
         label->setObjectName(QStringLiteral("label"));
         QFont font;
         font.setFamily(QStringLiteral("FreeSans"));
@@ -61,71 +54,45 @@ public:
 
         verticalLayout->addWidget(label);
 
-        tableWidget = new QTableWidget(deleteRecordWIndow);
+        tableWidget = new QTableWidget(deleteRecordWindow);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
 
         verticalLayout->addWidget(tableWidget);
 
-        frame = new QFrame(deleteRecordWIndow);
-        frame->setObjectName(QStringLiteral("frame"));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
-        horizontalLayout = new QHBoxLayout(frame);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label_3 = new QLabel(frame);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        horizontalLayout->addWidget(label_3);
-
-        spinBox = new QSpinBox(frame);
-        spinBox->setObjectName(QStringLiteral("spinBox"));
-
-        horizontalLayout->addWidget(spinBox);
-
-        pushButton_2 = new QPushButton(frame);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-
-        horizontalLayout->addWidget(pushButton_2);
-
-        label_2 = new QLabel(frame);
+        label_2 = new QLabel(deleteRecordWindow);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        horizontalLayout->addWidget(label_2);
+        verticalLayout->addWidget(label_2);
 
-        pushButton_3 = new QPushButton(frame);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        spinBox = new QSpinBox(deleteRecordWindow);
+        spinBox->setObjectName(QStringLiteral("spinBox"));
+        spinBox->setMaximum(100000);
 
-        horizontalLayout->addWidget(pushButton_3);
+        verticalLayout->addWidget(spinBox);
 
-
-        verticalLayout->addWidget(frame);
-
-        pushButton = new QPushButton(deleteRecordWIndow);
+        pushButton = new QPushButton(deleteRecordWindow);
         pushButton->setObjectName(QStringLiteral("pushButton"));
 
         verticalLayout->addWidget(pushButton);
 
 
-        retranslateUi(deleteRecordWIndow);
+        retranslateUi(deleteRecordWindow);
 
-        QMetaObject::connectSlotsByName(deleteRecordWIndow);
+        QMetaObject::connectSlotsByName(deleteRecordWindow);
     } // setupUi
 
-    void retranslateUi(QWidget *deleteRecordWIndow)
+    void retranslateUi(QWidget *deleteRecordWindow)
     {
-        deleteRecordWIndow->setWindowTitle(QApplication::translate("deleteRecordWIndow", "Form", 0));
-        label->setText(QApplication::translate("deleteRecordWIndow", "Eliminar Registros", 0));
-        label_3->setText(QApplication::translate("deleteRecordWIndow", "Ingrese numero:", 0));
-        pushButton_2->setText(QApplication::translate("deleteRecordWIndow", "<<", 0));
-        label_2->setText(QString());
-        pushButton_3->setText(QApplication::translate("deleteRecordWIndow", ">>", 0));
-        pushButton->setText(QApplication::translate("deleteRecordWIndow", "Eliminar registro", 0));
+        deleteRecordWindow->setWindowTitle(QApplication::translate("deleteRecordWindow", "Form", 0));
+        label->setText(QApplication::translate("deleteRecordWindow", "Eliminar Registros", 0));
+        label_2->setText(QApplication::translate("deleteRecordWindow", "Ingrese numero de registro:", 0));
+        pushButton->setText(QApplication::translate("deleteRecordWindow", "Eliminar registro", 0));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class deleteRecordWIndow: public Ui_deleteRecordWIndow {};
+    class deleteRecordWindow: public Ui_deleteRecordWindow {};
 } // namespace Ui
 
 QT_END_NAMESPACE

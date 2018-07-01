@@ -76,7 +76,8 @@ void MainWindow::addRecord(){
 }
 
 void MainWindow::deleteRecords(){
-    deleteRecordWIndow* dr = new deleteRecordWIndow(&file);
+    deleteRecordWindow* dr = new deleteRecordWindow();
+    dr->refreshtable();
     dr->show();
 }
 /*##########################################*/
