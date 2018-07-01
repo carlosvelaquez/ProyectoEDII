@@ -77,7 +77,6 @@ void addRecordWindow::on_pushButton_send_clicked()
                 QMessageBox::about(this,"","Registro añadido con exito");
                 file->addRecord(values);
                 file->lock();
-                parent->refreshMenuBar();
             }
         }
     }
