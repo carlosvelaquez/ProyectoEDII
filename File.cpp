@@ -774,9 +774,20 @@ void File::exportXML(string exPath){
   exFile.open(exPath);
 
   if (exFile) {
+    string exPathXsl = exPath.substr(0, (exPath.length() - 4));
+    exPathXsl += ".xsl";
+
+    for (int i = exPathXsl.length() - 1; i >= 0; i--) {
+      if (exPathXsl[i] == '/') {
+        exPathXsl = exPathXsl.substr(i + 1, exPathXsl.length());
+      }
+    }
+
+    qDebug() << exPathXsl.c_str();
+
     exFile
     << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl
-    << "<?xml-stylesheet type=\"text/xsl\" href=\"" << exPath.substr(0, (exPath.length() - 4)) << ".xsl" << "\"?>" << endl << endl
+    << "<?xml-stylesheet type=\"text/xsl\" href=\"" << exPathXsl << "\"?>" << endl << endl
     << "<file>" << endl
     << '\t'<< "<fields>" << endl;
 
@@ -826,28 +837,31 @@ void File::exportXML(string exPath){
       << "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">" << endl
       << "<xsl:template match=\"file\">" << endl
       << "<html>" << endl
-      << "<body>" << endl
-      << '\t' << "<h1>Archivo de Registros</h1>"  << endl
-      << '\t' << "<h2>Exportado de File Manager</h2>"  << endl
-      << '\t' << "<table>" << endl
-      << '\t' << '\t' << "<tr bgcolor =\"#3F51B5\" color = \"white\">" << endl
-      << '\t' << '\t' << '\t' << "<xsl:for-each select=\"/file/fields/field\">" << endl
-      << '\t' << '\t' << '\t' << '\t' << "<td><xsl:value-of select=\"name\"/></td>" << endl
-      << '\t' << '\t' << '\t' << "</xsl:for-each>" << endl
-      << '\t' << '\t' << "</tr>" << endl
-      << '\t' << '\t' << "<xsl:for-each select=\"/file/records/record\">" << endl
-      << '\t' << '\t' << '\t' << "<tr>" << endl
-      << '\t' << '\t' << '\t' << '\t' << "<xsl:for-each select=\"value\">" << endl
-      << '\t' << '\t' << '\t' << '\t' << '\t' << "<td><xsl:value-of select=\"data\"/></td>" << endl
+      << "<body style = \"background-color: #EEEEEE; text-align: center; font-family: Verdana; \">" << endl
+      << '\t' << "<div style = \"margin: 20px 20px 20px 20px; border: 5px solid white; border-radius = 25px; background-color: white; padding: 10px; box-shadow: 0px 0px 18px #888888; overflow: hidden;\">" << endl
+      << '\t' << '\t' << "<h1>Archivo de Registros</h1>" << endl
+      << '\t' << '\t' << "<h2>Exportado de Sota File Manager</h2>" << endl
+      << '\t' << '\t' << "<table style = \"width: 100%; font-family: Arial;\">" << endl
+      << '\t' << '\t' << '\t' << "<tr bgcolor =\"#3F51B5\" style = \"color:white;\">" << endl
+      << '\t' << '\t' << '\t' << '\t' << "<xsl:for-each select=\"/file/fields/field\">" << endl
+      << '\t' << '\t' << '\t' << '\t' << '\t' << "<td><xsl:value-of select=\"name\"/></td>" << endl
       << '\t' << '\t' << '\t' << '\t' << "</xsl:for-each>" << endl
       << '\t' << '\t' << '\t' << "</tr>" << endl
-      << '\t' << '\t' << "</xsl:for-each>" << endl
-      << '\t' << "</table>" << endl
+      << '\t' << '\t' << '\t' << "<xsl:for-each select=\"/file/records/record\">" << endl
+      << '\t' << '\t' << '\t' << '\t' << "<tr>" << endl
+      << '\t' << '\t' << '\t' << '\t' << '\t' << "<xsl:for-each select=\"value\">" << endl
+      << '\t' << '\t' << '\t' << '\t' << '\t' << '\t' << "<td><xsl:value-of select=\"data\"/></td>" << endl
+      << '\t' << '\t' << '\t' << '\t' << '\t' << "</xsl:for-each>" << endl
+      << '\t' << '\t' << '\t' << '\t' << "</tr>" << endl
+      << '\t' << '\t' << '\t' << "</xsl:for-each>" << endl
+      << '\t' << '\t' << "</table>" << endl
+      << '\t' << "</div>" << endl
       << "</body>" << endl
       << "</html>" << endl
       << "</xsl:template>" << endl
       << "</xsl:stylesheet>" << endl;
 
+      exFile.flush();
       exFile.close();
     }
   }

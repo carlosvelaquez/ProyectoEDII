@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'modifyfieldwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -93,6 +93,9 @@ public:
         verticalLayout->addWidget(label_5);
 
         comboBox_2 = new QComboBox(modifyfieldwindow);
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
+        comboBox_2->addItem(QString());
         comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
 
         verticalLayout->addWidget(comboBox_2);
@@ -115,20 +118,18 @@ public:
 
     void retranslateUi(QWidget *modifyfieldwindow)
     {
-        modifyfieldwindow->setWindowTitle(QApplication::translate("modifyfieldwindow", "Form", 0));
-        label->setText(QApplication::translate("modifyfieldwindow", "Modificar Campos", 0));
-        label_2->setText(QApplication::translate("modifyfieldwindow", "Elegir campo:", 0));
-        label_3->setText(QApplication::translate("modifyfieldwindow", "Nombre:", 0));
-        label_4->setText(QApplication::translate("modifyfieldwindow", "Tama\303\261o:", 0));
-        label_5->setText(QApplication::translate("modifyfieldwindow", "Tipo:", 0));
-        comboBox_2->clear();
-        comboBox_2->insertItems(0, QStringList()
-         << QApplication::translate("modifyfieldwindow", "Entero", 0)
-         << QApplication::translate("modifyfieldwindow", "Caracter", 0)
-         << QApplication::translate("modifyfieldwindow", "Cadena de caracteres", 0)
-        );
-        radioButton->setText(QApplication::translate("modifyfieldwindow", "Es llave primaria", 0));
-        pushButton->setText(QApplication::translate("modifyfieldwindow", "Aplicar cambios", 0));
+        modifyfieldwindow->setWindowTitle(QApplication::translate("modifyfieldwindow", "Form", nullptr));
+        label->setText(QApplication::translate("modifyfieldwindow", "Modificar Campos", nullptr));
+        label_2->setText(QApplication::translate("modifyfieldwindow", "Elegir campo:", nullptr));
+        label_3->setText(QApplication::translate("modifyfieldwindow", "Nombre:", nullptr));
+        label_4->setText(QApplication::translate("modifyfieldwindow", "Tama\303\261o:", nullptr));
+        label_5->setText(QApplication::translate("modifyfieldwindow", "Tipo:", nullptr));
+        comboBox_2->setItemText(0, QApplication::translate("modifyfieldwindow", "Entero", nullptr));
+        comboBox_2->setItemText(1, QApplication::translate("modifyfieldwindow", "Caracter", nullptr));
+        comboBox_2->setItemText(2, QApplication::translate("modifyfieldwindow", "Cadena de caracteres", nullptr));
+
+        radioButton->setText(QApplication::translate("modifyfieldwindow", "Es llave primaria", nullptr));
+        pushButton->setText(QApplication::translate("modifyfieldwindow", "Aplicar cambios", nullptr));
     } // retranslateUi
 
 };

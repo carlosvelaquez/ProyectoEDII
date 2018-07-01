@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'modifyrecordwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -66,11 +66,11 @@ public:
 
     void retranslateUi(QWidget *modifyrecordwindow)
     {
-        modifyrecordwindow->setWindowTitle(QApplication::translate("modifyrecordwindow", "Form", 0));
-        label->setText(QApplication::translate("modifyrecordwindow", "Modificar Registros", 0));
-        label_2->setText(QApplication::translate("modifyrecordwindow", "Index del registro: ", 0));
-        pushButton->setText(QApplication::translate("modifyrecordwindow", "Eliminar", 0));
-        pushButton_2->setText(QApplication::translate("modifyrecordwindow", "A\303\261adir", 0));
+        modifyrecordwindow->setWindowTitle(QApplication::translate("modifyrecordwindow", "Form", nullptr));
+        label->setText(QApplication::translate("modifyrecordwindow", "Modificar Registros", nullptr));
+        label_2->setText(QApplication::translate("modifyrecordwindow", "Index del registro: ", nullptr));
+        pushButton->setText(QApplication::translate("modifyrecordwindow", "Eliminar", nullptr));
+        pushButton_2->setText(QApplication::translate("modifyrecordwindow", "A\303\261adir", nullptr));
     } // retranslateUi
 
 };
