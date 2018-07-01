@@ -39,5 +39,6 @@ private slots:
 public:
   MainWindow(QWidget* parent = 0);
   void refreshTable();
+  void refreshMenuBar();
   File* getFile();
 };
