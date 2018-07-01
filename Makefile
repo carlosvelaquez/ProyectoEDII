@@ -35,7 +35,7 @@ SUBTARGETS    =  \
 release: FORCE
 	$(MAKE) -f $(MAKEFILE).Release
 release-make_first: FORCE
-	$(MAKE) -f $(MAKEFILE).Release 
+	$(MAKE) -f $(MAKEFILE).Release
 release-all: FORCE
 	$(MAKE) -f $(MAKEFILE).Release all
 release-clean: FORCE
@@ -49,7 +49,7 @@ release-uninstall: FORCE
 debug: FORCE
 	$(MAKE) -f $(MAKEFILE).Debug
 debug-make_first: FORCE
-	$(MAKE) -f $(MAKEFILE).Debug 
+	$(MAKE) -f $(MAKEFILE).Debug
 debug-all: FORCE
 	$(MAKE) -f $(MAKEFILE).Debug all
 debug-clean: FORCE

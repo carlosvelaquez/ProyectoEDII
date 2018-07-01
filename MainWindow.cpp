@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
 /*##########################################*/
 void MainWindow::addRecord(){
-    addRecordWindow* adw = new addRecordWindow(this);
+    addRecordWindow* adw = new addRecordWindow();
     adw->setFile(&file);
     adw->fillTable();
     adw->show();
@@ -335,7 +335,7 @@ void MainWindow::refreshMenuBar(){
           ui.menuRegistros->setEnabled(true); //Bloquea Registros
           ui.menuEstadarizaci_n->setEnabled(true);  //Bloquea Estandarización
           ui.menu_ndices->setEnabled(true); //Bloquea Indicas
-      }        
+      }
     }
 
 
