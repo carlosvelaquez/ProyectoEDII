@@ -447,11 +447,11 @@ public:
         label->setText(QApplication::translate("MainWindow", "Sota File Manager", nullptr));
         label_ruta->setText(QApplication::translate("MainWindow", "No se ha cargado un archivo.", nullptr));
         pushButton_refresh->setText(QApplication::translate("MainWindow", "Refrescar Tabla", nullptr));
-        label_2->setText(QApplication::translate("MainWindow", "Bienvenido a Sota", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "Bienvenido a Sota\342\204\242", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "\302\277Como desea empezar?", nullptr));
         pushButton_bNuevo->setText(QApplication::translate("MainWindow", "Crear un Archivo Nuevo", nullptr));
         pushButton_bCargar->setText(QApplication::translate("MainWindow", "Cargar un Archivo Existente", nullptr));
-        label_4->setText(QApplication::translate("MainWindow", "Copyright Sota Inc., 2018 - Todos los derechos reservados.", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "\302\251 Sota Inc., 2018 - Todos los derechos reservados.", nullptr));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", nullptr));
         menuRegistros->setTitle(QApplication::translate("MainWindow", "Registros", nullptr));
         menuCampos->setTitle(QApplication::translate("MainWindow", "Campos", nullptr));
