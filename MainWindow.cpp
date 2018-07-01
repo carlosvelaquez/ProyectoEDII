@@ -189,7 +189,7 @@ void MainWindow::refreshTable(){
 
     //Dimensionar la tabla de acuerdo a los campos y registros de file
     ui.tableWidget->setColumnCount(file.fieldQuantity()); //Añade la cantidad de columnas de acuerdo a la cantidad de campos
-    ui.tableWidget->setRowCount(file.getBlockSize());// Cantidad de records de cada bloque
+    //ui.tableWidget->setRowCount(file.blockSize());// Cantidad de records de cada bloque
 
     //Poner los números en la tabla para que correspondan a los índices de los registros
     for (int i = 0; i < file.getBlockSize(); i++) {
@@ -208,6 +208,12 @@ void MainWindow::refreshTable(){
       if (file.isLocked()) {
         //Extraer los registros del bloque actual de file
         List<List<string>> records = file.data();
+
+        if (records.size <= 0) {
+          ui.tableWidget->setRowCount(1);
+        }else{
+          ui.tableWidget->setRowCount(records.size);
+        }
 
         if (records.size > 0) { //Solo entra si existen registros
           for (int i = 1; i <= records.size; i++) {
@@ -231,6 +237,7 @@ void MainWindow::refreshTable(){
 
         }else{ //Si no hay registros, que lo indique en el GUI
           qDebug() << "No records in data()";
+          ui.tableWidget->setRowCount(1);
           ui.tableWidget->setItem(0, 0, new QTableWidgetItem("No hay registros. Puede añadir registros en Registros > Introducir Registros"));
         }
       }else{
