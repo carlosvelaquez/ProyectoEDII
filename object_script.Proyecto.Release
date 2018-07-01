@@ -3,6 +3,9 @@ INPUT(
 ./release\Field.o
 ./release\main.o
 ./release\MainWindow.o
+./release\BTree.o
+./release\BTreeNode.o
+./release\Key.o
 ./release\addrecordwindow.o
 ./release\addfieldwindow.o
 ./release\listfieldswindow.o

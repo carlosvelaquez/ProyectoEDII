@@ -1,19 +1,37 @@
-#ifndef BTreeNode_H
-#define BTreeNode_H
-
+#ifndef BTreeNode_h
+#define BTreeNode_h
 #include "List.h"
+#include "Key.h"
+#include <vector>
+#include <string>
 
-class BintreeNode{
+using namespace std;
 
-private:
-  int t;
-  List<BTreeNode*> children;
-  List<int> keys;
-  BTreeNode* parent;
+class BTreeNode{
+  private:
+    List<Key*>* keys;
+    List<BTreeNode*>* children;
+    BTreeNode* parent = NULL;
+    int T;
+  public:
+    //Constructor
+    BTreeNode();
+    BTreeNode(int);
 
-public:
-  void split();
+    //Gets
+    List<Key*>* getKeys();
+    Key* getKeysAt(int);
+    int getT();
+    BTreeNode* getParent();
+    void setParent(BTreeNode*);
 
+    bool isLeaf();
+    List<BTreeNode*>* getChildren();
+    BTreeNode* getChildrenAt(int);
+    void addChild(BTreeNode*);
+    void removeLastChild();
+    string toString();
+
+    ~BTreeNode();
 };
-
-#endif /* end of include guard: BTreeNode_H */
+#endif

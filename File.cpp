@@ -76,6 +76,7 @@ File::File(){
   locked = false;
 
   recordBuffer = List<List<string>>(blockSize);
+  index = BTree(3);
 }
 
 File::File(string nPath){
@@ -89,6 +90,7 @@ File::File(string nPath){
   locked = false;
 
   recordBuffer = List<List<string>>(blockSize);
+  index = BTree(3);
 
   readMeta();
 }
@@ -104,6 +106,7 @@ File::File(string nPath, int nBlockSize){
   locked = false;
 
   recordBuffer = List<List<string>>(blockSize);
+  index = BTree(3);
 
   readMeta();
 }
@@ -192,8 +195,20 @@ bool File::open(string nPath){
 }
 
 void File::close(){
-  path = "";
   file.close();
+
+  path = "";
+  lastDeleted = -1;
+  recordSize = -1;
+  metaSize = -1;
+  blockSize = 10;
+  currentBlock = -1;
+
+  locked = false;
+
+  recordBuffer = List<List<string>>(blockSize);
+  fields.clear();
+  availList.clear();
 }
 
 
@@ -727,6 +742,69 @@ int File::getBlockSize(){
 
 bool File::isLocked(){
   return locked;
+}
+
+
+// Funciones de Indexación
+bool File::buildIndex(){
+  qDebug() << "Attempting to build index.";
+  file.clear();
+
+  if (!locked) {
+    qDebug() << "File is not locked. Aborting index build.";
+    return false;
+  }
+
+  if (!hasPrimaryKey()) {
+    qDebug() << "File has no primary key. Aborting index build.";
+    return false;
+  }
+
+  if (recordQuantity() <= 0) {
+    qDebug() << "No records to index. Aborting index build.";
+    return false;
+  }
+
+  if (file) {
+    index = BTree(3);
+    int pastBlock = currentBlock;
+    seekFirst();
+
+    int primaryKeyIndex = -1;
+    for (int i = 1; i <= fields.size; i++) {
+      if (fields[i].isPrimaryKey()) {
+        primaryKeyIndex = i;
+        break;
+      }
+    }
+
+    qDebug() << "Primary Key Index: " << primaryKeyIndex;
+
+    for (int i = 1; i <= blockQuantity(); i++) {
+      List<List<string>> block = data();
+
+      for (int j = 1; j <= block.size; j++) {
+        index.insert(new Key(block[j][primaryKeyIndex], j + ((i - 1)*blockSize)));
+        qDebug() << "Indexing Key " << block[j][primaryKeyIndex].c_str() << " at " << j + ((i - 1)*blockSize);
+      }
+
+      next();
+    }
+
+    qDebug() << "Index built successfully.";
+    file.clear();
+    seek(pastBlock);
+
+    return true;
+  }else{
+    qDebug() << "File unaccesible. Aborting index build.";
+    return false;
+  }
+
+}
+
+int File::findRecord(string key){
+  return index.findIndex(key);
 }
 
 

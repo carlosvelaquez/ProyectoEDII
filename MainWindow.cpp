@@ -114,7 +114,9 @@ void MainWindow::openFile(){
     QString path = QFileDialog::getSaveFileName(this, "Nuevo Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
 
     if (!path.isEmpty() && !path.isNull()) {
+      file.close();
       remove(path.toStdString().c_str());
+      
       file.open(path.toStdString());
       ui.label_ruta->setText(path);
       refreshMenuBar();
@@ -154,6 +156,8 @@ void MainWindow::loadFile(){
     QString path = QFileDialog::getOpenFileName(this, "Abrir Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
 
     if (!path.isEmpty() && !path.isNull()) {
+      file.close();
+
       if (file.open(path.toStdString())){
 
         file.lock();
@@ -173,13 +177,28 @@ void MainWindow::refreshTable(){
 
     //Dimensionar la tabla de acuerdo a los campos y registros de file
     ui.tableWidget->setColumnCount(file.fieldQuantity()); //Añade la cantidad de columnas de acuerdo a la cantidad de campos
-    ui.tableWidget->setRowCount(file.getBlockSize());// Cantidad de records de cada bloque
 
-    //Poner los números en la tabla para que correspondan a los índices de los registros
-    for (int i = 0; i < file.getBlockSize(); i++) {
-      int indexLabel = ((file.getCurrentBlock() - 1)*file.getBlockSize()) + i + 1;
-      ui.tableWidget->setVerticalHeaderItem(i, new QTableWidgetItem(to_string(indexLabel).c_str()));
+    int rowCount;
+    if (file.recordQuantity() <= file.getBlockSize()) {
+      rowCount = file.recordQuantity();
+    }else{
+      rowCount = file.getBlockSize();
     }
+
+    ui.tableWidget->setRowCount(rowCount);
+
+    if (rowCount <= 0) {
+      ui.tableWidget->setRowCount(1);
+      ui.tableWidget->setVerticalHeaderItem(0, new QTableWidgetItem("Tip:"));
+
+    }else{
+      //Poner los números en la tabla para que correspondan a los índices de los registros
+      for (int i = 0; i < file.getBlockSize(); i++) {
+        int indexLabel = ((file.getCurrentBlock() - 1)*file.getBlockSize()) + i + 1;
+        ui.tableWidget->setVerticalHeaderItem(i, new QTableWidgetItem(to_string(indexLabel).c_str()));
+      }
+    }
+
 
     //Poner los nombres de cada campo como cabeceras de columna
     List<Field> fields = file.getFields();
