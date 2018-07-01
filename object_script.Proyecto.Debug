@@ -3,6 +3,9 @@ INPUT(
 ./debug\Field.o
 ./debug\main.o
 ./debug\MainWindow.o
+./debug\BTree.o
+./debug\BTreeNode.o
+./debug\Key.o
 ./debug\addrecordwindow.o
 ./debug\addfieldwindow.o
 ./debug\listfieldswindow.o

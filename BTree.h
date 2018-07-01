@@ -1,13 +1,21 @@
-#ifndef BTREE_H
-#define BTREE_H
-
+#ifndef BTree_H
+#define BTree_H
 #include "BTreeNode.h"
 
 class BTree{
 private:
-  BTreeNode* root;
+  BTreeNode* root = NULL;
+  int T;
 public:
-  insert(BTreeNode*, int);
+  BTree();
+  BTree(int);
+  BTreeNode* getRoot();
+  void sort(BTreeNode*);
+  void insert(Key*);
+  void split(BTreeNode*);
+  BTreeNode* getLeaf(BTreeNode*, string);
+  void printPrevious(BTreeNode*);
+  int findIndex(string);
+  int findIndex(BTreeNode*, string);
 };
-
-#endif /* end of include guard: BTREE_H */
+#endif

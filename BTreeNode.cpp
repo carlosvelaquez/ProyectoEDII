@@ -1,39 +1,63 @@
 #include "BTreeNode.h"
-
-void BTreeNode::split(){
-  int nodeCount = t/2;
-  List<int> nKeys;
-  List<int> nKeys2;
-  List<BTreeNode*> nChildren1;
-  List<BTreeNode*> nChildren2;
-
-  for (int i = 1; i < nodeCount; i++) {
-    nKeys.insert(keys[i]);
-  }
-
-  int promote = keys[nodeCount];
-
-  for (int i = nodeCount + 1; i <= t; i++) {
-    nKeys2.insert(keys[i]);
-  }
-
-  parent->removeChildren(this);
-
-  BTreeNode* child = new BTreeNode(nKeys);
-  BTreeNode* child2 = new BTreeNode(nKeys2);
-
-  child->setChildren(nChildren1);
-  child2->setChildren(nChildren2);
-  child->setKeys(nKeys);
-  child2->setKeys(nKeys2);
-
-  parent->addKey(promote);
+BTreeNode::BTreeNode(){
 }
 
-void BTreeNode::addKey(int nData){
-  keys.insert(nData);
+BTreeNode::BTreeNode(int t){
+  T=t;
+  keys = new List<Key*>;
+  children = new List<BTreeNode*>;
+}
 
-  if (keys.size >= t) {
-    this.split();
+//Gets
+List<Key*>* BTreeNode::getKeys(){
+  return keys;
+}
+
+Key* BTreeNode::getKeysAt(int posicion){
+  return keys->get(posicion);
+}
+
+int BTreeNode::getT(){
+  return T;
+}
+
+BTreeNode* BTreeNode::getParent(){
+  return parent;
+}
+
+void BTreeNode::setParent(BTreeNode* node){
+    parent=node;
+}
+bool BTreeNode::isLeaf(){
+  return children->size==0;
+}
+
+List<BTreeNode*>* BTreeNode::getChildren(){
+  return children;
+}
+
+BTreeNode* BTreeNode::getChildrenAt(int posicion){
+  return children->get(posicion);
+}
+
+void BTreeNode::addChild(BTreeNode* child){
+  child->parent = this;
+  children->insert(child);
+}
+
+void BTreeNode::removeLastChild(){
+  children->remove(children->size);
+}
+
+string BTreeNode::toString(){
+  string temp ="";
+  for (int i = 1; i <= keys->size; i++) {
+    temp+="["+ (keys->get(i)->getKey()) + '/' +to_string(keys->get(i)->getIndex());
   }
+  temp+="]";
+  return temp;
+}
+
+BTreeNode::~BTreeNode(){
+
 }

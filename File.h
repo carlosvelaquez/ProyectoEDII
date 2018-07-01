@@ -3,6 +3,7 @@
 
 #include <QDebug>
 
+#include "BTree.h"
 #include "List.h"
 #include "Field.h"
 #include <fstream>
@@ -26,6 +27,8 @@ private:
 
   List<int> availList; //Espacios disponibles en el archivo
   List<Field> fields; //Campos del archivo actual
+
+  BTree index; //Árbol de búsqueda para la indexación
 
 
   //--- PROPIEDADES DEL BUFFER ---
@@ -107,6 +110,10 @@ public:
 
   bool isLocked(); //Retorna locked
 
+
+  // --- FUNCIONES DE INDEXACIÓN ---
+  bool buildIndex();
+  int findRecord(string);
 
   // --- FUNCIONES DE EXPORTACIÓN ---
   void exportCSV(string);
