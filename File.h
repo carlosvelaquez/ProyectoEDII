@@ -19,7 +19,6 @@ private:
   string path; //Ruta del archivo que utilzará el File
 
   bool locked; //Si está bloqueado el archivo no se pueden añadir/modificar/eliminar campos
-  bool Enable;
 
   int lastDeleted; //Índice del último registro borrado
   int recordSize; //Tamaño en bytes abarcado por un registro
@@ -52,7 +51,6 @@ public:
 
   //--- FUNCIONES DE ARCHIVO ---
   void lock(); //Bloquear el archivo para prohibir cambios en los campos
-  void setEnable(bool); //
   void setPath(string); //Proporcionar una nueva ruta de archivo
   bool open(); //Abir el archivo de path
   bool open(string); //Abrir el archivo en la ruta proporcionada
@@ -108,13 +106,15 @@ public:
   int getBlockSize(); //Retorna el tamaño de bloque
 
   bool isLocked(); //Retorna locked
-  bool isEnable(); //Retorna si se puede utilizar
+
 
   // --- FUNCIONES DE EXPORTACIÓN ---
   void exportCSV(string);
   void exportXML(string);
 
-  operator bool(){
+
+  // --- OPERADORES ---
+  operator bool(){ //Retorna falso si el archivo no está cargado.
     if (path == "") {
       return false;
     }

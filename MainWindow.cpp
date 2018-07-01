@@ -9,7 +9,6 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
-  file.setEnable(false); // En un inicio no hay archivo cargado
   refreshMenuBar(); // Actualiza las Menu Bar
 
   QHeaderView* header = ui.tableWidget->horizontalHeader();
@@ -118,7 +117,6 @@ void MainWindow::openFile(){
       remove(path.toStdString().c_str());
       file.open(path.toStdString());
       ui.label_ruta->setText(path);
-      file.setEnable(true);
       refreshMenuBar();
       refreshTable();
     }else{
@@ -129,7 +127,7 @@ void MainWindow::openFile(){
 void MainWindow::closeFile(){
   if (file) {
     file.close(); //Cerrar el archivo
-    file.setEnable(false);
+
     //Borrar todos los datos en la pantalla
     ui.label_ruta->setText("Archivo cerrado.");
     ui.label_pagina->setText(" - ");
@@ -157,7 +155,7 @@ void MainWindow::loadFile(){
 
     if (!path.isEmpty() && !path.isNull()) {
       if (file.open(path.toStdString())){
-        file.setEnable(true); //Archivo cargado
+
         file.lock();
         ui.label_ruta->setText(path);
         refreshTable();
@@ -167,58 +165,6 @@ void MainWindow::loadFile(){
       qDebug() << "File path is empty or null. Aborting.";
     }
 }
-/*##########################################*/
-
-/*Test:
-
-//file.setPath("lel.txt");
-
-file.addField(0, "Indice", 5, false);
-file.addField(2, "Nombre", 20, false);
-file.addField(0, "Edad", 5, false);
-file.addField(1, "Sexo", 10, false);
-file.addField(2, "Dirección", 50, false);
-file.lock();
-qDebug() << "File locked";
-
-List<string> data;
-
-for (int j = 1; j <= 100; j++) {
-  qDebug() << "Adding record " << j << "...";
-
-  for (int i = 1; i <= file.fieldQuantity(); i++) {
-    string ins = "";
-    ins += "Data [";
-    ins += to_string(j);
-    ins += "][";
-    ins += to_string(i);
-    ins += "]";
-    data.insert(ins);
-  }
-
-  qDebug() << "File addRecord: " << file.addRecord(data.clone());
-  qDebug() << "Record Buffer size: "<<file.data().size;
-  data.clear();
-
-  if (j%10 == 0) {
-    qDebug() << "j = " << j << ", flushing...";
-    file.flush();
-  }
-}
-
-file.seek(1);
-qDebug()<<"Total Buffer Record Size: "<<file.data().size;
-qDebug() << "Refreshing table...";
-
-refreshTable();
-
-file.deleteRecord(5);
-qDebug() << "Refreshing table...";
-refreshTable();
-*/
-
-
-
 
 void MainWindow::refreshTable(){
   if (file) {
@@ -373,22 +319,24 @@ void MainWindow::exit(){
 }
 
 void MainWindow::refreshMenuBar(){
-    if(!file.isEnable()){ // Si no hay un archivo cargado
+    if (!file){ // Si no hay un archivo cargado
         ui.menuCampos->setEnabled(false); //Bloquea campos
         ui.menuRegistros->setEnabled(false); //Bloquea Registros
         ui.menuEstadarizaci_n->setEnabled(false);  //Bloquea Estandarización
         ui.menu_ndices->setEnabled(false); //Bloquea Indicas
+    }else{ // Si hay un archivo cargado
+      if (!file.isLocked()){ // Si el archivo no esta bloqueado
+          ui.menuCampos->setEnabled(true); // Desbloquea los campos
+          ui.menuRegistros->setEnabled(false); //Bloquea Registros
+          ui.menuEstadarizaci_n->setEnabled(false);  //Bloquea Estandarización
+          ui.menu_ndices->setEnabled(false); //Bloquea Indicas
+      }else{ // Si el archivo esta bloqueado
+          ui.menuCampos->setEnabled(false); // Bloquea los campos
+          ui.menuRegistros->setEnabled(true); //Bloquea Registros
+          ui.menuEstadarizaci_n->setEnabled(true);  //Bloquea Estandarización
+          ui.menu_ndices->setEnabled(true); //Bloquea Indicas
+      }        
     }
-    if(file.isEnable()){ // Si hay un archivo cargado
-        ui.menuCampos->setEnabled(true); //Bloquea campos
-        ui.menuRegistros->setEnabled(true); //Bloquea Registros
-        ui.menuEstadarizaci_n->setEnabled(true);  //Bloquea Estandarización
-        ui.menu_ndices->setEnabled(true); //Bloquea Indicas
-    }
-    if(!file.isLocked()){ // Si el archivo no esta bloqueado
-        ui.menuCampos->setEnabled(true); // Desbloquea los campos
-    }
-    if(file.isLocked()){ // Si el archivo esta bloqueado
-        ui.menuCampos->setEnabled(false); // Bloquea los campos
-    }
+
+
 }

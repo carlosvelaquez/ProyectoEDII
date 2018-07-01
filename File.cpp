@@ -22,7 +22,7 @@ void File::calculateSizes(){
   file.clear();
   file.seekg(0, ios::beg); //Busca la primera posición de la línea donde comienza la info de los campos
 
-  string in = "";
+  /*string in = "";
   metaSize = 0;
 
   //file.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -33,7 +33,13 @@ void File::calculateSizes(){
 
   //El tamaño del meta sería todo lo que ha recorrido hasta que termina la info de campos más un salto de línea
   //metaSize = file.tellg();
-  metaSize += 4;
+  metaSize += 4;*/
+
+  file.ignore(numeric_limits<streamsize>::max(), '\n');
+  file.ignore(numeric_limits<streamsize>::max(), '\n');
+  metaSize = file.tellg();
+  metaSize -= 3;
+
   qDebug() << "Meta size: " << metaSize;
 }
 
@@ -43,13 +49,13 @@ int File::position(int index){
 }
 
 long File::filesize(){
-  file.clear();
+  ifstream inFile(path, ios::binary | ios::ate);
 
-  if (file) {
-    file.seekg(0, ios_base::end);
-    long ret = file.tellg();
-
+  if (inFile) {
+    long ret = inFile.tellg();
     qDebug() << "Filesize: " << ret;
+    inFile.close();
+
     return ret;
   }
 
@@ -186,6 +192,7 @@ bool File::open(string nPath){
 }
 
 void File::close(){
+  path = "";
   file.close();
 }
 
@@ -282,15 +289,11 @@ bool File::readAvailList(){
 
   if(file){
     file.seekg(0, ios::beg);
-    //file.ignore(3);
 
     string in = "";
     for (size_t i = 0; i < 7; i++) {
       in += char(file.get());
     }
-
-    qDebug() << "Raw AvailList: " << in.c_str();
-
 
     //Eliminar los asteriscos del string
     for (size_t i = 0; i < in.length(); i++) {
@@ -305,7 +308,6 @@ bool File::readAvailList(){
     availList.clear();
 
     qDebug() << "Starting build with: " << in.c_str();
-
     buildAvailList(stoi(in));
 
     return true;
@@ -323,7 +325,6 @@ bool File::readFields(){
 
     file.seekg(8);
     getline(file, line);
-    qDebug() << "Fields line: " << line.c_str();
 
     stringstream pipeStream(line);
     fields.clear();
@@ -560,8 +561,6 @@ bool File::seek(int block){
   }
 
   if (file) {
-    qDebug() << "File opened succesfully.";
-
     if (block > blockQuantity()) {
       qDebug() << "Seeking block beyond blockQuantity. Aborting...";
       return false;
@@ -580,7 +579,7 @@ bool File::seek(int block){
       return false;
     }
 
-    file.seekg(seekPos);
+    file.seekg(seekPos, ios::beg);
     recordBuffer.clear();
 
     int cont = 0;
@@ -696,13 +695,15 @@ int File::recordQuantity(){
 
 int File::blockQuantity(){
   if (locked) {
-    int calc = ((filesize() - metaSize)/blockSize)/recordSize;
+    int fs = filesize();
+    int calc = 0;
 
-    if (calc < 1) {
-      return 1;
-    }else{
-      return calc;
+    if ((fs - metaSize) % blockSize != 0) {
+      calc ++;
     }
+
+    calc += (((fs - metaSize)/blockSize)/recordSize);
+    return calc;
   }
 
   return -1;
@@ -867,15 +868,6 @@ void File::exportXML(string exPath){
   }
 }
 
-void File::setEnable(bool n_enable){
-    Enable = n_enable;
-}
-
-bool File::isEnable(){
-    return Enable;
-}
-
 File::~File(){
   file.close();
 }
-
