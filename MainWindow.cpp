@@ -5,7 +5,8 @@
 #include "listfieldswindow.h"
 #include "deletefieldwindow.h"
 #include "modifyfieldwindow.h"
-#include "deleterecordwindow.h"
+//#include "deleterecordwindow.h"
+#include "joinfilewindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
@@ -18,38 +19,26 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   //setWindowFlags(Qt::FramelessWindowHint);
 
-  // Nuevo archivo
+  // Archivo
   connect(ui.actionNuevo_Archivo, SIGNAL(triggered()), this, SLOT(openFile()));
   connect(ui.pushButton_bNuevo, SIGNAL(clicked()), this, SLOT(openFile()));
-
-  // Cargar archivo
   connect(ui.actionCargar_Archivo, SIGNAL(triggered()), this, SLOT(loadFile()));
   connect(ui.pushButton_bCargar, SIGNAL(clicked()), this, SLOT(loadFile()));
-
-  // Salvar archivo
   connect(ui.actionGuardar_Archivo, SIGNAL(triggered()), this, SLOT(saveFile()));
-
-  // Cerrar archivo
   connect(ui.actionCerrar_Archivo, SIGNAL(triggered()), this, SLOT(closeFile()));
-
-  //Salir del Programa
   connect(ui.actionSalir_del_Programa, SIGNAL(triggered()), this, SLOT(exit()));
+  connect(ui.actionCruzar_Archivos, SIGNAL(triggered()), this, SLOT(joinFiles()));
 
-  // Añadir campos
+  //Campos
   connect(ui.actionCrear_Campos, SIGNAL(triggered()), this, SLOT(addFields()));
-
-  // Listar campos
   connect(ui.actionListar_Campos, SIGNAL(triggered()), this, SLOT(listfields()));
-
-  // Eliminar campos
   connect(ui.actionEliminar_Campos, SIGNAL(triggered()), this, SLOT(deleteFields()));
-  // Modificar campos
   connect(ui.actionModificar_Campos, SIGNAL(triggered()), this, SLOT(modifyFields()));
 
-  // Añadir registros
+  //Registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
-  // ELiminar registros
   connect(ui.actionBorrar_Registros, SIGNAL(triggered()), this, SLOT(deleteRecords()));
+
 
   //Mover entre páginas
   connect(ui.pushButton_adelante, SIGNAL(clicked()), this, SLOT(nextPage()));
@@ -80,8 +69,8 @@ void MainWindow::addRecord(){
 }
 
 void MainWindow::deleteRecords(){
-    deleteRecordWindow* dr = new deleteRecordWindow();
-    dr->show();
+    /*deleteRecordWindow* dr = new deleteRecordWindow();
+    dr->show();*/
 }
 /*##########################################*/
 
@@ -174,6 +163,13 @@ void MainWindow::loadFile(){
       qDebug() << "File path is empty or null. Aborting.";
     }
 }
+
+void MainWindow::joinFiles(){
+    joinFileWindow* jf = new joinFileWindow(&file);
+    jf->refreshTable();
+    jf->show();
+}
+
 
 void MainWindow::refreshTable(){
   if (file) {

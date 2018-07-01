@@ -29,6 +29,7 @@ private slots:
   void gotoPage();
 
   void generateTest();
+  void joinFiles();
 
   void saveIndexFile();
   void createIndexes();
