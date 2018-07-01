@@ -1,5 +1,3 @@
-#pragma once
-
 #include "ui_MainWindow.h"
 #include <QDebug>
 #include "File.h"

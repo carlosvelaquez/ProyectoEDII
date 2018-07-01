@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addrecordwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.10.1
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -25,6 +26,7 @@ class Ui_addRecordWindow
 {
 public:
     QVBoxLayout *verticalLayout;
+    QLabel *label;
     QTableWidget *tableWidget;
     QPushButton *pushButton_send;
 
@@ -33,8 +35,21 @@ public:
         if (addRecordWindow->objectName().isEmpty())
             addRecordWindow->setObjectName(QStringLiteral("addRecordWindow"));
         addRecordWindow->resize(730, 430);
+        addRecordWindow->setStyleSheet(QLatin1String("background-color: white;\n"
+""));
         verticalLayout = new QVBoxLayout(addRecordWindow);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        label = new QLabel(addRecordWindow);
+        label->setObjectName(QStringLiteral("label"));
+        QFont font;
+        font.setFamily(QStringLiteral("FreeSans"));
+        font.setPointSize(24);
+        label->setFont(font);
+        label->setStyleSheet(QLatin1String("background-color:#3F51B5;\n"
+"color: white;"));
+
+        verticalLayout->addWidget(label);
+
         tableWidget = new QTableWidget(addRecordWindow);
         if (tableWidget->columnCount() < 4)
             tableWidget->setColumnCount(4);
@@ -59,8 +74,9 @@ public:
 
     void retranslateUi(QWidget *addRecordWindow)
     {
-        addRecordWindow->setWindowTitle(QApplication::translate("addRecordWindow", "Form", nullptr));
-        pushButton_send->setText(QApplication::translate("addRecordWindow", "Enviar", nullptr));
+        addRecordWindow->setWindowTitle(QApplication::translate("addRecordWindow", "Form", 0));
+        label->setText(QApplication::translate("addRecordWindow", "Ingresar Registros", 0));
+        pushButton_send->setText(QApplication::translate("addRecordWindow", "Enviar", 0));
     } // retranslateUi
 
 };

@@ -14,10 +14,6 @@ addRecordWindow::addRecordWindow(QWidget *parent) :
     header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-addRecordWindow::addRecordWindow(MainWindow* n_parent){
-    parent = n_parent;
-}
-
 addRecordWindow::~addRecordWindow()
 {
     delete ui;
@@ -35,26 +31,23 @@ void addRecordWindow::fillTable(){
     QStringList headers;
     headers <<"Tipo"<<"Nombre"<<"Es Llave primaria"<<"Valor";
     ui->tableWidget->setHorizontalHeaderLabels(headers);
-    if(file->getFields().size>0){ // Validar que hayan campos para ingresar
-
-        ui->tableWidget->setRowCount(file->getFields().size);
-        for(int i=1; i<=file->getFields().size; i++){//int i=1; i<=file->getFields().size; i++
-            if(file->getFields().get(i).getType()==0) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("Entero"));//file->getFields().get(i).getType()
-            else if(file->getFields().get(i).getType()==1) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("Caracter"));
-            else if(file->getFields().get(i).getType()==2) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("String"));
-            ui->tableWidget->setItem(i-1,1,new QTableWidgetItem(QString::fromStdString(file->getFields().get(i).getName())));//file->getFields().get(i).getName()
-            if(file->getFields().get(i).isPrimaryKey()) ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("Si"));//file->getFields().get(i).isPrimaryKey()
-            else ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("No"));
-            ui->tableWidget->setItem(i-1,3,0);
+    ui->tableWidget->setRowCount(file->getFields().size);
+       for(int i=1; i<=file->getFields().size; i++){//int i=1; i<=file->getFields().size; i++
+          if(file->getFields().get(i).getType()==0) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("Entero"));//file->getFields().get(i).getType()
+          else if(file->getFields().get(i).getType()==1) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("Caracter"));
+          else if(file->getFields().get(i).getType()==2) ui->tableWidget->setItem(i-1,0,new QTableWidgetItem("String"));
+          ui->tableWidget->setItem(i-1,1,new QTableWidgetItem(QString::fromStdString(file->getFields().get(i).getName())));//file->getFields().get(i).getName()
+          if(file->getFields().get(i).isPrimaryKey()) ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("Si"));//file->getFields().get(i).isPrimaryKey()
+          else ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("No"));
+          ui->tableWidget->setItem(i-1,3,0);
         }
-    }
 }
 
 void addRecordWindow::on_pushButton_send_clicked()
 {
     QMessageBox::StandardButton answer = QMessageBox::Yes;
     bool check = true;
-    if(!file->isLocked()){
+    if(!file->isLocked()){ // Si el archivo no esta lock
         answer = QMessageBox::question(this,"","¿Desea guardar registros? Esto impedira la edición de campos", QMessageBox::Yes|QMessageBox::No);
     }
     if(answer == QMessageBox::Yes){

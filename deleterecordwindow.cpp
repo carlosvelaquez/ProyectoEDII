@@ -17,9 +17,9 @@ deleteRecordWIndow::~deleteRecordWIndow()
 
 deleteRecordWIndow::deleteRecordWIndow(File* n_file){
     file = n_file;
-    QHeaderView* header = ui->tableWidget->horizontalHeader();
+   /* QHeaderView* header = ui->tableWidget->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget->setEnabled(false);
+    ui->tableWidget->setEnabled(false);*/
 }
 
 void deleteRecordWIndow::on_pushButton_clicked()
@@ -30,7 +30,7 @@ void deleteRecordWIndow::on_pushButton_clicked()
 
 void deleteRecordWIndow::refreshTable(){
 
-    if(file->isLocked()){
+    if(file->data().size>0){
         qDebug()<<"Entro";
         file->flush();
         List<List<string>> records = file->data();
@@ -56,15 +56,15 @@ void deleteRecordWIndow::refreshTable(){
 
 void deleteRecordWIndow::on_pushButton_2_clicked()
 {
-    if(file->previous()){
+    /*if(file->previous()){
         refreshTable();
-    }
+    }*/
 
 }
 
 void deleteRecordWIndow::on_pushButton_3_clicked()
 {
-    if(file->next()){
+    /*if(file->next()){
         refreshTable();
-    }
+    }*/
 }

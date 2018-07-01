@@ -45,6 +45,7 @@ public:
         if (deleteRecordWIndow->objectName().isEmpty())
             deleteRecordWIndow->setObjectName(QStringLiteral("deleteRecordWIndow"));
         deleteRecordWIndow->resize(665, 469);
+        deleteRecordWIndow->setStyleSheet(QStringLiteral("background-color: white;"));
         verticalLayout = new QVBoxLayout(deleteRecordWIndow);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label = new QLabel(deleteRecordWIndow);
@@ -55,6 +56,8 @@ public:
         font.setBold(true);
         font.setWeight(75);
         label->setFont(font);
+        label->setStyleSheet(QLatin1String("background-color:#3F51B5;\n"
+"color: white;"));
 
         verticalLayout->addWidget(label);
 
