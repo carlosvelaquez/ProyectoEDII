@@ -587,7 +587,7 @@ bool File::seek(int block){
     string in;
 
     while (getline(file, in) && cont < blockSize) {
-      qDebug() << "Raw in: " << in.c_str();
+      //qDebug() << "Raw in: " << in.c_str();
       in = in.substr(0, in.length() - 2);
 
       stringstream inStream(in);

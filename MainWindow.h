@@ -34,6 +34,7 @@ private slots:
   void exportXML();
 
   void refresh();
+  void exit();
 
 public:
   MainWindow(QWidget* parent = 0);

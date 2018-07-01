@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>File Manager</string>
+   <string>Sota File Manager</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
@@ -223,7 +223,7 @@ color: white;</string>
       </font>
      </property>
      <property name="text">
-      <string>File Manager</string>
+      <string>Sota File Manager</string>
      </property>
     </widget>
    </widget>
@@ -310,9 +310,9 @@ color: white;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>80</y>
+      <y>70</y>
       <width>711</width>
-      <height>351</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -353,7 +353,7 @@ QLabel{
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>Bienvenido al File Manager</string>
+      <string>Bienvenido a Sota</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -535,7 +535,10 @@ color: white;</string>
     <addaction name="actionCargar_Archivo"/>
     <addaction name="actionCerrar_Archivo"/>
     <addaction name="separator"/>
+    <addaction name="actionCruzar_Archivos"/>
     <addaction name="actionGenerar_Registros_de_Prueba"/>
+    <addaction name="separator"/>
+    <addaction name="actionSalir_del_Programa"/>
    </widget>
    <widget class="QMenu" name="menuRegistros">
     <property name="title">
@@ -662,7 +665,7 @@ color: white;</string>
   </action>
   <action name="actionExportar_a_Excel">
    <property name="text">
-    <string>Exportar a Excel</string>
+    <string>Exportar a Excel (CSV)</string>
    </property>
   </action>
   <action name="actionExportar_a_XML_con_Schem">
@@ -678,6 +681,16 @@ color: white;</string>
   <action name="actionGenerar_Registros_de_Prueba">
    <property name="text">
     <string>Generar Registros de Prueba</string>
+   </property>
+  </action>
+  <action name="actionSalir_del_Programa">
+   <property name="text">
+    <string>Salir del Programa</string>
+   </property>
+  </action>
+  <action name="actionCruzar_Archivos">
+   <property name="text">
+    <string>Cruzar Archivos</string>
    </property>
   </action>
  </widget>
