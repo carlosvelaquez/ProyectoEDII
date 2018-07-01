@@ -364,6 +364,8 @@ moc_MainWindow.cpp: ui_MainWindow.h \
 moc_addrecordwindow.cpp: File.h \
 		List.h \
 		Field.h \
+		MainWindow.h \
+		ui_MainWindow.h \
 		addrecordwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include addrecordwindow.h -o moc_addrecordwindow.cpp
 
@@ -464,6 +466,8 @@ addrecordwindow.o: addrecordwindow.cpp addrecordwindow.h \
 		File.h \
 		List.h \
 		Field.h \
+		MainWindow.h \
+		ui_MainWindow.h \
 		ui_addrecordwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addrecordwindow.o addrecordwindow.cpp
 

@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -32,8 +31,6 @@ class Ui_addfieldwindow
 public:
     QVBoxLayout *verticalLayout;
     QLabel *label_4;
-    QFrame *frame;
-    QVBoxLayout *verticalLayout_2;
     QLabel *label;
     QLineEdit *lineEdit_name;
     QSpacerItem *verticalSpacer;
@@ -49,7 +46,7 @@ public:
     {
         if (addfieldwindow->objectName().isEmpty())
             addfieldwindow->setObjectName(QStringLiteral("addfieldwindow"));
-        addfieldwindow->resize(341, 310);
+        addfieldwindow->resize(287, 287);
         addfieldwindow->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         verticalLayout = new QVBoxLayout(addfieldwindow);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -66,62 +63,53 @@ public:
 
         verticalLayout->addWidget(label_4);
 
-        frame = new QFrame(addfieldwindow);
-        frame->setObjectName(QStringLiteral("frame"));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
-        verticalLayout_2 = new QVBoxLayout(frame);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        label = new QLabel(frame);
+        label = new QLabel(addfieldwindow);
         label->setObjectName(QStringLiteral("label"));
 
-        verticalLayout_2->addWidget(label);
+        verticalLayout->addWidget(label);
 
-        lineEdit_name = new QLineEdit(frame);
+        lineEdit_name = new QLineEdit(addfieldwindow);
         lineEdit_name->setObjectName(QStringLiteral("lineEdit_name"));
 
-        verticalLayout_2->addWidget(lineEdit_name);
+        verticalLayout->addWidget(lineEdit_name);
 
-        verticalSpacer = new QSpacerItem(20, 1, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_2->addItem(verticalSpacer);
+        verticalLayout->addItem(verticalSpacer);
 
-        label_2 = new QLabel(frame);
+        label_2 = new QLabel(addfieldwindow);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        verticalLayout_2->addWidget(label_2);
+        verticalLayout->addWidget(label_2);
 
-        spinBox_size = new QSpinBox(frame);
+        spinBox_size = new QSpinBox(addfieldwindow);
         spinBox_size->setObjectName(QStringLiteral("spinBox_size"));
 
-        verticalLayout_2->addWidget(spinBox_size);
+        verticalLayout->addWidget(spinBox_size);
 
-        verticalSpacer_2 = new QSpacerItem(20, 2, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_2 = new QSpacerItem(20, 1, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_2->addItem(verticalSpacer_2);
+        verticalLayout->addItem(verticalSpacer_2);
 
-        label_3 = new QLabel(frame);
+        label_3 = new QLabel(addfieldwindow);
         label_3->setObjectName(QStringLiteral("label_3"));
 
-        verticalLayout_2->addWidget(label_3);
+        verticalLayout->addWidget(label_3);
 
-        comboBox_type = new QComboBox(frame);
+        comboBox_type = new QComboBox(addfieldwindow);
         comboBox_type->setObjectName(QStringLiteral("comboBox_type"));
 
-        verticalLayout_2->addWidget(comboBox_type);
+        verticalLayout->addWidget(comboBox_type);
 
-        radioButton_ispk = new QRadioButton(frame);
+        radioButton_ispk = new QRadioButton(addfieldwindow);
         radioButton_ispk->setObjectName(QStringLiteral("radioButton_ispk"));
 
-        verticalLayout_2->addWidget(radioButton_ispk);
+        verticalLayout->addWidget(radioButton_ispk);
 
-        pushButton_addfield = new QPushButton(frame);
+        pushButton_addfield = new QPushButton(addfieldwindow);
         pushButton_addfield->setObjectName(QStringLiteral("pushButton_addfield"));
 
-        verticalLayout_2->addWidget(pushButton_addfield);
-
-
-        verticalLayout->addWidget(frame);
+        verticalLayout->addWidget(pushButton_addfield);
 
 
         retranslateUi(addfieldwindow);

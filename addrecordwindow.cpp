@@ -14,7 +14,7 @@ addRecordWindow::addRecordWindow(QWidget *parent) :
     header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-addRecordWindow::addRecordWindow(QMainWindow* n_parent){
+addRecordWindow::addRecordWindow(MainWindow* n_parent){
     parent = n_parent;
 }
 
@@ -77,7 +77,7 @@ void addRecordWindow::on_pushButton_send_clicked()
                 QMessageBox::about(this,"","Registro añadido con exito");
                 file->addRecord(values);
                 file->lock();
-
+                parent->refreshMenuBar();
             }
         }
     }

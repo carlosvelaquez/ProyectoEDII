@@ -52,6 +52,7 @@ public:
 
   //--- FUNCIONES DE ARCHIVO ---
   void lock(); //Bloquear el archivo para prohibir cambios en los campos
+  void unLock(); // Desbloquear el archivo para permitir cambios en los campos
   void setEnable(bool); //
   void setPath(string); //Proporcionar una nueva ruta de archivo
   bool open(); //Abir el archivo de path

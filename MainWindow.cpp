@@ -9,7 +9,6 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
-  file.setEnable(false); // En un inicio no hay archivo cargado
   refreshMenuBar(); // Actualiza las Menu Bar
 
   QHeaderView* header = ui.tableWidget->horizontalHeader();
@@ -67,7 +66,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
 /*##########################################*/
 void MainWindow::addRecord(){
-    addRecordWindow* adw = new addRecordWindow(this);
+    addRecordWindow* adw = new addRecordWindow();
     adw->setFile(&file);
     adw->fillTable();
     adw->show();
@@ -118,7 +117,6 @@ void MainWindow::openFile(){
       remove(path.toStdString().c_str());
       file.open(path.toStdString());
       ui.label_ruta->setText(path);
-      file.setEnable(true);
       refreshMenuBar();
       refreshTable();
     }else{
@@ -129,7 +127,6 @@ void MainWindow::openFile(){
 void MainWindow::closeFile(){
   if (file) {
     file.close(); //Cerrar el archivo
-    file.setEnable(false);
     //Borrar todos los datos en la pantalla
     ui.label_ruta->setText("Archivo cerrado.");
     ui.label_pagina->setText(" - ");
@@ -157,7 +154,6 @@ void MainWindow::loadFile(){
 
     if (!path.isEmpty() && !path.isNull()) {
       if (file.open(path.toStdString())){
-        file.setEnable(true); //Archivo cargado
         file.lock();
         ui.label_ruta->setText(path);
         refreshTable();
@@ -373,13 +369,13 @@ void MainWindow::exit(){
 }
 
 void MainWindow::refreshMenuBar(){
-    if(!file.isEnable()){ // Si no hay un archivo cargado
+    if(file==false){ // Si no hay un archivo cargado
         ui.menuCampos->setEnabled(false); //Bloquea campos
         ui.menuRegistros->setEnabled(false); //Bloquea Registros
         ui.menuEstadarizaci_n->setEnabled(false);  //Bloquea Estandarización
         ui.menu_ndices->setEnabled(false); //Bloquea Indicas
     }
-    if(file.isEnable()){ // Si hay un archivo cargado
+    if(file==true){ // Si hay un archivo cargado
         ui.menuCampos->setEnabled(true); //Bloquea campos
         ui.menuRegistros->setEnabled(true); //Bloquea Registros
         ui.menuEstadarizaci_n->setEnabled(true);  //Bloquea Estandarización
