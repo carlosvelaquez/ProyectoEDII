@@ -853,6 +853,15 @@ void File::exportXML(string exPath){
   }
 }
 
+void File::setEnable(bool n_enable){
+    Enable = n_enable;
+}
+
+bool File::isEnable(){
+    return Enable;
+}
+
 File::~File(){
   file.close();
 }
+

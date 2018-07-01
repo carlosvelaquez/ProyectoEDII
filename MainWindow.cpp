@@ -9,6 +9,9 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
+  file.setEnable(false); // En un inicio no hay archivo cargado
+  refreshMenuBar(); // Actualiza las Menu Bar
+
   QHeaderView* header = ui.tableWidget->horizontalHeader();
   header->setSectionResizeMode(QHeaderView::Stretch);
   ui.tableWidget->setEnabled(false);
@@ -62,9 +65,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   connect(ui.actionExportar_a_XML_con_Schem, SIGNAL(triggered()), this, SLOT(exportXML()));
 }
 
-/* ############# Para registros ############# */
+/*##########################################*/
 void MainWindow::addRecord(){
-    addRecordWindow* adw = new addRecordWindow();
+    addRecordWindow* adw = new addRecordWindow(this);
     adw->setFile(&file);
     adw->fillTable();
     adw->show();
@@ -75,8 +78,7 @@ void MainWindow::deleteRecords(){
 /*##########################################*/
 
 
-
-/* ############# Para campos ############# */
+/*##########################################*/
 void MainWindow::addFields(){
     addfieldwindow* adf = new addfieldwindow();
     adf->setFile(&file);
@@ -102,16 +104,13 @@ void MainWindow::modifyFields(){
     md->fillWidgets();
     md->show();
 }
-
 /*##########################################*/
 
-
+/*##########################################*/
 File* MainWindow::getFile(){
     return &file;
 }
 
-
-/*##########################################*/
 void MainWindow::openFile(){
     QString path = QFileDialog::getSaveFileName(this, "Nuevo Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
 
@@ -119,7 +118,8 @@ void MainWindow::openFile(){
       remove(path.toStdString().c_str());
       file.open(path.toStdString());
       ui.label_ruta->setText(path);
-
+      file.setEnable(true);
+      refreshMenuBar();
       refreshTable();
     }else{
       qDebug() << "File path is empty or null. Aborting.";
@@ -129,7 +129,7 @@ void MainWindow::openFile(){
 void MainWindow::closeFile(){
   if (file) {
     file.close(); //Cerrar el archivo
-
+    file.setEnable(false);
     //Borrar todos los datos en la pantalla
     ui.label_ruta->setText("Archivo cerrado.");
     ui.label_pagina->setText(" - ");
@@ -138,8 +138,8 @@ void MainWindow::closeFile(){
     ui.tableWidget->setColumnCount(1);
     ui.tableWidget->setRowCount(0);
     ui.tableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Puede abrir o crear otro archivo en el menú Archivo."));
-
     ui.frame_Bienvenida->show();
+    refreshMenuBar();
   }
 }
 
@@ -147,6 +147,7 @@ void MainWindow::saveFile(){
   if (file) {
     qDebug() << "Salvando archivo...";
     file.lock();
+    refreshMenuBar();
     file.flush();
   }
 }
@@ -156,10 +157,11 @@ void MainWindow::loadFile(){
 
     if (!path.isEmpty() && !path.isNull()) {
       if (file.open(path.toStdString())){
+        file.setEnable(true); //Archivo cargado
         file.lock();
         ui.label_ruta->setText(path);
-
         refreshTable();
+        refreshMenuBar();
       }
     }else{
       qDebug() << "File path is empty or null. Aborting.";
@@ -358,14 +360,35 @@ void MainWindow::refresh(){
 
 void MainWindow::exportCSV(){
   QString path = QFileDialog::getSaveFileName(this, "Exportar a CSV", QDir::currentPath(), tr("CSV Files (*.csv)"));
-  //file.exportCSV(path.toStdString());
+  file.exportCSV(path.toStdString());
 }
 
 void MainWindow::exportXML(){
   QString path = QFileDialog::getSaveFileName(this, "Exportar a XML con Schema", QDir::currentPath(), tr("XML Files (*.xml)"));
-  //file.exportXML(path.toStdString());
+  file.exportXML(path.toStdString());
 }
 
 void MainWindow::exit(){
   close();
+}
+
+void MainWindow::refreshMenuBar(){
+    if(!file.isEnable()){ // Si no hay un archivo cargado
+        ui.menuCampos->setEnabled(false); //Bloquea campos
+        ui.menuRegistros->setEnabled(false); //Bloquea Registros
+        ui.menuEstadarizaci_n->setEnabled(false);  //Bloquea Estandarización
+        ui.menu_ndices->setEnabled(false); //Bloquea Indicas
+    }
+    if(file.isEnable()){ // Si hay un archivo cargado
+        ui.menuCampos->setEnabled(true); //Bloquea campos
+        ui.menuRegistros->setEnabled(true); //Bloquea Registros
+        ui.menuEstadarizaci_n->setEnabled(true);  //Bloquea Estandarización
+        ui.menu_ndices->setEnabled(true); //Bloquea Indicas
+    }
+    if(!file.isLocked()){ // Si el archivo no esta bloqueado
+        ui.menuCampos->setEnabled(true); // Desbloquea los campos
+    }
+    if(file.isLocked()){ // Si el archivo esta bloqueado
+        ui.menuCampos->setEnabled(false); // Bloquea los campos
+    }
 }
