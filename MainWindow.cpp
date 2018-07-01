@@ -77,7 +77,7 @@ void MainWindow::addRecord(){
 
 void MainWindow::deleteRecords(){
     deleteRecordWindow* dr = new deleteRecordWindow();
-    dr->refreshtable();
+    //dr->refreshtable();
     dr->show();
 }
 /*##########################################*/
@@ -122,7 +122,7 @@ void MainWindow::openFile(){
     if (!path.isEmpty() && !path.isNull()) {
       file.close();
       remove(path.toStdString().c_str());
-      
+
       file.open(path.toStdString());
       ui.label_ruta->setText(path);
       refreshMenuBar();
