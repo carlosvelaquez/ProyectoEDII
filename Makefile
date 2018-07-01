@@ -60,13 +60,15 @@ SOURCES       = File.cpp \
 		listfieldswindow.cpp \
 		deletefieldwindow.cpp \
 		modifyrecordwindow.cpp \
-		modifyfieldwindow.cpp moc_MainWindow.cpp \
+		modifyfieldwindow.cpp \
+		joinfilewindow.cpp moc_MainWindow.cpp \
 		moc_addrecordwindow.cpp \
 		moc_addfieldwindow.cpp \
 		moc_listfieldswindow.cpp \
 		moc_deletefieldwindow.cpp \
 		moc_modifyrecordwindow.cpp \
-		moc_modifyfieldwindow.cpp
+		moc_modifyfieldwindow.cpp \
+		moc_joinfilewindow.cpp
 OBJECTS       = File.o \
 		Field.o \
 		main.o \
@@ -80,13 +82,15 @@ OBJECTS       = File.o \
 		deletefieldwindow.o \
 		modifyrecordwindow.o \
 		modifyfieldwindow.o \
+		joinfilewindow.o \
 		moc_MainWindow.o \
 		moc_addrecordwindow.o \
 		moc_addfieldwindow.o \
 		moc_listfieldswindow.o \
 		moc_deletefieldwindow.o \
 		moc_modifyrecordwindow.o \
-		moc_modifyfieldwindow.o
+		moc_modifyfieldwindow.o \
+		moc_joinfilewindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -157,7 +161,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		listfieldswindow.h \
 		deletefieldwindow.h \
 		modifyrecordwindow.h \
-		modifyfieldwindow.h File.cpp \
+		modifyfieldwindow.h \
+		joinfilewindow.h File.cpp \
 		Field.cpp \
 		main.cpp \
 		MainWindow.cpp \
@@ -169,7 +174,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		listfieldswindow.cpp \
 		deletefieldwindow.cpp \
 		modifyrecordwindow.cpp \
-		modifyfieldwindow.cpp
+		modifyfieldwindow.cpp \
+		joinfilewindow.cpp
 QMAKE_TARGET  = Proyecto
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Proyecto
@@ -197,7 +203,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_MainWindow.h ui_addrecordwindow.h ui_addfieldwindow.h ui_listfieldswindow.h ui_deletefieldwindow.h ui_modifyrecordwindow.h ui_modifyfieldwindow.h $(OBJECTS)  
+$(TARGET): ui_MainWindow.h ui_addrecordwindow.h ui_addfieldwindow.h ui_listfieldswindow.h ui_deletefieldwindow.h ui_modifyrecordwindow.h ui_modifyfieldwindow.h ui_joinfilewindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: Proyecto.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -337,9 +343,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents File.h Field.h List.h MainWindow.h queue.h BTree.h BTreeNode.h Key.h addrecordwindow.h addfieldwindow.h listfieldswindow.h deletefieldwindow.h modifyrecordwindow.h modifyfieldwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents File.cpp Field.cpp main.cpp MainWindow.cpp BTree.cpp BTreeNode.cpp Key.cpp addrecordwindow.cpp addfieldwindow.cpp listfieldswindow.cpp deletefieldwindow.cpp modifyrecordwindow.cpp modifyfieldwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents MainWindow.ui addrecordwindow.ui addfieldwindow.ui listfieldswindow.ui deletefieldwindow.ui modifyrecordwindow.ui modifyfieldwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents File.h Field.h List.h MainWindow.h queue.h BTree.h BTreeNode.h Key.h addrecordwindow.h addfieldwindow.h listfieldswindow.h deletefieldwindow.h modifyrecordwindow.h modifyfieldwindow.h joinfilewindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents File.cpp Field.cpp main.cpp MainWindow.cpp BTree.cpp BTreeNode.cpp Key.cpp addrecordwindow.cpp addfieldwindow.cpp listfieldswindow.cpp deletefieldwindow.cpp modifyrecordwindow.cpp modifyfieldwindow.cpp joinfilewindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents MainWindow.ui addrecordwindow.ui addfieldwindow.ui listfieldswindow.ui deletefieldwindow.ui modifyrecordwindow.ui modifyfieldwindow.ui joinfilewindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -363,9 +369,9 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_MainWindow.cpp moc_addrecordwindow.cpp moc_addfieldwindow.cpp moc_listfieldswindow.cpp moc_deletefieldwindow.cpp moc_modifyrecordwindow.cpp moc_modifyfieldwindow.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_addrecordwindow.cpp moc_addfieldwindow.cpp moc_listfieldswindow.cpp moc_deletefieldwindow.cpp moc_modifyrecordwindow.cpp moc_modifyfieldwindow.cpp moc_joinfilewindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp moc_addrecordwindow.cpp moc_addfieldwindow.cpp moc_listfieldswindow.cpp moc_deletefieldwindow.cpp moc_modifyrecordwindow.cpp moc_modifyfieldwindow.cpp
+	-$(DEL_FILE) moc_MainWindow.cpp moc_addrecordwindow.cpp moc_addfieldwindow.cpp moc_listfieldswindow.cpp moc_deletefieldwindow.cpp moc_modifyrecordwindow.cpp moc_modifyfieldwindow.cpp moc_joinfilewindow.cpp
 moc_MainWindow.cpp: ui_MainWindow.h \
 		File.h \
 		BTree.h \
@@ -430,11 +436,20 @@ moc_modifyfieldwindow.cpp: File.h \
 		modifyfieldwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include modifyfieldwindow.h -o moc_modifyfieldwindow.cpp
 
+moc_joinfilewindow.cpp: File.h \
+		BTree.h \
+		BTreeNode.h \
+		List.h \
+		Key.h \
+		Field.h \
+		joinfilewindow.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/Proyecto/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include joinfilewindow.h -o moc_joinfilewindow.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_MainWindow.h ui_addrecordwindow.h ui_addfieldwindow.h ui_listfieldswindow.h ui_deletefieldwindow.h ui_modifyrecordwindow.h ui_modifyfieldwindow.h
+compiler_uic_make_all: ui_MainWindow.h ui_addrecordwindow.h ui_addfieldwindow.h ui_listfieldswindow.h ui_deletefieldwindow.h ui_modifyrecordwindow.h ui_modifyfieldwindow.h ui_joinfilewindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_MainWindow.h ui_addrecordwindow.h ui_addfieldwindow.h ui_listfieldswindow.h ui_deletefieldwindow.h ui_modifyrecordwindow.h ui_modifyfieldwindow.h
+	-$(DEL_FILE) ui_MainWindow.h ui_addrecordwindow.h ui_addfieldwindow.h ui_listfieldswindow.h ui_deletefieldwindow.h ui_modifyrecordwindow.h ui_modifyfieldwindow.h ui_joinfilewindow.h
 ui_MainWindow.h: MainWindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic MainWindow.ui -o ui_MainWindow.h
 
@@ -455,6 +470,9 @@ ui_modifyrecordwindow.h: modifyrecordwindow.ui
 
 ui_modifyfieldwindow.h: modifyfieldwindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic modifyfieldwindow.ui -o ui_modifyfieldwindow.h
+
+ui_joinfilewindow.h: joinfilewindow.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic joinfilewindow.ui -o ui_joinfilewindow.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -499,7 +517,8 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		addfieldwindow.h \
 		listfieldswindow.h \
 		deletefieldwindow.h \
-		modifyfieldwindow.h
+		modifyfieldwindow.h \
+		joinfilewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
 
 BTree.o: BTree.cpp BTree.h \
@@ -576,6 +595,16 @@ modifyfieldwindow.o: modifyfieldwindow.cpp modifyfieldwindow.h \
 		ui_modifyfieldwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o modifyfieldwindow.o modifyfieldwindow.cpp
 
+joinfilewindow.o: joinfilewindow.cpp joinfilewindow.h \
+		File.h \
+		BTree.h \
+		BTreeNode.h \
+		List.h \
+		Key.h \
+		Field.h \
+		ui_joinfilewindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o joinfilewindow.o joinfilewindow.cpp
+
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp
 
@@ -596,6 +625,9 @@ moc_modifyrecordwindow.o: moc_modifyrecordwindow.cpp
 
 moc_modifyfieldwindow.o: moc_modifyfieldwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_modifyfieldwindow.o moc_modifyfieldwindow.cpp
+
+moc_joinfilewindow.o: moc_joinfilewindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_joinfilewindow.o moc_joinfilewindow.cpp
 
 ####### Install
 
