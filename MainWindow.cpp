@@ -358,12 +358,12 @@ void MainWindow::refresh(){
 
 void MainWindow::exportCSV(){
   QString path = QFileDialog::getSaveFileName(this, "Exportar a CSV", QDir::currentPath(), tr("CSV Files (*.csv)"));
-  file.exportCSV(path.toStdString());
+  //file.exportCSV(path.toStdString());
 }
 
 void MainWindow::exportXML(){
   QString path = QFileDialog::getSaveFileName(this, "Exportar a XML con Schema", QDir::currentPath(), tr("XML Files (*.xml)"));
-  file.exportXML(path.toStdString());
+  //file.exportXML(path.toStdString());
 }
 
 void MainWindow::exit(){

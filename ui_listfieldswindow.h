@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'listfieldswindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.10.1
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QTableWidget>
@@ -25,8 +24,6 @@ QT_BEGIN_NAMESPACE
 class Ui_listfieldswindow
 {
 public:
-    QVBoxLayout *verticalLayout_2;
-    QFrame *frame;
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QTableWidget *tableWidget;
@@ -37,25 +34,22 @@ public:
             listfieldswindow->setObjectName(QStringLiteral("listfieldswindow"));
         listfieldswindow->resize(730, 430);
         listfieldswindow->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        verticalLayout_2 = new QVBoxLayout(listfieldswindow);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        frame = new QFrame(listfieldswindow);
-        frame->setObjectName(QStringLiteral("frame"));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
-        verticalLayout = new QVBoxLayout(frame);
+        verticalLayout = new QVBoxLayout(listfieldswindow);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        label = new QLabel(frame);
+        label = new QLabel(listfieldswindow);
         label->setObjectName(QStringLiteral("label"));
         QFont font;
-        font.setPointSize(20);
+        font.setFamily(QStringLiteral("FreeSans"));
+        font.setPointSize(24);
         font.setBold(true);
         font.setWeight(75);
         label->setFont(font);
+        label->setStyleSheet(QLatin1String("background-color:#3F51B5;\n"
+"color: white;"));
 
         verticalLayout->addWidget(label);
 
-        tableWidget = new QTableWidget(frame);
+        tableWidget = new QTableWidget(listfieldswindow);
         if (tableWidget->columnCount() < 4)
             tableWidget->setColumnCount(4);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
@@ -66,9 +60,6 @@ public:
         verticalLayout->addWidget(tableWidget);
 
 
-        verticalLayout_2->addWidget(frame);
-
-
         retranslateUi(listfieldswindow);
 
         QMetaObject::connectSlotsByName(listfieldswindow);
@@ -76,8 +67,8 @@ public:
 
     void retranslateUi(QWidget *listfieldswindow)
     {
-        listfieldswindow->setWindowTitle(QApplication::translate("listfieldswindow", "Form", nullptr));
-        label->setText(QApplication::translate("listfieldswindow", "Fields", nullptr));
+        listfieldswindow->setWindowTitle(QApplication::translate("listfieldswindow", "Form", 0));
+        label->setText(QApplication::translate("listfieldswindow", "Campos", 0));
     } // retranslateUi
 
 };

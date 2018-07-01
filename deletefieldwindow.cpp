@@ -1,6 +1,7 @@
 #include "deletefieldwindow.h"
 #include "ui_deletefieldwindow.h"
 #include "Field.h"
+#include <QMessageBox>
 
 deletefieldwindow::deletefieldwindow(QWidget *parent) :
     QWidget(parent),
@@ -30,8 +31,14 @@ void deletefieldwindow::fillComboBox(){
 void deletefieldwindow::on_pushButton_delete_clicked()
 {
     if(!file->isLocked()){
-        if(file->deleteField(ui->comboBox_deletefield->currentIndex()+1)){
-            fillComboBox();
+        QMessageBox::StandardButton answer = QMessageBox::question(this,"","¿Seguro que desea eliminar el campo?", QMessageBox::Yes | QMessageBox::No);
+        if(answer == QMessageBox::Yes){
+            if(file->deleteField(ui->comboBox_deletefield->currentIndex()+1)){
+                QMessageBox::about(this,"","Campo eliminado exitosamente");
+                fillComboBox();
+            }
         }
+    }else{
+        QMessageBox::warning(this,"","El archivo esta bloqueado");
     }
 }
