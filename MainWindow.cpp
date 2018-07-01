@@ -53,6 +53,10 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   //Refrescar tabla
   connect(ui.pushButton_refresh, SIGNAL(clicked()), this, SLOT(refresh()));
+
+  //Exportar
+  connect(ui.actionExportar_a_Excel, SIGNAL(triggered()), this, SLOT(exportCSV()));
+  connect(ui.actionExportar_a_XML_con_Schem, SIGNAL(triggered()), this, SLOT(exportXML()));
 }
 
 /* ############# Para registros ############# */
@@ -220,6 +224,11 @@ void MainWindow::refreshTable(){
     ui.tableWidget->setColumnCount(file.fieldQuantity()); //Añade la cantidad de columnas de acuerdo a la cantidad de campos
     ui.tableWidget->setRowCount(file.getBlockSize());// Cantidad de records de cada bloque
 
+    //Poner los números en la tabla para que correspondan a los índices de los registros
+    for (int i = 0; i < file.getBlockSize(); i++) {
+      int indexLabel = ((file.getCurrentBlock() - 1)*file.getBlockSize()) + i + 1;
+      ui.tableWidget->setVerticalHeaderItem(i, new QTableWidgetItem(to_string(indexLabel).c_str()));
+    }
 
     //Poner los nombres de cada campo como cabeceras de columna
     List<Field> fields = file.getFields();
@@ -342,4 +351,14 @@ void MainWindow::generateTest(){
 
 void MainWindow::refresh(){
   refreshTable();
+}
+
+void MainWindow::exportCSV(){
+  QString path = QFileDialog::getSaveFileName(this, "Exportar a CSV", QDir::currentPath(), tr("CSV Files (*.csv)"));
+  file.exportCSV(path.toStdString());
+}
+
+void MainWindow::exportXML(){
+  QString path = QFileDialog::getSaveFileName(this, "Exportar a XML con Schema", QDir::currentPath(), tr("XML Files (*.xml)"));
+  file.exportXML(path.toStdString());
 }

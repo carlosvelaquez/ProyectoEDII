@@ -30,6 +30,9 @@ private slots:
 
   void generateTest();
 
+  void exportCSV();
+  void exportXML();
+
   void refresh();
 
 public:
