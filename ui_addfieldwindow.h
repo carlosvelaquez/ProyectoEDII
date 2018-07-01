@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addfieldwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.10.1
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -15,7 +15,6 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -31,7 +30,8 @@ QT_BEGIN_NAMESPACE
 class Ui_addfieldwindow
 {
 public:
-    QHBoxLayout *horizontalLayout;
+    QVBoxLayout *verticalLayout;
+    QLabel *label_4;
     QFrame *frame;
     QVBoxLayout *verticalLayout_2;
     QLabel *label;
@@ -49,10 +49,23 @@ public:
     {
         if (addfieldwindow->objectName().isEmpty())
             addfieldwindow->setObjectName(QStringLiteral("addfieldwindow"));
-        addfieldwindow->resize(236, 276);
+        addfieldwindow->resize(341, 310);
         addfieldwindow->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        horizontalLayout = new QHBoxLayout(addfieldwindow);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        verticalLayout = new QVBoxLayout(addfieldwindow);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        label_4 = new QLabel(addfieldwindow);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        QFont font;
+        font.setFamily(QStringLiteral("FreeSans"));
+        font.setPointSize(24);
+        font.setBold(true);
+        font.setWeight(75);
+        label_4->setFont(font);
+        label_4->setStyleSheet(QLatin1String("background-color:#3F51B5;\n"
+"color: white;"));
+
+        verticalLayout->addWidget(label_4);
+
         frame = new QFrame(addfieldwindow);
         frame->setObjectName(QStringLiteral("frame"));
         frame->setFrameShape(QFrame::StyledPanel);
@@ -108,7 +121,7 @@ public:
         verticalLayout_2->addWidget(pushButton_addfield);
 
 
-        horizontalLayout->addWidget(frame);
+        verticalLayout->addWidget(frame);
 
 
         retranslateUi(addfieldwindow);
@@ -118,12 +131,13 @@ public:
 
     void retranslateUi(QWidget *addfieldwindow)
     {
-        addfieldwindow->setWindowTitle(QApplication::translate("addfieldwindow", "Form", nullptr));
-        label->setText(QApplication::translate("addfieldwindow", "Name:", nullptr));
-        label_2->setText(QApplication::translate("addfieldwindow", "Size:", nullptr));
-        label_3->setText(QApplication::translate("addfieldwindow", "Type:", nullptr));
-        radioButton_ispk->setText(QApplication::translate("addfieldwindow", "Is primary key", nullptr));
-        pushButton_addfield->setText(QApplication::translate("addfieldwindow", "Add field", nullptr));
+        addfieldwindow->setWindowTitle(QApplication::translate("addfieldwindow", "Form", 0));
+        label_4->setText(QApplication::translate("addfieldwindow", "  A\303\261adir campos", 0));
+        label->setText(QApplication::translate("addfieldwindow", "Nombre:", 0));
+        label_2->setText(QApplication::translate("addfieldwindow", "Tama\303\261o:", 0));
+        label_3->setText(QApplication::translate("addfieldwindow", "Tipo de dato:", 0));
+        radioButton_ispk->setText(QApplication::translate("addfieldwindow", "Es llave primaria", 0));
+        pushButton_addfield->setText(QApplication::translate("addfieldwindow", "A\303\261adir campo", 0));
     } // retranslateUi
 
 };

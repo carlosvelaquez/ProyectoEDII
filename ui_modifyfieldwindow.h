@@ -52,8 +52,13 @@ public:
         label = new QLabel(modifyfieldwindow);
         label->setObjectName(QStringLiteral("label"));
         QFont font;
-        font.setPointSize(20);
+        font.setFamily(QStringLiteral("FreeSans"));
+        font.setPointSize(24);
+        font.setBold(true);
+        font.setWeight(75);
         label->setFont(font);
+        label->setStyleSheet(QLatin1String("background-color:#3F51B5;\n"
+"color: white;"));
 
         verticalLayout->addWidget(label);
 

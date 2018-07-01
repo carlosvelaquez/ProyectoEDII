@@ -1,6 +1,7 @@
 #include "modifyfieldwindow.h"
 #include "ui_modifyfieldwindow.h"
 #include "Field.h"
+#include "QMessageBox"
 
 modifyfieldwindow::modifyfieldwindow(QWidget *parent) :
     QWidget(parent),
@@ -59,8 +60,9 @@ void modifyfieldwindow::on_pushButton_clicked()
         if(ui->radioButton->isChecked()!=file->getFields().get(ui->comboBox_campos->currentIndex()+1).isPrimaryKey()){ // Valida si añade como llave primaria
             if(!file->hasPrimaryKey())
                 file->getLocationFields()->getPointer(ui->comboBox_campos->currentIndex()+1)->setPrimaryKey(true);
-
         }
+    }else{
+        QMessageBox::warning(this,"¡Espera!", "Archivo bloqueado");
     }
     fillWidgets();
 }

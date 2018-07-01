@@ -21,8 +21,15 @@
     <widget class="QLabel" name="label">
      <property name="font">
       <font>
-       <pointsize>20</pointsize>
+       <family>FreeSans</family>
+       <pointsize>24</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:#3F51B5;
+color: white;</string>
      </property>
      <property name="text">
       <string>Modificar Campos</string>

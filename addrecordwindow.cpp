@@ -5,6 +5,7 @@
 #include "List.h"
 #include "Field.h"
 #include "QTableWidgetItem"
+#include <QMessageBox>
 
 addRecordWindow::addRecordWindow(QWidget *parent) :
     QWidget(parent),
@@ -29,39 +30,6 @@ void addRecordWindow::fillTable(){
     static const short CHAR = 1;
     static const short STRING = 2;*/
     /******************/
-    /*Field field1;
-    Field field2;
-    Field field3;
-    Field field4;
-    Field field5;
-
-    field1.setName("Nombre");
-    field1.setPrimaryKey(false);
-    field1.setType(2);
-
-    field2.setName("Sexo");
-    field2.setPrimaryKey(false);
-    field2.setType(2);
-
-    field3.setName("Raza");
-    field3.setPrimaryKey(true);
-    field3.setType(2);
-
-    field4.setName("Sexo");
-    field4.setPrimaryKey(false);
-    field4.setType(1);
-
-    field5.setName("Edad");
-    field5.setPrimaryKey(false);
-    field5.setType(0);
-
-    List<Field> fields;
-    fields.insert(field1);
-    fields.insert(field2);
-    fields.insert(field3);
-    fields.insert(field4);
-    fields.insert(field5);*/
-    /******************/
     QStringList headers;
     headers <<"Type"<<"Name"<<"Is PK"<<"Value";
     ui->tableWidget->setHorizontalHeaderLabels(headers);
@@ -82,19 +50,22 @@ void addRecordWindow::fillTable(){
 
 void addRecordWindow::on_pushButton_send_clicked()
 {
-    if(file->getFields().size>0){ // Validar que hayan campos para ingresar
-        List<string> values;
-        QString value;
-        QTableWidgetItem* item;
-        for(int i=1; i<=file->getFields().size; i++){//
-            item = ui->tableWidget->takeItem(i-1,3);
-            value = item->text();
-            qDebug()<<"Value: "<<i<<": "<<value;
-            values.insert(value.toStdString());
+    QMessageBox::StandardButton answer = QMessageBox::question(this,"","¿Desea guardar registros? Esto impedira la edición de campos", QMessageBox::Yes|QMessageBox::No);
+    if(answer == QMessageBox::Yes){
+        if(file->getFields().size>0){ // Validar que hayan campos para ingresar
+            List<string> values;
+            QString value;
+            QTableWidgetItem* item;
+            for(int i=1; i<=file->getFields().size; i++){//
+                item = ui->tableWidget->takeItem(i-1,3);
+                value = item->text();
+                qDebug()<<"Value: "<<i<<": "<<value;
+                values.insert(value.toStdString());
+            }
+            QMessageBox::about(this,"","Registro añadido con exito");
+            file->addRecord(values);
+            file->lock();
         }
-
-        file->addRecord(values);
-        //dynamic_cast<MainWindow*>(parent)->refreshTable();
     }
     //
 }

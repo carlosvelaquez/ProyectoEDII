@@ -22,32 +22,26 @@ addfieldwindow::~addfieldwindow()
 
 void addfieldwindow::on_pushButton_addfield_clicked()
 {
-    if(ui->lineEdit_name->text()!=""){
-        if(ui->radioButton_ispk->isChecked()&&!file->hasPrimaryKey()){
-            int type =0;
-            QString text= ui->lineEdit_name->text();
-            if(ui->comboBox_type->currentText()=="Character") type = 1;
-            else if(ui->comboBox_type->currentText()=="String") type = 2;
-            file->addField(type,text.toStdString(),ui->spinBox_size->value(), ui->radioButton_ispk->isChecked());
-        }else if(!ui->radioButton_ispk->isChecked()){
-            int type =0;
-            QString text= ui->lineEdit_name->text();
-            if(ui->comboBox_type->currentText()=="Character") type = 1;
-            else if(ui->comboBox_type->currentText()=="String") type = 2;
-            file->addField(type,text.toStdString(),ui->spinBox_size->value(), ui->radioButton_ispk->isChecked());
-        }else{
-            QMessageBox msgBox;
-            msgBox.setText("Ya existe una llave primaria");
-            msgBox.setStandardButtons(QMessageBox::Cancel);
-            msgBox.setDefaultButton(QMessageBox::Cancel);
-            msgBox.exec();
+    if(!file->isLocked()){
+        if(ui->lineEdit_name->text()!=""){
+            if(ui->radioButton_ispk->isChecked()&&file->hasPrimaryKey()){
+                QMessageBox::warning(this,"¡Espera!","Ya existe una llave primaria");
+            }else{
+                int type =0;
+                QString text= ui->lineEdit_name->text();
+                if(ui->comboBox_type->currentText()=="Character") type = 1;
+                else if(ui->comboBox_type->currentText()=="String") type = 2;
+                file->addField(type,text.toStdString(),ui->spinBox_size->value(), ui->radioButton_ispk->isChecked());
+                QMessageBox::about(this,"","Campo añadido con exito");
+                ui->radioButton_ispk->setChecked(false);
+                ui->lineEdit_name->setText("");
+                ui->comboBox_type->setCurrentIndex(0);
+                ui->spinBox_size->setValue(0);
+            }
         }
+    }else{
+        QMessageBox::warning(this,"¡Espera!", "Archivo bloqueado");
     }
-
-    ui->radioButton_ispk->setChecked(false);
-    ui->lineEdit_name->setText("");
-    ui->comboBox_type->setCurrentIndex(0);
-    ui->spinBox_size->setValue(0);
 }
 
 void addfieldwindow::setFile(File* con){

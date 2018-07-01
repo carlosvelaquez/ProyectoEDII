@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'deletefieldwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.10.1
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -38,17 +38,20 @@ public:
     {
         if (deletefieldwindow->objectName().isEmpty())
             deletefieldwindow->setObjectName(QStringLiteral("deletefieldwindow"));
-        deletefieldwindow->resize(366, 184);
+        deletefieldwindow->resize(330, 159);
         deletefieldwindow->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         verticalLayout_2 = new QVBoxLayout(deletefieldwindow);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         label = new QLabel(deletefieldwindow);
         label->setObjectName(QStringLiteral("label"));
         QFont font;
-        font.setPointSize(12);
+        font.setFamily(QStringLiteral("FreeSans"));
+        font.setPointSize(24);
         font.setBold(true);
         font.setWeight(75);
         label->setFont(font);
+        label->setStyleSheet(QLatin1String("background-color:#3F51B5;\n"
+"color: white;"));
 
         verticalLayout_2->addWidget(label);
 
@@ -84,10 +87,10 @@ public:
 
     void retranslateUi(QWidget *deletefieldwindow)
     {
-        deletefieldwindow->setWindowTitle(QApplication::translate("deletefieldwindow", "Form", nullptr));
-        label->setText(QApplication::translate("deletefieldwindow", "Eliminar Campo", nullptr));
-        label_2->setText(QApplication::translate("deletefieldwindow", "Elija el campo", nullptr));
-        pushButton_delete->setText(QApplication::translate("deletefieldwindow", "Eliminar", nullptr));
+        deletefieldwindow->setWindowTitle(QApplication::translate("deletefieldwindow", "Form", 0));
+        label->setText(QApplication::translate("deletefieldwindow", "Eliminar Campo", 0));
+        label_2->setText(QApplication::translate("deletefieldwindow", "Elija campo:", 0));
+        pushButton_delete->setText(QApplication::translate("deletefieldwindow", "Eliminar", 0));
     } // retranslateUi
 
 };
