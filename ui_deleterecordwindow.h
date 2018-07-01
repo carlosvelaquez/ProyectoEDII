@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'deleterecordwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -72,10 +72,10 @@ public:
 
     void retranslateUi(QWidget *deleteRecordWindow)
     {
-        deleteRecordWindow->setWindowTitle(QApplication::translate("deleteRecordWindow", "Form", 0));
-        label->setText(QApplication::translate("deleteRecordWindow", "Eliminar Registro", 0));
-        label_2->setText(QApplication::translate("deleteRecordWindow", "Ingrese indice de registro: ", 0));
-        pushButton_eliminar->setText(QApplication::translate("deleteRecordWindow", "Eliminar", 0));
+        deleteRecordWindow->setWindowTitle(QApplication::translate("deleteRecordWindow", "Form", nullptr));
+        label->setText(QApplication::translate("deleteRecordWindow", "Eliminar Registro", nullptr));
+        label_2->setText(QApplication::translate("deleteRecordWindow", "Ingrese indice de registro: ", nullptr));
+        pushButton_eliminar->setText(QApplication::translate("deleteRecordWindow", "Eliminar", nullptr));
     } // retranslateUi
 
 };

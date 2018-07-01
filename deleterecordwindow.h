@@ -5,7 +5,7 @@
 #include "File.h"
 
 namespace Ui {
-class deleteRecordWindow;
+  class deleteRecordWindow;
 }
 
 class deleteRecordWindow : public QWidget
@@ -14,8 +14,9 @@ class deleteRecordWindow : public QWidget
 
 public:
     explicit deleteRecordWindow(QWidget *parent = 0);
-    ~deleteRecordWindow();
     deleteRecordWindow(File*);
+
+    ~deleteRecordWindow();
 
 private slots:
     void on_pushButton_eliminar_clicked();
