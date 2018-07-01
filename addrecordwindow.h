@@ -3,8 +3,6 @@
 
 #include <QWidget>
 #include "File.h"
-#include <QMainWindow>
-#include "MainWindow.h"
 
 namespace Ui {
 class addRecordWindow;
@@ -16,7 +14,6 @@ class addRecordWindow : public QWidget
 
 public:
     explicit addRecordWindow(QWidget *parent = 0);
-    addRecordWindow(MainWindow*);
     ~addRecordWindow();
     void setFile(File*);
     void fillTable();
@@ -30,7 +27,6 @@ private slots:
 private:
     Ui::addRecordWindow *ui;
     File* file;
-    MainWindow* parent;
 };
 
 #endif // ADDRECORDWINDOW_H

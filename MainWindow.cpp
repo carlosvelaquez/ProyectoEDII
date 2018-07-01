@@ -5,6 +5,7 @@
 #include "listfieldswindow.h"
 #include "deletefieldwindow.h"
 #include "modifyfieldwindow.h"
+#include "deleterecordwindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
@@ -47,6 +48,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   // Añadir registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
+  // ELiminar registros
+  connect(ui.actionBorrar_Registros, SIGNAL(triggered()), this, SLOT(deleteRecords()));
 
   //Mover entre páginas
   connect(ui.pushButton_adelante, SIGNAL(clicked()), this, SLOT(nextPage()));
@@ -73,6 +76,9 @@ void MainWindow::addRecord(){
 }
 
 void MainWindow::deleteRecords(){
+    deleteRecordWindow* dr = new deleteRecordWindow();
+    dr->refreshtable();
+    dr->show();
 }
 /*##########################################*/
 

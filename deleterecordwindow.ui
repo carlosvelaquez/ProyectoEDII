@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>addRecordWindow</class>
- <widget class="QWidget" name="addRecordWindow">
+ <class>deleteRecordWindow</class>
+ <widget class="QWidget" name="deleteRecordWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>730</width>
-    <height>430</height>
+    <width>629</width>
+    <height>404</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: white;
-</string>
+   <string notr="true">background-color: white;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -24,6 +23,8 @@
       <font>
        <family>FreeSans</family>
        <pointsize>24</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -31,34 +32,31 @@
 color: white;</string>
      </property>
      <property name="text">
-      <string>Ingresar Registros</string>
+      <string>Eliminar Registros</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="rowCount">
-      <number>0</number>
-     </property>
-     <property name="columnCount">
-      <number>4</number>
-     </property>
-     <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>151</number>
-     </attribute>
-     <attribute name="horizontalHeaderMinimumSectionSize">
-      <number>20</number>
-     </attribute>
-     <column/>
-     <column/>
-     <column/>
-     <column/>
-    </widget>
+    <widget class="QTableWidget" name="tableWidget"/>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton_send">
+    <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Enviar</string>
+      <string>Ingrese numero de registro:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QSpinBox" name="spinBox">
+     <property name="maximum">
+      <number>100000</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>Eliminar registro</string>
      </property>
     </widget>
    </item>
