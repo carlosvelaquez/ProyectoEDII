@@ -29,6 +29,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   // Cerrar archivo
   connect(ui.actionCerrar_Archivo, SIGNAL(triggered()), this, SLOT(closeFile()));
 
+  //Salir del Programa
+  connect(ui.actionSalir_del_Programa, SIGNAL(triggered()), this, SLOT(exit()));
+
   // Añadir campos
   connect(ui.actionCrear_Campos, SIGNAL(triggered()), this, SLOT(addFields()));
 
@@ -361,4 +364,8 @@ void MainWindow::exportCSV(){
 void MainWindow::exportXML(){
   QString path = QFileDialog::getSaveFileName(this, "Exportar a XML con Schema", QDir::currentPath(), tr("XML Files (*.xml)"));
   //file.exportXML(path.toStdString());
+}
+
+void MainWindow::exit(){
+  close();
 }

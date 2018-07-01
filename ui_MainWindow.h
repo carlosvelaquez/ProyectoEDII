@@ -52,6 +52,8 @@ public:
     QAction *actionExportar_a_XML_con_Schem;
     QAction *actionCargar_Archivo;
     QAction *actionGenerar_Registros_de_Prueba;
+    QAction *actionSalir_del_Programa;
+    QAction *actionCruzar_Archivos;
     QWidget *centralwidget;
     QFrame *frame;
     QHBoxLayout *horizontalLayout;
@@ -147,6 +149,10 @@ public:
         actionCargar_Archivo->setObjectName(QStringLiteral("actionCargar_Archivo"));
         actionGenerar_Registros_de_Prueba = new QAction(MainWindow);
         actionGenerar_Registros_de_Prueba->setObjectName(QStringLiteral("actionGenerar_Registros_de_Prueba"));
+        actionSalir_del_Programa = new QAction(MainWindow);
+        actionSalir_del_Programa->setObjectName(QStringLiteral("actionSalir_del_Programa"));
+        actionCruzar_Archivos = new QAction(MainWindow);
+        actionCruzar_Archivos->setObjectName(QStringLiteral("actionCruzar_Archivos"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         frame = new QFrame(centralwidget);
@@ -274,7 +280,7 @@ public:
 
         frame_Bienvenida = new QFrame(centralwidget);
         frame_Bienvenida->setObjectName(QStringLiteral("frame_Bienvenida"));
-        frame_Bienvenida->setGeometry(QRect(10, 80, 711, 351));
+        frame_Bienvenida->setGeometry(QRect(10, 70, 711, 361));
         frame_Bienvenida->setStyleSheet(QLatin1String("QFrame{\n"
 "	border: 1px solid #E0E0E0;\n"
 "	border-radius: 5px;\n"
@@ -384,7 +390,10 @@ public:
         menuArchivo->addAction(actionCargar_Archivo);
         menuArchivo->addAction(actionCerrar_Archivo);
         menuArchivo->addSeparator();
+        menuArchivo->addAction(actionCruzar_Archivos);
         menuArchivo->addAction(actionGenerar_Registros_de_Prueba);
+        menuArchivo->addSeparator();
+        menuArchivo->addAction(actionSalir_del_Programa);
         menuRegistros->addAction(actionIntroducir_Registros);
         menuRegistros->addAction(actionModificar_Registros);
         menuRegistros->addAction(actionBuscar_Registros);
@@ -405,7 +414,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "File Manager", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Sota File Manager", nullptr));
         actionNuevo_Archivo->setText(QApplication::translate("MainWindow", "Nuevo Archivo", nullptr));
         actionGuardar_Archivo->setText(QApplication::translate("MainWindow", "Salvar Archivo", nullptr));
         actionCerrar_Archivo->setText(QApplication::translate("MainWindow", "Cerrar Archivo", nullptr));
@@ -423,24 +432,26 @@ public:
         actionListar_Registros->setText(QApplication::translate("MainWindow", "Listar Registros", nullptr));
         actionCrear_Indices->setText(QApplication::translate("MainWindow", "Crear \303\215ndices", nullptr));
         actionReindexar_Archivos->setText(QApplication::translate("MainWindow", "Re-indexar Archivos", nullptr));
-        actionExportar_a_Excel->setText(QApplication::translate("MainWindow", "Exportar a Excel", nullptr));
+        actionExportar_a_Excel->setText(QApplication::translate("MainWindow", "Exportar a Excel (CSV)", nullptr));
         actionExportar_a_XML_con_Schem->setText(QApplication::translate("MainWindow", "Exportar a XML con Schema", nullptr));
         actionCargar_Archivo->setText(QApplication::translate("MainWindow", "Cargar Archivo", nullptr));
         actionGenerar_Registros_de_Prueba->setText(QApplication::translate("MainWindow", "Generar Registros de Prueba", nullptr));
+        actionSalir_del_Programa->setText(QApplication::translate("MainWindow", "Salir del Programa", nullptr));
+        actionCruzar_Archivos->setText(QApplication::translate("MainWindow", "Cruzar Archivos", nullptr));
         pushButton_atras->setText(QApplication::translate("MainWindow", "<<", nullptr));
         label_pagina->setText(QApplication::translate("MainWindow", "-", nullptr));
         pushButton_adelante->setText(QApplication::translate("MainWindow", ">>", nullptr));
         pushButton_adelante_2->setText(QApplication::translate("MainWindow", "Ir a P\303\241gina", nullptr));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "No se ha cargado un archivo. Puede crear uno en Archivo > Nuevo Archivo.", nullptr));
-        label->setText(QApplication::translate("MainWindow", "File Manager", nullptr));
+        label->setText(QApplication::translate("MainWindow", "Sota File Manager", nullptr));
         label_ruta->setText(QApplication::translate("MainWindow", "No se ha cargado un archivo.", nullptr));
         pushButton_refresh->setText(QApplication::translate("MainWindow", "Refrescar Tabla", nullptr));
-        label_2->setText(QApplication::translate("MainWindow", "Bienvenido al File Manager", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "Bienvenido a Sota\342\204\242", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "\302\277Como desea empezar?", nullptr));
         pushButton_bNuevo->setText(QApplication::translate("MainWindow", "Crear un Archivo Nuevo", nullptr));
         pushButton_bCargar->setText(QApplication::translate("MainWindow", "Cargar un Archivo Existente", nullptr));
-        label_4->setText(QApplication::translate("MainWindow", "Copyright Sota Inc., 2018 - Todos los derechos reservados.", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "\302\251 Sota Inc., 2018 - Todos los derechos reservados.", nullptr));
         menuArchivo->setTitle(QApplication::translate("MainWindow", "Archivo", nullptr));
         menuRegistros->setTitle(QApplication::translate("MainWindow", "Registros", nullptr));
         menuCampos->setTitle(QApplication::translate("MainWindow", "Campos", nullptr));

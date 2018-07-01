@@ -7,13 +7,13 @@ INPUT(
 ./release\addfieldwindow.o
 ./release\listfieldswindow.o
 ./release\deletefieldwindow.o
-./release\modifyfieldwindow.o
 ./release\modifyrecordwindow.o
+./release\modifyfieldwindow.o
 ./release\moc_MainWindow.o
 ./release\moc_addrecordwindow.o
 ./release\moc_addfieldwindow.o
 ./release\moc_listfieldswindow.o
 ./release\moc_deletefieldwindow.o
-./release\moc_modifyfieldwindow.o
 ./release\moc_modifyrecordwindow.o
+./release\moc_modifyfieldwindow.o
 );
