@@ -106,11 +106,16 @@ public:
 
   bool isLocked(); //Retorna locked
 
+
+  //--- FUNCIONES DE EXPORTACIÓN ---
+  void exportCSV(string);
+  void exportXML(string);
+
   operator bool(){
     if (path == "") {
       return false;
     }
-    
+
     return true;
   }
 

@@ -726,6 +726,130 @@ bool File::isLocked(){
 }
 
 
+// Funciones de Exportación
+
+void File::exportCSV(string exPath){
+  ofstream exFile;
+  exFile.open(exPath);
+
+  if (exFile) {
+    for (int i = 1; i <= fields.size; i++) {
+      exFile << fields[i].getName();
+
+      if (i < fields.size) {
+        exFile << ",";
+      }
+    }
+
+    exFile << endl;
+
+    seekFirst();
+    for (int i = 1; i <= blockQuantity(); i++) {
+      List<List<string>> block = data();
+
+      for (int j = 1; j <= block.size; j++) {
+        for (int k = 1; k <= block[j].size; k++) {
+          exFile << block[j][k];
+
+          if (k < block[j].size) {
+            exFile << ",";
+          }
+        }
+
+        exFile << endl;
+      }
+
+      next();
+    }
+
+    exFile.close();
+  }
+}
+
+void File::exportXML(string exPath){
+  ofstream exFile;
+  exFile.open(exPath);
+
+  if (exFile) {
+    exFile
+    << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl
+    << "<?xml-stylesheet type=\"text/xsl\" href=\"" << exPath.substr(0, (exPath.length() - 4)) << ".xsl" << "\"?>" << endl << endl
+    << "<file>" << endl
+    << '\t'<< "<fields>" << endl;
+
+    for (int i = 1; i <= fields.size; i++) {
+      exFile
+      << '\t' << '\t' << "<field>" << endl
+      << '\t' << '\t' << '\t' << "<name>" << fields[i].getName() << "</name>" << endl
+      << '\t' << '\t' << '\t' << "<type>" << fields[i].getType() << "</type>" << endl
+      << '\t' << '\t' << '\t' << "<size>" << fields[i].getSize() << "</size>" << endl
+      << '\t' << '\t' << "</field>" << endl;
+    }
+
+    exFile
+    << '\t' << "</fields>" << endl << endl
+    << '\t' << "<records>" << endl;
+
+    seekFirst();
+    for (int i = 1; i <= blockQuantity(); i++) {
+      List<List<string>> block = data();
+
+      for (int j = 1; j <= block.size; j++) {
+        exFile << '\t' << '\t' << "<record>" << endl;
+
+        for (int k = 1; k <= block[j].size; k++) {
+          exFile
+          << '\t' << '\t' << '\t' << "<value>" << endl
+          << '\t' << '\t' << '\t' << '\t' << "<data>" << block[j][k] << "</data>" << endl
+          << '\t' << '\t' << '\t' << "</value>" << endl;
+        }
+
+        exFile << '\t' << '\t' << "</record>" << endl;
+      }
+
+      next();
+    }
+
+    exFile << '\t' << "</records>" << endl
+    << "</file>" << endl;
+
+    exFile.clear();
+    exFile.close();
+    exFile.open(string(exPath.substr(0, (exPath.length() - 4)) + ".xsl"));
+
+    if (exFile) {
+      exFile
+      << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl
+      << "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">" << endl
+      << "<xsl:template match=\"file\">" << endl
+      << "<html>" << endl
+      << "<body>" << endl
+      << '\t' << "<h1>Archivo de Registros</h1>"  << endl
+      << '\t' << "<h2>Exportado de File Manager</h2>"  << endl
+      << '\t' << "<table>" << endl
+      << '\t' << '\t' << "<tr bgcolor =\"#3F51B5\" color = \"white\">" << endl
+      << '\t' << '\t' << '\t' << "<xsl:for-each select=\"/file/fields/field\">" << endl
+      << '\t' << '\t' << '\t' << '\t' << "<td><xsl:value-of select=\"name\"/></td>" << endl
+      << '\t' << '\t' << '\t' << "</xsl:for-each>" << endl
+      << '\t' << '\t' << "</tr>" << endl
+      << '\t' << '\t' << "<xsl:for-each select=\"/file/records/record\">" << endl
+      << '\t' << '\t' << '\t' << "<tr>" << endl
+      << '\t' << '\t' << '\t' << '\t' << "<xsl:for-each select=\"value\">" << endl
+      << '\t' << '\t' << '\t' << '\t' << '\t' << "<td><xsl:value-of select=\"data\"/></td>" << endl
+      << '\t' << '\t' << '\t' << '\t' << "</xsl:for-each>" << endl
+      << '\t' << '\t' << '\t' << "</tr>" << endl
+      << '\t' << '\t' << "</xsl:for-each>" << endl
+      << '\t' << "</table>" << endl
+      << "</body>" << endl
+      << "</html>" << endl
+      << "</xsl:template>" << endl
+      << "</xsl:stylesheet>" << endl;
+
+      exFile.close();
+    }
+  }
+}
+
 File::~File(){
   file.close();
 }
