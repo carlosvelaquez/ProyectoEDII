@@ -27,18 +27,21 @@ HEADERS += File.h Field.h List.h MainWindow.h queue.h \
     listfieldswindow.h \
     deletefieldwindow.h \
     modifyrecordwindow.h \
-    modifyfieldwindow.h
+    modifyfieldwindow.h \
+    deleterecordwindow.h
 FORMS += MainWindow.ui \
     addrecordwindow.ui \
     addfieldwindow.ui \
     listfieldswindow.ui \
     deletefieldwindow.ui \
     modifyrecordwindow.ui \
-    modifyfieldwindow.ui
+    modifyfieldwindow.ui \
+    deleterecordwindow.ui
 SOURCES += File.cpp Field.cpp main.cpp MainWindow.cpp \
     addrecordwindow.cpp \
     addfieldwindow.cpp \
     listfieldswindow.cpp \
     deletefieldwindow.cpp \
     modifyrecordwindow.cpp \
-    modifyfieldwindow.cpp
+    modifyfieldwindow.cpp \
+    deleterecordwindow.cpp
