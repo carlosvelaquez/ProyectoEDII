@@ -47,33 +47,20 @@ void modifyfieldwindow::on_comboBox_campos_currentIndexChanged(int index)
 void modifyfieldwindow::on_pushButton_clicked()
 {
     if(!file->isLocked()){
-       qDebug()<<"Apply change, field: ";
-        if(ui->lineEdit->text()!=""){ // Valida si añade nombre
-            file->getFields().get(ui->comboBox_campos->currentIndex()+1).setName(ui->lineEdit->text().toStdString());
-            qDebug()<<"Apply name: "<<ui->lineEdit->text();;
-            qDebug()<<"Field name: "<<QString::fromStdString(file->getFields().get(ui->comboBox_campos->currentIndex()+1).getName());
-        }
+        if(ui->lineEdit->text()!="")// Valida si añade nombre
+            file->getLocationFields()->getPointer(ui->comboBox_campos->currentIndex()+1)->setName(ui->lineEdit->text().toStdString());
 
-        if(ui->spinBox->value()!=file->getFields().get(ui->comboBox_campos->currentIndex()+1).getSize()){ //Valida si añade el tamaño
-            file->getFields().get(ui->comboBox_campos->currentIndex()+1).setSize(ui->spinBox->value());
-            qDebug()<<"Apply size: "<<ui->spinBox->value();
-            qDebug()<<"Field size: "<<file->getFields().get(ui->comboBox_campos->currentIndex()+1).getSize();
-        }
+        if(ui->spinBox->value()!=file->getFields().get(ui->comboBox_campos->currentIndex()+1).getSize()) //Valida si añade el tamaño
+            file->getLocationFields()->getPointer(ui->comboBox_campos->currentIndex()+1)->setSize(ui->spinBox->value());
 
-        if(ui->comboBox_2->currentIndex()!=file->getFields().get(ui->comboBox_campos->currentIndex()+1).getType()){ //Valida si añade el tipo
-            file->getFields().get(ui->comboBox_campos->currentIndex()+1).setType(ui->comboBox_2->currentIndex());
-            qDebug()<<"Apply type: "<<ui->comboBox_2->currentIndex();
-            qDebug()<<"Field type: "<<file->getFields().get(ui->comboBox_campos->currentIndex()+1).getType();
-        }
+        if(ui->comboBox_2->currentIndex()!=file->getFields().get(ui->comboBox_campos->currentIndex()+1).getType()) //Valida si añade el tipo
+            file->getLocationFields()->getPointer(ui->comboBox_campos->currentIndex()+1)->setType(ui->comboBox_2->currentIndex());
 
         if(ui->radioButton->isChecked()!=file->getFields().get(ui->comboBox_campos->currentIndex()+1).isPrimaryKey()){ // Valida si añade como llave primaria
-            if(!file->hasPrimaryKey()){
-                file->getFields().get(ui->comboBox_campos->currentIndex()+1).setPrimaryKey(true);
-                qDebug()<<"Apply keys: "<<ui->radioButton->isChecked();
-                qDebug()<<"Field size: "<<file->getFields().get(ui->comboBox_campos->currentIndex()+1).isPrimaryKey();
-            }
+            if(!file->hasPrimaryKey())
+                file->getLocationFields()->getPointer(ui->comboBox_campos->currentIndex()+1)->setPrimaryKey(true);
+
         }
     }
-
     fillWidgets();
 }
