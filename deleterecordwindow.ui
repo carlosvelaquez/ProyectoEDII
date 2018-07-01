@@ -6,15 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>629</width>
-    <height>404</height>
+    <width>397</width>
+    <height>210</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: white;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -27,36 +24,25 @@
        <bold>true</bold>
       </font>
      </property>
-     <property name="styleSheet">
-      <string notr="true">background-color:#3F51B5;
-color: white;</string>
-     </property>
      <property name="text">
-      <string>Eliminar Registros</string>
+      <string>Eliminar Registro</string>
      </property>
     </widget>
-   </item>
-   <item>
-    <widget class="QTableWidget" name="tableWidget"/>
    </item>
    <item>
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Ingrese numero de registro:</string>
+      <string>Ingrese indice de registro: </string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QSpinBox" name="spinBox">
-     <property name="maximum">
-      <number>100000</number>
-     </property>
-    </widget>
+    <widget class="QSpinBox" name="spinBox"/>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="pushButton_eliminar">
      <property name="text">
-      <string>Eliminar registro</string>
+      <string>Eliminar</string>
      </property>
     </widget>
    </item>

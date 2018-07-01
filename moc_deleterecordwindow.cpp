@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_deleteRecordWindow_t {
     QByteArrayData data[3];
-    char stringdata0[42];
+    char stringdata0[51];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,11 +30,11 @@ struct qt_meta_stringdata_deleteRecordWindow_t {
 static const qt_meta_stringdata_deleteRecordWindow_t qt_meta_stringdata_deleteRecordWindow = {
     {
 QT_MOC_LITERAL(0, 0, 18), // "deleteRecordWindow"
-QT_MOC_LITERAL(1, 19, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(2, 41, 0) // ""
+QT_MOC_LITERAL(1, 19, 30), // "on_pushButton_eliminar_clicked"
+QT_MOC_LITERAL(2, 50, 0) // ""
 
     },
-    "deleteRecordWindow\0on_pushButton_clicked\0"
+    "deleteRecordWindow\0on_pushButton_eliminar_clicked\0"
     ""
 };
 #undef QT_MOC_LITERAL
@@ -67,7 +67,7 @@ void deleteRecordWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         deleteRecordWindow *_t = static_cast<deleteRecordWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_pushButton_clicked(); break;
+        case 0: _t->on_pushButton_eliminar_clicked(); break;
         default: ;
         }
     }
