@@ -16,7 +16,6 @@ public:
     explicit deleteRecordWindow(QWidget *parent = 0);
     ~deleteRecordWindow();
     deleteRecordWindow(File*);
-    void refreshtable();
 
 private slots:
     void on_pushButton_clicked();

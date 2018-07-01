@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>629</width>
-    <height>404</height>
+    <width>321</width>
+    <height>228</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -37,12 +37,9 @@ color: white;</string>
     </widget>
    </item>
    <item>
-    <widget class="QTableWidget" name="tableWidget"/>
-   </item>
-   <item>
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Ingrese numero de registro:</string>
+      <string>Ingrese indice de registro:</string>
      </property>
     </widget>
    </item>
