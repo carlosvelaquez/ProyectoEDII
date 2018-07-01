@@ -353,7 +353,7 @@ QLabel{
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>Bienvenido a Sota</string>
+      <string>Bienvenido a Sota™</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -505,7 +505,7 @@ QLabel{
       <string notr="true">color: #757575</string>
      </property>
      <property name="text">
-      <string>Copyright Sota Inc., 2018 - Todos los derechos reservados.</string>
+      <string>© Sota Inc., 2018 - Todos los derechos reservados.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
