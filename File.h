@@ -95,6 +95,7 @@ public:
 
   //--- FUNCIONES DE INFORMACIÓN ---
   List<Field> getFields(); //Retorna fields
+  List<Field>* getLocationFields();
 
   int fieldQuantity(); //Cantidad de campos en el archivo
   int recordQuantity(); //Cantidad de registros en el buffer

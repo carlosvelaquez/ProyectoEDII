@@ -106,6 +106,9 @@ List<Field> File::getFields(){
   return fields;
 }
 
+List<Field>* File::getLocationFields(){
+  return &fields;
+}
 
 //Funciones de Archivo
 

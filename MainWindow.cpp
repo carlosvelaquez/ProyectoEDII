@@ -96,7 +96,7 @@ void MainWindow::listfields(){
 void MainWindow::modifyFields(){
     modifyfieldwindow* md = new modifyfieldwindow();
     md->setFile(&file);
-    md->filltable();
+    md->fillWidgets();
     md->show();
 }
 
