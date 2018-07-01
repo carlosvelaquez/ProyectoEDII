@@ -18,11 +18,11 @@ public:
     deleteRecordWindow(File*);
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButton_eliminar_clicked();
 
 private:
-    File* file;
     Ui::deleteRecordWindow *ui;
+    File* file;
 };
 
 #endif // DELETERECORDWINDOW_H

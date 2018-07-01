@@ -1,6 +1,5 @@
 #include "deleterecordwindow.h"
 #include "ui_deleterecordwindow.h"
-#include <QTreeWidgetItem>
 #include <QMessageBox>
 
 deleteRecordWindow::deleteRecordWindow(QWidget *parent) :
@@ -19,11 +18,11 @@ deleteRecordWindow::deleteRecordWindow(File* n_file){
     file = n_file;
 }
 
-void deleteRecordWindow::on_pushButton_clicked()
+void deleteRecordWindow::on_pushButton_eliminar_clicked()
 {
     if(file->deleteRecord(ui->spinBox->value())){
-        QMessageBox::about(this,"Removido","Registro removido con exito");
+        QMessageBox::about(this,"","Registro eliminado con exito");
     }else{
-        QMessageBox::warning(this,"Espera","Ingrese correctamente el indice del registro");
+        QMessageBox::warning(this,"","Ingrese correctamente los datos requeridos");
     }
 }

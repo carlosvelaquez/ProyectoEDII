@@ -52,6 +52,9 @@ SOURCES       = File.cpp \
 		Field.cpp \
 		main.cpp \
 		MainWindow.cpp \
+		BTree.cpp \
+		BTreeNode.cpp \
+		Key.cpp \
 		addrecordwindow.cpp \
 		addfieldwindow.cpp \
 		listfieldswindow.cpp \
@@ -70,6 +73,9 @@ OBJECTS       = File.o \
 		Field.o \
 		main.o \
 		MainWindow.o \
+		BTree.o \
+		BTreeNode.o \
+		Key.o \
 		addrecordwindow.o \
 		addfieldwindow.o \
 		listfieldswindow.o \
@@ -147,6 +153,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		List.h \
 		MainWindow.h \
 		queue.h \
+		BTree.h \
+		BTreeNode.h \
+		Key.h \
 		addrecordwindow.h \
 		addfieldwindow.h \
 		listfieldswindow.h \
@@ -157,6 +166,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		Field.cpp \
 		main.cpp \
 		MainWindow.cpp \
+		BTree.cpp \
+		BTreeNode.cpp \
+		Key.cpp \
 		addrecordwindow.cpp \
 		addfieldwindow.cpp \
 		listfieldswindow.cpp \
@@ -331,8 +343,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents File.h Field.h List.h MainWindow.h queue.h addrecordwindow.h addfieldwindow.h listfieldswindow.h deletefieldwindow.h modifyrecordwindow.h modifyfieldwindow.h deleterecordwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents File.cpp Field.cpp main.cpp MainWindow.cpp addrecordwindow.cpp addfieldwindow.cpp listfieldswindow.cpp deletefieldwindow.cpp modifyrecordwindow.cpp modifyfieldwindow.cpp deleterecordwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents File.h Field.h List.h MainWindow.h queue.h BTree.h BTreeNode.h Key.h addrecordwindow.h addfieldwindow.h listfieldswindow.h deletefieldwindow.h modifyrecordwindow.h modifyfieldwindow.h deleterecordwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents File.cpp Field.cpp main.cpp MainWindow.cpp BTree.cpp BTreeNode.cpp Key.cpp addrecordwindow.cpp addfieldwindow.cpp listfieldswindow.cpp deletefieldwindow.cpp modifyrecordwindow.cpp modifyfieldwindow.cpp deleterecordwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents MainWindow.ui addrecordwindow.ui addfieldwindow.ui listfieldswindow.ui deletefieldwindow.ui modifyrecordwindow.ui modifyfieldwindow.ui deleterecordwindow.ui $(DISTDIR)/
 
 
@@ -362,49 +374,73 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_MainWindow.cpp moc_addrecordwindow.cpp moc_addfieldwindow.cpp moc_listfieldswindow.cpp moc_deletefieldwindow.cpp moc_modifyrecordwindow.cpp moc_modifyfieldwindow.cpp moc_deleterecordwindow.cpp
 moc_MainWindow.cpp: ui_MainWindow.h \
 		File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		MainWindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o moc_MainWindow.cpp
 
 moc_addrecordwindow.cpp: File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		addrecordwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include addrecordwindow.h -o moc_addrecordwindow.cpp
 
 moc_addfieldwindow.cpp: File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		addfieldwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include addfieldwindow.h -o moc_addfieldwindow.cpp
 
 moc_listfieldswindow.cpp: File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		listfieldswindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include listfieldswindow.h -o moc_listfieldswindow.cpp
 
 moc_deletefieldwindow.cpp: File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		deletefieldwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include deletefieldwindow.h -o moc_deletefieldwindow.cpp
 
 moc_modifyrecordwindow.cpp: File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		modifyrecordwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include modifyrecordwindow.h -o moc_modifyrecordwindow.cpp
 
 moc_modifyfieldwindow.cpp: File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		modifyfieldwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include modifyfieldwindow.h -o moc_modifyfieldwindow.cpp
 
 moc_deleterecordwindow.cpp: File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		deleterecordwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include deleterecordwindow.h -o moc_deleterecordwindow.cpp
@@ -449,7 +485,10 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 ####### Compile
 
 File.o: File.cpp File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o File.o File.cpp
 
@@ -459,14 +498,20 @@ Field.o: Field.cpp Field.h
 main.o: main.cpp MainWindow.h \
 		ui_MainWindow.h \
 		File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 MainWindow.o: MainWindow.cpp MainWindow.h \
 		ui_MainWindow.h \
 		File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		addrecordwindow.h \
 		addfieldwindow.h \
@@ -476,51 +521,86 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		deleterecordwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
 
+BTree.o: BTree.cpp BTree.h \
+		BTreeNode.h \
+		List.h \
+		Key.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BTree.o BTree.cpp
+
+BTreeNode.o: BTreeNode.cpp BTreeNode.h \
+		List.h \
+		Key.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BTreeNode.o BTreeNode.cpp
+
+Key.o: Key.cpp Key.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Key.o Key.cpp
+
 addrecordwindow.o: addrecordwindow.cpp addrecordwindow.h \
 		File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		ui_addrecordwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addrecordwindow.o addrecordwindow.cpp
 
 addfieldwindow.o: addfieldwindow.cpp addfieldwindow.h \
 		File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		ui_addfieldwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o addfieldwindow.o addfieldwindow.cpp
 
 listfieldswindow.o: listfieldswindow.cpp listfieldswindow.h \
 		File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		ui_listfieldswindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listfieldswindow.o listfieldswindow.cpp
 
 deletefieldwindow.o: deletefieldwindow.cpp deletefieldwindow.h \
 		File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		ui_deletefieldwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o deletefieldwindow.o deletefieldwindow.cpp
 
 modifyrecordwindow.o: modifyrecordwindow.cpp modifyrecordwindow.h \
 		File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		ui_modifyrecordwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o modifyrecordwindow.o modifyrecordwindow.cpp
 
 modifyfieldwindow.o: modifyfieldwindow.cpp modifyfieldwindow.h \
 		File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		ui_modifyfieldwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o modifyfieldwindow.o modifyfieldwindow.cpp
 
 deleterecordwindow.o: deleterecordwindow.cpp deleterecordwindow.h \
 		File.h \
+		BTree.h \
+		BTreeNode.h \
 		List.h \
+		Key.h \
 		Field.h \
 		ui_deleterecordwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o deleterecordwindow.o deleterecordwindow.cpp
