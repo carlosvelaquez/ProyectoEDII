@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <limits>
+#include <cmath>
 
 using namespace std;
 
@@ -35,7 +36,8 @@ private:
   int blockSize; //Tamaño del buffer (o bloque)
   int currentBlock; //Bloque actual que el buffer está leyendo/escribiendo
 
-  List<List<string>> recordBuffer; //Registros cargados en memoria
+  List<List<string>> inBuffer; //Registros cargados en memoria
+  List<List<string>> outBuffer; //Registros cargados en memoria
 
 
   //--- FUNCIONES DE APOYO ---
@@ -80,12 +82,13 @@ public:
   bool deleteField(int); //Borra un campo de la lista de campos (si no está bloqueado el archivo)
   bool deleteRecord(int); //Borra un registro (debe estar escrito en el archivo)
 
-  bool replaceField(int, int, string, int); //Reemplaza el n-ésimo registro por uno nuevo [n, tipo, nombre, tamaño]
+  bool replaceField(int, int, string, int); //Reemplaza el n-ésimo campo por uno nuevo [n, tipo, nombre, tamaño]
   bool replaceRecord(int, List<string>); //Reemplaza el n-ésimo registro escrito en el archivo
 
   bool flush(); //Escribe todos los registros del buffer al archivo
 
   bool seek(int); //Busca el n-ésimo bloque (n es el parámetro)
+  bool reseek(); //Repite el seek en el bloque actual
   bool next(); //Pasa al siguiente bloque
   bool previous(); //Retorna al bloque anterior
   bool seekFirst(); //Busca el primer bloque
@@ -107,13 +110,16 @@ public:
   int getMetaSize(); //Retorna metaSize
   int getCurrentBlock(); //Retorna el bloque actual
   int getBlockSize(); //Retorna el tamaño de bloque
+  int outSize(); //Retorna el tamaño del outBuffer
 
   bool isLocked(); //Retorna locked
 
 
   // --- FUNCIONES DE INDEXACIÓN ---
   bool buildIndex();
-  int findRecord(string);
+  void saveIndex();
+  void loadIndex();
+  void seekRecord(string);
 
   // --- FUNCIONES DE EXPORTACIÓN ---
   void exportCSV(string);

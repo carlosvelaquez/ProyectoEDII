@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addfieldwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -119,13 +119,13 @@ public:
 
     void retranslateUi(QWidget *addfieldwindow)
     {
-        addfieldwindow->setWindowTitle(QApplication::translate("addfieldwindow", "Form", 0));
-        label_4->setText(QApplication::translate("addfieldwindow", "  A\303\261adir campos", 0));
-        label->setText(QApplication::translate("addfieldwindow", "Nombre:", 0));
-        label_2->setText(QApplication::translate("addfieldwindow", "Tama\303\261o:", 0));
-        label_3->setText(QApplication::translate("addfieldwindow", "Tipo de dato:", 0));
-        radioButton_ispk->setText(QApplication::translate("addfieldwindow", "Es llave primaria", 0));
-        pushButton_addfield->setText(QApplication::translate("addfieldwindow", "A\303\261adir campo", 0));
+        addfieldwindow->setWindowTitle(QApplication::translate("addfieldwindow", "Form", nullptr));
+        label_4->setText(QApplication::translate("addfieldwindow", "  A\303\261adir campos", nullptr));
+        label->setText(QApplication::translate("addfieldwindow", "Nombre:", nullptr));
+        label_2->setText(QApplication::translate("addfieldwindow", "Tama\303\261o:", nullptr));
+        label_3->setText(QApplication::translate("addfieldwindow", "Tipo de dato:", nullptr));
+        radioButton_ispk->setText(QApplication::translate("addfieldwindow", "Es llave primaria", nullptr));
+        pushButton_addfield->setText(QApplication::translate("addfieldwindow", "A\303\261adir campo", nullptr));
     } // retranslateUi
 
 };

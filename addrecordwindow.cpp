@@ -69,7 +69,7 @@ void addRecordWindow::on_pushButton_send_clicked()
             if(check){
                 QMessageBox::about(this,"","Registro añadido con exito");
                 file->addRecord(values);
-                file->lock();
+                //file->lock();
             }
         }
     }

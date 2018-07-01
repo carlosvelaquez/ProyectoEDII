@@ -142,20 +142,30 @@ int BTree::findIndex(BTreeNode* node, string key){
   return -1;
 }
 
+void BTree::printPrevious(){
+  printString = "";
+  printPrevious(root);
+}
+
 void BTree::printPrevious(BTreeNode* node){
-//  cout<<"~~"+node->toString() <<endl;
   if (!node->isLeaf()) {
     printPrevious(node->getChildrenAt(1));
-    cout<< node->toString()<<endl;
+    printString += node->toString();
+    printString += '\n';
+
     for (int i = 2; i <= node->getChildren()->size; i++) {
       printPrevious(node->getChildrenAt(i));
     }
+
   }else{
-    cout<<node->toString()<<endl;
+    printString += node->toString();
+    printString += '\n';
   }
 }
 
-
+string BTree::getPrintString(){
+  return printString;
+}
 
 
 

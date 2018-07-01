@@ -51,6 +51,10 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   //Refrescar tabla
   connect(ui.pushButton_refresh, SIGNAL(clicked()), this, SLOT(refresh()));
 
+  //Indexar
+  connect(ui.actionCrear_Indices, SIGNAL(triggered()), this, SLOT(saveIndexFile()));
+  connect(ui.actionReindexar_Archivos, SIGNAL(triggered()), this, SLOT(createIndexes()));
+
   //Exportar
   connect(ui.actionExportar_a_Excel, SIGNAL(triggered()), this, SLOT(exportCSV()));
   connect(ui.actionExportar_a_XML_con_Schem, SIGNAL(triggered()), this, SLOT(exportXML()));
@@ -170,6 +174,13 @@ void MainWindow::joinFiles(){
 void MainWindow::refreshTable(){
   if (file) {
     qDebug() << "Refreshing table...";
+
+    if (file.outSize() > 0) {
+      qDebug() << "Flushing and re-seeking before refreshing table.";
+      file.flush();
+      file.reseek();
+    }
+
     ui.frame_Bienvenida->hide();
 
     //Dimensionar la tabla de acuerdo a los campos y registros de file
@@ -301,8 +312,12 @@ void MainWindow::generateTest(){
   }
 }
 
-void MainWindow::refresh(){
-  refreshTable();
+void MainWindow::saveIndexFile(){
+  file.saveIndex();
+}
+
+void MainWindow::createIndexes(){
+  file.buildIndex();
 }
 
 void MainWindow::exportCSV(){
@@ -313,6 +328,10 @@ void MainWindow::exportCSV(){
 void MainWindow::exportXML(){
   QString path = QFileDialog::getSaveFileName(this, "Exportar a XML con Schema", QDir::currentPath(), tr("XML Files (*.xml)"));
   file.exportXML(path.toStdString());
+}
+
+void MainWindow::refresh(){
+  refreshTable();
 }
 
 void MainWindow::exit(){
@@ -338,6 +357,4 @@ void MainWindow::refreshMenuBar(){
           ui.menu_ndices->setEnabled(true); //Bloquea Indicas
       }
     }
-
-
 }

@@ -10,15 +10,15 @@ INPUT(
 ./debug\addfieldwindow.o
 ./debug\listfieldswindow.o
 ./debug\deletefieldwindow.o
-./debug\deleterecordwindow.o
 ./debug\modifyrecordwindow.o
 ./debug\modifyfieldwindow.o
+./debug\deleterecordwindow.o
 ./debug\moc_MainWindow.o
 ./debug\moc_addrecordwindow.o
 ./debug\moc_addfieldwindow.o
 ./debug\moc_listfieldswindow.o
 ./debug\moc_deletefieldwindow.o
-./debug\moc_deleterecordwindow.o
 ./debug\moc_modifyrecordwindow.o
 ./debug\moc_modifyfieldwindow.o
+./debug\moc_deleterecordwindow.o
 );

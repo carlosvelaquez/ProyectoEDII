@@ -31,6 +31,9 @@ private slots:
   void generateTest();
   void joinFiles();
 
+  void saveIndexFile();
+  void createIndexes();
+
   void exportCSV();
   void exportXML();
 

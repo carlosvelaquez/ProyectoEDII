@@ -52,9 +52,12 @@ void BTreeNode::removeLastChild(){
 string BTreeNode::toString(){
   string temp ="";
   for (int i = 1; i <= keys->size; i++) {
-    temp+="["+ (keys->get(i)->getKey()) + '/' +to_string(keys->get(i)->getIndex());
+    temp += (keys->get(i)->getKey()) + ',' +to_string(keys->get(i)->getIndex());
+
+    if (i < keys->size) {
+      temp+=";";
+    }
   }
-  temp+="]";
   return temp;
 }
 

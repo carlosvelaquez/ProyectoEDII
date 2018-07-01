@@ -75,7 +75,8 @@ File::File(){
 
   locked = false;
 
-  recordBuffer = List<List<string>>(blockSize);
+  inBuffer = List<List<string>>(blockSize);
+  outBuffer = List<List<string>>(blockSize);
   index = BTree(3);
 }
 
@@ -89,7 +90,8 @@ File::File(string nPath){
 
   locked = false;
 
-  recordBuffer = List<List<string>>(blockSize);
+  inBuffer = List<List<string>>(blockSize);
+  outBuffer = List<List<string>>(blockSize);
   index = BTree(3);
 
   readMeta();
@@ -105,7 +107,8 @@ File::File(string nPath, int nBlockSize){
 
   locked = false;
 
-  recordBuffer = List<List<string>>(blockSize);
+  inBuffer = List<List<string>>(blockSize);
+  outBuffer = List<List<string>>(blockSize);
   index = BTree(3);
 
   readMeta();
@@ -206,7 +209,8 @@ void File::close(){
 
   locked = false;
 
-  recordBuffer = List<List<string>>(blockSize);
+  inBuffer = List<List<string>>(blockSize);
+  outBuffer = List<List<string>>(blockSize);
   fields.clear();
   availList.clear();
 }
@@ -420,7 +424,7 @@ bool File::addField(int type, string name, int size){
 }
 
 bool File::addRecord(List<string> nRecord){
-  return recordBuffer.insert(nRecord);
+  return outBuffer.insert(nRecord);
 }
 
 bool File::hasPrimaryKey(){
@@ -513,13 +517,13 @@ bool File::flush(){
     if (file) {
       qDebug() << "Fields: " << fields.size;
 
-      if (recordBuffer.size > 0) {
-        qDebug() << "RecordBuffer Size: " << recordBuffer[1].size;
+      if (outBuffer.size > 0) {
+        qDebug() << "outBuffer Size: " << outBuffer[1].size;
       }else{
-        qDebug() << "RecordBuffer is empty. Skipping record flush.";
+        qDebug() << "outBuffer is empty. Skipping record flush.";
       }
 
-      for (int i = 1; i <= recordBuffer.size; i++) {
+      for (int i = 1; i <= outBuffer.size; i++) {
         //Determinar en qué posición irá el siguiente registro
         if (!availList.isEmpty()) {
           file.seekp(position(availList[availList.size])); //Escribir en la siguiente posición del availList
@@ -529,7 +533,7 @@ bool File::flush(){
         }
 
         for (int j = 1; j <= fields.size; j++) {
-          string out = recordBuffer[i][j]; //Recuperar el dato a escribir
+          string out = outBuffer[i][j]; //Recuperar el dato a escribir
           //qDebug() << "Raw out: " << out.c_str();
 
           //Añadir espacios vacíos si el string es más corto que el campo
@@ -556,7 +560,7 @@ bool File::flush(){
       }
 
       file.flush();
-      recordBuffer.clear();
+      outBuffer.clear();
       return true;
     }else{
       return false;
@@ -595,7 +599,7 @@ bool File::seek(int block){
     }
 
     file.seekg(seekPos, ios::beg);
-    recordBuffer.clear();
+    inBuffer.clear();
 
     int cont = 0;
     string in;
@@ -614,7 +618,7 @@ bool File::seek(int block){
         nRecord.insert(data);
       }
 
-      recordBuffer.insert(nRecord);
+      inBuffer.insert(nRecord);
       cont ++;
     }
 
@@ -625,6 +629,10 @@ bool File::seek(int block){
 
   qDebug() << "Error opening file.";
   return false;
+}
+
+bool File::reseek(){
+  return seek(currentBlock);
 }
 
 bool File::next(){
@@ -667,7 +675,7 @@ bool File::tell(){
 }
 
 List<List<string>> File::data(){
-  return recordBuffer;
+  return inBuffer;
 }
 
 List<string> File::getRecord(int posicion){
@@ -740,6 +748,10 @@ int File::getBlockSize(){
   return blockSize;
 }
 
+int File::outSize(){
+  return outBuffer.size;
+}
+
 bool File::isLocked(){
   return locked;
 }
@@ -803,8 +815,52 @@ bool File::buildIndex(){
 
 }
 
-int File::findRecord(string key){
-  return index.findIndex(key);
+void File::saveIndex(){
+  qDebug() << "Attempting to save index file.";
+  ofstream exFile;
+  exFile.open(string(path + ".index"));
+
+  if (exFile) {
+    index.printPrevious();
+    exFile << index.getPrintString();
+    exFile.flush();
+    exFile.close();
+    qDebug() << "Index file saved successfully.";
+    exFile.close();
+  }else{
+    qDebug() << "Index file could not be opened.";
+  }
+}
+
+void File::loadIndex(){
+  qDebug() << "Attempting to load index file.";
+  ifstream inFile;
+  inFile.open(string(path + ".index"));
+
+  if (inFile) {
+    index = BTree(3);
+    string buff = "";
+
+    while (getline(inFile, buff, '\n')) {
+      qDebug() << "Loading key: " << buff.c_str();
+      stringstream commaStream(buff);
+
+      string nKey, nIndex;
+      getline(commaStream, nKey);
+      getline(commaStream, nIndex);
+
+      index.insert(new Key(nKey, stoi(nIndex)));
+    }
+
+    qDebug() << "Index file loaded successfully.";
+    inFile.close();
+  }else{
+    qDebug() << "Index file could not be opened.";
+  }
+}
+
+void File::seekRecord(string key){
+  seek(floor(index.findIndex(key)/blockSize));
 }
 
 
