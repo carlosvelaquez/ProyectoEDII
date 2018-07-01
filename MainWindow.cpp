@@ -5,7 +5,7 @@
 #include "listfieldswindow.h"
 #include "deletefieldwindow.h"
 #include "modifyfieldwindow.h"
-#include "deleterecordwindow.h"
+//#include "deleterecordwindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
@@ -76,8 +76,8 @@ void MainWindow::addRecord(){
 }
 
 void MainWindow::deleteRecords(){
-    deleteRecordWindow* dr = new deleteRecordWindow();
-    dr->show();
+    /*deleteRecordWindow* dr = new deleteRecordWindow();
+    dr->show();*/
 }
 /*##########################################*/
 
