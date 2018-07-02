@@ -25,6 +25,7 @@ private slots:
   void addRecord();
   void deleteRecords();
   void findRecords();
+  void modifyRecords();
 
   void listfields();
   void deleteFields();

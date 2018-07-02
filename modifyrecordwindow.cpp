@@ -25,7 +25,6 @@ void modifyrecordwindow::setFile(File* n_file){
     QStringList headers;
     for(int i=1; i<=file->getFields().size; i++){
          headers<<QString::fromStdString(file->getFields().get(i).getName());
-         ui->tableWidget->setItem(0,i-1, new QTableWidgetItem(QString::fromStdString(record.get(i))));
     }
     ui->tableWidget->setHorizontalHeaderLabels(headers); //Asigna Headers
 
@@ -39,10 +38,11 @@ void modifyrecordwindow::filltable(){
 
 void modifyrecordwindow::on_pushButton_2_clicked()
 {
+
     // Obtiene el registro indicado por el usuario
     indexRecord = ui->spinBox->value();
     if(indexRecord!=0){
-       record = file->getRecord(ui->spinBox->value()); //Toma el regstro
+       record = file->getRecord(indexRecord); //Toma el regstro
        for(int i=1; i<=file->getFields().size; i++){ // Llena la tabla con el registro que obtiene
             ui->tableWidget->setItem(0,i-1, new QTableWidgetItem(QString::fromStdString(record.get(i))));
        }
@@ -55,16 +55,27 @@ void modifyrecordwindow::on_pushButton_2_clicked()
 void modifyrecordwindow::on_pushButton_clicked()
 {
     if(indexRecord!=0){
+      //qDebug() << "Modifying record " << indexRecord;
+
         file->deleteRecord(indexRecord); // Borra el registro en la posicion antes obtenida
+        //qDebug() << "Deleting record.";
+
 
         List<string> cambios;
-        for(int i=1; i<=file->getFields().size; i++){ // Se obtienen los cambios hechos en la tabla
-            if(ui->tableWidget->takeItem(0,i-1)->text().isNull()){
-                cambios.insert("");
+        for (int i=1; i<=file->getFields().size; i++){ // Se obtienen los cambios hechos en la tabla
+          //qDebug() << "Extracting info from table. i = " << i;
+          QString ins = ui->tableWidget->takeItem(0,i-1)->text();
+
+            if(ins.isNull()){
+              //qDebug() << "Null character on table. Inserting hyphen";
+                cambios.insert("-");
             }else{
-                cambios.insert(ui->tableWidget->takeItem(0,i-1)->text().toStdString());
+              //qDebug() << ins << " on table. Inserting.";
+                cambios.insert(ins.toStdString());
             }
         }
+
+        //qDebug() << "Attempting to add new record on modify.";
 
         if(file->addRecord(cambios)){ // Se aplican los cambios
             QMessageBox::about(this,"","Registro modificado exitosamente");

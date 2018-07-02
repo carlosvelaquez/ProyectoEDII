@@ -53,8 +53,19 @@ void NameGenerator::load(){
   firstNames.insert("Carl");
   firstNames.insert("Elne");
   firstNames.insert("Manuel");
+  firstNames.insert("Esteban");
+  firstNames.insert("Elmer");
+  firstNames.insert("Elver");
 
+  lastNames.insert("Grote");
   lastNames.insert("Velásquez");
+  lastNames.insert("Galarga");
+  lastNames.insert("Gotas");
+  lastNames.insert("Cenario");
+  lastNames.insert("Curio");
+  lastNames.insert("Homero");
+  lastNames.insert("Icrismas");
+  lastNames.insert("Nano");
   lastNames.insert("Varela");
   lastNames.insert("Villela");
   lastNames.insert("Rodriguez");

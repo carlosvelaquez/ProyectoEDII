@@ -338,7 +338,7 @@ bool File::readAvailList(){
     qDebug() << "Starting build with: " << in.c_str();
     lastDeleted = stoi(in);
     buildAvailList(lastDeleted);
-
+    qDebug() << "AvailList built successfully.";
     return true;
   }
 
