@@ -389,6 +389,8 @@ bool File::buildAvailList(int pos){
   }
 
   if (pos != -1) {
+    file.clear();
+
     if (file) {
       file.seekp(position(pos));
       string in = "";
@@ -403,7 +405,9 @@ bool File::buildAvailList(int pos){
 
       qDebug() << in.c_str();
 
-      return buildAvailList(stoi(in));
+      int dPos = stoi(in);
+      availList.insert(dPos);
+      return buildAvailList(dPos);
 
     }else{
       return false;
@@ -479,6 +483,7 @@ bool File::deleteRecord(int index){
 
     lastDeleted = index; //Ahora el último borrado es el registro que se acaba de borrar
     writeAvailList(); //Actualizar el meta del archivo
+    readAvailList();
     return true;
   }
 
