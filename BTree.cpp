@@ -133,7 +133,7 @@ void BTree::merge(BTreeNode* node){
         merge(top);
       }
 
-    } else if(index = top->getChildren()->size){
+    } else if(index == top->getChildren()->size){
       left = top->getChildrenAt(index-1);
       left->getKeys()->insert(top->getKeysAt(index));
       top->getKeys()->remove(index);
