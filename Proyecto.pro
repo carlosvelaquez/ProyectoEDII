@@ -29,6 +29,7 @@ HEADERS += File.h Field.h List.h MainWindow.h queue.h BTree.h BTreeNode.h NameGe
     modifyrecordwindow.h \
     modifyfieldwindow.h \
     linkedfileswindow.h \
+    findrecordwindow.h \
     deleterecordwindow.h
 FORMS += MainWindow.ui \
     addrecordwindow.ui \
@@ -38,6 +39,7 @@ FORMS += MainWindow.ui \
     modifyrecordwindow.ui \
     modifyfieldwindow.ui \
     linkedfileswindow.ui \
+    findrecordwindow.ui \
     deleterecordwindow.ui
 SOURCES += File.cpp Field.cpp main.cpp MainWindow.cpp BTree.cpp BTreeNode.cpp NameGenerator.cpp Key.cpp \
     addrecordwindow.cpp \
@@ -47,4 +49,5 @@ SOURCES += File.cpp Field.cpp main.cpp MainWindow.cpp BTree.cpp BTreeNode.cpp Na
     modifyrecordwindow.cpp \
     modifyfieldwindow.cpp \
     linkedfileswindow.cpp \
+    findrecordwindow.cpp \
     deleterecordwindow.cpp

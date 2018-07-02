@@ -14,6 +14,7 @@ INPUT(
 ./debug\modifyrecordwindow.o
 ./debug\modifyfieldwindow.o
 ./debug\linkedfileswindow.o
+./debug\findrecordwindow.o
 ./debug\deleterecordwindow.o
 ./debug\moc_MainWindow.o
 ./debug\moc_addrecordwindow.o
@@ -23,5 +24,6 @@ INPUT(
 ./debug\moc_modifyrecordwindow.o
 ./debug\moc_modifyfieldwindow.o
 ./debug\moc_linkedfileswindow.o
+./debug\moc_findrecordwindow.o
 ./debug\moc_deleterecordwindow.o
 );

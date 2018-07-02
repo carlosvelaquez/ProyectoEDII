@@ -181,7 +181,9 @@ bool File::open(){
 
   if (file) {
     if (exists) {
+      loadIndex();
       readMeta();
+      seekFirst();
     }
 
     qDebug() << "File opened successfully";
@@ -269,6 +271,13 @@ bool File::writeFields(){ //Escribir los campos al meta
       out += fields[i].getName();
       out += ",";
       out += to_string(fields[i].getSize());
+      out += ",";
+
+      if (fields[i].isPrimaryKey()) {
+        out += "1";
+      }else{
+        out += "0";
+      }
 
       if (i != fields.size) { //No añade un '|' después del último registro
       out += "|";
@@ -351,13 +360,20 @@ bool File::readFields(){
     while (getline(pipeStream, field, '|')) {
       stringstream commaStream(field);
 
-      string type, name, size;
+      string type, name, size, isPrimary;
       getline(commaStream, type, ',');
       getline(commaStream, name, ',');
       getline(commaStream, size, ',');
-      qDebug() << "Adding field: " << type.c_str() << ", " << name.c_str() << ", " << size.c_str();
+      getline(commaStream, isPrimary, ',');
+      qDebug() << "Adding field: " << type.c_str() << ", " << name.c_str() << ", " << size.c_str() << ", " << isPrimary.c_str();
 
-      fields.insert(Field(stoi(type), name, stoi(size)));
+      Field nField(stoi(type), name, stoi(size));
+
+      if (isPrimary == "1") {
+        nField.setPrimaryKey(true);
+      }
+
+      fields.insert(nField);
     }
 
     calculateSizes();
@@ -850,11 +866,10 @@ void File::loadIndex(){
     string buff = "";
 
     while (getline(inFile, buff, '\n')) {
-      qDebug() << "Loading key: " << buff.c_str();
       stringstream commaStream(buff);
 
       string nKey, nIndex;
-      getline(commaStream, nKey);
+      getline(commaStream, nKey, ',');
       getline(commaStream, nIndex);
 
       index.insert(new Key(nKey, stoi(nIndex)));
@@ -867,8 +882,38 @@ void File::loadIndex(){
   }
 }
 
-void File::seekRecord(string key){
-  seek(floor(index.findIndex(key)/blockSize));
+bool File::seekRecord(string key){
+  int pkLength = -1;
+
+  for (int i = 1; i <= fields.size; i++) {
+    if (fields[i].isPrimaryKey()) {
+      pkLength = fields[i].getSize();
+    }
+  }
+
+  if (pkLength != -1) {
+    //Añadir espacios vacíos si el string es más corto que el campo
+    while (int(key.length()) < pkLength) {
+      key += " ";
+    }
+
+    //Cortar el string si es muy largo para el campo
+    if (int(key.length()) > pkLength) {
+      key = key.substr(0, pkLength);
+    }
+
+    int ind = index.findIndex(key);
+    qDebug() << "Find Index for " << key.c_str() << " " << ind;
+
+    if (ind == -1) {
+      return false;
+    }else{
+      seek(floor(ind/blockSize) + 1);
+      return true;
+    }
+  }
+
+  return false;
 }
 
 

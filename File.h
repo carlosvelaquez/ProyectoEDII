@@ -120,7 +120,7 @@ public:
   bool buildIndex();
   void saveIndex();
   void loadIndex();
-  void seekRecord(string);
+  bool seekRecord(string);
 
   // --- FUNCIONES DE EXPORTACIÓN ---
   void exportCSV(string);
