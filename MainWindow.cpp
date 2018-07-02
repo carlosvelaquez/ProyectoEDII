@@ -73,12 +73,30 @@ void MainWindow::addRecord(){
 void MainWindow::deleteRecords(){
   deleteRecordWindow* dr = new deleteRecordWindow(0, &file);
   dr->show();
+  reseek = true;
 }
 
 void MainWindow::findRecords(){
   if (file.hasPrimaryKey()) {
-    FindRecordWindow* w = new FindRecordWindow(0, &file);
-    w->show();
+    bool exists;
+    string path = string(file.getPath() + ".index");
+    ifstream infile(path);
+
+    if (!infile.good()) {
+      ofstream outfile(path);
+      outfile.close();
+      exists = false;
+    }else{
+      exists = true;
+    }
+
+    if (exists) {
+      FindRecordWindow* w = new FindRecordWindow(0, &file);
+      w->show();
+    }else{
+      QMessageBox::warning(this,"Error","No se ha encontrado archivo de índice.");
+    }
+
   }else{
     QMessageBox::warning(this,"Error","El archivo no tiene una llave primaria.");
   }
@@ -91,6 +109,7 @@ void MainWindow::addFields(){
   addfieldwindow* adf = new addfieldwindow();
   adf->setFile(&file);
   adf->show();
+  reseek = true;
 }
 
 void MainWindow::deleteFields(){
@@ -196,10 +215,11 @@ void MainWindow::refreshTable(){
   if (file) {
     qDebug() << "Refreshing table...";
 
-    if (file.outSize() > 0) {
+    if (file.outSize() > 0 || reseek) {
       qDebug() << "Flushing and re-seeking before refreshing table.";
       file.flush();
       file.reseek();
+      reseek = false;
     }
 
     ui.frame_Bienvenida->hide();

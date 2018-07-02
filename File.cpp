@@ -336,7 +336,8 @@ bool File::readAvailList(){
     availList.clear();
 
     qDebug() << "Starting build with: " << in.c_str();
-    buildAvailList(stoi(in));
+    lastDeleted = stoi(in);
+    buildAvailList(lastDeleted);
 
     return true;
   }
@@ -392,6 +393,7 @@ bool File::buildAvailList(int pos){
     file.clear();
 
     if (file) {
+      availList.insert(pos);
       file.seekp(position(pos));
       string in = "";
 
@@ -404,10 +406,7 @@ bool File::buildAvailList(int pos){
       }
 
       qDebug() << in.c_str();
-
-      int dPos = stoi(in);
-      availList.insert(dPos);
-      return buildAvailList(dPos);
+      return buildAvailList(stoi(in));
 
     }else{
       return false;
@@ -555,6 +554,7 @@ bool File::flush(){
       for (int i = 1; i <= outBuffer.size; i++) {
         //Determinar en qué posición irá el siguiente registro
         if (!availList.isEmpty()) {
+          qDebug() << "Available position found: " << availList[availList.size];
           file.seekp(position(availList[availList.size])); //Escribir en la siguiente posición del availList
           availList.remove(availList.size);
         }else{
@@ -779,6 +779,10 @@ int File::getBlockSize(){
 
 int File::outSize(){
   return outBuffer.size;
+}
+
+string File::getPath(){
+  return path;
 }
 
 bool File::isLocked(){
