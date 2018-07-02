@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'deleterecordwindow.h'
+** Meta object code from reading C++ file 'linkedfileswindow.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.10.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../deleterecordwindow.h"
+#include "../linkedfileswindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'deleterecordwindow.h' doesn't include <QObject>."
+#error "The header file 'linkedfileswindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.10.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -20,25 +20,25 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_deleteRecordWindow_t {
+struct qt_meta_stringdata_linkedFilesWindow_t {
     QByteArrayData data[1];
-    char stringdata0[19];
+    char stringdata0[18];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_deleteRecordWindow_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_linkedFilesWindow_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_deleteRecordWindow_t qt_meta_stringdata_deleteRecordWindow = {
+static const qt_meta_stringdata_linkedFilesWindow_t qt_meta_stringdata_linkedFilesWindow = {
     {
-QT_MOC_LITERAL(0, 0, 18) // "deleteRecordWindow"
+QT_MOC_LITERAL(0, 0, 17) // "linkedFilesWindow"
 
     },
-    "deleteRecordWindow"
+    "linkedFilesWindow"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_deleteRecordWindow[] = {
+static const uint qt_meta_data_linkedFilesWindow[] = {
 
  // content:
        7,       // revision
@@ -54,7 +54,7 @@ static const uint qt_meta_data_deleteRecordWindow[] = {
        0        // eod
 };
 
-void deleteRecordWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void linkedFilesWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     Q_UNUSED(_o);
     Q_UNUSED(_id);
@@ -62,26 +62,26 @@ void deleteRecordWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject deleteRecordWindow::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_deleteRecordWindow.data,
-      qt_meta_data_deleteRecordWindow,  qt_static_metacall, nullptr, nullptr}
+QT_INIT_METAOBJECT const QMetaObject linkedFilesWindow::staticMetaObject = {
+    { &QWidget::staticMetaObject, qt_meta_stringdata_linkedFilesWindow.data,
+      qt_meta_data_linkedFilesWindow,  qt_static_metacall, nullptr, nullptr}
 };
 
 
-const QMetaObject *deleteRecordWindow::metaObject() const
+const QMetaObject *linkedFilesWindow::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *deleteRecordWindow::qt_metacast(const char *_clname)
+void *linkedFilesWindow::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_deleteRecordWindow.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_linkedFilesWindow.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
 
-int deleteRecordWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int linkedFilesWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     return _id;
