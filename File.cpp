@@ -842,6 +842,12 @@ bool File::buildIndex(){
 void File::saveIndex(){
   qDebug() << "Attempting to save index file.";
   ofstream exFile;
+
+  if (!hasPrimaryKey()) {
+    qDebug() << "File has no primary key. Aborting.";
+    return;
+  }
+
   exFile.open(string(path + ".index"));
 
   if (exFile) {
@@ -849,10 +855,10 @@ void File::saveIndex(){
     exFile << index.getPrintString();
     exFile.flush();
     exFile.close();
-    qDebug() << "Index file saved successfully.";
+    QMessageBox::about(0 ,"Guardado","Archivo de índice guardado exitosamente.");
     exFile.close();
   }else{
-    qDebug() << "Index file could not be opened.";
+    QMessageBox::warning(0 ,"Error","No se pudo guardar el archivo de índice.");
   }
 }
 
@@ -861,7 +867,7 @@ void File::loadIndex(){
   ifstream inFile;
   inFile.open(string(path + ".index"));
 
-  if (inFile) {
+  if (inFile && hasPrimaryKey()) {
     index = BTree(3);
     string buff = "";
 

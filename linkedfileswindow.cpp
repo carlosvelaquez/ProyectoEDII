@@ -54,9 +54,11 @@ void linkedFilesWindow::on_pushButton_find_clicked()
     if (!path.isEmpty() && !path.isNull()) {
       if (file2.open(path.toStdString())){
         file2.lock();
-        for(int i=1; i<file2.getFields().size; i++){
-            ui->comboBox_file2->addItem(QString::fromStdString(file2.getFields().get(ui->comboBox_file2->currentIndex()+1).getName()));
+        QStringList items;
+        for(int i=1; i<=file2.getFields().size; i++){
+            items<<QString::fromStdString(file2.getFields().get(i).getName());
         }
+        ui->comboBox_file2->addItems(items);
       }
     }else{
       qDebug() << "File path is empty or null. Aborting.";

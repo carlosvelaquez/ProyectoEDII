@@ -76,8 +76,12 @@ void MainWindow::deleteRecords(){
 }
 
 void MainWindow::findRecords(){
-  FindRecordWindow* w = new FindRecordWindow(0, &file);
-  w->show();
+  if (file.hasPrimaryKey()) {
+    FindRecordWindow* w = new FindRecordWindow(0, &file);
+    w->show();
+  }else{
+    QMessageBox::warning(this,"Error","El archivo no tiene una llave primaria.");
+  }
 }
 /*##########################################*/
 
