@@ -8,6 +8,8 @@
 #include "deleterecordwindow.h"
 #include "linkedfileswindow.h"
 
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
@@ -53,6 +55,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   //Indexar
   connect(ui.actionCrear_Indices, SIGNAL(triggered()), this, SLOT(saveIndexFile()));
+  connect(ui.actionReindexar_Archivos, SIGNAL(triggered()), this, SLOT(createIndexes()));
 
   //Exportar
   connect(ui.actionExportar_a_Excel, SIGNAL(triggered()), this, SLOT(exportCSV()));
@@ -165,8 +168,18 @@ void MainWindow::loadFile(){
 }
 
 void MainWindow::joinFiles(){
-  linkedFilesWindow* lf = new linkedFilesWindow();
-  lf->show();
+    if(file == true){
+        if(file.getFields().size!=0){
+            linkedFilesWindow* lf = new linkedFilesWindow();
+            lf->setFile(&file);
+            lf->refreshTable();
+            lf->show();
+        }else{
+            QMessageBox::warning(this,"","No hay suficientes campos añadidos");
+        }
+    }else{
+        QMessageBox::about(this,"","No hay archivo cargado");
+    }
 }
 
 
@@ -351,6 +364,9 @@ void MainWindow::generateTest(){
 
 void MainWindow::saveIndexFile(){
   file.saveIndex();
+}
+
+void MainWindow::createIndexes(){
   file.buildIndex();
 }
 
