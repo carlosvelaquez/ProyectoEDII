@@ -64,11 +64,15 @@ void linkedFilesWindow::on_pushButton_find_clicked()
 
 void linkedFilesWindow::on_pushButton_add1_clicked()
 {
-    if(validateField(file->getFields().getPointer(ui->comboBox_file1->currentIndex()+1))){
-        file3.addField(file->getFields().get(ui->comboBox_file1->currentIndex()+1));
-        refreshTable();
+    if(file2 == true){
+        if(validateField(file->getFields().getPointer(ui->comboBox_file1->currentIndex()+1))){
+            file3.addField(file->getFields().get(ui->comboBox_file1->currentIndex()+1));
+            refreshTable();
+        }else{
+            QMessageBox::warning(this,"","Este campo ya ha sido añadido");
+        }
     }else{
-        QMessageBox::warning(this,"","Este campo ya ha sido añadido");
+        QMessageBox::warning(this,"","Cargue el segundo archivo antes");
     }
 }
 
@@ -81,13 +85,15 @@ void linkedFilesWindow::on_pushButton_add2_clicked()
         }else{
             QMessageBox::warning(this,"","Este campo ya ha sido añadido");
         }
+    }else{
+        QMessageBox::warning(this,"","Cargue el segundo archivo antes");
     }
 }
 
 // Guarda el tercer archivo
 void linkedFilesWindow::on_pushButton_send_clicked()
 {
-    if(file3.getFields().size==0 /*|| file2 == false*/){
+    if(file3.getFields().size==0 || file2 == false){
         QMessageBox::warning(this,"","No se puede guardar el archivo");
     }else{
         QMessageBox::about(this,"","Archivo guardado");
