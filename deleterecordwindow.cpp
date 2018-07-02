@@ -18,7 +18,11 @@ deleteRecordWindow::deleteRecordWindow(QWidget* parent, File* n_file) :
 }
 
 void deleteRecordWindow::deleteRecord(){
-  file->deleteRecord(ui->spinBox->value());
+  QMessageBox::StandardButton answer = QMessageBox::question(this,"","¿Seguro que desea eliminar este registro?", QMessageBox::Yes | QMessageBox::No);
+  if(answer == QMessageBox::Yes){
+    file->deleteRecord(ui->spinBox->value());
+    QMessageBox::about(this,"","Registro eliminado exitosamente");
+  }
 }
 
 deleteRecordWindow::~deleteRecordWindow()

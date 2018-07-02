@@ -14,6 +14,7 @@ private:
   Ui::MainWindow ui;
   File file;
   int long page = 0;
+  bool reseek = false;
 
 private slots:
   void openFile();

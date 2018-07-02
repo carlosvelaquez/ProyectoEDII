@@ -113,6 +113,7 @@ public:
   int getCurrentBlock(); //Retorna el bloque actual
   int getBlockSize(); //Retorna el tamaño de bloque
   int outSize(); //Retorna el tamaño del outBuffer
+  string getPath(); //Retorna el path del archivo
 
   bool isLocked(); //Retorna locked
 
