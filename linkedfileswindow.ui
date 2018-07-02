@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>443</width>
-    <height>555</height>
+    <height>530</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,94 +16,30 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>91</width>
-     <height>17</height>
+     <x>0</x>
+     <y>0</y>
+     <width>441</width>
+     <height>61</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>FreeSans</family>
+     <pointsize>24</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>Cruzar archivos</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_add1">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>140</y>
-     <width>101</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Añadir campo</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox_file1">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>140</y>
-     <width>291</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>110</y>
-     <width>121</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Campos del archivo 1</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>170</y>
-     <width>141</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Campos del archivo 2</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox_file2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>200</y>
-     <width>291</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_add2">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>200</y>
-     <width>101</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Añadir campo</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_send">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>9</x>
      <y>500</y>
-     <width>80</width>
+     <width>421</width>
      <height>25</height>
     </rect>
    </property>
@@ -115,29 +51,16 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>280</y>
-     <width>421</width>
-     <height>211</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
      <y>250</y>
-     <width>121</width>
-     <height>17</height>
+     <width>421</width>
+     <height>241</height>
     </rect>
-   </property>
-   <property name="text">
-    <string>Campos del archivo 3</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_find">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>70</y>
      <width>101</width>
      <height>25</height>
@@ -146,6 +69,94 @@
    <property name="text">
     <string>Buscar archivo...</string>
    </property>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>421</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>121</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Campos del archivo 1</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_file1">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>291</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_add1">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>40</y>
+      <width>101</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Añadir campo</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>141</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Campos del archivo 2</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_file2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>291</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_add2">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>100</y>
+      <width>101</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Añadir campo</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

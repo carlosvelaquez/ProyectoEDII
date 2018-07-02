@@ -23,14 +23,16 @@ linkedFilesWindow::~linkedFilesWindow()
 }
 
 void linkedFilesWindow::refreshTable(){
-    for(int i=1; i<=fields.size; i++){
-        ui->tableWidget->setItem(i-1,0,new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));
-        if(fields.get(i).getType()==0) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("Integer"));
-        else if(fields.get(i).getType()==1) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("Character"));
-        else if(fields.get(i).getType()==2) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("String"));
-        if(fields.get(i).isPrimaryKey()) ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("Yes"));
+    qDebug()<<"Size file 3: "<<file3.getFields().size;
+    for(int i=1; i<=file3.getFields().size; i++){
+        ui->tableWidget->setRowCount(file3.getFields().size);
+        ui->tableWidget->setItem(i-1,0,new QTableWidgetItem(QString::fromStdString(file3.getFields().get(i).getName())));
+        if(file3.getFields().get(i).getType()==0) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("Integer"));
+        else if(file3.getFields().get(i).getType()==1) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("Character"));
+        else if(file3.getFields().get(i).getType()==2) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("String"));
+        if(file3.getFields().get(i).isPrimaryKey()) ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("Yes"));
         else ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("No"));
-        ui->tableWidget->setItem(i-1,3,new QTableWidgetItem(QString::number(fields.get(i).getSize())));
+        ui->tableWidget->setItem(i-1,3,new QTableWidgetItem(QString::number(file3.getFields().get(i).getSize())));
     }
 }
 
@@ -63,31 +65,36 @@ void linkedFilesWindow::on_pushButton_find_clicked()
 
 void linkedFilesWindow::on_pushButton_add1_clicked()
 {
-    fields.insert(file->getFields().get(ui->comboBox_file1->currentIndex()+1));
-    refreshTable();
-
-    /*if(fields.contains(file->getFields().get(ui->comboBox_file1->currentIndex()+1))){
-        fields.insert(file->getFields().get(ui->comboBox_file1->currentIndex()+1));
-        refreshTable();
+    if(file2 == true){
+        if(validateField(file->getFields().getPointer(ui->comboBox_file1->currentIndex()+1))){
+            file3.addField(file->getFields().get(ui->comboBox_file1->currentIndex()+1));
+            refreshTable();
+        }else{
+            QMessageBox::warning(this,"","Este campo ya ha sido añadido");
+        }
     }else{
-        QMessageBox::warning(this,"","Este campo ya ha sido añadido");
-    }*/
+        QMessageBox::warning(this,"","Cargue el segundo archivo antes");
+    }
 }
 
 void linkedFilesWindow::on_pushButton_add2_clicked()
 {
-    /*if(fields.contains(file2->getFields().get(ui->comboBox_file1->currentIndex()+1))){
-        fields.insert(file2->getFields().get(ui->comboBox_file1->currentIndex()+1));
-        refreshTable();
+    if(file2 == true){
+        if(validateField(file2.getFields().getPointer(ui->comboBox_file1->currentIndex()+1))){
+            file3.addField(file2.getFields().get(ui->comboBox_file1->currentIndex()+1));
+            refreshTable();
+        }else{
+            QMessageBox::warning(this,"","Este campo ya ha sido añadido");
+        }
     }else{
-        QMessageBox::warning(this,"","Este campo ya ha sido añadido");
-    }*/
+        QMessageBox::warning(this,"","Cargue el segundo archivo antes");
+    }
 }
 
 // Guarda el tercer archivo
 void linkedFilesWindow::on_pushButton_send_clicked()
 {
-    if(fields.size==0 /*|| file2 == false*/){
+    if(file3.getFields().size==0 || file2 == false){
         QMessageBox::warning(this,"","No se puede guardar el archivo");
     }else{
         QMessageBox::about(this,"","Archivo guardado");
@@ -95,4 +102,16 @@ void linkedFilesWindow::on_pushButton_send_clicked()
          * Guardarlo :v
          */
     }
+}
+
+bool linkedFilesWindow::validateField(Field* n_field){
+    Field* temp_field;
+    for(int i=1; i<=file3.getFields().size; i++){
+        temp_field = file3.getFields().getPointer(i);
+        if(temp_field->getName()==n_field->getName() && temp_field->getSize()==n_field->getSize()
+              && temp_field->getType() == n_field->getType()){
+            return false;
+        }
+    }
+    return true;
 }
