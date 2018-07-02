@@ -6,6 +6,7 @@ class BTree{
 private:
   BTreeNode* root = NULL;
   int T;
+  int t;
   string printString;
 
 public:
@@ -15,11 +16,14 @@ public:
   void sort(BTreeNode*);
   void insert(Key*);
   void split(BTreeNode*);
+  void remove(string);
+  void merge(BTreeNode*);
   BTreeNode* getLeaf(BTreeNode*, string);
   void printPrevious();
   void printPrevious(BTreeNode*);
   int findIndex(string);
   int findIndex(BTreeNode*, string);
+  BTreeNode* findNode(BTreeNode*, string);
   string getPrintString();
 };
 #endif
