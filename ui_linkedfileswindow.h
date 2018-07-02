@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
@@ -25,35 +26,55 @@ class Ui_linkedFilesWindow
 {
 public:
     QLabel *label;
+    QPushButton *pushButton_add1;
+    QComboBox *comboBox_file1;
+    QLabel *label_2;
+    QLabel *label_3;
+    QComboBox *comboBox_file2;
+    QPushButton *pushButton_add2;
+    QPushButton *pushButton_send;
     QTableWidget *tableWidget;
-    QTableWidget *tableWidget_2;
-    QTableWidget *tableWidget_3;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QLabel *label_4;
+    QPushButton *pushButton_find;
 
     void setupUi(QWidget *linkedFilesWindow)
     {
         if (linkedFilesWindow->objectName().isEmpty())
             linkedFilesWindow->setObjectName(QStringLiteral("linkedFilesWindow"));
-        linkedFilesWindow->resize(771, 502);
+        linkedFilesWindow->resize(443, 555);
         label = new QLabel(linkedFilesWindow);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(20, 20, 91, 17));
+        pushButton_add1 = new QPushButton(linkedFilesWindow);
+        pushButton_add1->setObjectName(QStringLiteral("pushButton_add1"));
+        pushButton_add1->setGeometry(QRect(330, 140, 101, 25));
+        comboBox_file1 = new QComboBox(linkedFilesWindow);
+        comboBox_file1->setObjectName(QStringLiteral("comboBox_file1"));
+        comboBox_file1->setGeometry(QRect(20, 140, 291, 25));
+        label_2 = new QLabel(linkedFilesWindow);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(20, 110, 121, 17));
+        label_3 = new QLabel(linkedFilesWindow);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(20, 170, 141, 17));
+        comboBox_file2 = new QComboBox(linkedFilesWindow);
+        comboBox_file2->setObjectName(QStringLiteral("comboBox_file2"));
+        comboBox_file2->setGeometry(QRect(20, 200, 291, 25));
+        pushButton_add2 = new QPushButton(linkedFilesWindow);
+        pushButton_add2->setObjectName(QStringLiteral("pushButton_add2"));
+        pushButton_add2->setGeometry(QRect(330, 200, 101, 25));
+        pushButton_send = new QPushButton(linkedFilesWindow);
+        pushButton_send->setObjectName(QStringLiteral("pushButton_send"));
+        pushButton_send->setGeometry(QRect(180, 500, 80, 25));
         tableWidget = new QTableWidget(linkedFilesWindow);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(20, 50, 361, 192));
-        tableWidget_2 = new QTableWidget(linkedFilesWindow);
-        tableWidget_2->setObjectName(QStringLiteral("tableWidget_2"));
-        tableWidget_2->setGeometry(QRect(390, 50, 361, 192));
-        tableWidget_3 = new QTableWidget(linkedFilesWindow);
-        tableWidget_3->setObjectName(QStringLiteral("tableWidget_3"));
-        tableWidget_3->setGeometry(QRect(20, 260, 411, 231));
-        pushButton = new QPushButton(linkedFilesWindow);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(500, 300, 80, 25));
-        pushButton_2 = new QPushButton(linkedFilesWindow);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(500, 340, 80, 25));
+        tableWidget->setGeometry(QRect(10, 280, 421, 211));
+        label_4 = new QLabel(linkedFilesWindow);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(150, 250, 121, 17));
+        pushButton_find = new QPushButton(linkedFilesWindow);
+        pushButton_find->setObjectName(QStringLiteral("pushButton_find"));
+        pushButton_find->setGeometry(QRect(20, 70, 101, 25));
 
         retranslateUi(linkedFilesWindow);
 
@@ -64,8 +85,13 @@ public:
     {
         linkedFilesWindow->setWindowTitle(QApplication::translate("linkedFilesWindow", "Form", 0));
         label->setText(QApplication::translate("linkedFilesWindow", "Cruzar archivos", 0));
-        pushButton->setText(QApplication::translate("linkedFilesWindow", "Buscar...", 0));
-        pushButton_2->setText(QApplication::translate("linkedFilesWindow", "Unir", 0));
+        pushButton_add1->setText(QApplication::translate("linkedFilesWindow", "A\303\261adir campo", 0));
+        label_2->setText(QApplication::translate("linkedFilesWindow", "Campos del archivo 1", 0));
+        label_3->setText(QApplication::translate("linkedFilesWindow", "Campos del archivo 2", 0));
+        pushButton_add2->setText(QApplication::translate("linkedFilesWindow", "A\303\261adir campo", 0));
+        pushButton_send->setText(QApplication::translate("linkedFilesWindow", "Agregar", 0));
+        label_4->setText(QApplication::translate("linkedFilesWindow", "Campos del archivo 3", 0));
+        pushButton_find->setText(QApplication::translate("linkedFilesWindow", "Buscar archivo...", 0));
     } // retranslateUi
 
 };

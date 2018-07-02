@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>771</width>
-    <height>502</height>
+    <width>443</width>
+    <height>555</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,60 +26,125 @@
     <string>Cruzar archivos</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_add1">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>140</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Añadir campo</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_file1">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>140</y>
+     <width>291</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>110</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Campos del archivo 1</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>170</y>
+     <width>141</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Campos del archivo 2</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_file2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>200</y>
+     <width>291</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_add2">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>200</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Añadir campo</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_send">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>500</y>
+     <width>80</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Agregar</string>
+   </property>
+  </widget>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
+     <x>10</x>
+     <y>280</y>
+     <width>421</width>
+     <height>211</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>250</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Campos del archivo 3</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_find">
+   <property name="geometry">
+    <rect>
      <x>20</x>
-     <y>50</y>
-     <width>361</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="tableWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>50</y>
-     <width>361</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="tableWidget_3">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>260</y>
-     <width>411</width>
-     <height>231</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>500</x>
-     <y>300</y>
-     <width>80</width>
+     <y>70</y>
+     <width>101</width>
      <height>25</height>
     </rect>
    </property>
    <property name="text">
-    <string>Buscar...</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>500</x>
-     <y>340</y>
-     <width>80</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Unir</string>
+    <string>Buscar archivo...</string>
    </property>
   </widget>
  </widget>

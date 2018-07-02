@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include "File.h"
+#include "List.h"
+#include "Field.h"
 
 namespace Ui {
 class linkedFilesWindow;
@@ -15,10 +17,25 @@ class linkedFilesWindow : public QWidget
 public:
     explicit linkedFilesWindow(QWidget *parent = 0);
     ~linkedFilesWindow();
-    linkedFilesWindow(File*);
+    void refreshTable();
+    void setFile(File*);
+
+private slots:
+
+
+    void on_pushButton_find_clicked();
+
+    void on_pushButton_add1_clicked();
+
+    void on_pushButton_add2_clicked();
+
+    void on_pushButton_send_clicked();
 
 private:
     File* file;
+    File file2;
+    File file3;
+    List<Field> fields;
     Ui::linkedFilesWindow *ui;
 };
 

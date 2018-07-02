@@ -8,6 +8,8 @@
 #include "deleterecordwindow.h"
 #include "linkedfileswindow.h"
 
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
 
@@ -165,8 +167,18 @@ void MainWindow::loadFile(){
 }
 
 void MainWindow::joinFiles(){
-    linkedFilesWindow* lf = new linkedFilesWindow();
-    lf->show();
+    if(file == true){
+        if(file.getFields().size!=0){
+            linkedFilesWindow* lf = new linkedFilesWindow();
+            lf->setFile(&file);
+            lf->refreshTable();
+            lf->show();
+        }else{
+            QMessageBox::warning(this,"","No hay suficientes campos añadidos");
+        }
+    }else{
+        QMessageBox::about(this,"","No hay archivo cargado");
+    }
 }
 
 
