@@ -63,9 +63,6 @@ void linkedFilesWindow::on_pushButton_find_clicked()
 
 void linkedFilesWindow::on_pushButton_add1_clicked()
 {
-    fields.insert(file->getFields().get(ui->comboBox_file1->currentIndex()+1));
-    refreshTable();
-
     /*if(fields.contains(file->getFields().get(ui->comboBox_file1->currentIndex()+1))){
         fields.insert(file->getFields().get(ui->comboBox_file1->currentIndex()+1));
         refreshTable();
