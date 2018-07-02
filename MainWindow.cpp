@@ -5,6 +5,7 @@
 #include "listfieldswindow.h"
 #include "deletefieldwindow.h"
 #include "modifyfieldwindow.h"
+#include "modifyrecordwindow.h"
 #include "deleterecordwindow.h"
 #include "linkedfileswindow.h"
 
@@ -41,6 +42,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
   connect(ui.actionBorrar_Registros, SIGNAL(triggered()), this, SLOT(deleteRecords()));
   connect(ui.actionBuscar_Registros, SIGNAL(triggered()), this, SLOT(findRecords()));
+  connect(ui.actionModificar_Registros, SIGNAL(triggered()), this, SLOT(modifyRecords()));
 
 
   //Mover entre páginas
@@ -83,8 +85,6 @@ void MainWindow::findRecords(){
     ifstream infile(path);
 
     if (!infile.good()) {
-      ofstream outfile(path);
-      outfile.close();
       exists = false;
     }else{
       exists = true;
@@ -101,6 +101,15 @@ void MainWindow::findRecords(){
     QMessageBox::warning(this,"Error","El archivo no tiene una llave primaria.");
   }
 }
+
+void MainWindow::modifyRecords(){
+  modifyrecordwindow* w = new modifyrecordwindow(0);
+  w->show();
+  w->setFile(&file);
+  w->filltable();
+  reseek = true;
+}
+
 /*##########################################*/
 
 
@@ -144,6 +153,7 @@ void MainWindow::openFile(){
 
   if (!path.isEmpty() && !path.isNull()) {
     remove(path.toStdString().c_str());
+    remove(string(path.toStdString() + ".index").c_str());
     file.open(path.toStdString());
     ui.label_ruta->setText(path);
     refreshMenuBar();
@@ -321,9 +331,9 @@ void MainWindow::generateTest(){
 
   genPath = "PersonFile.txt";
   remove(genPath.c_str());
+  remove(string(genPath + ".index").c_str());
   file.close();
   file.open(genPath);
-  ui.label_ruta->setText(genPath.c_str());
 
   qDebug() << "Adding test fields for " << genPath.c_str();
 
@@ -359,9 +369,9 @@ void MainWindow::generateTest(){
 
   genPath = "CityFile.txt";
   remove(genPath.c_str());
+  remove(string(genPath + ".index").c_str());
   file.close();
   file.open(genPath);
-  ui.label_ruta->setText(genPath.c_str());
 
   qDebug() << "Adding test fields for " << genPath.c_str();
 
@@ -389,6 +399,9 @@ void MainWindow::generateTest(){
   qDebug() << "Test file " << genPath.c_str() << " created successfully.";
   nameGen.unload();
   file.close();
+
+  ui.label_ruta->setText("Archivos de prueba generados.");
+  QMessageBox::about(this,"Éxito","Se han generado los archivos de prueba exitosamente.");
 }
 
 void MainWindow::saveIndexFile(){
