@@ -821,7 +821,7 @@ bool File::buildIndex(){
 
       for (int j = 1; j <= block.size; j++) {
         index.insert(new Key(block[j][primaryKeyIndex], j + ((i - 1)*blockSize)));
-        qDebug() << "Indexing Key " << block[j][primaryKeyIndex].c_str() << " at " << j + ((i - 1)*blockSize);
+        //qDebug() << "Indexing Key " << block[j][primaryKeyIndex].c_str() << " at " << j + ((i - 1)*blockSize);
       }
 
       next();
