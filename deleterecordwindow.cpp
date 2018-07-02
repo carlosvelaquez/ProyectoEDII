@@ -1,11 +1,11 @@
 #include "deleterecordwindow.h"
-#include "ui_deleterecordwindow.h"
 
 deleteRecordWindow::deleteRecordWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::deleteRecordWindow)
 {
     ui->setupUi(this);
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(deleteRecord()));
 }
 
 deleteRecordWindow::deleteRecordWindow(QWidget* parent, File* n_file) :
@@ -14,8 +14,12 @@ deleteRecordWindow::deleteRecordWindow(QWidget* parent, File* n_file) :
 {
     ui->setupUi(this);
     file = n_file;
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(deleteRecord()));
 }
 
+void deleteRecordWindow::deleteRecord(){
+  file->deleteRecord(ui->spinBox->value());
+}
 
 deleteRecordWindow::~deleteRecordWindow()
 {
