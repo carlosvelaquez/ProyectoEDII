@@ -99,6 +99,56 @@ void linkedFilesWindow::on_pushButton_send_clicked()
     if(file3.getFields().size==0 || file2 == false){
         QMessageBox::warning(this,"","No se puede guardar el archivo");
     }else{
+      /*List<Field> nFields = file3.getFields();
+
+      for (int i = 1; i <= file->blockQuantity(); i++) {
+        List<List<string>> block = file->data();
+
+        for (int j = 1; j <= block.size; j++) {
+          List<string> nData;
+
+          for (int k = 1; k <= block[j].size; k++) {
+            Field field1 = file->getFields()[k];
+
+            for (int r = 1; r <= nFields.size; r++) {
+              Field field2 = nFields[r];
+              if (field1.getName() == field2.getName() && field1.getSize() == field2.getSize() && field1.getType() == field2.getType()) {
+                  nData.insert(block[j][k]);
+              }
+            }
+          }
+
+          file3.addRecord(nData);
+        }
+
+        file->next();
+      }
+
+      for (int i = 1; i <= file->blockQuantity(); i++) {
+        List<List<string>> block = file->data();
+
+        for (int j = 1; j <= block.size; j++) {
+          List<string> nData;
+
+          for (int k = 1; k <= block[j].size; k++) {
+            Field field1 = file2.getFields()[k];
+
+            for (int r = 1; r <= nFields.size; r++) {
+              Field field2 = nFields[r];
+              if (field1.getName() == field2.getName() && field1.getSize() == field2.getSize() && field1.getType() == field2.getType()) {
+                  nData.insert(block[j][k]);
+              }
+            }
+          }
+
+          file3.addRecord(nData);
+        }
+
+        file2.next();
+      }
+
+      file3.setPath("Cruzado.txt");
+      file3.flush();*/
         QMessageBox::about(this,"","Archivo guardado");
         /*
          * Guardarlo :v
