@@ -14,46 +14,95 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true">QWidget{
+	background-color: #F5F5F5;
+}
+
+
+QPushButton{
+	background-color: #3F51B5;
+	color: white;
+	border-radius: 5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #3F51B5;
+}</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="label">
-     <property name="font">
-      <font>
-       <family>FreeSans</family>
-       <pointsize>24</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color:#3F51B5;
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>711</width>
+     <height>361</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame{
+	border: 1px solid #E0E0E0;
+	border-radius: 5px;
+	background-color: white;
+}
+
+QLabel{
+	border: 0px;
+}</string>
+   </property>
+   <property name="dragDropOverwriteMode">
+    <bool>false</bool>
+   </property>
+   <property name="columnCount">
+    <number>4</number>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>170</number>
+   </attribute>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
+  </widget>
+  <widget class="QFrame" name="frame_3">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>741</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:#3F51B5;
 color: white;</string>
-     </property>
-     <property name="text">
-      <string>Campos</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="dragDropOverwriteMode">
-      <bool>false</bool>
-     </property>
-     <property name="columnCount">
-      <number>4</number>
-     </property>
-     <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>170</number>
-     </attribute>
-     <column/>
-     <column/>
-     <column/>
-     <column/>
-    </widget>
-   </item>
-  </layout>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>241</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Lista de Campos</string>
+    </property>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>

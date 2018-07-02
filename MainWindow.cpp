@@ -53,7 +53,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   //Indexar
   connect(ui.actionCrear_Indices, SIGNAL(triggered()), this, SLOT(saveIndexFile()));
-  connect(ui.actionReindexar_Archivos, SIGNAL(triggered()), this, SLOT(createIndexes()));
 
   //Exportar
   connect(ui.actionExportar_a_Excel, SIGNAL(triggered()), this, SLOT(exportCSV()));
@@ -69,7 +68,7 @@ void MainWindow::addRecord(){
 }
 
 void MainWindow::deleteRecords(){
-    deleteRecordWindow* dr = new deleteRecordWindow(&file);
+    deleteRecordWindow* dr = new deleteRecordWindow(0, &file);
     dr->show();
 }
 /*##########################################*/
@@ -109,6 +108,7 @@ File* MainWindow::getFile(){
 }
 
 void MainWindow::openFile(){
+    file.close();
     QString path = QFileDialog::getSaveFileName(this, "Nuevo Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
 
     if (!path.isEmpty() && !path.isNull()) {
@@ -320,9 +320,6 @@ void MainWindow::generateTest(){
 
 void MainWindow::saveIndexFile(){
   file.saveIndex();
-}
-
-void MainWindow::createIndexes(){
   file.buildIndex();
 }
 
