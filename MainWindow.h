@@ -45,8 +45,6 @@ private slots:
   void refresh();
   void exit();
 
-  void createIndexes();
-
 public:
   MainWindow(QWidget* parent = 0);
   void refreshTable();
