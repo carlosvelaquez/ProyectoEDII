@@ -585,7 +585,6 @@ color: white;</string>
      <string>Índices</string>
     </property>
     <addaction name="actionCrear_Indices"/>
-    <addaction name="actionReindexar_Archivos"/>
    </widget>
    <widget class="QMenu" name="menuEstadarizaci_n">
     <property name="title">
@@ -677,7 +676,7 @@ color: white;</string>
   </action>
   <action name="actionCrear_Indices">
    <property name="text">
-    <string>Crear Índices</string>
+    <string>Crear/Actualizar Índices</string>
    </property>
   </action>
   <action name="actionReindexar_Archivos">

@@ -413,7 +413,6 @@ public:
         menuCampos->addAction(actionModificar_Campos);
         menuCampos->addAction(actionEliminar_Campos);
         menu_ndices->addAction(actionCrear_Indices);
-        menu_ndices->addAction(actionReindexar_Archivos);
         menuEstadarizaci_n->addAction(actionExportar_a_Excel);
         menuEstadarizaci_n->addAction(actionExportar_a_XML_con_Schem);
 
@@ -440,7 +439,7 @@ public:
         actionModificar_Registros->setText(QApplication::translate("MainWindow", "Modificar Registros", nullptr));
         actionBorrar_Registros->setText(QApplication::translate("MainWindow", "Borrar Registros", nullptr));
         actionListar_Registros->setText(QApplication::translate("MainWindow", "Listar Registros", nullptr));
-        actionCrear_Indices->setText(QApplication::translate("MainWindow", "Crear \303\215ndices", nullptr));
+        actionCrear_Indices->setText(QApplication::translate("MainWindow", "Crear/Actualizar \303\215ndices", nullptr));
         actionReindexar_Archivos->setText(QApplication::translate("MainWindow", "Re-indexar Archivos", nullptr));
         actionExportar_a_Excel->setText(QApplication::translate("MainWindow", "Exportar a Excel (CSV)", nullptr));
         actionExportar_a_XML_con_Schem->setText(QApplication::translate("MainWindow", "Exportar a XML con Schema", nullptr));
