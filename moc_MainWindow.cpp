@@ -47,11 +47,11 @@ QT_MOC_LITERAL(14, 142, 8), // "gotoPage"
 QT_MOC_LITERAL(15, 151, 12), // "generateTest"
 QT_MOC_LITERAL(16, 164, 9), // "joinFiles"
 QT_MOC_LITERAL(17, 174, 13), // "saveIndexFile"
-QT_MOC_LITERAL(18, 188, 13), // "createIndexes"
-QT_MOC_LITERAL(19, 202, 9), // "exportCSV"
-QT_MOC_LITERAL(20, 212, 9), // "exportXML"
-QT_MOC_LITERAL(21, 222, 7), // "refresh"
-QT_MOC_LITERAL(22, 230, 4) // "exit"
+QT_MOC_LITERAL(18, 188, 9), // "exportCSV"
+QT_MOC_LITERAL(19, 198, 9), // "exportXML"
+QT_MOC_LITERAL(20, 208, 7), // "refresh"
+QT_MOC_LITERAL(21, 216, 4), // "exit"
+QT_MOC_LITERAL(22, 221, 13) // "createIndexes"
 
     },
     "MainWindow\0openFile\0\0loadFile\0closeFile\0"
@@ -59,8 +59,8 @@ QT_MOC_LITERAL(22, 230, 4) // "exit"
     "listfields\0deleteFields\0addFields\0"
     "modifyFields\0nextPage\0previousPage\0"
     "gotoPage\0generateTest\0joinFiles\0"
-    "saveIndexFile\0createIndexes\0exportCSV\0"
-    "exportXML\0refresh\0exit"
+    "saveIndexFile\0exportCSV\0exportXML\0"
+    "refresh\0exit\0createIndexes"
 };
 #undef QT_MOC_LITERAL
 
@@ -148,11 +148,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 13: _t->generateTest(); break;
         case 14: _t->joinFiles(); break;
         case 15: _t->saveIndexFile(); break;
-        case 16: _t->createIndexes(); break;
-        case 17: _t->exportCSV(); break;
-        case 18: _t->exportXML(); break;
-        case 19: _t->refresh(); break;
-        case 20: _t->exit(); break;
+        case 16: _t->exportCSV(); break;
+        case 17: _t->exportXML(); break;
+        case 18: _t->refresh(); break;
+        case 19: _t->exit(); break;
+        case 20: _t->createIndexes(); break;
         default: ;
         }
     }

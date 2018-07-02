@@ -19,6 +19,7 @@ public:
     ~linkedFilesWindow();
     void refreshTable();
     void setFile(File*);
+    bool validateField(Field*);
 
 private slots:
 
