@@ -181,9 +181,9 @@ bool File::open(){
 
   if (file) {
     if (exists) {
-      loadIndex();
       readMeta();
       seekFirst();
+      loadIndex();
     }
 
     qDebug() << "File opened successfully";
