@@ -1,6 +1,7 @@
 #include "ui_MainWindow.h"
 #include <QDebug>
 #include "File.h"
+#include "NameGenerator.h"
 
 class MainWindow : public QMainWindow{
   Q_OBJECT

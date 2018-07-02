@@ -22,7 +22,7 @@ void File::calculateSizes(){
   file.clear();
   file.seekg(0, ios::beg); //Busca la primera posición de la línea donde comienza la info de los campos
 
-  /*string in = "";
+  string in = "";
   metaSize = 0;
 
   //file.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -33,12 +33,12 @@ void File::calculateSizes(){
 
   //El tamaño del meta sería todo lo que ha recorrido hasta que termina la info de campos más un salto de línea
   //metaSize = file.tellg();
-  metaSize += 4;*/
+  metaSize += 4;
 
-  file.ignore(numeric_limits<streamsize>::max(), '\n');
+  /*file.ignore(numeric_limits<streamsize>::max(), '\n');
   file.ignore(numeric_limits<streamsize>::max(), '\n');
   metaSize = file.tellg();
-  metaSize -= 3;
+  metaSize -= 3;*/
 
   qDebug() << "Meta size: " << metaSize;
 }
