@@ -13,12 +13,11 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,64 +25,93 @@ QT_BEGIN_NAMESPACE
 class Ui_linkedFilesWindow
 {
 public:
-    QLabel *label;
-    QPushButton *pushButton_send;
-    QTableWidget *tableWidget;
+    QFrame *frame_3;
+    QLabel *label_4;
+    QFrame *frame_2;
+    QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_find;
+    QPushButton *pushButton_send;
     QFrame *frame;
-    QLabel *label_2;
-    QComboBox *comboBox_file1;
-    QPushButton *pushButton_add1;
-    QLabel *label_3;
-    QComboBox *comboBox_file2;
-    QPushButton *pushButton_add2;
+    QLabel *label;
 
     void setupUi(QWidget *linkedFilesWindow)
     {
         if (linkedFilesWindow->objectName().isEmpty())
             linkedFilesWindow->setObjectName(QStringLiteral("linkedFilesWindow"));
-        linkedFilesWindow->resize(443, 530);
-        label = new QLabel(linkedFilesWindow);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(0, 0, 441, 61));
+        linkedFilesWindow->resize(550, 111);
+        linkedFilesWindow->setStyleSheet(QLatin1String("QWidget{\n"
+"	background-color: #F5F5F5;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton{\n"
+"	background-color: #3F51B5;\n"
+"	color: white;\n"
+"	border-radius: 5px;\n"
+"	border-width: 5px;\n"
+"	border-style: solid;\n"
+"	border-color: #3F51B5;\n"
+"}"));
+        frame_3 = new QFrame(linkedFilesWindow);
+        frame_3->setObjectName(QStringLiteral("frame_3"));
+        frame_3->setGeometry(QRect(0, 0, 551, 51));
+        frame_3->setStyleSheet(QLatin1String("background-color:#3F51B5;\n"
+"color: white;"));
+        frame_3->setFrameShape(QFrame::StyledPanel);
+        frame_3->setFrameShadow(QFrame::Raised);
+        label_4 = new QLabel(frame_3);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(10, 0, 241, 51));
         QFont font;
-        font.setFamily(QStringLiteral("FreeSans"));
-        font.setPointSize(24);
+        font.setFamily(QStringLiteral("Montserrat"));
+        font.setPointSize(18);
         font.setBold(true);
         font.setWeight(75);
-        label->setFont(font);
-        pushButton_send = new QPushButton(linkedFilesWindow);
-        pushButton_send->setObjectName(QStringLiteral("pushButton_send"));
-        pushButton_send->setGeometry(QRect(9, 500, 421, 25));
-        tableWidget = new QTableWidget(linkedFilesWindow);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 250, 421, 241));
-        pushButton_find = new QPushButton(linkedFilesWindow);
+        label_4->setFont(font);
+        frame_2 = new QFrame(linkedFilesWindow);
+        frame_2->setObjectName(QStringLiteral("frame_2"));
+        frame_2->setGeometry(QRect(290, 60, 251, 43));
+        frame_2->setStyleSheet(QLatin1String("QFrame{\n"
+"	border: 1px solid #E0E0E0;\n"
+"	border-radius: 5px;\n"
+"	background-color: white;\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"	border: 0px;\n"
+"}"));
+        frame_2->setFrameShape(QFrame::StyledPanel);
+        frame_2->setFrameShadow(QFrame::Raised);
+        horizontalLayout = new QHBoxLayout(frame_2);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        pushButton_find = new QPushButton(frame_2);
         pushButton_find->setObjectName(QStringLiteral("pushButton_find"));
-        pushButton_find->setGeometry(QRect(10, 70, 101, 25));
+
+        horizontalLayout->addWidget(pushButton_find);
+
+        pushButton_send = new QPushButton(frame_2);
+        pushButton_send->setObjectName(QStringLiteral("pushButton_send"));
+
+        horizontalLayout->addWidget(pushButton_send);
+
         frame = new QFrame(linkedFilesWindow);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(10, 100, 421, 151));
+        frame->setGeometry(QRect(10, 60, 261, 41));
+        frame->setStyleSheet(QLatin1String("QFrame{\n"
+"	border: 1px solid #E0E0E0;\n"
+"	border-radius: 5px;\n"
+"	background-color: white;\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"	border: 0px;\n"
+"}"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
-        label_2 = new QLabel(frame);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(10, 20, 121, 17));
-        comboBox_file1 = new QComboBox(frame);
-        comboBox_file1->setObjectName(QStringLiteral("comboBox_file1"));
-        comboBox_file1->setGeometry(QRect(10, 40, 291, 25));
-        pushButton_add1 = new QPushButton(frame);
-        pushButton_add1->setObjectName(QStringLiteral("pushButton_add1"));
-        pushButton_add1->setGeometry(QRect(310, 40, 101, 25));
-        label_3 = new QLabel(frame);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(10, 80, 141, 17));
-        comboBox_file2 = new QComboBox(frame);
-        comboBox_file2->setObjectName(QStringLiteral("comboBox_file2"));
-        comboBox_file2->setGeometry(QRect(10, 100, 291, 25));
-        pushButton_add2 = new QPushButton(frame);
-        pushButton_add2->setObjectName(QStringLiteral("pushButton_add2"));
-        pushButton_add2->setGeometry(QRect(310, 100, 101, 25));
+        label = new QLabel(frame);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 12, 241, 21));
+        label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         retranslateUi(linkedFilesWindow);
 
@@ -93,13 +121,10 @@ public:
     void retranslateUi(QWidget *linkedFilesWindow)
     {
         linkedFilesWindow->setWindowTitle(QApplication::translate("linkedFilesWindow", "Form", nullptr));
-        label->setText(QApplication::translate("linkedFilesWindow", "Cruzar archivos", nullptr));
-        pushButton_send->setText(QApplication::translate("linkedFilesWindow", "Agregar", nullptr));
+        label_4->setText(QApplication::translate("linkedFilesWindow", "Cruzar Archivos", nullptr));
         pushButton_find->setText(QApplication::translate("linkedFilesWindow", "Buscar archivo...", nullptr));
-        label_2->setText(QApplication::translate("linkedFilesWindow", "Campos del archivo 1", nullptr));
-        pushButton_add1->setText(QApplication::translate("linkedFilesWindow", "A\303\261adir campo", nullptr));
-        label_3->setText(QApplication::translate("linkedFilesWindow", "Campos del archivo 2", nullptr));
-        pushButton_add2->setText(QApplication::translate("linkedFilesWindow", "A\303\261adir campo", nullptr));
+        pushButton_send->setText(QApplication::translate("linkedFilesWindow", "Cruzar", nullptr));
+        label->setText(QApplication::translate("linkedFilesWindow", "Presione \"Buscar Archivo...\" para empezar.", nullptr));
     } // retranslateUi
 
 };
