@@ -14,8 +14,9 @@ class deleteRecordWindow : public QWidget
 
 public:
     explicit deleteRecordWindow(QWidget *parent = 0);
+    deleteRecordWindow(QWidget* parent = 0, File* = 0);
+
     ~deleteRecordWindow();
-    deleteRecordWindow(File*);
 
 private:
     Ui::deleteRecordWindow *ui;

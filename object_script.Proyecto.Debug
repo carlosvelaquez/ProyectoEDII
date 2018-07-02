@@ -12,7 +12,8 @@ INPUT(
 ./debug\deletefieldwindow.o
 ./debug\modifyrecordwindow.o
 ./debug\modifyfieldwindow.o
-./debug\joinfilewindow.o
+./debug\linkedfileswindow.o
+./debug\deleterecordwindow.o
 ./debug\moc_MainWindow.o
 ./debug\moc_addrecordwindow.o
 ./debug\moc_addfieldwindow.o
@@ -20,5 +21,6 @@ INPUT(
 ./debug\moc_deletefieldwindow.o
 ./debug\moc_modifyrecordwindow.o
 ./debug\moc_modifyfieldwindow.o
-./debug\moc_joinfilewindow.o
+./debug\moc_linkedfileswindow.o
+./debug\moc_deleterecordwindow.o
 );
