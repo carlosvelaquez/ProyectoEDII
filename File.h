@@ -76,6 +76,7 @@ public:
   //--- FUNCIONES DE BUFFER ---
   bool addField(int, string, int, bool); //Añadir un nuevo campo [tipo, nombre, tamaño, isPrimaryKey]
   bool addField(int, string, int); //Añadir un nuevo campo [tipo, nombre, tamaño]
+  bool addField(Field); //Añadir un campo desde un objeto Field
   bool addRecord(List<string>); //Añade un registro al buffer, toma una lista de strings como datos
   bool hasPrimaryKey(); //Retorna verdadero si existe un campo llave primaria en el archivo
 

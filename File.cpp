@@ -423,6 +423,14 @@ bool File::addField(int type, string name, int size){
   return addField(type, name, size, false);
 }
 
+bool File::addField(Field nField){
+  if (!locked) {
+    return fields.insert(nField);
+  }
+
+  return false;
+}
+
 bool File::addRecord(List<string> nRecord){
   return outBuffer.insert(nRecord);
 }
