@@ -150,9 +150,6 @@ void linkedFilesWindow::on_pushButton_send_clicked()
       file3.setPath("Cruzado.txt");
       file3.flush();*/
         QMessageBox::about(this,"","Archivo guardado");
-        /*
-         * Guardarlo :v
-         */
     }
 }
 
