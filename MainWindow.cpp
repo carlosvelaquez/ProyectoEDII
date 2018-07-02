@@ -210,7 +210,6 @@ void MainWindow::joinFiles(){
         if(file.getFields().size!=0){
             linkedFilesWindow* lf = new linkedFilesWindow();
             lf->setFile(&file);
-            lf->refreshTable();
             lf->show();
         }else{
             QMessageBox::warning(this,"","No hay suficientes campos añadidos");
@@ -375,7 +374,7 @@ void MainWindow::generateTest(){
 
   qDebug() << "Adding test fields for " << genPath.c_str();
 
-  file.addField(0, "CityId", 2);
+  file.addField(0, "CityId", 3);
   file.addField(2, "CityName", 20);
 
   qDebug() << "Test fields added.";

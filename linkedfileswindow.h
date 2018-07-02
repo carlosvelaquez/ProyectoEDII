@@ -17,7 +17,6 @@ class linkedFilesWindow : public QWidget
 public:
     explicit linkedFilesWindow(QWidget *parent = 0);
     ~linkedFilesWindow();
-    void refreshTable();
     void setFile(File*);
     bool validateField(Field*);
 
@@ -25,10 +24,6 @@ private slots:
 
 
     void on_pushButton_find_clicked();
-
-    void on_pushButton_add1_clicked();
-
-    void on_pushButton_add2_clicked();
 
     void on_pushButton_send_clicked();
 

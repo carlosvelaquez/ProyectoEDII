@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'modifyrecordwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -43,7 +43,7 @@ public:
     {
         if (modifyrecordwindow->objectName().isEmpty())
             modifyrecordwindow->setObjectName(QStringLiteral("modifyrecordwindow"));
-        modifyrecordwindow->resize(551, 371);
+        modifyrecordwindow->resize(551, 201);
         modifyrecordwindow->setStyleSheet(QLatin1String("QWidget{\n"
 "	background-color: #F5F5F5;\n"
 "}\n"
@@ -59,7 +59,7 @@ public:
 "}"));
         tableWidget = new QTableWidget(modifyrecordwindow);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 60, 531, 251));
+        tableWidget->setGeometry(QRect(10, 60, 531, 81));
         tableWidget->setStyleSheet(QLatin1String("QFrame{\n"
 "	border: 1px solid #E0E0E0;\n"
 "	border-radius: 5px;\n"
@@ -69,6 +69,8 @@ public:
 "QLabel{\n"
 "	border: 0px;\n"
 "}"));
+        tableWidget->horizontalHeader()->setStretchLastSection(true);
+        tableWidget->verticalHeader()->setStretchLastSection(true);
         frame_3 = new QFrame(modifyrecordwindow);
         frame_3->setObjectName(QStringLiteral("frame_3"));
         frame_3->setGeometry(QRect(0, 0, 551, 51));
@@ -87,7 +89,7 @@ public:
         label_3->setFont(font);
         frame = new QFrame(modifyrecordwindow);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(240, 320, 301, 41));
+        frame->setGeometry(QRect(240, 150, 301, 41));
         frame->setStyleSheet(QLatin1String("QFrame{\n"
 "	border: 1px solid #E0E0E0;\n"
 "	border-radius: 5px;\n"
@@ -133,11 +135,11 @@ public:
 
     void retranslateUi(QWidget *modifyrecordwindow)
     {
-        modifyrecordwindow->setWindowTitle(QApplication::translate("modifyrecordwindow", "Form", 0));
-        label_3->setText(QApplication::translate("modifyrecordwindow", "Modificar Registro", 0));
-        label_2->setText(QApplication::translate("modifyrecordwindow", "\303\215ndice del registro: ", 0));
-        pushButton_2->setText(QApplication::translate("modifyrecordwindow", "Cargar", 0));
-        pushButton->setText(QApplication::translate("modifyrecordwindow", "Modificar", 0));
+        modifyrecordwindow->setWindowTitle(QApplication::translate("modifyrecordwindow", "Form", nullptr));
+        label_3->setText(QApplication::translate("modifyrecordwindow", "Modificar Registro", nullptr));
+        label_2->setText(QApplication::translate("modifyrecordwindow", "\303\215ndice del registro: ", nullptr));
+        pushButton_2->setText(QApplication::translate("modifyrecordwindow", "Cargar", nullptr));
+        pushButton->setText(QApplication::translate("modifyrecordwindow", "Modificar", nullptr));
     } // retranslateUi
 
 };

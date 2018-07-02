@@ -15,7 +15,7 @@ void File::calculateSizes(){
   equivalen a la cantidad de campos que hay.*/
   recordSize += fields.size;
   recordSize ++;
-  qDebug() << "Record size: " << recordSize;
+ //qDebug() << "Record size: " << recordSize;
 
 
   //Calcular el tamaño en bytes abarcado por el meta
@@ -40,7 +40,7 @@ void File::calculateSizes(){
   metaSize = file.tellg();
   metaSize -= 3;*/
 
-  qDebug() << "Meta size: " << metaSize;
+ //qDebug() << "Meta size: " << metaSize;
 }
 
 int File::position(int index){
@@ -53,7 +53,7 @@ long File::filesize(){
 
   if (inFile) {
     long ret = inFile.tellg();
-    qDebug() << "Filesize: " << ret;
+   //qDebug() << "Filesize: " << ret;
     inFile.close();
 
     return ret;
@@ -125,15 +125,15 @@ List<Field>* File::getLocationFields(){
 //Funciones de Archivo
 
 void File::lock(){
-  qDebug() << "Attempting to lock file";
+ //qDebug() << "Attempting to lock file";
 
   if (locked) {
-    qDebug() << "File already locked. Aborting";
+   //qDebug() << "File already locked. Aborting";
     return;
   }
 
   if (fields.size <= 0) {
-    qDebug() << "File has no fields. Aborting lock.";
+   //qDebug() << "File has no fields. Aborting lock.";
     return;
   }
 
@@ -143,7 +143,7 @@ void File::lock(){
   writeMeta();
   calculateSizes();
 
-  qDebug() << "File locked successfully";
+ //qDebug() << "File locked successfully";
   seekFirst();
 }
 
@@ -174,7 +174,7 @@ bool File::open(){
     char first = file.get();
 
     if (!isdigit(first) && first != '-') {
-      qDebug() << "File starts with unexpected character. Aborting.";
+     //qDebug() << "File starts with unexpected character. Aborting.";
       return false;
     }
   }
@@ -186,11 +186,11 @@ bool File::open(){
       loadIndex();
     }
 
-    qDebug() << "File opened successfully";
+   //qDebug() << "File opened successfully";
     return true;
   }
 
-  qDebug() << "Error opening file";
+ //qDebug() << "Error opening file";
   return false;
 }
 
@@ -222,11 +222,11 @@ void File::close(){
 
 bool File::writeMeta(){
   if (writeAvailList() && writeFields()) {
-    qDebug() << "Meta written successfully";
+   //qDebug() << "Meta written successfully";
     return true;
   }
 
-  qDebug() << "Error at writing meta";
+ //qDebug() << "Error at writing meta";
   return false;
 }
 
@@ -259,7 +259,7 @@ bool File::writeFields(){ //Escribir los campos al meta
   file.clear();
 
   if (file) {
-    qDebug() << "Writing fields...";
+   //qDebug() << "Writing fields...";
     string out = "";
 
     /* Estructura del string de los campos:
@@ -292,7 +292,7 @@ bool File::writeFields(){ //Escribir los campos al meta
   file.write(out.c_str(), out.length());
   file.flush();
 
-  qDebug() << "Fields written successfully";
+ //qDebug() << "Fields written successfully";
   return true;
 }
 
@@ -304,11 +304,11 @@ return false;
 //Lectura de Metadatos
 bool File::readMeta(){
   if (readFields() && readAvailList()) {
-    qDebug() << "Meta read successfully";
+   //qDebug() << "Meta read successfully";
     return true;
   }
 
-  qDebug() << "Error reading meta";
+ //qDebug() << "Error reading meta";
   return false;
 }
 
@@ -325,7 +325,7 @@ bool File::readAvailList(){
 
     //Eliminar los asteriscos del string
     for (size_t i = 0; i < in.length(); i++) {
-      qDebug() << in[i];
+     //qDebug() << in[i];
       if (in[i] == '*') {
         in = in.substr(0, i);
         break;
@@ -335,10 +335,10 @@ bool File::readAvailList(){
     //Construir el AvailList
     availList.clear();
 
-    qDebug() << "Starting build with: " << in.c_str();
+   //qDebug() << "Starting build with: " << in.c_str();
     lastDeleted = stoi(in);
     buildAvailList(lastDeleted);
-    qDebug() << "AvailList built successfully.";
+   //qDebug() << "AvailList built successfully.";
     return true;
   }
 
@@ -366,7 +366,7 @@ bool File::readFields(){
       getline(commaStream, name, ',');
       getline(commaStream, size, ',');
       getline(commaStream, isPrimary, ',');
-      qDebug() << "Adding field: " << type.c_str() << ", " << name.c_str() << ", " << size.c_str() << ", " << isPrimary.c_str();
+     //qDebug() << "Adding field: " << type.c_str() << ", " << name.c_str() << ", " << size.c_str() << ", " << isPrimary.c_str();
 
       Field nField(stoi(type), name, stoi(size));
 
@@ -405,7 +405,7 @@ bool File::buildAvailList(int pos){
         }
       }
 
-      qDebug() << in.c_str();
+     //qDebug() << in.c_str();
       return buildAvailList(stoi(in));
 
     }else{
@@ -543,27 +543,27 @@ bool File::flush(){
     file.clear();
 
     if (file) {
-      qDebug() << "Fields: " << fields.size;
+     //qDebug() << "Fields: " << fields.size;
 
       if (outBuffer.size > 0) {
-        qDebug() << "outBuffer Size: " << outBuffer[1].size;
+       //qDebug() << "outBuffer Size: " << outBuffer[1].size;
       }else{
-        qDebug() << "outBuffer is empty. Skipping record flush.";
+       //qDebug() << "outBuffer is empty. Skipping record flush.";
       }
 
       for (int i = 1; i <= outBuffer.size; i++) {
         //Determinar en qué posición irá el siguiente registro
         if (!availList.isEmpty()) {
-          qDebug() << "Available position found: " << availList[availList.size];
+         //qDebug() << "Available position found: " << availList[availList.size];
           file.seekp(position(availList[availList.size])); //Escribir en la siguiente posición del availList
           availList.remove(availList.size);
         }else{
           file.seekp(0, ios_base::end); //Escribir al final del archivo
         }
 
-        for (int j = 1; j <= fields.size; j++) {
+        for (int j = 1; j <= outBuffer[i].size; j++) {
           string out = outBuffer[i][j]; //Recuperar el dato a escribir
-          //qDebug() << "Raw out: " << out.c_str();
+         //qDebug() << "Raw out: " << out.c_str();
 
           //Añadir espacios vacíos si el string es más corto que el campo
           while (int(out.length()) < fields[j].getSize()) {
@@ -600,30 +600,30 @@ bool File::flush(){
 }
 
 bool File::seek(int block){
-  qDebug() << "Seeking block " << block;
+ //qDebug() << "Seeking block " << block;
   file.clear();
 
   if (!locked) {
-    qDebug() << "File is NOT locked. Aborting.";
+   //qDebug() << "File is NOT locked. Aborting.";
     return false;
   }
 
   if (file) {
     if (block > blockQuantity()) {
-      qDebug() << "Seeking block beyond blockQuantity. Aborting...";
+     //qDebug() << "Seeking block beyond blockQuantity. Aborting...";
       return false;
     }
 
     if (block < 1) {
-      qDebug() << "Seeking block <= 0. Aborting...";
+     //qDebug() << "Seeking block <= 0. Aborting...";
       return false;
     }
 
     long seekPos = metaSize + (block-1)*blockSize*recordSize;
-    qDebug() << "Seek position: " << seekPos;
+   //qDebug() << "Seek position: " << seekPos;
 
     if (seekPos > filesize()) {
-      qDebug() << "Seek position is greater than filesize. Aborting";
+     //qDebug() << "Seek position is greater than filesize. Aborting";
       return false;
     }
 
@@ -651,12 +651,12 @@ bool File::seek(int block){
       cont ++;
     }
 
-    qDebug() << "Block read successfully";
+   //qDebug() << "Block read successfully";
     currentBlock = block;
     return true;
   }
 
-  qDebug() << "Error opening file.";
+ //qDebug() << "Error opening file.";
   return false;
 }
 
@@ -792,21 +792,21 @@ bool File::isLocked(){
 
 // Funciones de Indexación
 bool File::buildIndex(){
-  qDebug() << "Attempting to build index.";
+ //qDebug() << "Attempting to build index.";
   file.clear();
 
   if (!locked) {
-    qDebug() << "File is not locked. Aborting index build.";
+   //qDebug() << "File is not locked. Aborting index build.";
     return false;
   }
 
   if (!hasPrimaryKey()) {
-    qDebug() << "File has no primary key. Aborting index build.";
+   //qDebug() << "File has no primary key. Aborting index build.";
     return false;
   }
 
   if (recordQuantity() <= 0) {
-    qDebug() << "No records to index. Aborting index build.";
+   //qDebug() << "No records to index. Aborting index build.";
     return false;
   }
 
@@ -823,7 +823,7 @@ bool File::buildIndex(){
       }
     }
 
-    qDebug() << "Primary Key Index: " << primaryKeyIndex;
+   //qDebug() << "Primary Key Index: " << primaryKeyIndex;
 
     for (int i = 1; i <= blockQuantity(); i++) {
       List<List<string>> block = data();
@@ -836,24 +836,24 @@ bool File::buildIndex(){
       next();
     }
 
-    qDebug() << "Index built successfully.";
+   //qDebug() << "Index built successfully.";
     file.clear();
     seek(pastBlock);
 
     return true;
   }else{
-    qDebug() << "File unaccesible. Aborting index build.";
+   //qDebug() << "File unaccesible. Aborting index build.";
     return false;
   }
 
 }
 
 void File::saveIndex(){
-  qDebug() << "Attempting to save index file.";
+ //qDebug() << "Attempting to save index file.";
   ofstream exFile;
 
   if (!hasPrimaryKey()) {
-    qDebug() << "File has no primary key. Aborting.";
+   //qDebug() << "File has no primary key. Aborting.";
     return;
   }
 
@@ -872,7 +872,7 @@ void File::saveIndex(){
 }
 
 void File::loadIndex(){
-  qDebug() << "Attempting to load index file.";
+ //qDebug() << "Attempting to load index file.";
   ifstream inFile;
   inFile.open(string(path + ".index"));
 
@@ -890,10 +890,10 @@ void File::loadIndex(){
       index.insert(new Key(nKey, stoi(nIndex)));
     }
 
-    qDebug() << "Index file loaded successfully.";
+   //qDebug() << "Index file loaded successfully.";
     inFile.close();
   }else{
-    qDebug() << "Index file could not be opened.";
+   //qDebug() << "Index file could not be opened.";
   }
 }
 
@@ -918,7 +918,7 @@ bool File::seekRecord(string key){
     }
 
     int ind = index.findIndex(key);
-    qDebug() << "Find Index for " << key.c_str() << " " << ind;
+   //qDebug() << "Find Index for " << key.c_str() << " " << ind;
 
     if (ind == -1) {
       return false;
@@ -986,7 +986,7 @@ void File::exportXML(string exPath){
       }
     }
 
-    qDebug() << exPathXsl.c_str();
+   //qDebug() << exPathXsl.c_str();
 
     exFile
     << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl

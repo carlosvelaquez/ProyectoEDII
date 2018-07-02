@@ -6,78 +6,40 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>443</width>
-    <height>530</height>
+    <width>550</width>
+    <height>111</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+	background-color: #F5F5F5;
+}
+
+
+QPushButton{
+	background-color: #3F51B5;
+	color: white;
+	border-radius: 5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #3F51B5;
+}</string>
+  </property>
+  <widget class="QFrame" name="frame_3">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>441</width>
-     <height>61</height>
+     <width>551</width>
+     <height>51</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <family>FreeSans</family>
-     <pointsize>24</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Cruzar archivos</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_send">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>500</y>
-     <width>421</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Agregar</string>
-   </property>
-  </widget>
-  <widget class="QTableWidget" name="tableWidget">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>250</y>
-     <width>421</width>
-     <height>241</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_find">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>70</y>
-     <width>101</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Buscar archivo...</string>
-   </property>
-  </widget>
-  <widget class="QFrame" name="frame">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>100</y>
-     <width>421</width>
-     <height>151</height>
-    </rect>
+   <property name="styleSheet">
+    <string notr="true">background-color:#3F51B5;
+color: white;</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
@@ -85,76 +47,111 @@
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
-      <width>121</width>
-      <height>17</height>
+      <y>0</y>
+      <width>241</width>
+      <height>51</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Montserrat</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
-     <string>Campos del archivo 1</string>
+     <string>Cruzar Archivos</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_file1">
+  </widget>
+  <widget class="QFrame" name="frame_2">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>60</y>
+     <width>251</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame{
+	border: 1px solid #E0E0E0;
+	border-radius: 5px;
+	background-color: white;
+}
+
+QLabel{
+	border: 0px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="pushButton_find">
+      <property name="text">
+       <string>Buscar archivo...</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_send">
+      <property name="text">
+       <string>Cruzar</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>261</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame{
+	border: 1px solid #E0E0E0;
+	border-radius: 5px;
+	background-color: white;
+}
+
+QLabel{
+	border: 0px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
-      <width>291</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_add1">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>40</y>
-      <width>101</width>
-      <height>25</height>
+      <y>12</y>
+      <width>241</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Añadir campo</string>
+     <string>Presione &quot;Buscar Archivo...&quot; para empezar.</string>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>80</y>
-      <width>141</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Campos del archivo 2</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_file2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>100</y>
-      <width>291</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_add2">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>100</y>
-      <width>101</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Añadir campo</string>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
   </widget>

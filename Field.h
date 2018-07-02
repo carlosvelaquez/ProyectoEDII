@@ -33,6 +33,15 @@ public:
   void setType(int);
   void setSize(int);
   void setName(string);
+
+  // Operators
+  bool operator==(Field nField){
+    if (nField.getName() == name && nField.getType() == type && nField.getSize() == size) {
+      return true;
+    }
+
+    return false;
+  }
 };
 
 #endif
