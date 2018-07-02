@@ -1,6 +1,7 @@
 #include "ui_MainWindow.h"
 #include <QDebug>
 #include "File.h"
+#include "NameGenerator.h"
 
 class MainWindow : public QMainWindow{
   Q_OBJECT
@@ -38,6 +39,8 @@ private slots:
 
   void refresh();
   void exit();
+
+  void createIndexes();
 
 public:
   MainWindow(QWidget* parent = 0);

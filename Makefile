@@ -54,6 +54,7 @@ SOURCES       = File.cpp \
 		MainWindow.cpp \
 		BTree.cpp \
 		BTreeNode.cpp \
+		NameGenerator.cpp \
 		Key.cpp \
 		addrecordwindow.cpp \
 		addfieldwindow.cpp \
@@ -77,6 +78,7 @@ OBJECTS       = File.o \
 		MainWindow.o \
 		BTree.o \
 		BTreeNode.o \
+		NameGenerator.o \
 		Key.o \
 		addrecordwindow.o \
 		addfieldwindow.o \
@@ -159,6 +161,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		queue.h \
 		BTree.h \
 		BTreeNode.h \
+		NameGenerator.h \
 		Key.h \
 		addrecordwindow.h \
 		addfieldwindow.h \
@@ -173,6 +176,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		MainWindow.cpp \
 		BTree.cpp \
 		BTreeNode.cpp \
+		NameGenerator.cpp \
 		Key.cpp \
 		addrecordwindow.cpp \
 		addfieldwindow.cpp \
@@ -349,8 +353,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents File.h Field.h List.h MainWindow.h queue.h BTree.h BTreeNode.h Key.h addrecordwindow.h addfieldwindow.h listfieldswindow.h deletefieldwindow.h modifyrecordwindow.h modifyfieldwindow.h linkedfileswindow.h deleterecordwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents File.cpp Field.cpp main.cpp MainWindow.cpp BTree.cpp BTreeNode.cpp Key.cpp addrecordwindow.cpp addfieldwindow.cpp listfieldswindow.cpp deletefieldwindow.cpp modifyrecordwindow.cpp modifyfieldwindow.cpp linkedfileswindow.cpp deleterecordwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents File.h Field.h List.h MainWindow.h queue.h BTree.h BTreeNode.h NameGenerator.h Key.h addrecordwindow.h addfieldwindow.h listfieldswindow.h deletefieldwindow.h modifyrecordwindow.h modifyfieldwindow.h linkedfileswindow.h deleterecordwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents File.cpp Field.cpp main.cpp MainWindow.cpp BTree.cpp BTreeNode.cpp NameGenerator.cpp Key.cpp addrecordwindow.cpp addfieldwindow.cpp listfieldswindow.cpp deletefieldwindow.cpp modifyrecordwindow.cpp modifyfieldwindow.cpp linkedfileswindow.cpp deleterecordwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents MainWindow.ui addrecordwindow.ui addfieldwindow.ui listfieldswindow.ui deletefieldwindow.ui modifyrecordwindow.ui modifyfieldwindow.ui linkedfileswindow.ui deleterecordwindow.ui $(DISTDIR)/
 
 
@@ -385,6 +389,7 @@ moc_MainWindow.cpp: ui_MainWindow.h \
 		List.h \
 		Key.h \
 		Field.h \
+		NameGenerator.h \
 		MainWindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I'/home/carlos/Escritorio/Proyecto Estructura de Datos II/ProyectoEDII' -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o moc_MainWindow.cpp
 
@@ -520,7 +525,8 @@ main.o: main.cpp MainWindow.h \
 		BTreeNode.h \
 		List.h \
 		Key.h \
-		Field.h
+		Field.h \
+		NameGenerator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 MainWindow.o: MainWindow.cpp MainWindow.h \
@@ -531,6 +537,7 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		List.h \
 		Key.h \
 		Field.h \
+		NameGenerator.h \
 		addrecordwindow.h \
 		addfieldwindow.h \
 		listfieldswindow.h \
@@ -550,6 +557,10 @@ BTreeNode.o: BTreeNode.cpp BTreeNode.h \
 		List.h \
 		Key.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BTreeNode.o BTreeNode.cpp
+
+NameGenerator.o: NameGenerator.cpp NameGenerator.h \
+		List.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o NameGenerator.o NameGenerator.cpp
 
 Key.o: Key.cpp Key.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Key.o Key.cpp

@@ -23,14 +23,14 @@ linkedFilesWindow::~linkedFilesWindow()
 }
 
 void linkedFilesWindow::refreshTable(){
-    for(int i=1; i<=fields.size; i++){
-        ui->tableWidget->setItem(i-1,0,new QTableWidgetItem(QString::fromStdString(fields.get(i).getName())));
-        if(fields.get(i).getType()==0) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("Integer"));
-        else if(fields.get(i).getType()==1) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("Character"));
-        else if(fields.get(i).getType()==2) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("String"));
-        if(fields.get(i).isPrimaryKey()) ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("Yes"));
+    for(int i=1; i<=file3.getFields().size; i++){
+        ui->tableWidget->setItem(i-1,0,new QTableWidgetItem(QString::fromStdString(file3.getFields().get(i).getName())));
+        if(file3.getFields().get(i).getType()==0) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("Integer"));
+        else if(file3.getFields().get(i).getType()==1) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("Character"));
+        else if(file3.getFields().get(i).getType()==2) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("String"));
+        if(file3.getFields().get(i).isPrimaryKey()) ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("Yes"));
         else ui->tableWidget->setItem(i-1,2,new QTableWidgetItem("No"));
-        ui->tableWidget->setItem(i-1,3,new QTableWidgetItem(QString::number(fields.get(i).getSize())));
+        ui->tableWidget->setItem(i-1,3,new QTableWidgetItem(QString::number(file3.getFields().get(i).getSize())));
     }
 }
 
@@ -63,6 +63,9 @@ void linkedFilesWindow::on_pushButton_find_clicked()
 
 void linkedFilesWindow::on_pushButton_add1_clicked()
 {
+    file3.addField(file->getFields().get(ui->comboBox_file1->currentIndex()+1));
+    refreshTable();
+
     /*if(fields.contains(file->getFields().get(ui->comboBox_file1->currentIndex()+1))){
         fields.insert(file->getFields().get(ui->comboBox_file1->currentIndex()+1));
         refreshTable();

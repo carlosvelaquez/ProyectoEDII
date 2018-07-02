@@ -5,6 +5,7 @@ INPUT(
 ./debug\MainWindow.o
 ./debug\BTree.o
 ./debug\BTreeNode.o
+./debug\NameGenerator.o
 ./debug\Key.o
 ./debug\addrecordwindow.o
 ./debug\addfieldwindow.o

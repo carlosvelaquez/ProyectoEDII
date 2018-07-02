@@ -158,9 +158,9 @@ QPushButton{
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>80</y>
-      <width>711</width>
-      <height>351</height>
+      <y>70</y>
+      <width>721</width>
+      <height>361</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -191,7 +191,7 @@ color: black;</string>
      <bool>true</bool>
     </property>
     <property name="wordWrap">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="cornerButtonEnabled">
      <bool>true</bool>
@@ -652,6 +652,12 @@ color: white;</string>
   <action name="actionIntroducir_Registros">
    <property name="text">
     <string>Introducir Registros</string>
+   </property>
+   <property name="toolTip">
+    <string>Para añadir registros, deve salvar el archivo primero.</string>
+   </property>
+   <property name="whatsThis">
+    <string>Para añadir registros, deve salvar el archivo primero.</string>
    </property>
   </action>
   <action name="actionBuscar_Registros">

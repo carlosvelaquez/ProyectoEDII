@@ -219,7 +219,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 80, 711, 351));
+        tableWidget->setGeometry(QRect(10, 70, 721, 361));
         tableWidget->setStyleSheet(QLatin1String("QFrame{\n"
 "	border: 1px solid #E0E0E0;\n"
 "	border-radius: 5px;\n"
@@ -233,7 +233,7 @@ public:
         tableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         tableWidget->setShowGrid(true);
-        tableWidget->setWordWrap(false);
+        tableWidget->setWordWrap(true);
         tableWidget->setCornerButtonEnabled(true);
         tableWidget->horizontalHeader()->setStretchLastSection(true);
         tableWidget->verticalHeader()->setStretchLastSection(false);
@@ -435,6 +435,12 @@ public:
         actionModificar_Campos->setText(QApplication::translate("MainWindow", "Modificar Campos", nullptr));
         actionEliminar_Campos->setText(QApplication::translate("MainWindow", "Eliminar Campos", nullptr));
         actionIntroducir_Registros->setText(QApplication::translate("MainWindow", "Introducir Registros", nullptr));
+#ifndef QT_NO_TOOLTIP
+        actionIntroducir_Registros->setToolTip(QApplication::translate("MainWindow", "Para a\303\261adir registros, deve salvar el archivo primero.", nullptr));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_WHATSTHIS
+        actionIntroducir_Registros->setWhatsThis(QApplication::translate("MainWindow", "Para a\303\261adir registros, deve salvar el archivo primero.", nullptr));
+#endif // QT_NO_WHATSTHIS
         actionBuscar_Registros->setText(QApplication::translate("MainWindow", "Buscar Registros", nullptr));
         actionModificar_Registros->setText(QApplication::translate("MainWindow", "Modificar Registros", nullptr));
         actionBorrar_Registros->setText(QApplication::translate("MainWindow", "Borrar Registros", nullptr));

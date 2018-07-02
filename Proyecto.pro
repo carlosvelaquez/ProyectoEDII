@@ -21,7 +21,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += File.h Field.h List.h MainWindow.h queue.h BTree.h BTreeNode.h Key.h \
+HEADERS += File.h Field.h List.h MainWindow.h queue.h BTree.h BTreeNode.h NameGenerator.h Key.h \
     addrecordwindow.h \
     addfieldwindow.h \
     listfieldswindow.h \
@@ -39,7 +39,7 @@ FORMS += MainWindow.ui \
     modifyfieldwindow.ui \
     linkedfileswindow.ui \
     deleterecordwindow.ui
-SOURCES += File.cpp Field.cpp main.cpp MainWindow.cpp BTree.cpp BTreeNode.cpp Key.cpp \
+SOURCES += File.cpp Field.cpp main.cpp MainWindow.cpp BTree.cpp BTreeNode.cpp NameGenerator.cpp Key.cpp \
     addrecordwindow.cpp \
     addfieldwindow.cpp \
     listfieldswindow.cpp \
