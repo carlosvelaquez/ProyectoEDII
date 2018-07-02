@@ -40,6 +40,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   //Registros
   connect(ui.actionIntroducir_Registros, SIGNAL(triggered()), this, SLOT(addRecord()));
   connect(ui.actionBorrar_Registros, SIGNAL(triggered()), this, SLOT(deleteRecords()));
+  connect(ui.actionBuscar_Registros, SIGNAL(triggered()), this, SLOT(findRecords()));
 
 
   //Mover entre páginas
@@ -55,7 +56,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
   //Indexar
   connect(ui.actionCrear_Indices, SIGNAL(triggered()), this, SLOT(saveIndexFile()));
-  connect(ui.actionReindexar_Archivos, SIGNAL(triggered()), this, SLOT(createIndexes()));
 
   //Exportar
   connect(ui.actionExportar_a_Excel, SIGNAL(triggered()), this, SLOT(exportCSV()));
@@ -73,6 +73,11 @@ void MainWindow::addRecord(){
 void MainWindow::deleteRecords(){
   deleteRecordWindow* dr = new deleteRecordWindow(0, &file);
   dr->show();
+}
+
+void MainWindow::findRecords(){
+  FindRecordWindow* w = new FindRecordWindow(0, &file);
+  w->show();
 }
 /*##########################################*/
 
@@ -299,7 +304,7 @@ void MainWindow::generateTest(){
   qDebug() << "Adding test fields for " << genPath.c_str();
 
   file.addField(0, "PersonId", 6);
-  file.addField(2, "PersonName", 20);
+  file.addField(2, "PersonName", 20, true);
   file.addField(0, "PersonAge", 3);
   file.addField(0, "CityId", 3);
 
@@ -363,11 +368,8 @@ void MainWindow::generateTest(){
 }
 
 void MainWindow::saveIndexFile(){
-  file.saveIndex();
-}
-
-void MainWindow::createIndexes(){
   file.buildIndex();
+  file.saveIndex();
 }
 
 void MainWindow::exportCSV(){

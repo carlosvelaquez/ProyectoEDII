@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>deleteRecordWindow</class>
- <widget class="QWidget" name="deleteRecordWindow">
+ <class>FindRecordWindow</class>
+ <widget class="QWidget" name="FindRecordWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>341</width>
-    <height>112</height>
+    <width>386</width>
+    <height>113</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Eliminar Registro</string>
+   <string>Buscar Registros</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
@@ -33,7 +33,7 @@ QPushButton{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>341</width>
+     <width>391</width>
      <height>51</height>
     </rect>
    </property>
@@ -65,7 +65,7 @@ color: white;</string>
      </font>
     </property>
     <property name="text">
-     <string>Eliminar Registro</string>
+     <string>Buscar Registros</string>
     </property>
    </widget>
   </widget>
@@ -74,8 +74,8 @@ color: white;</string>
     <rect>
      <x>10</x>
      <y>60</y>
-     <width>321</width>
-     <height>43</height>
+     <width>361</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -99,19 +99,12 @@ QLabel{
     <item>
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>Numero de registro a eliminar:</string>
+       <string>Llave Primaria a Buscar:</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QSpinBox" name="spinBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
+     <widget class="QLineEdit" name="lineEdit"/>
     </item>
     <item>
      <spacer name="horizontalSpacer">
@@ -138,7 +131,7 @@ QLabel{
        </sizepolicy>
       </property>
       <property name="text">
-       <string>Eliminar</string>
+       <string>Buscar</string>
       </property>
      </widget>
     </item>

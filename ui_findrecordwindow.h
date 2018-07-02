@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'deleterecordwindow.ui'
+** Form generated from reading UI file 'findrecordwindow.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_DELETERECORDWINDOW_H
-#define UI_DELETERECORDWINDOW_H
+#ifndef UI_FINDRECORDWINDOW_H
+#define UI_FINDRECORDWINDOW_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
@@ -17,14 +17,14 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
-class Ui_deleteRecordWindow
+class Ui_FindRecordWindow
 {
 public:
     QFrame *frame_3;
@@ -32,16 +32,16 @@ public:
     QFrame *frame;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
-    QSpinBox *spinBox;
+    QLineEdit *lineEdit;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton;
 
-    void setupUi(QWidget *deleteRecordWindow)
+    void setupUi(QWidget *FindRecordWindow)
     {
-        if (deleteRecordWindow->objectName().isEmpty())
-            deleteRecordWindow->setObjectName(QStringLiteral("deleteRecordWindow"));
-        deleteRecordWindow->resize(341, 112);
-        deleteRecordWindow->setStyleSheet(QLatin1String("QWidget{\n"
+        if (FindRecordWindow->objectName().isEmpty())
+            FindRecordWindow->setObjectName(QStringLiteral("FindRecordWindow"));
+        FindRecordWindow->resize(386, 113);
+        FindRecordWindow->setStyleSheet(QLatin1String("QWidget{\n"
 "	background-color: #F5F5F5;\n"
 "}\n"
 "\n"
@@ -54,9 +54,9 @@ public:
 "	border-style: solid;\n"
 "	border-color: #3F51B5;\n"
 "}"));
-        frame_3 = new QFrame(deleteRecordWindow);
+        frame_3 = new QFrame(FindRecordWindow);
         frame_3->setObjectName(QStringLiteral("frame_3"));
-        frame_3->setGeometry(QRect(0, 0, 341, 51));
+        frame_3->setGeometry(QRect(0, 0, 391, 51));
         frame_3->setStyleSheet(QLatin1String("background-color:#3F51B5;\n"
 "color: white;"));
         frame_3->setFrameShape(QFrame::StyledPanel);
@@ -70,9 +70,9 @@ public:
         font.setBold(true);
         font.setWeight(75);
         label_3->setFont(font);
-        frame = new QFrame(deleteRecordWindow);
+        frame = new QFrame(FindRecordWindow);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(10, 60, 321, 43));
+        frame->setGeometry(QRect(10, 60, 361, 41));
         frame->setStyleSheet(QLatin1String("QFrame{\n"
 "	border: 1px solid #E0E0E0;\n"
 "	border-radius: 5px;\n"
@@ -91,15 +91,10 @@ public:
 
         horizontalLayout->addWidget(label);
 
-        spinBox = new QSpinBox(frame);
-        spinBox->setObjectName(QStringLiteral("spinBox"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(spinBox->sizePolicy().hasHeightForWidth());
-        spinBox->setSizePolicy(sizePolicy);
+        lineEdit = new QLineEdit(frame);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
 
-        horizontalLayout->addWidget(spinBox);
+        horizontalLayout->addWidget(lineEdit);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
 
@@ -107,34 +102,34 @@ public:
 
         pushButton = new QPushButton(frame);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        QSizePolicy sizePolicy1(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+        pushButton->setSizePolicy(sizePolicy);
 
         horizontalLayout->addWidget(pushButton);
 
 
-        retranslateUi(deleteRecordWindow);
+        retranslateUi(FindRecordWindow);
 
-        QMetaObject::connectSlotsByName(deleteRecordWindow);
+        QMetaObject::connectSlotsByName(FindRecordWindow);
     } // setupUi
 
-    void retranslateUi(QWidget *deleteRecordWindow)
+    void retranslateUi(QWidget *FindRecordWindow)
     {
-        deleteRecordWindow->setWindowTitle(QApplication::translate("deleteRecordWindow", "Eliminar Registro", nullptr));
-        label_3->setText(QApplication::translate("deleteRecordWindow", "Eliminar Registro", nullptr));
-        label->setText(QApplication::translate("deleteRecordWindow", "Numero de registro a eliminar:", nullptr));
-        pushButton->setText(QApplication::translate("deleteRecordWindow", "Eliminar", nullptr));
+        FindRecordWindow->setWindowTitle(QApplication::translate("FindRecordWindow", "Buscar Registros", nullptr));
+        label_3->setText(QApplication::translate("FindRecordWindow", "Buscar Registros", nullptr));
+        label->setText(QApplication::translate("FindRecordWindow", "Llave Primaria a Buscar:", nullptr));
+        pushButton->setText(QApplication::translate("FindRecordWindow", "Buscar", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class deleteRecordWindow: public Ui_deleteRecordWindow {};
+    class FindRecordWindow: public Ui_FindRecordWindow {};
 } // namespace Ui
 
 QT_END_NAMESPACE
 
-#endif // UI_DELETERECORDWINDOW_H
+#endif // UI_FINDRECORDWINDOW_H

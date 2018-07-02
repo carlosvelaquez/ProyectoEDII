@@ -52,6 +52,7 @@ void NameGenerator::load(){
   firstNames.insert("Juan Luis");
   firstNames.insert("Carl");
   firstNames.insert("Elne");
+  firstNames.insert("Manuel");
 
   lastNames.insert("Velásquez");
   lastNames.insert("Varela");

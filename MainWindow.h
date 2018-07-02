@@ -1,7 +1,11 @@
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
 #include "ui_MainWindow.h"
 #include <QDebug>
 #include "File.h"
 #include "NameGenerator.h"
+#include "findrecordwindow.h"
 
 class MainWindow : public QMainWindow{
   Q_OBJECT
@@ -19,6 +23,7 @@ private slots:
 
   void addRecord();
   void deleteRecords();
+  void findRecords();
 
   void listfields();
   void deleteFields();
@@ -46,3 +51,6 @@ public:
   void refreshMenuBar();
   File* getFile();
 };
+
+
+#endif /* end of include guard: MAINWINDOW_H */
