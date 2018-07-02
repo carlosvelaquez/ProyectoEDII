@@ -61,65 +61,65 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
 
 /*##########################################*/
 void MainWindow::addRecord(){
-    addRecordWindow* adw = new addRecordWindow();
-    adw->setFile(&file);
-    adw->fillTable();
-    adw->show();
+  addRecordWindow* adw = new addRecordWindow();
+  adw->setFile(&file);
+  adw->fillTable();
+  adw->show();
 }
 
 void MainWindow::deleteRecords(){
-    deleteRecordWindow* dr = new deleteRecordWindow(0, &file);
-    dr->show();
+  deleteRecordWindow* dr = new deleteRecordWindow(0, &file);
+  dr->show();
 }
 /*##########################################*/
 
 
 /*##########################################*/
 void MainWindow::addFields(){
-    addfieldwindow* adf = new addfieldwindow();
-    adf->setFile(&file);
-    adf->show();
+  addfieldwindow* adf = new addfieldwindow();
+  adf->setFile(&file);
+  adf->show();
 }
 
 void MainWindow::deleteFields(){
-    deletefieldwindow* df = new deletefieldwindow();
-    df->setFile(&file);
-    df->fillComboBox();
-    df->show();
+  deletefieldwindow* df = new deletefieldwindow();
+  df->setFile(&file);
+  df->fillComboBox();
+  df->show();
 }
 
 void MainWindow::listfields(){
-    listfieldswindow* lf = new listfieldswindow();
-    lf->filltable(&file);
-    lf->show();
+  listfieldswindow* lf = new listfieldswindow();
+  lf->filltable(&file);
+  lf->show();
 }
 
 void MainWindow::modifyFields(){
-    modifyfieldwindow* md = new modifyfieldwindow();
-    md->setFile(&file);
-    md->fillWidgets();
-    md->show();
+  modifyfieldwindow* md = new modifyfieldwindow();
+  md->setFile(&file);
+  md->fillWidgets();
+  md->show();
 }
 /*##########################################*/
 
 /*##########################################*/
 File* MainWindow::getFile(){
-    return &file;
+  return &file;
 }
 
 void MainWindow::openFile(){
-    file.close();
-    QString path = QFileDialog::getSaveFileName(this, "Nuevo Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
+  file.close();
+  QString path = QFileDialog::getSaveFileName(this, "Nuevo Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
 
-    if (!path.isEmpty() && !path.isNull()) {
-      remove(path.toStdString().c_str());
-      file.open(path.toStdString());
-      ui.label_ruta->setText(path);
-      refreshMenuBar();
-      refreshTable();
-    }else{
-      qDebug() << "File path is empty or null. Aborting.";
-    }
+  if (!path.isEmpty() && !path.isNull()) {
+    remove(path.toStdString().c_str());
+    file.open(path.toStdString());
+    ui.label_ruta->setText(path);
+    refreshMenuBar();
+    refreshTable();
+  }else{
+    qDebug() << "File path is empty or null. Aborting.";
+  }
 }
 
 void MainWindow::closeFile(){
@@ -149,24 +149,24 @@ void MainWindow::saveFile(){
 }
 
 void MainWindow::loadFile(){
-    QString path = QFileDialog::getOpenFileName(this, "Abrir Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
+  QString path = QFileDialog::getOpenFileName(this, "Abrir Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
 
-    if (!path.isEmpty() && !path.isNull()) {
-      if (file.open(path.toStdString())){
+  if (!path.isEmpty() && !path.isNull()) {
+    if (file.open(path.toStdString())){
 
-        file.lock();
-        ui.label_ruta->setText(path);
-        refreshTable();
-        refreshMenuBar();
-      }
-    }else{
-      qDebug() << "File path is empty or null. Aborting.";
+      file.lock();
+      ui.label_ruta->setText(path);
+      refreshTable();
+      refreshMenuBar();
     }
+  }else{
+    qDebug() << "File path is empty or null. Aborting.";
+  }
 }
 
 void MainWindow::joinFiles(){
-    linkedFilesWindow* lf = new linkedFilesWindow();
-    lf->show();
+  linkedFilesWindow* lf = new linkedFilesWindow();
+  lf->show();
 }
 
 
@@ -237,6 +237,7 @@ void MainWindow::refreshTable(){
         }
       }else{
         qDebug() << "File not locked.";
+        ui.tableWidget->setRowCount(1);
         ui.tableWidget->setItem(0, 0, new QTableWidgetItem("Salve el archivo en Archivo > Salvar Archivo para poder añadir registros."));
       }
     }else{
@@ -251,15 +252,15 @@ void MainWindow::refreshTable(){
 
 
 void MainWindow::nextPage(){
-    if(file.next()){
-        refreshTable();
-    }
+  if(file.next()){
+    refreshTable();
+  }
 }
 
 void MainWindow::previousPage(){
-    if(file.previous()){
-        refreshTable();
-    }
+  if(file.previous()){
+    refreshTable();
+  }
 }
 
 void MainWindow::gotoPage(){
@@ -269,53 +270,83 @@ void MainWindow::gotoPage(){
 }
 
 void MainWindow::generateTest(){
-  QString path = QFileDialog::getSaveFileName(this, "Generar Registros de Prueba", QDir::currentPath(), tr("TXT Files (*.txt)"));
-
-  if (!path.isEmpty() && !path.isNull()) {
-    remove(path.toStdString().c_str());
-    file.open(path.toStdString());
-    ui.label_ruta->setText(path);
-
-    qDebug() << "Adding test fields";
-    /*for (int i = 1; i <= 5; i++) {
-      string f = string("Field " + to_string(i));
-      file.addField(2, f, 25);
-      qDebug() << f.c_str() << " - Done";
-    }*/
-
-    file.addField(2, "Field1", 25);
-    file.addField(2, "Field2", 25);
-    file.addField(2, "Field3", 25);
-    file.addField(2, "Field4", 25);
-    file.addField(2, "Field5", 25);
-
-    qDebug() << "Test fields added.";
+  string genPath;
+  NameGenerator nameGen;
+  nameGen.load();
 
 
-    file.lock();
+  // Generar PersonFile
 
-    for (int i = 1; i <= 10000; i++) {
-      List<string> nRecord;
+  genPath = "PersonFile.txt";
+  remove(genPath.c_str());
+  file.close();
+  file.open(genPath);
+  ui.label_ruta->setText(genPath.c_str());
 
-      for (int j = 1; j <= file.fieldQuantity(); j++) {
-        string r = string("Record[" + to_string(i) + "][" + to_string(j) + "]");
-        qDebug() << "Adding: " << r.c_str();
+  qDebug() << "Adding test fields for " << genPath.c_str();
 
-        nRecord.insert(r);
-      }
+  file.addField(0, "PersonId", 6);
+  file.addField(2, "PersonName", 20);
+  file.addField(0, "PersonAge", 3);
+  file.addField(0, "CityId", 3);
 
-      file.addRecord(nRecord);
+  qDebug() << "Test fields added.";
 
-      if (i%file.getBlockSize() == 0) {
-        qDebug() << "i = " << i << ", flushing...";
-        file.flush();
-      }
+  file.lock();
+
+  qDebug() << "Adding records for " << genPath.c_str();
+  for (int i = 1; i <= 10000; i++) {
+    List<string> nRecord;
+
+    nRecord.insert(to_string(i));
+    nRecord.insert(nameGen.generate(1));
+    nRecord.insert(to_string(rand() % 110 + 1));
+    nRecord.insert(to_string(rand() % 100));
+
+    file.addRecord(nRecord);
+
+    if (i%file.getBlockSize() == 0) {
+      file.flush();
     }
-
-    refreshTable();
-  }else{
-    qDebug() << "File path is empty or null. Aborting.";
   }
+
+  qDebug() << "Test file " << genPath.c_str() << " created successfully.";
+
+
+  // Generar CityFile
+
+  genPath = "CityFile.txt";
+  remove(genPath.c_str());
+  file.close();
+  file.open(genPath);
+  ui.label_ruta->setText(genPath.c_str());
+
+  qDebug() << "Adding test fields for " << genPath.c_str();
+
+  file.addField(0, "CityId", 2);
+  file.addField(2, "CityName", 20);
+
+  qDebug() << "Test fields added.";
+
+  file.lock();
+
+  qDebug() << "Adding records for " << genPath.c_str();
+  for (int i = 1; i <= 10000; i++) {
+    List<string> nRecord;
+
+    nRecord.insert(to_string(rand() % 100));
+    nRecord.insert(nameGen.generate(2));
+
+    file.addRecord(nRecord);
+
+    if (i%file.getBlockSize() == 0) {
+      file.flush();
+    }
+  }
+
+  qDebug() << "Test file " << genPath.c_str() << " created successfully.";
+  nameGen.unload();
+  file.close();
 }
 
 void MainWindow::saveIndexFile(){
@@ -342,22 +373,22 @@ void MainWindow::exit(){
 }
 
 void MainWindow::refreshMenuBar(){
-    if (!file){ // Si no hay un archivo cargado
-        ui.menuCampos->setEnabled(false); //Bloquea campos
-        ui.menuRegistros->setEnabled(false); //Bloquea Registros
-        ui.menuEstadarizaci_n->setEnabled(false);  //Bloquea Estandarización
-        ui.menu_ndices->setEnabled(false); //Bloquea Indicas
-    }else{ // Si hay un archivo cargado
-      if (!file.isLocked()){ // Si el archivo no esta bloqueado
-          ui.menuCampos->setEnabled(true); // Desbloquea los campos
-          ui.menuRegistros->setEnabled(false); //Bloquea Registros
-          ui.menuEstadarizaci_n->setEnabled(false);  //Bloquea Estandarización
-          ui.menu_ndices->setEnabled(false); //Bloquea Indicas
-      }else{ // Si el archivo esta bloqueado
-          ui.menuCampos->setEnabled(false); // Bloquea los campos
-          ui.menuRegistros->setEnabled(true); //Bloquea Registros
-          ui.menuEstadarizaci_n->setEnabled(true);  //Bloquea Estandarización
-          ui.menu_ndices->setEnabled(true); //Bloquea Indicas
-      }
+  if (!file){ // Si no hay un archivo cargado
+    ui.menuCampos->setEnabled(false); //Bloquea campos
+    ui.menuRegistros->setEnabled(false); //Bloquea Registros
+    ui.menuEstadarizaci_n->setEnabled(false);  //Bloquea Estandarización
+    ui.menu_ndices->setEnabled(false); //Bloquea Indicas
+  }else{ // Si hay un archivo cargado
+    if (!file.isLocked()){ // Si el archivo no esta bloqueado
+      ui.menuCampos->setEnabled(true); // Desbloquea los campos
+      ui.menuRegistros->setEnabled(false); //Bloquea Registros
+      ui.menuEstadarizaci_n->setEnabled(false);  //Bloquea Estandarización
+      ui.menu_ndices->setEnabled(false); //Bloquea Indicas
+    }else{ // Si el archivo esta bloqueado
+      ui.menuCampos->setEnabled(false); // Bloquea los campos
+      ui.menuRegistros->setEnabled(true); //Bloquea Registros
+      ui.menuEstadarizaci_n->setEnabled(true);  //Bloquea Estandarización
+      ui.menu_ndices->setEnabled(true); //Bloquea Indicas
     }
+  }
 }
