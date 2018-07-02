@@ -5,8 +5,8 @@
 #include "listfieldswindow.h"
 #include "deletefieldwindow.h"
 #include "modifyfieldwindow.h"
-//#include "deleterecordwindow.h"
-#include "joinfilewindow.h"
+#include "deleterecordwindow.h"
+#include "linkedfileswindow.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent){
   ui.setupUi(this);
@@ -69,8 +69,8 @@ void MainWindow::addRecord(){
 }
 
 void MainWindow::deleteRecords(){
-    /*deleteRecordWindow* dr = new deleteRecordWindow();
-    dr->show();*/
+    deleteRecordWindow* dr = new deleteRecordWindow(&file);
+    dr->show();
 }
 /*##########################################*/
 
@@ -165,9 +165,8 @@ void MainWindow::loadFile(){
 }
 
 void MainWindow::joinFiles(){
-    joinFileWindow* jf = new joinFileWindow(&file);
-    jf->refreshTable();
-    jf->show();
+    linkedFilesWindow* lf = new linkedFilesWindow();
+    lf->show();
 }
 
 
