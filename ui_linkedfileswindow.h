@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'linkedfileswindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -92,14 +92,14 @@ public:
 
     void retranslateUi(QWidget *linkedFilesWindow)
     {
-        linkedFilesWindow->setWindowTitle(QApplication::translate("linkedFilesWindow", "Form", 0));
-        label->setText(QApplication::translate("linkedFilesWindow", "Cruzar archivos", 0));
-        pushButton_send->setText(QApplication::translate("linkedFilesWindow", "Agregar", 0));
-        pushButton_find->setText(QApplication::translate("linkedFilesWindow", "Buscar archivo...", 0));
-        label_2->setText(QApplication::translate("linkedFilesWindow", "Campos del archivo 1", 0));
-        pushButton_add1->setText(QApplication::translate("linkedFilesWindow", "A\303\261adir campo", 0));
-        label_3->setText(QApplication::translate("linkedFilesWindow", "Campos del archivo 2", 0));
-        pushButton_add2->setText(QApplication::translate("linkedFilesWindow", "A\303\261adir campo", 0));
+        linkedFilesWindow->setWindowTitle(QApplication::translate("linkedFilesWindow", "Form", nullptr));
+        label->setText(QApplication::translate("linkedFilesWindow", "Cruzar archivos", nullptr));
+        pushButton_send->setText(QApplication::translate("linkedFilesWindow", "Agregar", nullptr));
+        pushButton_find->setText(QApplication::translate("linkedFilesWindow", "Buscar archivo...", nullptr));
+        label_2->setText(QApplication::translate("linkedFilesWindow", "Campos del archivo 1", nullptr));
+        pushButton_add1->setText(QApplication::translate("linkedFilesWindow", "A\303\261adir campo", nullptr));
+        label_3->setText(QApplication::translate("linkedFilesWindow", "Campos del archivo 2", nullptr));
+        pushButton_add2->setText(QApplication::translate("linkedFilesWindow", "A\303\261adir campo", nullptr));
     } // retranslateUi
 
 };
