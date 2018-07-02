@@ -25,6 +25,7 @@ linkedFilesWindow::~linkedFilesWindow()
 void linkedFilesWindow::refreshTable(){
     qDebug()<<"Size file 3: "<<file3.getFields().size;
     for(int i=1; i<=file3.getFields().size; i++){
+        ui->tableWidget->setRowCount(file3.getFields().size);
         ui->tableWidget->setItem(i-1,0,new QTableWidgetItem(QString::fromStdString(file3.getFields().get(i).getName())));
         if(file3.getFields().get(i).getType()==0) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("Integer"));
         else if(file3.getFields().get(i).getType()==1) ui->tableWidget->setItem(i-1,1,new QTableWidgetItem("Character"));
