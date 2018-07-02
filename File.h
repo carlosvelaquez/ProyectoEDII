@@ -10,6 +10,7 @@
 #include <sstream>
 #include <limits>
 #include <cmath>
+#include <QMessageBox>
 
 using namespace std;
 
